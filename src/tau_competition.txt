@@ -1,0 +1,10 @@
+=== TAU COMPETITION ASSAY ===
+Seeded: R5=26(10%), 51(20%), 102(40%), 179(70%) equally
+
+seed 0: t=500: N=193, R5=30, eff_tau=10.12%, k=0.92, dist=[10p=119,20p=54,40p=0,70p=0,other=20] | t=1000: N=181, R5=23, eff_tau=8.93%, k=0.91, dist=[10p=162,20p=0,40p=0,70p=0,other=19] | max_gen=71
+seed 1: t=500: N=199, R5=30, eff_tau=9.93%, k=0.93, dist=[10p=75,20p=77,40p=0,70p=0,other=47] | t=1000: N=182, R5=28, eff_tau=10.07%, k=0.91, dist=[10p=71,20p=65,40p=0,70p=0,other=46] | max_gen=68
+seed 2: t=500: N=189, R5=28, eff_tau=8.98%, k=0.86, dist=[10p=134,20p=35,40p=0,70p=0,other=20] | t=1000: N=190, R5=23, eff_tau=10.25%, k=0.97, dist=[10p=171,20p=0,40p=0,70p=0,other=19] | max_gen=64
+seed 3: t=500: N=193, R5=23, eff_tau=9.91%, k=0.98, dist=[10p=173,20p=0,40p=0,70p=0,other=20] | t=1000: N=191, R5=23, eff_tau=10.10%, k=0.94, dist=[10p=171,20p=0,40p=0,70p=0,other=20] | max_gen=68
+seed 4: t=500: N=183, R5=33, eff_tau=10.21%, k=0.95, dist=[10p=96,20p=68,40p=0,70p=0,other=19] | t=1000: N=174, R5=41, eff_tau=10.71%, k=0.89, dist=[10p=23,20p=128,40p=0,70p=0,other=23] | max_gen=70
+
+=== DONE ===

@@ -1,0 +1,14 @@
+DERIVATION isolated_parent=true seed=123 bouts=2 genome_length=14 tau_r5=51 ticks=2000 iterations=25 assay_energy=500.0
+CAP_DESIGN packet_rate=11 buffer_depth=132 population_cap=155 initial_buffer_packets=132 cycle_supply=132 burst_successes=132 f_eq=0.851612903226
+FULL DISCRETE_CAPTURE captured=True alive=True births=2 attempts=2 stillbirths=0 reserve=161.735460376739
+FULL DISCRETE_CAPTURE captured=False alive=True births=0 attempts=2 stillbirths=2 reserve=21.630217647552
+FULL cycle_starts=[14, 26, 38, 50, 62, 74] cycle_intervals=[12, 12, 12, 12, 12] peak_memory=320
+FULL parent_survival effective_E=168.835851550 f_at_assay_E=0.337671703 alive=True tail_k=0.000000 reserve=58.896951880
+FULL k_ge_1 effective_E=197.335730493 f_at_assay_E=0.394671461 alive=True tail_k=1.000000 reserve=93.652960942
+FULL k_ge_2 effective_E=230.922865868 f_at_assay_E=0.461845732 alive=True tail_k=2.000000 reserve=134.612951816
+HALF DISCRETE_CAPTURE captured=True alive=True births=2 attempts=2 stillbirths=0 reserve=92.797011947632
+HALF DISCRETE_CAPTURE captured=False alive=True births=0 attempts=2 stillbirths=2 reserve=22.660226440430
+HALF cycle_starts=[14, 26, 38, 50, 62, 74] cycle_intervals=[12, 12, 12, 12, 12] peak_memory=320
+HALF parent_survival effective_E=329.128819704 f_at_assay_E=0.658257639 alive=True tail_k=0.000000 reserve=58.896935872
+HALF k_ge_1 effective_E=386.128577590 f_at_assay_E=0.772257155 alive=True tail_k=1.000000 reserve=93.652944933
+HALF k_ge_2 effective_E=453.302870691 f_at_assay_E=0.906605741 alive=True tail_k=2.000000 reserve=134.612949437

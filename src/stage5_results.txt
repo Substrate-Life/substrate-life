@@ -1,0 +1,28 @@
+=== STAGE 5 RESULTS ===
+
+=== PRIMARY_50T ===
+Prediction: switcher > 70% by t=500
+seed 0: t=500: EXTINCT | max_gen=2
+seed 1: t=500: EXTINCT | max_gen=2
+seed 2: t=500: EXTINCT | max_gen=2
+seed 3: t=500: EXTINCT | max_gen=2
+seed 4: t=500: EXTINCT | max_gen=2
+
+=== SECONDARY_1000T ===
+Prediction: specialists extinct by t=1500
+seed 0: t=500: sw=36% rle=64% diff=0% (N=96) | t=1000: sw=11% rle=89% diff=0% (N=63) | t=1500: EXTINCT | max_gen=27
+seed 1: t=500: sw=38% rle=62% diff=0% (N=90) | t=1000: sw=44% rle=56% diff=0% (N=127) | t=1500: sw=100% rle=0% diff=0% (N=1) | t=2000: sw=100% rle=0% diff=0% (N=1) | max_gen=28
+seed 2: t=500: sw=27% rle=73% diff=0% (N=99) | t=1000: sw=20% rle=80% diff=0% (N=119) | t=1500: EXTINCT | max_gen=27
+seed 3: t=500: sw=20% rle=80% diff=0% (N=106) | t=1000: sw=7% rle=93% diff=0% (N=107) | t=1500: EXTINCT | max_gen=28
+seed 4: t=500: sw=26% rle=74% diff=0% (N=104) | t=1000: sw=9% rle=91% diff=0% (N=97) | t=1500: sw=0% rle=100% diff=0% (N=1) | t=2000: EXTINCT | max_gen=25
+
+=== CONTROL_RICH ===
+Prediction: switcher < 20% by t=4000
+seed 0: t=500: sw=36% rle=64% diff=0% (N=96) | t=1000: sw=11% rle=89% diff=0% (N=63) | t=1500: sw=13% rle=87% diff=0% (N=46) | t=2000: sw=16% rle=84% diff=0% (N=93) | max_gen=105
+seed 1: t=500: sw=38% rle=62% diff=0% (N=90) | t=1000: sw=44% rle=56% diff=0% (N=127) | t=1500: sw=2% rle=98% diff=0% (N=60) | t=2000: sw=3% rle=97% diff=0% (N=39) | max_gen=94
+seed 2: t=500: sw=27% rle=73% diff=0% (N=99) | t=1000: sw=20% rle=80% diff=0% (N=119) | t=1500: sw=0% rle=100% diff=0% (N=86) | t=2000: sw=0% rle=100% diff=0% (N=97) | max_gen=77
+seed 3: t=500: sw=20% rle=80% diff=0% (N=106) | t=1000: sw=7% rle=93% diff=0% (N=107) | t=1500: sw=5% rle=95% diff=0% (N=131) | t=2000: sw=0% rle=100% diff=0% (N=87) | max_gen=80
+seed 4: t=500: sw=26% rle=74% diff=0% (N=104) | t=1000: sw=9% rle=91% diff=0% (N=97) | t=1500: sw=0% rle=100% diff=0% (N=44) | t=2000: sw=0% rle=100% diff=0% (N=61) | max_gen=84
+
+
+=== DONE ===

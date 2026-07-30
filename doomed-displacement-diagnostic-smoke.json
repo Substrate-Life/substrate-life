@@ -1,0 +1,64 @@
+{
+  "aggregate": {
+    "doomed_offspring_fraction_of_live_displacements": 0.4260355029585799,
+    "doomed_offspring_live_displacements": 144,
+    "live_displacements": 338,
+    "parent_victim_displacements": 1,
+    "unresolved_causing_offspring_live_displacements": 108,
+    "vacancy_fills": 0
+  },
+  "classification": "telemetry_smoke_not_tau_assay",
+  "cycles_per_seed": 1,
+  "endpoint_censoring_note": "unresolved causing offspring prevent completed-cohort interpretation",
+  "lineage": "FULL",
+  "scientific_inference_authorized": false,
+  "seeds": [
+    730001,
+    730002
+  ],
+  "source_manifest": {
+    "src/consts.py": {
+      "mtime_ns": 1785262899214377056,
+      "sha256": "f7d4af5384efe1978ac9fa9e14e7ad6eb2036f2915c76303648120ffbb140b0c",
+      "size": 2372
+    },
+    "src/derive_stochastic_efficiency.py": {
+      "mtime_ns": 1785267751464928957,
+      "sha256": "dbc72a14e056b8e1e0baaf4a3730b209c279ab0eca89e508445af43d8602d2c2",
+      "size": 18747
+    },
+    "src/engine.py": {
+      "mtime_ns": 1785267729388792242,
+      "sha256": "7c2f4a0f3969f7848a490a5307842e777eadd4ed99ebed0c54a4848f753621ab",
+      "size": 29564
+    },
+    "src/organism.py": {
+      "mtime_ns": 1785267713283693161,
+      "sha256": "49ea8974ebaec6cf9629ad41013e9b29dc339206c81d756e98e994cf920e08b3",
+      "size": 29575
+    },
+    "src/smoke_displacement_diagnostic.py": {
+      "mtime_ns": 1785267165736738497,
+      "sha256": "0c7b42ac24d1850c1dd0210c763e209a2ee4a37344c58d847c3e2fc68b5a8c1a",
+      "size": 2321
+    }
+  },
+  "trials": [
+    {
+      "doomed_offspring_fraction_of_live_displacements": 0.4152046783625731,
+      "doomed_offspring_live_displacements": 71,
+      "live_displacements": 171,
+      "parent_victim_displacements": 1,
+      "unresolved_causing_offspring_live_displacements": 56,
+      "vacancy_fills": 0
+    },
+    {
+      "doomed_offspring_fraction_of_live_displacements": 0.437125748502994,
+      "doomed_offspring_live_displacements": 73,
+      "live_displacements": 167,
+      "parent_victim_displacements": 0,
+      "unresolved_causing_offspring_live_displacements": 52,
+      "vacancy_fills": 0
+    }
+  ]
+}

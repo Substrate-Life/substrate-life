@@ -1,0 +1,118 @@
+{
+  "heuristic": {
+    "b_full": 0.08802332399445992,
+    "b_half": 0.06501167540957524,
+    "census_binomial_sd": 0.0401601306202683,
+    "delta_birth_rate": 0.023011648584884678,
+    "delta_p_12": 0.06853606690539016,
+    "delta_p_12_in_census_sd": 1.7065698205374087,
+    "p0": 0.5032258064516129,
+    "p_after_12_ticks": 0.571761873357003,
+    "readiness": "ONE_TO_THREE_SD_REQUIRE_POWER_CALIBRATION"
+  },
+  "kind": "precompetition_design_calibration_not_competition_evidence",
+  "parameters": {
+    "analysis_end_tick": 483,
+    "analysis_start_tick": 124,
+    "buffer_depth": 132,
+    "burn_cycles": 10,
+    "cycles": 40,
+    "initial_buffer_packets": 132,
+    "isolated_trials": 2000,
+    "monomorphic_seeds_per_arm": 20,
+    "mutation_rates": 0,
+    "p_capture_iid": 0.8516129032258064,
+    "packet_rate": 11,
+    "population_cap": 155
+  },
+  "summaries": [
+    {
+      "births_per_organism_tick": 0.16340018831771702,
+      "deaths_per_organism_tick": 0.00047244042641452286,
+      "label": "FULL",
+      "mode": "isolated_iid",
+      "postburn_attempts": 101208,
+      "postburn_births": 99263,
+      "postburn_deaths": 287,
+      "postburn_person_ticks": 607484,
+      "postburn_stillbirths": 1945,
+      "stillbirth_fraction": 0.019217848391431508,
+      "survival_to_burn_fraction": 0.9155,
+      "survived_to_burn": 1831,
+      "trials": 2000
+    },
+    {
+      "births_per_organism_tick": 0.13889388219785487,
+      "deaths_per_organism_tick": 0.014680328359997604,
+      "label": "HALF",
+      "mode": "isolated_iid",
+      "postburn_attempts": 8222,
+      "postburn_births": 6954,
+      "postburn_deaths": 735,
+      "postburn_person_ticks": 50067,
+      "postburn_stillbirths": 1268,
+      "stillbirth_fraction": 0.15422038433471175,
+      "survival_to_burn_fraction": 0.37,
+      "survived_to_burn": 740,
+      "trials": 2000
+    },
+    {
+      "all_age_nondisplacement_deaths": 9517,
+      "all_age_nondisplacement_deaths_per_birth": 0.09768239109906802,
+      "allocation_failures": 0,
+      "attempts": 108494,
+      "births": 97428,
+      "births_per_organism_tick": 0.08802332399445992,
+      "capture_fraction": 0.8071636011616651,
+      "established_nondisplacement_deaths_per_birth": 0.003243420782526584,
+      "label": "FULL",
+      "live_displacements": 87910,
+      "mean_birth_to_first_read": 5.0,
+      "mean_recurrent_read_interval": 12.0,
+      "mean_seed_birth_rate": 0.08802324742601754,
+      "minimum_population": 147,
+      "mode": "monomorphic_cap",
+      "nondisplacement_deaths_by_stage": {
+        "post_first_live_birth": 316,
+        "post_read_pre_first_live_birth": 9201
+      },
+      "organism_ticks": 1106843,
+      "pending_divides_preempted": 3983,
+      "sd_seed_birth_rate": 0.0004770707142556079,
+      "seeds": 20,
+      "stillbirth_fraction": 0.1019964237653695,
+      "stillbirths": 11066,
+      "vacancy_fills": 361
+    },
+    {
+      "all_age_nondisplacement_deaths": 45696,
+      "all_age_nondisplacement_deaths_per_birth": 0.657837153057699,
+      "allocation_failures": 0,
+      "attempts": 121372,
+      "births": 69464,
+      "births_per_organism_tick": 0.06501167540957524,
+      "capture_fraction": 0.7218900393758203,
+      "established_nondisplacement_deaths_per_birth": 0.15445410572382817,
+      "label": "HALF",
+      "live_displacements": 23784,
+      "mean_birth_to_first_read": 5.0,
+      "mean_recurrent_read_interval": 12.0,
+      "mean_seed_birth_rate": 0.06501159907856888,
+      "minimum_population": 135,
+      "mode": "monomorphic_cap",
+      "nondisplacement_deaths_by_stage": {
+        "post_first_live_birth": 10729,
+        "post_read_pre_first_live_birth": 34967
+      },
+      "organism_ticks": 1068485,
+      "pending_divides_preempted": 705,
+      "sd_seed_birth_rate": 0.0002617115558723336,
+      "seeds": 20,
+      "stillbirth_fraction": 0.4276768941765811,
+      "stillbirths": 51908,
+      "vacancy_fills": 568
+    }
+  ]
+}
+RAW_PATH /opt/data/avida-life/efficiency-stochastic-calibration-raw.jsonl
+SUMMARY_PATH /opt/data/avida-life/efficiency-stochastic-calibration-summary.json

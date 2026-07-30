@@ -1,0 +1,3032 @@
+{
+  "assay_run": false,
+  "closure_history": [
+    {
+      "memory_closed": true,
+      "operation": "initial",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "800",
+      "reserve_rhs": "800"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-0",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "35923/40",
+      "reserve_rhs": "35923/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-1",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "19923/20",
+      "reserve_rhs": "19923/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-2",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "43769/40",
+      "reserve_rhs": "43769/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-3",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "11923/10",
+      "reserve_rhs": "11923/10"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-4",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "10323/8",
+      "reserve_rhs": "10323/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "packet_capture_failed:org-5",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "10239/8",
+      "reserve_rhs": "10239/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "packet_capture_failed:org-6",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "10155/8",
+      "reserve_rhs": "10155/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "packet_capture_failed:org-7",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "10071/8",
+      "reserve_rhs": "10071/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "tick_complete:0",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "10071/8",
+      "reserve_rhs": "10071/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-0",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "10071/8",
+      "reserve_rhs": "10071/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-3",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "10071/8",
+      "reserve_rhs": "10071/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-8",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "27139/20",
+      "reserve_rhs": "27139/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-9",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "58201/40",
+      "reserve_rhs": "58201/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-4",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "15531/10",
+      "reserve_rhs": "15531/10"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-5",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "66047/40",
+      "reserve_rhs": "66047/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-6",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "6997/4",
+      "reserve_rhs": "6997/4"
+    },
+    {
+      "memory_closed": true,
+      "operation": "packet_capture_failed:org-7",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "6955/4",
+      "reserve_rhs": "6955/4"
+    },
+    {
+      "memory_closed": true,
+      "operation": "tick_complete:1",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "6955/4",
+      "reserve_rhs": "6955/4"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-1",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "73473/40",
+      "reserve_rhs": "73473/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-2",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "19349/10",
+      "reserve_rhs": "19349/10"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-4",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "81319/40",
+      "reserve_rhs": "81319/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-5",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "42621/20",
+      "reserve_rhs": "42621/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-6",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "17833/8",
+      "reserve_rhs": "17833/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "packet_capture_failed:org-7",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "17749/8",
+      "reserve_rhs": "17749/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "packet_capture_failed:org-8",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "17665/8",
+      "reserve_rhs": "17665/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "packet_capture_failed:org-9",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "17581/8",
+      "reserve_rhs": "17581/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "tick_complete:2",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "17581/8",
+      "reserve_rhs": "17581/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-9",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "17581/8",
+      "reserve_rhs": "17581/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-10",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "22957/10",
+      "reserve_rhs": "22957/10"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-2",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "95751/40",
+      "reserve_rhs": "95751/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-4",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "49837/20",
+      "reserve_rhs": "49837/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-5",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "103597/40",
+      "reserve_rhs": "103597/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-6",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "2688",
+      "reserve_rhs": "2688"
+    },
+    {
+      "memory_closed": true,
+      "operation": "packet_capture_failed:org-7",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "5355/2",
+      "reserve_rhs": "5355/2"
+    },
+    {
+      "memory_closed": true,
+      "operation": "somatic_stall:org-8",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "5355/2",
+      "reserve_rhs": "5355/2"
+    },
+    {
+      "memory_closed": true,
+      "operation": "corpse_expiry:org-0",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "5355/2",
+      "reserve_rhs": "5355/2"
+    },
+    {
+      "memory_closed": true,
+      "operation": "corpse_expiry:org-3",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "5355/2",
+      "reserve_rhs": "5355/2"
+    },
+    {
+      "memory_closed": true,
+      "operation": "tick_complete:3",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "5355/2",
+      "reserve_rhs": "5355/2"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-2",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "5355/2",
+      "reserve_rhs": "5355/2"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-5",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "5355/2",
+      "reserve_rhs": "5355/2"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-7",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "5355/2",
+      "reserve_rhs": "5355/2"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-11",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "111023/40",
+      "reserve_rhs": "111023/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-12",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "57473/20",
+      "reserve_rhs": "57473/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-13",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "118869/40",
+      "reserve_rhs": "118869/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-6",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "15349/5",
+      "reserve_rhs": "15349/5"
+    },
+    {
+      "memory_closed": true,
+      "operation": "tick_complete:4",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "15349/5",
+      "reserve_rhs": "15349/5"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-1",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "15349/5",
+      "reserve_rhs": "15349/5"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-10",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "15349/5",
+      "reserve_rhs": "15349/5"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-14",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "25343/8",
+      "reserve_rhs": "25343/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "somatic_stall:org-12",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "25343/8",
+      "reserve_rhs": "25343/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-15",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "65319/20",
+      "reserve_rhs": "65319/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-4",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "134561/40",
+      "reserve_rhs": "134561/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-6",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "34621/10",
+      "reserve_rhs": "34621/10"
+    },
+    {
+      "memory_closed": true,
+      "operation": "corpse_expiry:org-9",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "34621/10",
+      "reserve_rhs": "34621/10"
+    },
+    {
+      "memory_closed": true,
+      "operation": "tick_complete:5",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "34621/10",
+      "reserve_rhs": "34621/10"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-15",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "34621/10",
+      "reserve_rhs": "34621/10"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-6",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "34621/10",
+      "reserve_rhs": "34621/10"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-16",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "142407/40",
+      "reserve_rhs": "142407/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-17",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "14633/4",
+      "reserve_rhs": "14633/4"
+    },
+    {
+      "memory_closed": true,
+      "operation": "somatic_stall:org-14",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "14633/4",
+      "reserve_rhs": "14633/4"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-4",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "150253/40",
+      "reserve_rhs": "150253/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "corpse_expiry:org-2",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "150253/40",
+      "reserve_rhs": "150253/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "corpse_expiry:org-5",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "150253/40",
+      "reserve_rhs": "150253/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "corpse_expiry:org-7",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "150253/40",
+      "reserve_rhs": "150253/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "tick_complete:6",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "150253/40",
+      "reserve_rhs": "150253/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-13",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "150253/40",
+      "reserve_rhs": "150253/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-18",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "19272/5",
+      "reserve_rhs": "19272/5"
+    },
+    {
+      "memory_closed": true,
+      "operation": "mid_cycle_stall:org-16",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "38439/10",
+      "reserve_rhs": "38439/10"
+    },
+    {
+      "memory_closed": true,
+      "operation": "mid_cycle_stall:org-17",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "19167/5",
+      "reserve_rhs": "19167/5"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-4",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "157259/40",
+      "reserve_rhs": "157259/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "corpse_expiry:org-1",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "157259/40",
+      "reserve_rhs": "157259/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "corpse_expiry:org-10",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "157259/40",
+      "reserve_rhs": "157259/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "tick_complete:7",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "157259/40",
+      "reserve_rhs": "157259/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-17",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "157259/40",
+      "reserve_rhs": "157259/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-19",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "80591/20",
+      "reserve_rhs": "80591/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-18",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "33021/8",
+      "reserve_rhs": "33021/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-4",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "42257/10",
+      "reserve_rhs": "42257/10"
+    },
+    {
+      "memory_closed": true,
+      "operation": "corpse_expiry:org-15",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "42257/10",
+      "reserve_rhs": "42257/10"
+    },
+    {
+      "memory_closed": true,
+      "operation": "corpse_expiry:org-6",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "42257/10",
+      "reserve_rhs": "42257/10"
+    },
+    {
+      "memory_closed": true,
+      "operation": "tick_complete:8",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "42257/10",
+      "reserve_rhs": "42257/10"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-12",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "42257/10",
+      "reserve_rhs": "42257/10"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-16",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "42257/10",
+      "reserve_rhs": "42257/10"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-18",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "42257/10",
+      "reserve_rhs": "42257/10"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-4",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "42257/10",
+      "reserve_rhs": "42257/10"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-20",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "172951/40",
+      "reserve_rhs": "172951/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-21",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "88437/20",
+      "reserve_rhs": "88437/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "corpse_expiry:org-13",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "88437/20",
+      "reserve_rhs": "88437/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "tick_complete:9",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "88437/20",
+      "reserve_rhs": "88437/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-22",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "180797/40",
+      "reserve_rhs": "180797/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-23",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "4618",
+      "reserve_rhs": "4618"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-20",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "188643/40",
+      "reserve_rhs": "188643/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "somatic_stall:org-21",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "188643/40",
+      "reserve_rhs": "188643/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "corpse_expiry:org-17",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "188643/40",
+      "reserve_rhs": "188643/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "tick_complete:10",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "188643/40",
+      "reserve_rhs": "188643/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-14",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "188643/40",
+      "reserve_rhs": "188643/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-21",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "188643/40",
+      "reserve_rhs": "188643/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-24",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "96283/20",
+      "reserve_rhs": "96283/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-25",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "196489/40",
+      "reserve_rhs": "196489/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-20",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "50103/10",
+      "reserve_rhs": "50103/10"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-22",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "40867/8",
+      "reserve_rhs": "40867/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "mid_cycle_stall:org-23",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "40783/8",
+      "reserve_rhs": "40783/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "corpse_expiry:org-12",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "40783/8",
+      "reserve_rhs": "40783/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "corpse_expiry:org-16",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "40783/8",
+      "reserve_rhs": "40783/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "corpse_expiry:org-18",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "40783/8",
+      "reserve_rhs": "40783/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "corpse_expiry:org-4",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "40783/8",
+      "reserve_rhs": "40783/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "tick_complete:11",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "40783/8",
+      "reserve_rhs": "40783/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-19",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "40783/8",
+      "reserve_rhs": "40783/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-23",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "40783/8",
+      "reserve_rhs": "40783/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-26",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "103919/20",
+      "reserve_rhs": "103919/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-27",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "211761/40",
+      "reserve_rhs": "211761/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-22",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "53921/10",
+      "reserve_rhs": "53921/10"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-24",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "219607/40",
+      "reserve_rhs": "219607/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-25",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "22353/4",
+      "reserve_rhs": "22353/4"
+    },
+    {
+      "memory_closed": true,
+      "operation": "tick_complete:12",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "22353/4",
+      "reserve_rhs": "22353/4"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-22",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "22353/4",
+      "reserve_rhs": "22353/4"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-26",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "22353/4",
+      "reserve_rhs": "22353/4"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-28",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "227453/40",
+      "reserve_rhs": "227453/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-29",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "28922/5",
+      "reserve_rhs": "28922/5"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-24",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "235299/40",
+      "reserve_rhs": "235299/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-25",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "119611/20",
+      "reserve_rhs": "119611/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-27",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "48629/8",
+      "reserve_rhs": "48629/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "corpse_expiry:org-14",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "48629/8",
+      "reserve_rhs": "48629/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "corpse_expiry:org-21",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "48629/8",
+      "reserve_rhs": "48629/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "tick_complete:13",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "48629/8",
+      "reserve_rhs": "48629/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-20",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "48629/8",
+      "reserve_rhs": "48629/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-25",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "48629/8",
+      "reserve_rhs": "48629/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-30",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "61767/10",
+      "reserve_rhs": "61767/10"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-31",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "250991/40",
+      "reserve_rhs": "250991/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-27",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "127457/20",
+      "reserve_rhs": "127457/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-28",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "258837/40",
+      "reserve_rhs": "258837/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-29",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "6569",
+      "reserve_rhs": "6569"
+    },
+    {
+      "memory_closed": true,
+      "operation": "corpse_expiry:org-19",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "6569",
+      "reserve_rhs": "6569"
+    },
+    {
+      "memory_closed": true,
+      "operation": "corpse_expiry:org-23",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "6569",
+      "reserve_rhs": "6569"
+    },
+    {
+      "memory_closed": true,
+      "operation": "tick_complete:14",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "6569",
+      "reserve_rhs": "6569"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-8",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "6569",
+      "reserve_rhs": "6569"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-32",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "266683/40",
+      "reserve_rhs": "266683/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-24",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "135303/20",
+      "reserve_rhs": "135303/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-27",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "274529/40",
+      "reserve_rhs": "274529/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-28",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "69613/10",
+      "reserve_rhs": "69613/10"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-29",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "56475/8",
+      "reserve_rhs": "56475/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-30",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "143149/20",
+      "reserve_rhs": "143149/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-31",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "290221/40",
+      "reserve_rhs": "290221/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "corpse_expiry:org-22",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "290221/40",
+      "reserve_rhs": "290221/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "corpse_expiry:org-26",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "290221/40",
+      "reserve_rhs": "290221/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "tick_complete:15",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "290221/40",
+      "reserve_rhs": "290221/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-27",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "290221/40",
+      "reserve_rhs": "290221/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-33",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "36768/5",
+      "reserve_rhs": "36768/5"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-24",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "298067/40",
+      "reserve_rhs": "298067/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-28",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "30199/4",
+      "reserve_rhs": "30199/4"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-29",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "305913/40",
+      "reserve_rhs": "305913/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-30",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "77459/10",
+      "reserve_rhs": "77459/10"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-31",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "313759/40",
+      "reserve_rhs": "313759/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "packet_capture_failed:org-32",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "313339/40",
+      "reserve_rhs": "313339/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "corpse_expiry:org-20",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "313339/40",
+      "reserve_rhs": "313339/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "corpse_expiry:org-25",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "313339/40",
+      "reserve_rhs": "313339/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "tick_complete:16",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "313339/40",
+      "reserve_rhs": "313339/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-11",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "313339/40",
+      "reserve_rhs": "313339/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-34",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "158631/20",
+      "reserve_rhs": "158631/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-28",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "64237/8",
+      "reserve_rhs": "64237/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-29",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "81277/10",
+      "reserve_rhs": "81277/10"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-30",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "329031/40",
+      "reserve_rhs": "329031/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-31",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "166477/20",
+      "reserve_rhs": "166477/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "packet_capture_failed:org-32",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "166267/20",
+      "reserve_rhs": "166267/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "packet_capture_failed:org-33",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "166057/20",
+      "reserve_rhs": "166057/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "corpse_expiry:org-8",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "166057/20",
+      "reserve_rhs": "166057/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "tick_complete:17",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "166057/20",
+      "reserve_rhs": "166057/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-28",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "166057/20",
+      "reserve_rhs": "166057/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-35",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "336037/40",
+      "reserve_rhs": "336037/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-29",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "8499",
+      "reserve_rhs": "8499"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-30",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "343883/40",
+      "reserve_rhs": "343883/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-31",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "173903/20",
+      "reserve_rhs": "173903/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "mid_cycle_stall:org-32",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "173693/20",
+      "reserve_rhs": "173693/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "packet_capture_failed:org-33",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "173483/20",
+      "reserve_rhs": "173483/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "packet_capture_failed:org-34",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "173273/20",
+      "reserve_rhs": "173273/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "corpse_expiry:org-27",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "173273/20",
+      "reserve_rhs": "173273/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "tick_complete:18",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "173273/20",
+      "reserve_rhs": "173273/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "hazard_death:org-34",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "173273/20",
+      "reserve_rhs": "173273/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_admitted:org-36",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "350469/40",
+      "reserve_rhs": "350469/40"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-29",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "44299/5",
+      "reserve_rhs": "44299/5"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-30",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "71663/8",
+      "reserve_rhs": "71663/8"
+    },
+    {
+      "memory_closed": true,
+      "operation": "birth_rejected_no_vacancy:org-31",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "181119/20",
+      "reserve_rhs": "181119/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "mid_cycle_stall:org-33",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "180909/20",
+      "reserve_rhs": "180909/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "packet_capture_failed:org-35",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "180699/20",
+      "reserve_rhs": "180699/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "corpse_expiry:org-11",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "180699/20",
+      "reserve_rhs": "180699/20"
+    },
+    {
+      "memory_closed": true,
+      "operation": "tick_complete:19",
+      "packets_closed": true,
+      "reserve_closed": true,
+      "reserve_lhs": "180699/20",
+      "reserve_rhs": "180699/20"
+    }
+  ],
+  "configuration": {
+    "buffer_depth": 8,
+    "capacity": 8,
+    "corpse_ttl": 2,
+    "founders": 8,
+    "hazard_rate": "1/5",
+    "hazard_seed": 73,
+    "packet_energy": 300,
+    "packet_rate": 5,
+    "ticks": 20
+  },
+  "counts": {
+    "birth_admitted": 29,
+    "birth_rejected_no_vacancy": 57,
+    "corpse_expired": 27,
+    "hazard_death": 29,
+    "packet_capture_failed": 14,
+    "somatic_stall": 9
+  },
+  "decisions": {
+    "admission": "non_displacing_vacancy_reservation",
+    "hazard_phase": "phenotype_blind_at_tick_start",
+    "mutation": "disabled_exact_trait_inheritance",
+    "packet_feed": "shared_consumptive_buffer_five_arrivals_per_tick",
+    "scheduler": "stable_survivor_ids_newborns_next_tick",
+    "somatic_insufficiency": "retain_reserve_and_stall_until_hazard"
+  },
+  "events": [
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-0",
+      "phase": "admission",
+      "tick": 0
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-1",
+      "phase": "admission",
+      "tick": 0
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-2",
+      "phase": "admission",
+      "tick": 0
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-3",
+      "phase": "admission",
+      "tick": 0
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-4",
+      "phase": "admission",
+      "tick": 0
+    },
+    {
+      "event": "packet_capture_failed",
+      "organism_id": "org-5",
+      "phase": "packet_capture",
+      "tick": 0
+    },
+    {
+      "event": "packet_capture_failed",
+      "organism_id": "org-6",
+      "phase": "packet_capture",
+      "tick": 0
+    },
+    {
+      "event": "packet_capture_failed",
+      "organism_id": "org-7",
+      "phase": "packet_capture",
+      "tick": 0
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-0",
+      "phase": "hazard",
+      "tick": 1
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-3",
+      "phase": "hazard",
+      "tick": 1
+    },
+    {
+      "child_id": "org-8",
+      "event": "birth_admitted",
+      "parent_id": "org-1",
+      "phase": "admission",
+      "provision": "413/25",
+      "tick": 1
+    },
+    {
+      "child_id": "org-9",
+      "event": "birth_admitted",
+      "parent_id": "org-2",
+      "phase": "admission",
+      "provision": "413/25",
+      "tick": 1
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-4",
+      "phase": "admission",
+      "tick": 1
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-5",
+      "phase": "admission",
+      "tick": 1
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-6",
+      "phase": "admission",
+      "tick": 1
+    },
+    {
+      "event": "packet_capture_failed",
+      "organism_id": "org-7",
+      "phase": "packet_capture",
+      "tick": 1
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-1",
+      "phase": "admission",
+      "tick": 2
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-2",
+      "phase": "admission",
+      "tick": 2
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-4",
+      "phase": "admission",
+      "tick": 2
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-5",
+      "phase": "admission",
+      "tick": 2
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-6",
+      "phase": "admission",
+      "tick": 2
+    },
+    {
+      "event": "packet_capture_failed",
+      "organism_id": "org-7",
+      "phase": "packet_capture",
+      "tick": 2
+    },
+    {
+      "event": "packet_capture_failed",
+      "organism_id": "org-8",
+      "phase": "packet_capture",
+      "tick": 2
+    },
+    {
+      "event": "packet_capture_failed",
+      "organism_id": "org-9",
+      "phase": "packet_capture",
+      "tick": 2
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-9",
+      "phase": "hazard",
+      "tick": 3
+    },
+    {
+      "child_id": "org-10",
+      "event": "birth_admitted",
+      "parent_id": "org-1",
+      "phase": "admission",
+      "provision": "3717/125",
+      "tick": 3
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-2",
+      "phase": "admission",
+      "tick": 3
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-4",
+      "phase": "admission",
+      "tick": 3
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-5",
+      "phase": "admission",
+      "tick": 3
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-6",
+      "phase": "admission",
+      "tick": 3
+    },
+    {
+      "event": "packet_capture_failed",
+      "organism_id": "org-7",
+      "phase": "packet_capture",
+      "tick": 3
+    },
+    {
+      "event": "somatic_stall",
+      "organism_id": "org-8",
+      "phase": "scheduler",
+      "reserve": "301/50",
+      "tick": 3
+    },
+    {
+      "event": "corpse_expired",
+      "organism_id": "org-0",
+      "phase": "cleanup",
+      "tick": 3
+    },
+    {
+      "event": "corpse_expired",
+      "organism_id": "org-3",
+      "phase": "cleanup",
+      "tick": 3
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-2",
+      "phase": "hazard",
+      "tick": 4
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-5",
+      "phase": "hazard",
+      "tick": 4
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-7",
+      "phase": "hazard",
+      "tick": 4
+    },
+    {
+      "child_id": "org-11",
+      "event": "birth_admitted",
+      "parent_id": "org-1",
+      "phase": "admission",
+      "provision": "40061/1250",
+      "tick": 4
+    },
+    {
+      "child_id": "org-12",
+      "event": "birth_admitted",
+      "parent_id": "org-10",
+      "phase": "admission",
+      "provision": "413/50",
+      "tick": 4
+    },
+    {
+      "child_id": "org-13",
+      "event": "birth_admitted",
+      "parent_id": "org-4",
+      "phase": "admission",
+      "provision": "413/10",
+      "tick": 4
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-6",
+      "phase": "admission",
+      "tick": 4
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-1",
+      "phase": "hazard",
+      "tick": 5
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-10",
+      "phase": "hazard",
+      "tick": 5
+    },
+    {
+      "child_id": "org-14",
+      "event": "birth_admitted",
+      "parent_id": "org-11",
+      "phase": "admission",
+      "provision": "413/50",
+      "tick": 5
+    },
+    {
+      "event": "somatic_stall",
+      "organism_id": "org-12",
+      "phase": "scheduler",
+      "reserve": "413/50",
+      "tick": 5
+    },
+    {
+      "child_id": "org-15",
+      "event": "birth_admitted",
+      "parent_id": "org-13",
+      "phase": "admission",
+      "provision": "413/50",
+      "tick": 5
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-4",
+      "phase": "admission",
+      "tick": 5
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-6",
+      "phase": "admission",
+      "tick": 5
+    },
+    {
+      "event": "corpse_expired",
+      "organism_id": "org-9",
+      "phase": "cleanup",
+      "tick": 5
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-15",
+      "phase": "hazard",
+      "tick": 6
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-6",
+      "phase": "hazard",
+      "tick": 6
+    },
+    {
+      "child_id": "org-16",
+      "event": "birth_admitted",
+      "parent_id": "org-11",
+      "phase": "admission",
+      "provision": "3717/250",
+      "tick": 6
+    },
+    {
+      "child_id": "org-17",
+      "event": "birth_admitted",
+      "parent_id": "org-13",
+      "phase": "admission",
+      "provision": "3717/250",
+      "tick": 6
+    },
+    {
+      "event": "somatic_stall",
+      "organism_id": "org-14",
+      "phase": "scheduler",
+      "reserve": "413/50",
+      "tick": 6
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-4",
+      "phase": "admission",
+      "tick": 6
+    },
+    {
+      "event": "corpse_expired",
+      "organism_id": "org-2",
+      "phase": "cleanup",
+      "tick": 6
+    },
+    {
+      "event": "corpse_expired",
+      "organism_id": "org-5",
+      "phase": "cleanup",
+      "tick": 6
+    },
+    {
+      "event": "corpse_expired",
+      "organism_id": "org-7",
+      "phase": "cleanup",
+      "tick": 6
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-13",
+      "phase": "hazard",
+      "tick": 7
+    },
+    {
+      "child_id": "org-18",
+      "event": "birth_admitted",
+      "parent_id": "org-11",
+      "phase": "admission",
+      "provision": "25193/1250",
+      "tick": 7
+    },
+    {
+      "event": "somatic_stall",
+      "organism_id": "org-16",
+      "phase": "scheduler",
+      "reason": "mid_cycle_somatic_prepayment_failure",
+      "reserve": "546/125",
+      "tick": 7
+    },
+    {
+      "event": "somatic_stall",
+      "organism_id": "org-17",
+      "phase": "scheduler",
+      "reason": "mid_cycle_somatic_prepayment_failure",
+      "reserve": "546/125",
+      "tick": 7
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-4",
+      "phase": "admission",
+      "tick": 7
+    },
+    {
+      "event": "corpse_expired",
+      "organism_id": "org-1",
+      "phase": "cleanup",
+      "tick": 7
+    },
+    {
+      "event": "corpse_expired",
+      "organism_id": "org-10",
+      "phase": "cleanup",
+      "tick": 7
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-17",
+      "phase": "hazard",
+      "tick": 8
+    },
+    {
+      "child_id": "org-19",
+      "event": "birth_admitted",
+      "parent_id": "org-11",
+      "phase": "admission",
+      "provision": "152397/6250",
+      "tick": 8
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-18",
+      "phase": "admission",
+      "tick": 8
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-4",
+      "phase": "admission",
+      "tick": 8
+    },
+    {
+      "event": "corpse_expired",
+      "organism_id": "org-15",
+      "phase": "cleanup",
+      "tick": 8
+    },
+    {
+      "event": "corpse_expired",
+      "organism_id": "org-6",
+      "phase": "cleanup",
+      "tick": 8
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-12",
+      "phase": "hazard",
+      "tick": 9
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-16",
+      "phase": "hazard",
+      "tick": 9
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-18",
+      "phase": "hazard",
+      "tick": 9
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-4",
+      "phase": "hazard",
+      "tick": 9
+    },
+    {
+      "child_id": "org-20",
+      "event": "birth_admitted",
+      "parent_id": "org-11",
+      "phase": "admission",
+      "provision": "867713/31250",
+      "tick": 9
+    },
+    {
+      "child_id": "org-21",
+      "event": "birth_admitted",
+      "parent_id": "org-19",
+      "phase": "admission",
+      "provision": "413/50",
+      "tick": 9
+    },
+    {
+      "event": "corpse_expired",
+      "organism_id": "org-13",
+      "phase": "cleanup",
+      "tick": 9
+    },
+    {
+      "child_id": "org-22",
+      "event": "birth_admitted",
+      "parent_id": "org-11",
+      "phase": "admission",
+      "provision": "4761477/156250",
+      "tick": 10
+    },
+    {
+      "child_id": "org-23",
+      "event": "birth_admitted",
+      "parent_id": "org-19",
+      "phase": "admission",
+      "provision": "3717/250",
+      "tick": 10
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-20",
+      "phase": "admission",
+      "tick": 10
+    },
+    {
+      "event": "somatic_stall",
+      "organism_id": "org-21",
+      "phase": "scheduler",
+      "reserve": "413/50",
+      "tick": 10
+    },
+    {
+      "event": "corpse_expired",
+      "organism_id": "org-17",
+      "phase": "cleanup",
+      "tick": 10
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-14",
+      "phase": "hazard",
+      "tick": 11
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-21",
+      "phase": "hazard",
+      "tick": 11
+    },
+    {
+      "child_id": "org-24",
+      "event": "birth_admitted",
+      "parent_id": "org-11",
+      "phase": "admission",
+      "provision": "25499033/781250",
+      "tick": 11
+    },
+    {
+      "child_id": "org-25",
+      "event": "birth_admitted",
+      "parent_id": "org-19",
+      "phase": "admission",
+      "provision": "25193/1250",
+      "tick": 11
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-20",
+      "phase": "admission",
+      "tick": 11
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-22",
+      "phase": "admission",
+      "tick": 11
+    },
+    {
+      "event": "somatic_stall",
+      "organism_id": "org-23",
+      "phase": "scheduler",
+      "reason": "mid_cycle_somatic_prepayment_failure",
+      "reserve": "546/125",
+      "tick": 11
+    },
+    {
+      "event": "corpse_expired",
+      "organism_id": "org-12",
+      "phase": "cleanup",
+      "tick": 11
+    },
+    {
+      "event": "corpse_expired",
+      "organism_id": "org-16",
+      "phase": "cleanup",
+      "tick": 11
+    },
+    {
+      "event": "corpse_expired",
+      "organism_id": "org-18",
+      "phase": "cleanup",
+      "tick": 11
+    },
+    {
+      "event": "corpse_expired",
+      "organism_id": "org-4",
+      "phase": "cleanup",
+      "tick": 11
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-19",
+      "phase": "hazard",
+      "tick": 12
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-23",
+      "phase": "hazard",
+      "tick": 12
+    },
+    {
+      "child_id": "org-26",
+      "event": "birth_admitted",
+      "parent_id": "org-11",
+      "phase": "admission",
+      "provision": "134261757/3906250",
+      "tick": 12
+    },
+    {
+      "child_id": "org-27",
+      "event": "birth_admitted",
+      "parent_id": "org-20",
+      "phase": "admission",
+      "provision": "1239/50",
+      "tick": 12
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-22",
+      "phase": "admission",
+      "tick": 12
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-24",
+      "phase": "admission",
+      "tick": 12
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-25",
+      "phase": "admission",
+      "tick": 12
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-22",
+      "phase": "hazard",
+      "tick": 13
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-26",
+      "phase": "hazard",
+      "tick": 13
+    },
+    {
+      "child_id": "org-28",
+      "event": "birth_admitted",
+      "parent_id": "org-11",
+      "phase": "admission",
+      "provision": "698375153/19531250",
+      "tick": 13
+    },
+    {
+      "child_id": "org-29",
+      "event": "birth_admitted",
+      "parent_id": "org-20",
+      "phase": "admission",
+      "provision": "7021/250",
+      "tick": 13
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-24",
+      "phase": "admission",
+      "tick": 13
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-25",
+      "phase": "admission",
+      "tick": 13
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-27",
+      "phase": "admission",
+      "tick": 13
+    },
+    {
+      "event": "corpse_expired",
+      "organism_id": "org-14",
+      "phase": "cleanup",
+      "tick": 13
+    },
+    {
+      "event": "corpse_expired",
+      "organism_id": "org-21",
+      "phase": "cleanup",
+      "tick": 13
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-20",
+      "phase": "hazard",
+      "tick": 14
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-25",
+      "phase": "hazard",
+      "tick": 14
+    },
+    {
+      "child_id": "org-30",
+      "event": "birth_admitted",
+      "parent_id": "org-11",
+      "phase": "admission",
+      "provision": "3600141237/97656250",
+      "tick": 14
+    },
+    {
+      "child_id": "org-31",
+      "event": "birth_admitted",
+      "parent_id": "org-24",
+      "phase": "admission",
+      "provision": "1239/50",
+      "tick": 14
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-27",
+      "phase": "admission",
+      "tick": 14
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-28",
+      "phase": "admission",
+      "tick": 14
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-29",
+      "phase": "admission",
+      "tick": 14
+    },
+    {
+      "event": "corpse_expired",
+      "organism_id": "org-19",
+      "phase": "cleanup",
+      "tick": 14
+    },
+    {
+      "event": "corpse_expired",
+      "organism_id": "org-23",
+      "phase": "cleanup",
+      "tick": 14
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-8",
+      "phase": "hazard",
+      "tick": 15
+    },
+    {
+      "child_id": "org-32",
+      "event": "birth_admitted",
+      "parent_id": "org-11",
+      "phase": "admission",
+      "provision": "18433768073/488281250",
+      "tick": 15
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-24",
+      "phase": "admission",
+      "tick": 15
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-27",
+      "phase": "admission",
+      "tick": 15
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-28",
+      "phase": "admission",
+      "tick": 15
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-29",
+      "phase": "admission",
+      "tick": 15
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-30",
+      "phase": "admission",
+      "tick": 15
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-31",
+      "phase": "admission",
+      "tick": 15
+    },
+    {
+      "event": "corpse_expired",
+      "organism_id": "org-22",
+      "phase": "cleanup",
+      "tick": 15
+    },
+    {
+      "event": "corpse_expired",
+      "organism_id": "org-26",
+      "phase": "cleanup",
+      "tick": 15
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-27",
+      "phase": "hazard",
+      "tick": 16
+    },
+    {
+      "child_id": "org-33",
+      "event": "birth_admitted",
+      "parent_id": "org-11",
+      "phase": "admission",
+      "provision": "93901087917/2441406250",
+      "tick": 16
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-24",
+      "phase": "admission",
+      "tick": 16
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-28",
+      "phase": "admission",
+      "tick": 16
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-29",
+      "phase": "admission",
+      "tick": 16
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-30",
+      "phase": "admission",
+      "tick": 16
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-31",
+      "phase": "admission",
+      "tick": 16
+    },
+    {
+      "event": "packet_capture_failed",
+      "organism_id": "org-32",
+      "phase": "packet_capture",
+      "tick": 16
+    },
+    {
+      "event": "corpse_expired",
+      "organism_id": "org-20",
+      "phase": "cleanup",
+      "tick": 16
+    },
+    {
+      "event": "corpse_expired",
+      "organism_id": "org-25",
+      "phase": "cleanup",
+      "tick": 16
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-11",
+      "phase": "hazard",
+      "tick": 17
+    },
+    {
+      "child_id": "org-34",
+      "event": "birth_admitted",
+      "parent_id": "org-24",
+      "phase": "admission",
+      "provision": "11151/250",
+      "tick": 17
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-28",
+      "phase": "admission",
+      "tick": 17
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-29",
+      "phase": "admission",
+      "tick": 17
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-30",
+      "phase": "admission",
+      "tick": 17
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-31",
+      "phase": "admission",
+      "tick": 17
+    },
+    {
+      "event": "packet_capture_failed",
+      "organism_id": "org-32",
+      "phase": "packet_capture",
+      "tick": 17
+    },
+    {
+      "event": "packet_capture_failed",
+      "organism_id": "org-33",
+      "phase": "packet_capture",
+      "tick": 17
+    },
+    {
+      "event": "corpse_expired",
+      "organism_id": "org-8",
+      "phase": "cleanup",
+      "tick": 17
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-28",
+      "phase": "hazard",
+      "tick": 18
+    },
+    {
+      "child_id": "org-35",
+      "event": "birth_admitted",
+      "parent_id": "org-24",
+      "phase": "admission",
+      "provision": "54929/1250",
+      "tick": 18
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-29",
+      "phase": "admission",
+      "tick": 18
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-30",
+      "phase": "admission",
+      "tick": 18
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-31",
+      "phase": "admission",
+      "tick": 18
+    },
+    {
+      "event": "somatic_stall",
+      "organism_id": "org-32",
+      "phase": "scheduler",
+      "reason": "mid_cycle_somatic_prepayment_failure",
+      "reserve": "1526454349/244140625",
+      "tick": 18
+    },
+    {
+      "event": "packet_capture_failed",
+      "organism_id": "org-33",
+      "phase": "packet_capture",
+      "tick": 18
+    },
+    {
+      "event": "packet_capture_failed",
+      "organism_id": "org-34",
+      "phase": "packet_capture",
+      "tick": 18
+    },
+    {
+      "event": "corpse_expired",
+      "organism_id": "org-27",
+      "phase": "cleanup",
+      "tick": 18
+    },
+    {
+      "event": "hazard_death",
+      "organism_id": "org-34",
+      "phase": "hazard",
+      "tick": 19
+    },
+    {
+      "child_id": "org-36",
+      "event": "birth_admitted",
+      "parent_id": "org-24",
+      "phase": "admission",
+      "provision": "271341/6250",
+      "tick": 19
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-29",
+      "phase": "admission",
+      "tick": 19
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-30",
+      "phase": "admission",
+      "tick": 19
+    },
+    {
+      "event": "birth_rejected_no_vacancy",
+      "parent_id": "org-31",
+      "phase": "admission",
+      "tick": 19
+    },
+    {
+      "event": "somatic_stall",
+      "organism_id": "org-33",
+      "phase": "scheduler",
+      "reason": "mid_cycle_somatic_prepayment_failure",
+      "reserve": "8498395521/1220703125",
+      "tick": 19
+    },
+    {
+      "event": "packet_capture_failed",
+      "organism_id": "org-35",
+      "phase": "packet_capture",
+      "tick": 19
+    },
+    {
+      "event": "corpse_expired",
+      "organism_id": "org-11",
+      "phase": "cleanup",
+      "tick": 19
+    }
+  ],
+  "final_memory": {
+    "corpse_reserved": 428,
+    "free_pool": 63588,
+    "gestation": 0,
+    "somatic_active": 1520
+  },
+  "final_memory_closed": true,
+  "final_packets_closed": true,
+  "final_reserve": {
+    "closed": true,
+    "costs": "61051/20",
+    "destroyed": "32350837640961/4882812500",
+    "lhs": "180699/20",
+    "live_reserves": "5882564577957/2441406250",
+    "net_income": "22575/2",
+    "rhs": "180699/20"
+  },
+  "packet_count": 91,
+  "scope": "mechanics-only; no mutation or scientific assay",
+  "source_manifest": {
+    "run_stage7_slice2_trace.py": {
+      "bytes": 2772,
+      "mtime_ns": 1785418860547434371,
+      "sha256": "6ff7cba1d96cbdae5bb912a4286d302d3d28ee638436531e9a796c6f0c17311a"
+    },
+    "stage7_slice1.py": {
+      "bytes": 21553,
+      "mtime_ns": 1785417579947469191,
+      "sha256": "048ca4391ddabc086d7679540e57e8847c927404f880139ad485d7dd2eb61174"
+    },
+    "stage7_slice2.py": {
+      "bytes": 18966,
+      "mtime_ns": 1785418769517723324,
+      "sha256": "62cc6c1b3674475af91b91d928efc4f998546cee740505242b3a0e579197cf54"
+    },
+    "test_stage7_slice1.py": {
+      "bytes": 6294,
+      "mtime_ns": 1785416706067689338,
+      "sha256": "c85db185a223e7a084a18d93a1fdbcf72118dd7409e0107bd026ee81227f915e"
+    },
+    "test_stage7_slice2.py": {
+      "bytes": 10860,
+      "mtime_ns": 1785418835884241709,
+      "sha256": "0986a734f58abf48557ff3e19eb55b23c2915fa870e191ece74b68ed1621c9fa"
+    }
+  },
+  "ticks": [
+    {
+      "admitted_births": 0,
+      "displacements": 0,
+      "hazard_deaths": [],
+      "live_census": 8,
+      "memory_blocked_attempts": 0,
+      "memory_closed": true,
+      "newborn_ids": [],
+      "packets_closed": true,
+      "rejected_births": 5,
+      "reproductive_failures": 0,
+      "reserve_closed": true,
+      "stalled_census": 0,
+      "tick": 0
+    },
+    {
+      "admitted_births": 2,
+      "displacements": 0,
+      "hazard_deaths": [
+        "org-0",
+        "org-3"
+      ],
+      "live_census": 8,
+      "memory_blocked_attempts": 0,
+      "memory_closed": true,
+      "newborn_ids": [
+        "org-8",
+        "org-9"
+      ],
+      "packets_closed": true,
+      "rejected_births": 3,
+      "reproductive_failures": 0,
+      "reserve_closed": true,
+      "stalled_census": 0,
+      "tick": 1
+    },
+    {
+      "admitted_births": 0,
+      "displacements": 0,
+      "hazard_deaths": [],
+      "live_census": 8,
+      "memory_blocked_attempts": 0,
+      "memory_closed": true,
+      "newborn_ids": [],
+      "packets_closed": true,
+      "rejected_births": 5,
+      "reproductive_failures": 0,
+      "reserve_closed": true,
+      "stalled_census": 0,
+      "tick": 2
+    },
+    {
+      "admitted_births": 1,
+      "displacements": 0,
+      "hazard_deaths": [
+        "org-9"
+      ],
+      "live_census": 8,
+      "memory_blocked_attempts": 0,
+      "memory_closed": true,
+      "newborn_ids": [
+        "org-10"
+      ],
+      "packets_closed": true,
+      "rejected_births": 4,
+      "reproductive_failures": 0,
+      "reserve_closed": true,
+      "stalled_census": 1,
+      "tick": 3
+    },
+    {
+      "admitted_births": 3,
+      "displacements": 0,
+      "hazard_deaths": [
+        "org-2",
+        "org-5",
+        "org-7"
+      ],
+      "live_census": 8,
+      "memory_blocked_attempts": 0,
+      "memory_closed": true,
+      "newborn_ids": [
+        "org-11",
+        "org-12",
+        "org-13"
+      ],
+      "packets_closed": true,
+      "rejected_births": 1,
+      "reproductive_failures": 0,
+      "reserve_closed": true,
+      "stalled_census": 1,
+      "tick": 4
+    },
+    {
+      "admitted_births": 2,
+      "displacements": 0,
+      "hazard_deaths": [
+        "org-1",
+        "org-10"
+      ],
+      "live_census": 8,
+      "memory_blocked_attempts": 0,
+      "memory_closed": true,
+      "newborn_ids": [
+        "org-14",
+        "org-15"
+      ],
+      "packets_closed": true,
+      "rejected_births": 2,
+      "reproductive_failures": 0,
+      "reserve_closed": true,
+      "stalled_census": 2,
+      "tick": 5
+    },
+    {
+      "admitted_births": 2,
+      "displacements": 0,
+      "hazard_deaths": [
+        "org-15",
+        "org-6"
+      ],
+      "live_census": 8,
+      "memory_blocked_attempts": 0,
+      "memory_closed": true,
+      "newborn_ids": [
+        "org-16",
+        "org-17"
+      ],
+      "packets_closed": true,
+      "rejected_births": 1,
+      "reproductive_failures": 0,
+      "reserve_closed": true,
+      "stalled_census": 3,
+      "tick": 6
+    },
+    {
+      "admitted_births": 1,
+      "displacements": 0,
+      "hazard_deaths": [
+        "org-13"
+      ],
+      "live_census": 8,
+      "memory_blocked_attempts": 0,
+      "memory_closed": true,
+      "newborn_ids": [
+        "org-18"
+      ],
+      "packets_closed": true,
+      "rejected_births": 1,
+      "reproductive_failures": 0,
+      "reserve_closed": true,
+      "stalled_census": 5,
+      "tick": 7
+    },
+    {
+      "admitted_births": 1,
+      "displacements": 0,
+      "hazard_deaths": [
+        "org-17"
+      ],
+      "live_census": 8,
+      "memory_blocked_attempts": 0,
+      "memory_closed": true,
+      "newborn_ids": [
+        "org-19"
+      ],
+      "packets_closed": true,
+      "rejected_births": 2,
+      "reproductive_failures": 0,
+      "reserve_closed": true,
+      "stalled_census": 4,
+      "tick": 8
+    },
+    {
+      "admitted_births": 2,
+      "displacements": 0,
+      "hazard_deaths": [
+        "org-12",
+        "org-16",
+        "org-18",
+        "org-4"
+      ],
+      "live_census": 6,
+      "memory_blocked_attempts": 0,
+      "memory_closed": true,
+      "newborn_ids": [
+        "org-20",
+        "org-21"
+      ],
+      "packets_closed": true,
+      "rejected_births": 0,
+      "reproductive_failures": 0,
+      "reserve_closed": true,
+      "stalled_census": 2,
+      "tick": 9
+    },
+    {
+      "admitted_births": 2,
+      "displacements": 0,
+      "hazard_deaths": [],
+      "live_census": 8,
+      "memory_blocked_attempts": 0,
+      "memory_closed": true,
+      "newborn_ids": [
+        "org-22",
+        "org-23"
+      ],
+      "packets_closed": true,
+      "rejected_births": 1,
+      "reproductive_failures": 0,
+      "reserve_closed": true,
+      "stalled_census": 3,
+      "tick": 10
+    },
+    {
+      "admitted_births": 2,
+      "displacements": 0,
+      "hazard_deaths": [
+        "org-14",
+        "org-21"
+      ],
+      "live_census": 8,
+      "memory_blocked_attempts": 0,
+      "memory_closed": true,
+      "newborn_ids": [
+        "org-24",
+        "org-25"
+      ],
+      "packets_closed": true,
+      "rejected_births": 2,
+      "reproductive_failures": 0,
+      "reserve_closed": true,
+      "stalled_census": 2,
+      "tick": 11
+    },
+    {
+      "admitted_births": 2,
+      "displacements": 0,
+      "hazard_deaths": [
+        "org-19",
+        "org-23"
+      ],
+      "live_census": 8,
+      "memory_blocked_attempts": 0,
+      "memory_closed": true,
+      "newborn_ids": [
+        "org-26",
+        "org-27"
+      ],
+      "packets_closed": true,
+      "rejected_births": 3,
+      "reproductive_failures": 0,
+      "reserve_closed": true,
+      "stalled_census": 1,
+      "tick": 12
+    },
+    {
+      "admitted_births": 2,
+      "displacements": 0,
+      "hazard_deaths": [
+        "org-22",
+        "org-26"
+      ],
+      "live_census": 8,
+      "memory_blocked_attempts": 0,
+      "memory_closed": true,
+      "newborn_ids": [
+        "org-28",
+        "org-29"
+      ],
+      "packets_closed": true,
+      "rejected_births": 3,
+      "reproductive_failures": 0,
+      "reserve_closed": true,
+      "stalled_census": 1,
+      "tick": 13
+    },
+    {
+      "admitted_births": 2,
+      "displacements": 0,
+      "hazard_deaths": [
+        "org-20",
+        "org-25"
+      ],
+      "live_census": 8,
+      "memory_blocked_attempts": 0,
+      "memory_closed": true,
+      "newborn_ids": [
+        "org-30",
+        "org-31"
+      ],
+      "packets_closed": true,
+      "rejected_births": 3,
+      "reproductive_failures": 0,
+      "reserve_closed": true,
+      "stalled_census": 1,
+      "tick": 14
+    },
+    {
+      "admitted_births": 1,
+      "displacements": 0,
+      "hazard_deaths": [
+        "org-8"
+      ],
+      "live_census": 8,
+      "memory_blocked_attempts": 0,
+      "memory_closed": true,
+      "newborn_ids": [
+        "org-32"
+      ],
+      "packets_closed": true,
+      "rejected_births": 6,
+      "reproductive_failures": 0,
+      "reserve_closed": true,
+      "stalled_census": 0,
+      "tick": 15
+    },
+    {
+      "admitted_births": 1,
+      "displacements": 0,
+      "hazard_deaths": [
+        "org-27"
+      ],
+      "live_census": 8,
+      "memory_blocked_attempts": 0,
+      "memory_closed": true,
+      "newborn_ids": [
+        "org-33"
+      ],
+      "packets_closed": true,
+      "rejected_births": 5,
+      "reproductive_failures": 0,
+      "reserve_closed": true,
+      "stalled_census": 0,
+      "tick": 16
+    },
+    {
+      "admitted_births": 1,
+      "displacements": 0,
+      "hazard_deaths": [
+        "org-11"
+      ],
+      "live_census": 8,
+      "memory_blocked_attempts": 0,
+      "memory_closed": true,
+      "newborn_ids": [
+        "org-34"
+      ],
+      "packets_closed": true,
+      "rejected_births": 4,
+      "reproductive_failures": 0,
+      "reserve_closed": true,
+      "stalled_census": 0,
+      "tick": 17
+    },
+    {
+      "admitted_births": 1,
+      "displacements": 0,
+      "hazard_deaths": [
+        "org-28"
+      ],
+      "live_census": 8,
+      "memory_blocked_attempts": 0,
+      "memory_closed": true,
+      "newborn_ids": [
+        "org-35"
+      ],
+      "packets_closed": true,
+      "rejected_births": 3,
+      "reproductive_failures": 0,
+      "reserve_closed": true,
+      "stalled_census": 1,
+      "tick": 18
+    },
+    {
+      "admitted_births": 1,
+      "displacements": 0,
+      "hazard_deaths": [
+        "org-34"
+      ],
+      "live_census": 8,
+      "memory_blocked_attempts": 0,
+      "memory_closed": true,
+      "newborn_ids": [
+        "org-36"
+      ],
+      "packets_closed": true,
+      "rejected_births": 3,
+      "reproductive_failures": 0,
+      "reserve_closed": true,
+      "stalled_census": 2,
+      "tick": 19
+    }
+  ],
+  "trait_values": [
+    [
+      102,
+      51,
+      255
+    ]
+  ]
+}

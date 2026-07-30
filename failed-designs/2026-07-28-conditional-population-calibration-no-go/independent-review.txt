@@ -1,0 +1,80 @@
+## Verdict: **NO-GO for implementing the runner as presently registered**
+
+The calibration is conceptually appropriate, but several definitions and required gates are not implementable or internally consistent with the current engine. An exploratory one-seed-per-treatment execution also shows that the registered lifecycle gates already fail under current semantics.
+
+### CRITICAL
+
+1. **The registered population regime is already non-viable under the required gates.**  
+   The engine charges newborn upkeep on their birth tick but does not let them execute until the next tick. Thus offspring have an extra pre-income cost absent from the isolated founder trace. In exploratory mutation-free runs using registered seeds:
+   - FULL/61001: 401 reserve-exhaustion deaths over 2,040 ticks.
+   - HALF/62001: 6,387 reserve-exhaustion deaths, 12,040 stillbirths, endpoint \(N=150\).
+   
+   Consequently gates 2, 4, and HALF’s stillbirth gate fail; the registered mixed-assay path is already NO-GO.
+   
+   **Correction:** Before capped calibration, register an isolated **newborn lifecycle trace** in which offspring remain and execute under normal scheduling. Require survival through first READ and first live birth. If it fails, stop. Any change to τ, maturation, reserve, or architecture requires a fresh registration; do not relax the existing gates post hoc. A runner under the current registration could only be a diagnostic failure-preservation runner.
+
+2. **Mutation-off is neither configurable nor verifiable through `Simulation`.**  
+   Mutation rates are imported as module globals separately in `engine.py` and `organism.py`; changing `consts` alone does not disable them. `realised_parameters()` reports none of the four rates.
+   
+   **Correction:** Add runtime mutation parameters stored on `Substrate`, use them in `_copy_one()` and `_mutate_genome()`, and include all four in live parameter readback. If runner-only monkey-patching is retained, it must set and read back:
+   `engine.MUTATION_SUBSTITUTION` and all three `organism.MUTATION_*` globals explicitly.
+
+### MAJOR
+
+3. **The lifespan timing arithmetic uses founder ages, not offspring lifecycle ages.**  
+   Founders execute on tick 0, yielding logged DIVIDEs at ages 9/12/15. Newborns created during a tick are absent from that tick’s `active_ids`, so their corresponding ages are **10/13/16** for FULL and **10/13** for HALF. The corrected hazard sanity values are:
+   - FULL: \(d≈0.10187\), mean \(≈9.82\) ticks.
+   - HALF: \(d≈0.08455\), mean \(≈11.83\) ticks.
+   
+   **Correction:** Replace the ages and numerical values in line 268, and state explicitly that birth-tick upkeep occurs despite no birth-tick instruction execution.
+
+4. **“Organism-tick” denominators are undefined and can be biased by same-tick births/removals.**  
+   End-of-tick \(N\) omits organisms born and displaced within the same tick; newborns do not receive an instruction opportunity on their birth tick.
+   
+   **Correction:** Define the primary denominator as **parent execution-opportunity ticks**: membership in the active, non-maturing ID list at tick start. For cohort rates, count only events produced by cohort members and exposure from first eligible execution tick through death/censoring. Report ecology-wide rates separately over an explicitly fixed window. Exclude founder additions (`parent=-1`) from live-birth numerators.
+
+5. **The proposed `Ne_var` is misleading and not a defensible effective population size.**  
+   `155/(1+V_k/mean(k))` is an ad hoc variance discount and is not an overlapping-generation or standard Cannings \(N_e\). Calling it `Ne` invites use in power calculations despite the disclaimer.
+   
+   **Correction:** Rename it, for example,  
+   `D_var = 155/(1 + V_k/mean(k))`,  
+   and call it only an **ad hoc variance-discount index**. Do not use it for power. Use the empirical lifetime-\(k\) distribution in resampling or a lifecycle simulation. Define \(V_k\) as population variance (`ddof=0`) among endpoint-complete cohort members, with seed-level estimates and cluster-by-seed uncertainty.
+
+6. **The R4 gate cannot be reconstructed from existing event logs.**  
+   TRANSFORM updates organism state but emits no per-execution event. Death records retain only the latest transform opcode/extent, and DIVIDE records do not contain R4.
+   
+   **Correction:** Add a TRANSFORM event containing tick, organism ID, ancestry, resolved opcode/extent, R3, R4, and packet energy. Apply the bit gate to every logged successful treatment TRANSFORM—not to organisms before first expression.
+
+7. **The memory gate does not measure worst-within-tick memory.**  
+   `capture_history` records memory only after execution, upkeep, and corpse expiry. It can miss the true minimum free pool during synchronized ALLOCs or sequential birth/displacement events.
+   
+   **Correction:** Maintain a free-pool low-water mark updated after every allocation, free, offspring charge, death-to-corpse transfer, and corpse expiry. Report both per-tick and whole-run minima, with the operation/event that produced each minimum. Check the ledger at each mutation point, not only end-of-tick snapshots.
+
+8. **“Parent-protection events” are unavailable.**  
+   Parent victim draws are silently retried in `reproduce()`; only the eventual victim is logged.
+   
+   **Correction:** Log each rejected parent draw or add a per-birth `parent_draw_rejections` count. Otherwise revise the requirement to “verify that no recorded victim equals its reproducing parent.”
+
+9. **Cohort completeness must be enforced per seed, not merely pooled.**  
+   Pooling can hide a failed or heavily censored seed.
+   
+   **Correction:** Require every cohort live-birth ID to map exactly once to either a death endpoint or endpoint-living record. Apply the ≤1% censoring rule and a minimum cohort-size rule per seed as well as pooled. Report censored \(k\) separately rather than silently excluding it.
+
+### MINOR
+
+10. **Queue depth 340 is plausible but incompletely audited.**  
+    It equals \(20×17\) and the initial stock covers the synchronized founder burst, but the buffer silently discards arrivals when full and exposes no generated/discarded counters.
+    
+    **Correction:** Log arrivals, overflow discards, reads, occupancy, and underflows. Preserve the exact `f=1` event gate and add a deterministic cap-sized burst/rolling-17-tick demand stress test. Do not infer \(p=1\) merely from configured rate and depth.
+
+11. **Five seeds are adequate for a mechanical pilot, not a stable tail or power estimate.**  
+    Thousands of cohort members do not replace independent ecological replicates.
+    
+    **Correction:** Keep five seeds for pass/fail calibration, but do not feed a single pooled \(V_k\) into power analysis. Use seed-cluster intervals or register additional independent seeds for variance/power estimation.
+
+### Summary
+
+- Reviewed the preregistration against `src/engine.py`, `src/organism.py`, packet-buffer semantics, and live execution behavior.
+- Found lifecycle timing, mutation readback, denominator, \(V_k/N_e\), event-availability, and worst-tick memory defects.
+- **No project files were intentionally created or modified.**
+- Git verification was unavailable because `/opt/data/avida-life` is not a Git repository.

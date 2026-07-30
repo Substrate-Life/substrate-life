@@ -1,0 +1,364 @@
+{
+  "candidate_rule": "largest positive FULL-HALF birth-rate difference among grid points with parent deaths/live birth <0.10 in both arms; numeric ties choose lower p",
+  "kind": "paired_established_parent_response_not_population_evidence",
+  "parameters": {
+    "bootstrap_replicates": 5000,
+    "burn_cycles": 10,
+    "cycles": 40,
+    "mutation_rates": 0,
+    "offspring_execute": false,
+    "offspring_maturation_delay": 0,
+    "p_grid": [
+      0.6,
+      0.65,
+      0.7,
+      0.75,
+      0.8,
+      0.85,
+      0.9,
+      0.95
+    ],
+    "packet_energy": 500,
+    "paired_trials_per_p": 2000
+  },
+  "points": [
+    {
+      "FULL": {
+        "label": "FULL",
+        "live_births_per_parent_tick": 0.14016285843212864,
+        "p_capture_target": 0.6,
+        "paired_trials": 2000,
+        "postburn_divide_attempts": 16132,
+        "postburn_live_births": 13667,
+        "postburn_parent_deaths": 714,
+        "postburn_parent_deaths_per_live_birth": 0.05224262822857979,
+        "postburn_parent_person_ticks": 97508,
+        "postburn_stillbirths": 2465,
+        "realised_capture_fraction": 0.5950530035335689,
+        "stillbirth_fraction": 0.1528018844532606,
+        "survival_to_burn_fraction": 0.3825,
+        "survival_to_end_fraction": 0.0255
+      },
+      "HALF": {
+        "label": "HALF",
+        "live_births_per_parent_tick": 0.09239653512993262,
+        "p_capture_target": 0.6,
+        "paired_trials": 2000,
+        "postburn_divide_attempts": 164,
+        "postburn_live_births": 96,
+        "postburn_parent_deaths": 55,
+        "postburn_parent_deaths_per_live_birth": 0.5729166666666666,
+        "postburn_parent_person_ticks": 1039,
+        "postburn_stillbirths": 68,
+        "realised_capture_fraction": 0.5912408759124088,
+        "stillbirth_fraction": 0.4146341463414634,
+        "survival_to_burn_fraction": 0.0275,
+        "survival_to_end_fraction": 0.0
+      },
+      "bootstrap_replicates": 5000,
+      "delta_birth_rate_ci95": [
+        0.034729013176593236,
+        0.06466826740526589
+      ],
+      "delta_live_births_per_parent_tick": 0.04776632330219602,
+      "p_capture_target": 0.6,
+      "qualifies_as_provisional_response_point": false
+    },
+    {
+      "FULL": {
+        "label": "FULL",
+        "live_births_per_parent_tick": 0.14653005397146165,
+        "p_capture_target": 0.65,
+        "paired_trials": 2000,
+        "postburn_divide_attempts": 26919,
+        "postburn_live_births": 23783,
+        "postburn_parent_deaths": 852,
+        "postburn_parent_deaths_per_live_birth": 0.03582390783332633,
+        "postburn_parent_person_ticks": 162308,
+        "postburn_stillbirths": 3136,
+        "realised_capture_fraction": 0.6508562011893674,
+        "stillbirth_fraction": 0.11649764107136223,
+        "survival_to_burn_fraction": 0.501,
+        "survival_to_end_fraction": 0.075
+      },
+      "HALF": {
+        "label": "HALF",
+        "live_births_per_parent_tick": 0.10469798657718121,
+        "p_capture_target": 0.65,
+        "paired_trials": 2000,
+        "postburn_divide_attempts": 356,
+        "postburn_live_births": 234,
+        "postburn_parent_deaths": 99,
+        "postburn_parent_deaths_per_live_birth": 0.4230769230769231,
+        "postburn_parent_person_ticks": 2235,
+        "postburn_stillbirths": 122,
+        "realised_capture_fraction": 0.6353790613718412,
+        "stillbirth_fraction": 0.34269662921348315,
+        "survival_to_burn_fraction": 0.0495,
+        "survival_to_end_fraction": 0.0
+      },
+      "bootstrap_replicates": 5000,
+      "delta_birth_rate_ci95": [
+        0.03283423463777665,
+        0.053058937359108015
+      ],
+      "delta_live_births_per_parent_tick": 0.04183206739428044,
+      "p_capture_target": 0.65,
+      "qualifies_as_provisional_response_point": false
+    },
+    {
+      "FULL": {
+        "label": "FULL",
+        "live_births_per_parent_tick": 0.15164989849595,
+        "p_capture_target": 0.7,
+        "paired_trials": 2000,
+        "postburn_divide_attempts": 40842,
+        "postburn_live_births": 37276,
+        "postburn_parent_deaths": 880,
+        "postburn_parent_deaths_per_live_birth": 0.023607683227814143,
+        "postburn_parent_person_ticks": 245803,
+        "postburn_stillbirths": 3566,
+        "realised_capture_fraction": 0.6999522216913521,
+        "stillbirth_fraction": 0.08731208070123891,
+        "survival_to_burn_fraction": 0.607,
+        "survival_to_end_fraction": 0.167
+      },
+      "HALF": {
+        "label": "HALF",
+        "live_births_per_parent_tick": 0.11205122341641893,
+        "p_capture_target": 0.7,
+        "paired_trials": 2000,
+        "postburn_divide_attempts": 702,
+        "postburn_live_births": 490,
+        "postburn_parent_deaths": 161,
+        "postburn_parent_deaths_per_live_birth": 0.32857142857142857,
+        "postburn_parent_person_ticks": 4373,
+        "postburn_stillbirths": 212,
+        "realised_capture_fraction": 0.69921875,
+        "stillbirth_fraction": 0.301994301994302,
+        "survival_to_burn_fraction": 0.0805,
+        "survival_to_end_fraction": 0.0
+      },
+      "bootstrap_replicates": 5000,
+      "delta_birth_rate_ci95": [
+        0.03289464933345308,
+        0.0482465779029134
+      ],
+      "delta_live_births_per_parent_tick": 0.039598675079531076,
+      "p_capture_target": 0.7,
+      "qualifies_as_provisional_response_point": false
+    },
+    {
+      "FULL": {
+        "label": "FULL",
+        "live_births_per_parent_tick": 0.15629749200536772,
+        "p_capture_target": 0.75,
+        "paired_trials": 2000,
+        "postburn_divide_attempts": 59867,
+        "postburn_live_births": 56256,
+        "postburn_parent_deaths": 774,
+        "postburn_parent_deaths_per_live_birth": 0.013758532423208191,
+        "postburn_parent_person_ticks": 359929,
+        "postburn_stillbirths": 3611,
+        "realised_capture_fraction": 0.748725370875958,
+        "stillbirth_fraction": 0.06031703609668097,
+        "survival_to_burn_fraction": 0.7225,
+        "survival_to_end_fraction": 0.3355
+      },
+      "HALF": {
+        "label": "HALF",
+        "live_births_per_parent_tick": 0.1183710002237637,
+        "p_capture_target": 0.75,
+        "paired_trials": 2000,
+        "postburn_divide_attempts": 1446,
+        "postburn_live_births": 1058,
+        "postburn_parent_deaths": 262,
+        "postburn_parent_deaths_per_live_birth": 0.24763705103969755,
+        "postburn_parent_person_ticks": 8938,
+        "postburn_stillbirths": 388,
+        "realised_capture_fraction": 0.7421319796954314,
+        "stillbirth_fraction": 0.26832641770401106,
+        "survival_to_burn_fraction": 0.131,
+        "survival_to_end_fraction": 0.0
+      },
+      "bootstrap_replicates": 5000,
+      "delta_birth_rate_ci95": [
+        0.03298722973589781,
+        0.043773782352883844
+      ],
+      "delta_live_births_per_parent_tick": 0.03792649178160401,
+      "p_capture_target": 0.75,
+      "qualifies_as_provisional_response_point": false
+    },
+    {
+      "FULL": {
+        "label": "FULL",
+        "live_births_per_parent_tick": 0.1600848136964567,
+        "p_capture_target": 0.8,
+        "paired_trials": 2000,
+        "postburn_divide_attempts": 80174,
+        "postburn_live_births": 77085,
+        "postburn_parent_deaths": 564,
+        "postburn_parent_deaths_per_live_birth": 0.007316598560031135,
+        "postburn_parent_person_ticks": 481526,
+        "postburn_stillbirths": 3089,
+        "realised_capture_fraction": 0.7983326324122405,
+        "stillbirth_fraction": 0.03852870007733181,
+        "survival_to_burn_fraction": 0.823,
+        "survival_to_end_fraction": 0.541
+      },
+      "HALF": {
+        "label": "HALF",
+        "live_births_per_parent_tick": 0.13064133016627077,
+        "p_capture_target": 0.8,
+        "paired_trials": 2000,
+        "postburn_divide_attempts": 3298,
+        "postburn_live_births": 2640,
+        "postburn_parent_deaths": 420,
+        "postburn_parent_deaths_per_live_birth": 0.1590909090909091,
+        "postburn_parent_person_ticks": 20208,
+        "postburn_stillbirths": 658,
+        "realised_capture_fraction": 0.7974867085548574,
+        "stillbirth_fraction": 0.19951485748938752,
+        "survival_to_burn_fraction": 0.2105,
+        "survival_to_end_fraction": 0.0005
+      },
+      "bootstrap_replicates": 5000,
+      "delta_birth_rate_ci95": [
+        0.026183423826426706,
+        0.033252486552874674
+      ],
+      "delta_live_births_per_parent_tick": 0.029443483530185915,
+      "p_capture_target": 0.8,
+      "qualifies_as_provisional_response_point": false
+    },
+    {
+      "FULL": {
+        "label": "FULL",
+        "live_births_per_parent_tick": 0.16323173077572067,
+        "p_capture_target": 0.85,
+        "paired_trials": 2000,
+        "postburn_divide_attempts": 98726,
+        "postburn_live_births": 96737,
+        "postburn_parent_deaths": 307,
+        "postburn_parent_deaths_per_live_birth": 0.0031735530355499965,
+        "postburn_parent_person_ticks": 592636,
+        "postburn_stillbirths": 1989,
+        "realised_capture_fraction": 0.8502815167598329,
+        "stillbirth_fraction": 0.02014666855742155,
+        "survival_to_burn_fraction": 0.9025,
+        "survival_to_end_fraction": 0.749
+      },
+      "HALF": {
+        "label": "HALF",
+        "live_births_per_parent_tick": 0.13875684729956086,
+        "p_capture_target": 0.85,
+        "paired_trials": 2000,
+        "postburn_divide_attempts": 7252,
+        "postburn_live_births": 6130,
+        "postburn_parent_deaths": 666,
+        "postburn_parent_deaths_per_live_birth": 0.10864600326264275,
+        "postburn_parent_person_ticks": 44178,
+        "postburn_stillbirths": 1122,
+        "realised_capture_fraction": 0.8459925442684063,
+        "stillbirth_fraction": 0.15471594043022616,
+        "survival_to_burn_fraction": 0.3355,
+        "survival_to_end_fraction": 0.0025
+      },
+      "bootstrap_replicates": 5000,
+      "delta_birth_rate_ci95": [
+        0.02255589164136758,
+        0.026721368662630644
+      ],
+      "delta_live_births_per_parent_tick": 0.02447488347615981,
+      "p_capture_target": 0.85,
+      "qualifies_as_provisional_response_point": false
+    },
+    {
+      "FULL": {
+        "label": "FULL",
+        "live_births_per_parent_tick": 0.16530224377229977,
+        "p_capture_target": 0.9,
+        "paired_trials": 2000,
+        "postburn_divide_attempts": 112931,
+        "postburn_live_births": 112025,
+        "postburn_parent_deaths": 110,
+        "postburn_parent_deaths_per_live_birth": 0.0009819236777505022,
+        "postburn_parent_person_ticks": 677698,
+        "postburn_stillbirths": 906,
+        "realised_capture_fraction": 0.8989121782966304,
+        "stillbirth_fraction": 0.008022597869495532,
+        "survival_to_burn_fraction": 0.965,
+        "survival_to_end_fraction": 0.91
+      },
+      "HALF": {
+        "label": "HALF",
+        "live_births_per_parent_tick": 0.1479541605954397,
+        "p_capture_target": 0.9,
+        "paired_trials": 2000,
+        "postburn_divide_attempts": 16766,
+        "postburn_live_births": 15028,
+        "postburn_parent_deaths": 976,
+        "postburn_parent_deaths_per_live_birth": 0.06494543518764972,
+        "postburn_parent_person_ticks": 101572,
+        "postburn_stillbirths": 1738,
+        "realised_capture_fraction": 0.8974249385618122,
+        "stillbirth_fraction": 0.10366217344626029,
+        "survival_to_burn_fraction": 0.5085,
+        "survival_to_end_fraction": 0.0205
+      },
+      "bootstrap_replicates": 5000,
+      "delta_birth_rate_ci95": [
+        0.016252110007956455,
+        0.018599155166048438
+      ],
+      "delta_live_births_per_parent_tick": 0.01734808317686007,
+      "p_capture_target": 0.9,
+      "qualifies_as_provisional_response_point": true
+    },
+    {
+      "FULL": {
+        "label": "FULL",
+        "live_births_per_parent_tick": 0.16636276344332426,
+        "p_capture_target": 0.95,
+        "paired_trials": 2000,
+        "postburn_divide_attempts": 118548,
+        "postburn_live_births": 118334,
+        "postburn_parent_deaths": 17,
+        "postburn_parent_deaths_per_live_birth": 0.0001436611624723241,
+        "postburn_parent_person_ticks": 711301,
+        "postburn_stillbirths": 214,
+        "realised_capture_fraction": 0.9495825250906638,
+        "stillbirth_fraction": 0.0018051759624793332,
+        "survival_to_burn_fraction": 0.992,
+        "survival_to_end_fraction": 0.9835
+      },
+      "HALF": {
+        "label": "HALF",
+        "live_births_per_parent_tick": 0.15749810137674528,
+        "p_capture_target": 0.95,
+        "paired_trials": 2000,
+        "postburn_divide_attempts": 42604,
+        "postburn_live_births": 40440,
+        "postburn_parent_deaths": 1141,
+        "postburn_parent_deaths_per_live_birth": 0.028214638971315528,
+        "postburn_parent_person_ticks": 256765,
+        "postburn_stillbirths": 2164,
+        "realised_capture_fraction": 0.949516553045493,
+        "stillbirth_fraction": 0.05079335273683222,
+        "survival_to_burn_fraction": 0.731,
+        "survival_to_end_fraction": 0.1605
+      },
+      "bootstrap_replicates": 5000,
+      "delta_birth_rate_ci95": [
+        0.00833986084076693,
+        0.009424714917676536
+      ],
+      "delta_live_births_per_parent_tick": 0.008864662066578988,
+      "p_capture_target": 0.95,
+      "qualifies_as_provisional_response_point": true
+    }
+  ],
+  "provisional_candidate_p": 0.9,
+  "scope": "Requires separate queue/composition and offspring-cohort calibration before any mixed competition."
+}

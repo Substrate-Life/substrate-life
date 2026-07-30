@@ -1,0 +1,28 @@
+=== STAGE 6: tau convergence, multi-seed ===
+
+=== seeded tau=10% (R5=26) ===
+seed 0: t=200: pop= 39, tau=9.1%, k=1.3 | t=500: pop= 58, tau=9.1%, k=2.3 | max_gen=86 | max_pop=60
+seed 1: t=200: pop= 44, tau=9.0%, k=1.2 | t=500: pop= 56, tau=9.2%, k=2.5 | max_gen=73 | max_pop=61
+seed 2: t=200: pop= 43, tau=9.2%, k=1.2 | t=500: pop= 55, tau=9.2%, k=2.4 | max_gen=90 | max_pop=60
+
+=== seeded tau=20% (R5=51) ===
+seed 0: t=200: pop= 28, tau=17.8%, k=0.0 | t=500: pop= 17, tau=16.4%, k=0.0 | max_gen=90 | max_pop=34
+seed 1: t=200: pop= 31, tau=18.0%, k=0.0 | t=500: pop= 15, tau=19.9%, k=0.0 | max_gen=83 | max_pop=37
+seed 2: t=200: pop= 31, tau=18.0%, k=0.0 | t=500: pop= 20, tau=16.9%, k=0.0 | max_gen=89 | max_pop=35
+
+=== seeded tau=40% (R5=102) ===
+seed 0: t=200: pop=  5, tau=31.9%, k=0.0 | t=500: pop=  4, tau=19.9%, k=0.0 | max_gen=94 | max_pop=8
+seed 1: t=200: pop=  6, tau=33.2%, k=0.0 | t=500: pop=  4, tau=29.9%, k=0.0 | max_gen=96 | max_pop=8
+seed 2: t=200: pop=  5, tau=31.9%, k=0.0 | t=500: pop=  4, tau=19.9%, k=0.0 | max_gen=84 | max_pop=8
+
+=== seeded tau=50% (R5=128) ===
+seed 0: t=200: pop=  2, tau=25.0%, k=0.0 | t=500: EXTINCT | 
+seed 1: t=200: pop=  4, tau=37.5%, k=0.0 | t=500: pop=  4, tau=50.0%, k=0.0 | max_gen=90 | max_pop=5
+seed 2: t=200: pop=  4, tau=37.5%, k=0.0 | t=500: pop=  2, tau=25.0%, k=0.0 | max_gen=72 | max_pop=5
+
+=== seeded tau=70% (R5=179) ===
+seed 0: t=200: pop=  2, tau=69.9%, k=0.0 | t=500: pop=  1, tau=69.9%, k=0.0 | max_gen=34 | max_pop=4
+seed 1: t=200: pop=  3, tau=69.9%, k=0.0 | t=500: pop=  2, tau=69.9%, k=0.0 | max_gen=92 | max_pop=4
+seed 2: t=200: pop=  3, tau=69.9%, k=0.0 | t=500: pop=  1, tau=69.9%, k=0.0 | max_gen=48 | max_pop=4
+
+=== DONE ===

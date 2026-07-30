@@ -1,0 +1,194 @@
+{
+  "birth_state": {
+    "birth": {
+      "birth_reserve": 0.390625,
+      "birth_tick": 0,
+      "founder_lineage_id": 0,
+      "generation": 1,
+      "id": 2,
+      "lineage_label": "PARENT",
+      "maturation_delay": 0,
+      "parent": 0
+    },
+    "child_memory_bytes": 64,
+    "child_reserve_after_birth_tick_upkeep": 0.190625,
+    "child_state": "ACTIVE",
+    "displaced_resident_id": 1,
+    "expected_resident_id": 1,
+    "victim_is_reproducing_parent": false,
+    "victim_was_live": true
+  },
+  "causing_displacement": {
+    "causing_offspring_id": 2,
+    "causing_offspring_outcome": "died_before_first_extraction",
+    "causing_offspring_outcome_tick": 1,
+    "parent_id": 0,
+    "parent_lineage_label": "PARENT",
+    "tick": 0,
+    "victim_founder_lineage_id": 1,
+    "victim_id": 1,
+    "victim_is_reproducing_parent": false,
+    "victim_last_execution_tick": null,
+    "victim_lineage_label": "RESIDENT",
+    "victim_next_opcode": 0,
+    "victim_pc": 0,
+    "victim_pending_divide": false,
+    "victim_transform_extent": null,
+    "victim_transform_op": null,
+    "victim_was_live": true
+  },
+  "child_death": {
+    "birth_tick": 0,
+    "cause": "reserve exhausted",
+    "death_stage": "pre_first_extraction",
+    "death_tick": 1,
+    "divide_attempts": 0,
+    "divides": 0,
+    "first_divide_tick": null,
+    "first_positive_extraction_tick": null,
+    "founder_lineage_id": 0,
+    "generation": 1,
+    "genome_length": 1,
+    "id": 2,
+    "last_transform_extent": null,
+    "last_transform_op": null,
+    "last_transform_tick": null,
+    "last_valid_read_tick": null,
+    "lineage_label": "PARENT",
+    "parent": 0,
+    "reached_first_positive_extraction": false,
+    "read_stage_at_death": "pre_first_valid_read",
+    "terminal_reserve": -0.809375,
+    "transform_execution_counts": {}
+  },
+  "classification": "deterministic_normal_scheduler_lifecycle_trace",
+  "displacement_diagnostic": {
+    "all_cap_events": 1,
+    "doomed_offspring_fraction_of_live_displacements": 1.0,
+    "live_displacements": 1,
+    "live_displacements_caused_by_offspring_dying_before_first_extraction": 1,
+    "outcomes": {
+      "died_before_first_extraction": 1,
+      "reached_first_extraction": 0,
+      "unresolved": 0
+    },
+    "unresolved_causing_offspring_all_cap_events": 0,
+    "unresolved_causing_offspring_live_displacements": 0
+  },
+  "memory_ledger": [
+    {
+      "accounted_total": 81920,
+      "active_memory": 192,
+      "corpse_memory": 0,
+      "label": "before_birth",
+      "ledger_closes": true,
+      "pool_capacity": 81920,
+      "shared_memory": 81728,
+      "tick": 0
+    },
+    {
+      "accounted_total": 81920,
+      "active_memory": 128,
+      "corpse_memory": 64,
+      "label": "after_birth_tick",
+      "ledger_closes": true,
+      "pool_capacity": 81920,
+      "shared_memory": 81728,
+      "tick": 1
+    },
+    {
+      "accounted_total": 81920,
+      "active_memory": 64,
+      "corpse_memory": 128,
+      "label": "after_child_death",
+      "ledger_closes": true,
+      "pool_capacity": 81920,
+      "shared_memory": 81728,
+      "tick": 2
+    },
+    {
+      "accounted_total": 81920,
+      "active_memory": 64,
+      "corpse_memory": 128,
+      "label": "corpse_expiry_followup",
+      "ledger_closes": true,
+      "pool_capacity": 81920,
+      "shared_memory": 81728,
+      "tick": 3
+    },
+    {
+      "accounted_total": 81920,
+      "active_memory": 64,
+      "corpse_memory": 128,
+      "label": "corpse_expiry_followup",
+      "ledger_closes": true,
+      "pool_capacity": 81920,
+      "shared_memory": 81728,
+      "tick": 4
+    },
+    {
+      "accounted_total": 81920,
+      "active_memory": 64,
+      "corpse_memory": 128,
+      "label": "corpse_expiry_followup",
+      "ledger_closes": true,
+      "pool_capacity": 81920,
+      "shared_memory": 81728,
+      "tick": 5
+    },
+    {
+      "accounted_total": 81920,
+      "active_memory": 64,
+      "corpse_memory": 64,
+      "label": "corpse_expiry_followup",
+      "ledger_closes": true,
+      "pool_capacity": 81920,
+      "shared_memory": 81792,
+      "tick": 6
+    },
+    {
+      "accounted_total": 81920,
+      "active_memory": 64,
+      "corpse_memory": 0,
+      "label": "corpse_expiry_followup",
+      "ledger_closes": true,
+      "pool_capacity": 81920,
+      "shared_memory": 81856,
+      "tick": 7
+    },
+    {
+      "accounted_total": 81920,
+      "active_memory": 64,
+      "corpse_memory": 0,
+      "label": "corpse_expiry_followup",
+      "ledger_closes": true,
+      "pool_capacity": 81920,
+      "shared_memory": 81856,
+      "tick": 8
+    }
+  ],
+  "population_inference": false,
+  "reserve_semantics": "terminal child reserve is not refunded or recycled; reserve is not a conserved substrate pool on death",
+  "source_manifest": {
+    "src/consts.py": {
+      "mtime_ns": 1785262899214377056,
+      "sha256": "f7d4af5384efe1978ac9fa9e14e7ad6eb2036f2915c76303648120ffbb140b0c",
+      "size": 2372
+    },
+    "src/engine.py": {
+      "mtime_ns": 1785267729388792242,
+      "sha256": "7c2f4a0f3969f7848a490a5307842e777eadd4ed99ebed0c54a4848f753621ab",
+      "size": 29564
+    },
+    "src/organism.py": {
+      "mtime_ns": 1785267713283693161,
+      "sha256": "49ea8974ebaec6cf9629ad41013e9b29dc339206c81d756e98e994cf920e08b3",
+      "size": 29575
+    },
+    "src/trace_doomed_offspring_lifecycle.py": {
+      "mtime_ns": 1785267158068681535,
+      "sha256": "dbf5addce86791c6e2eef785d8ad3c9f567a4d8371d43209bbc1aee651947e9e",
+      "size": 5606
+    }
+  }
+}

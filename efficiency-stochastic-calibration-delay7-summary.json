@@ -1,0 +1,123 @@
+{
+  "heuristic": {
+    "b_full": 0.06895519713261648,
+    "b_half": 0.05510506981639874,
+    "census_binomial_sd": 0.0401601306202683,
+    "delta_birth_rate": 0.013850127316217743,
+    "delta_p_12": 0.04143111294644164,
+    "delta_p_12_in_census_sd": 1.0316478633546051,
+    "p0": 0.5032258064516129,
+    "p_after_12_ticks": 0.5446569193980545,
+    "readiness": "ONE_TO_THREE_SD_REQUIRE_POWER_CALIBRATION"
+  },
+  "kind": "precompetition_design_calibration_not_competition_evidence",
+  "parameters": {
+    "analysis_end_tick": 483,
+    "analysis_start_tick": 124,
+    "buffer_depth": 132,
+    "burn_cycles": 10,
+    "cycles": 40,
+    "initial_buffer_packets": 132,
+    "isolated_trials": 0,
+    "monomorphic_seeds_per_arm": 20,
+    "mutation_rates": 0,
+    "offspring_maturation_delay": 7,
+    "p_capture_iid": 0.8516129032258064,
+    "packet_rate": 11,
+    "population_cap": 155
+  },
+  "summaries": [
+    {
+      "births_per_organism_tick": null,
+      "deaths_per_organism_tick": null,
+      "label": "FULL",
+      "mode": "isolated_iid",
+      "postburn_attempts": 0,
+      "postburn_births": 0,
+      "postburn_deaths": 0,
+      "postburn_person_ticks": 0,
+      "postburn_stillbirths": 0,
+      "stillbirth_fraction": null,
+      "survival_to_burn_fraction": null,
+      "survived_to_burn": 0,
+      "trials": 0
+    },
+    {
+      "births_per_organism_tick": null,
+      "deaths_per_organism_tick": null,
+      "label": "HALF",
+      "mode": "isolated_iid",
+      "postburn_attempts": 0,
+      "postburn_births": 0,
+      "postburn_deaths": 0,
+      "postburn_person_ticks": 0,
+      "postburn_stillbirths": 0,
+      "stillbirth_fraction": null,
+      "survival_to_burn_fraction": null,
+      "survived_to_burn": 0,
+      "trials": 0
+    },
+    {
+      "all_age_nondisplacement_deaths": 0,
+      "all_age_nondisplacement_deaths_per_birth": 0.0,
+      "all_deaths_by_stage": {
+        "post_first_live_birth": 23748,
+        "post_read_pre_first_live_birth": 9575,
+        "pre_first_valid_read": 43631
+      },
+      "allocation_failures": 0,
+      "attempts": 76954,
+      "births": 76954,
+      "births_per_organism_tick": 0.06895519713261648,
+      "capture_fraction": 1.0,
+      "established_nondisplacement_deaths_per_birth": 0.0,
+      "label": "FULL",
+      "live_displacements": 76954,
+      "mean_birth_to_first_read": 12.0,
+      "mean_recurrent_read_interval": 12.0,
+      "mean_seed_birth_rate": 0.06895519713261648,
+      "minimum_population": 155,
+      "mode": "monomorphic_cap",
+      "nondisplacement_deaths_by_stage": {},
+      "organism_ticks": 1116000,
+      "pending_divides_preempted": 2722,
+      "sd_seed_birth_rate": 0.00029442282655797633,
+      "seeds": 20,
+      "stillbirth_fraction": 0.0,
+      "stillbirths": 0,
+      "vacancy_fills": 0
+    },
+    {
+      "all_age_nondisplacement_deaths": 17692,
+      "all_age_nondisplacement_deaths_per_birth": 0.29360416874108003,
+      "all_deaths_by_stage": {
+        "post_first_live_birth": 16454,
+        "post_read_pre_first_live_birth": 21239,
+        "pre_first_valid_read": 22526
+      },
+      "allocation_failures": 0,
+      "attempts": 84161,
+      "births": 60258,
+      "births_per_organism_tick": 0.05510506981639874,
+      "capture_fraction": 1.0,
+      "established_nondisplacement_deaths_per_birth": 0.0,
+      "label": "HALF",
+      "live_displacements": 42527,
+      "mean_birth_to_first_read": 12.0,
+      "mean_recurrent_read_interval": 12.0,
+      "mean_seed_birth_rate": 0.05510494734685636,
+      "minimum_population": 143,
+      "mode": "monomorphic_cap",
+      "nondisplacement_deaths_by_stage": {
+        "post_read_pre_first_live_birth": 17692
+      },
+      "organism_ticks": 1093511,
+      "pending_divides_preempted": 1897,
+      "sd_seed_birth_rate": 0.0002490267151380951,
+      "seeds": 20,
+      "stillbirth_fraction": 0.28401516141680827,
+      "stillbirths": 23903,
+      "vacancy_fills": 564
+    }
+  ]
+}

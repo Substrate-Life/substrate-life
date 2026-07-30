@@ -1,0 +1,42 @@
+## Judgment: **NO-GO** for the currently preregistered mixed assay
+
+The numerical calibration is internally consistent, and HALF independently fails the registered sustained-exposure gate. No mixed-population assay should be launched under this design. However, the death-gate reporting and causal interpretation need qualification.
+
+### Verified
+
+- **Window and organism-tick denominator are correct.** Analysis covers ticks **124–483 inclusive**, exactly 360 ticks/30 post-burn cycles: `FIRST_READ_TICK + 10×12` through `FIRST_READ_TICK + 40×12−1` (`derive_stochastic_efficiency.py:23–25,57–67,127–139`). Monomorphic organism-ticks use the live population at the start of each tick, so newborns enter exposure on their first executable tick and deaths remain charged for their final at-risk tick (`derive_stochastic_efficiency.py:129–136`; `engine.py:510–517`).
+
+- **Rate denominators and aggregate arithmetic reproduce exactly.**
+  - FULL: `97,428 / 1,106,843 = 0.08802332399`
+  - HALF: `69,464 / 1,068,485 = 0.06501167541`
+  - FULL capture: `79,211 / 98,135 = 0.8071636012`
+  - HALF capture: `79,200 / 109,712 = 0.7218900394`
+  - Death/birth ratios: `9,517 / 97,428 = 0.0976823911`; `45,696 / 69,464 = 0.6578371531`  
+  Aggregation is implemented at `derive_stochastic_efficiency.py:210–239`; reported values are at `efficiency-stochastic-calibration-summary.json:59–99`. Representative seed rows agree (`efficiency-stochastic-calibration-raw.jsonl:4001–4010`).
+
+- **READ denominator is appropriate.** Only valid full-packet READs enter attempts; empty-buffer misses remain in the denominator, while malformed/partial READs do not (`organism.py:252–269`; `engine.py:542–557`). Both assay genomes allocate/read 256 bytes and differ only at TRANSFORM extent (`engine.py:390–408`; preregistration `:22–37`).
+
+- **Mutation disabling is complete for implemented mutation classes.** The runner zeros engine-global copy substitutions and organism-global insertion/deletion/duplication rates (`derive_stochastic_efficiency.py:28–32,251`), matching their actual use (`engine.py:295–305`; `organism.py:494–508`).
+
+- **Isolated schedules are genuinely paired, iid, and survivor-conditioned.** Each trial creates one Bernoulli schedule and supplies it to both arms (`derive_stochastic_efficiency.py:254–260`). Eligibility is arm-specific survival to tick 124, and only eligible person-time/events are aggregated (`:184–208`). The raw rows visibly demonstrate this conditioning (`raw.jsonl:1–10`); 1,831 FULL versus 740 HALF survive burn-in (`summary.json:29–57`). Thus these post-burn rates are not paired-arm population estimates, exactly as cautioned in preregistration `:134–137`.
+
+- **Heuristic arithmetic is correct.** Applying  
+  `logistic(logit(78/155)+12×(0.08802332399−0.06501167541))−78/155`  
+  gives `0.06853606691`; census SD is `sqrt(p(1−p)/155)=0.04016013062`, hence `1.70656982 SD` (`derive_stochastic_efficiency.py:274–285`; `summary.json:2–11`). It is properly labelled a Moran-style design approximation rather than a measured coefficient (`preregistration:139–147`).
+
+- **First-READ timing claim is mechanically correct.** Newborns start at PC 0 and execute MOV, MOV, MOV, ALLOC, then READ—READ on their fifth executable step (`engine.py:390–399`). Newborns are absent from the tick’s precomputed active list, so a birth at tick *t* first executes at *t+1* (`engine.py:510–517`; `organism.py:464–482`). The JUMP returns established organisms to PC 2, yielding a 12-tick READ-to-READ interval (`engine.py:401–408`). The datastream supplies 11 packets each tick (`datastream.py:138–153`), so excess juvenile READ demand can indeed depress capture.
+
+### Material qualification/error
+
+- **The claimed “established-organism non-displacement death” gate was not measured.** The runner counts **every** ancestry death in the window whose cause is not exactly `"displacement"` (`derive_stochastic_efficiency.py:145–151`), without using `birth_tick`, age, first READ, or `first_divide_tick`, although those fields exist (`organism.py:232–245`). Therefore the reported 0.097682/0.657837 values are **all-age non-displacement deaths per birth**, not established-organism deaths as required by preregistration `:149` and described at `:160`. Juvenile reserve deaths are included. This does not overturn the current NO-GO because HALF separately fails the authoritative capture gate (`f=0.721890 < 0.80`; preregistration `:122,160`).
+
+- **Age-structured feedback is a strong inferred explanation, not directly identified causally.** The timing asymmetry is proven by code, and the monomorphic data are consistent with it: HALF makes 15.2378 READs/tick versus FULL 13.6299 while both receive essentially the same supply, producing lower HALF capture (`preregistration:155–162`; summary `:59–99`). But the raw calibration stores only seed aggregates—not birth-age-specific READs or a timing-neutral intervention—so “the failure mechanism is age-structured demand” should be phrased as **mechanistically supported inference**, not a measured causal decomposition.
+
+- **The redesign conclusion is too categorical.** Preregistration `:164` says changing contrast cannot repair the feedback and requires commensurate first/recurrent timing before reconsideration. Timing neutralization is the cleanest fix, but the calibration does not prove it is the only possible repair: a different contrast or supply/cap design could reduce turnover-induced excess demand enough to pass both monomorphic gates. Such a design would require fresh calibration, not automatic rejection.
+
+### Bottom line
+
+- **Current design:** **NO-GO**, robustly, because HALF’s measured sustained capture fraction is outside the preregistered `[0.80,0.90)` regime.
+- **Scientific wording:** retain the numerical results, relabel the death ratio as **all-age non-displacement deaths/live birth**, and downgrade the first-READ feedback from “measured failure mechanism” to “code-verified, data-consistent causal hypothesis.”
+- **Files modified/created:** none.
+- **Mixed-population assays run:** none.

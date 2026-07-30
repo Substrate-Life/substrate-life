@@ -1,0 +1,52 @@
+{
+  "FULL": {
+    "label": "FULL",
+    "live_births_per_parent_tick": 0.16666666666666666,
+    "p_capture_target": 1.0,
+    "paired_trials": 2000,
+    "postburn_divide_attempts": 120000,
+    "postburn_live_births": 120000,
+    "postburn_parent_deaths": 0,
+    "postburn_parent_deaths_per_live_birth": 0.0,
+    "postburn_parent_person_ticks": 720000,
+    "postburn_stillbirths": 0,
+    "realised_capture_fraction": 1.0,
+    "stillbirth_fraction": 0.0,
+    "survival_to_burn_fraction": 1.0,
+    "survival_to_end_fraction": 1.0
+  },
+  "HALF": {
+    "label": "HALF",
+    "live_births_per_parent_tick": 0.16666666666666666,
+    "p_capture_target": 1.0,
+    "paired_trials": 2000,
+    "postburn_divide_attempts": 120000,
+    "postburn_live_births": 120000,
+    "postburn_parent_deaths": 0,
+    "postburn_parent_deaths_per_live_birth": 0.0,
+    "postburn_parent_person_ticks": 720000,
+    "postburn_stillbirths": 0,
+    "realised_capture_fraction": 1.0,
+    "stillbirth_fraction": 0.0,
+    "survival_to_burn_fraction": 1.0,
+    "survival_to_end_fraction": 1.0
+  },
+  "bootstrap_replicates": 5000,
+  "delta_birth_rate_ci95": [
+    0.0,
+    0.0
+  ],
+  "delta_live_births_per_parent_tick": 0.0,
+  "falsification_condition": "A nonzero residual recruitment contrast at p=1 means miss tolerance alone is insufficient.",
+  "kind": "posthoc_no_miss_mechanism_control_not_selection_evidence",
+  "parameters": {
+    "burn_cycles": 10,
+    "cycles": 40,
+    "mutation_rates": 0,
+    "offspring_execute": false,
+    "p_capture": 1.0,
+    "paired_trials": 2000,
+    "schedule": "all captures"
+  },
+  "scope": "Post-hoc established-parent mechanism control; not eligible to alter the registered p-grid candidate rule."
+}

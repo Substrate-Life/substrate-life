@@ -1,0 +1,265 @@
+{
+  "kind": "equal_tempo_conditional_capacity_not_selection_evidence",
+  "original_registered_instantiation_gate_under_trough_18": true,
+  "parameters": {
+    "capture_probability": 1.0,
+    "cycles": 200,
+    "genome_length": 23,
+    "mutation_rates": 0,
+    "offspring_execute": false,
+    "packet_energy": 500,
+    "r4_bit_mask": 2048,
+    "recurrent_interval_both_paths": 17,
+    "tail_cycles": 50,
+    "tau_r5": 51
+  },
+  "posthoc_pre_extraction_ledger": {
+    "exact_arithmetic_condition": "initial_reserve > 20.0",
+    "exact_spend_through_READ": 20.0,
+    "interpretation": "offspring were removed before execution; instantiation under OFFSPRING_TROUGH=18 is not established recruitment",
+    "successful_instantiations_below_20": {
+      "FULL": 0,
+      "HALF": 195
+    }
+  },
+  "primary_clean_fecundity_gate": false,
+  "summaries": [
+    {
+      "all_attempts_per_cycle_values": [
+        3
+      ],
+      "all_births_per_cycle_values": [
+        3
+      ],
+      "all_stillbirths_per_cycle_values": [
+        0
+      ],
+      "allocation_failures": 0,
+      "captures": 200,
+      "complete_cycles": 200,
+      "cycle_end_reserve_tail": [
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895,
+        123.82272100448895
+      ],
+      "cycles_registered": 200,
+      "extent": 256,
+      "genome_length": 23,
+      "label": "FULL",
+      "parent_alive": true,
+      "parent_end_reserve": 123.82272100448895,
+      "peak_committed_memory": 384,
+      "peak_parent_memory": 320,
+      "r4_bit_2048_values": [
+        2048
+      ],
+      "r4_max": 2187,
+      "r4_min": 2187,
+      "r4_values": [
+        2187
+      ],
+      "r6_after_initialization": 23,
+      "realised_capture_fraction": 1.0,
+      "realised_parameters": {
+        "buffer_depth": 1,
+        "initial_buffer_packets": 0,
+        "memory_allocation_failures_total": 0,
+        "minimum_working_memory": 64,
+        "offspring_maturation_delay": 0,
+        "packet_e_lean": 500,
+        "packet_e_rich": 500,
+        "packet_rate": 1,
+        "phase_mode": "monotonic_rich",
+        "population_cap": 100,
+        "seed": 31000,
+        "shared_memory_pool_current": 81536,
+        "shared_memory_pool_initial": 81920
+      },
+      "recurrent_interval_expected": 17,
+      "recurrent_interval_values": [
+        17
+      ],
+      "tail_attempts_per_cycle_values": [
+        3
+      ],
+      "tail_births_per_cycle_values": [
+        3
+      ],
+      "tail_cycles": 50,
+      "tail_mean_births_per_cycle": 3.0,
+      "tail_mean_births_per_tick": 0.17647058823529413,
+      "tail_stillbirths_per_cycle_values": [
+        0
+      ],
+      "total_live_births": 600,
+      "total_stillbirths": 0,
+      "valid_reads": 200
+    },
+    {
+      "all_attempts_per_cycle_values": [
+        2
+      ],
+      "all_births_per_cycle_values": [
+        2
+      ],
+      "all_stillbirths_per_cycle_values": [
+        0
+      ],
+      "allocation_failures": 0,
+      "captures": 200,
+      "complete_cycles": 200,
+      "cycle_end_reserve_tail": [
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196,
+        57.89962889711196
+      ],
+      "cycles_registered": 200,
+      "extent": 128,
+      "genome_length": 23,
+      "label": "HALF",
+      "parent_alive": true,
+      "parent_end_reserve": 57.89962889711196,
+      "peak_committed_memory": 320,
+      "peak_parent_memory": 320,
+      "r4_bit_2048_values": [
+        0
+      ],
+      "r4_max": 1093,
+      "r4_min": 1093,
+      "r4_values": [
+        1093
+      ],
+      "r6_after_initialization": 23,
+      "realised_capture_fraction": 1.0,
+      "realised_parameters": {
+        "buffer_depth": 1,
+        "initial_buffer_packets": 0,
+        "memory_allocation_failures_total": 0,
+        "minimum_working_memory": 64,
+        "offspring_maturation_delay": 0,
+        "packet_e_lean": 500,
+        "packet_e_rich": 500,
+        "packet_rate": 1,
+        "phase_mode": "monotonic_rich",
+        "population_cap": 100,
+        "seed": 32000,
+        "shared_memory_pool_current": 81600,
+        "shared_memory_pool_initial": 81920
+      },
+      "recurrent_interval_expected": 17,
+      "recurrent_interval_values": [
+        17
+      ],
+      "tail_attempts_per_cycle_values": [
+        2
+      ],
+      "tail_births_per_cycle_values": [
+        2
+      ],
+      "tail_cycles": 50,
+      "tail_mean_births_per_cycle": 2.0,
+      "tail_mean_births_per_tick": 0.11764705882352941,
+      "tail_stillbirths_per_cycle_values": [
+        0
+      ],
+      "total_live_births": 400,
+      "total_stillbirths": 0,
+      "valid_reads": 200
+    }
+  ],
+  "superseded_expected_instantiation_rate_contrast": 0.058823529411764705
+}

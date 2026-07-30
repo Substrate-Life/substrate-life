@@ -1,0 +1,68 @@
+## Audit result
+
+**No CRITICAL discrepancy found.** The central OFFSPRING_TROUGH reclassification is supported by the live code, deterministic trace, and raw conditional events.
+
+### Verified
+
+- **Tick ordering / scheduler proxy:** Correct.
+  - `Simulation.step()` snapshots executable organisms before instruction execution (`engine.py:562–574`), so offspring created during that tick cannot execute.
+  - All ACTIVE organisms—including newborns—then pay upkeep (`engine.py:591–595`).
+  - A seeded organism with `maturation_remaining=1` is therefore scheduler-equivalent for this isolated purpose: one upkeep-only tick, then PC0 next tick.
+  - I additionally created an actual offspring during a DIVIDE tick; reserve/PC progression exactly matched the proxy: birth reserve 20 → 19.8 on birth tick, READ at tick 5, TRANSFORM at tick 6.
+
+- **Ledger arithmetic:** Correct for the conditional L=23 genome:
+  - Birth-tick 64-byte upkeep: `0.1 + 64/640 = 0.2`.
+  - Three MOV ticks: `3 × (1 + 0.2) = 3.6`.
+  - ALLOC 256: instruction `1 + ceil(256/64) = 5`, then 320-byte upkeep `0.6`, total `5.6`.
+  - READ: instruction `10`, then upkeep `0.6`, total `10.6`.
+  - Total through READ tick: **20.0**.
+  - READ acts before its cost/death check; TRANSFORM grants replenishment before its own cost (`engine.py:136–143`; `organism.py:403–418`).
+
+- **Diagnostic outcomes:** Reproduced by tests:
+  - 19.9 performs a valid READ and dies before TRANSFORM.
+  - 20.0 reaches TRANSFORM in both FULL and HALF.
+  - Tests pass when run from `src/`.
+  - The summary’s source hashes exactly match the current four source files.
+
+- **Raw transfer recount:** Correct.
+  - Raw file contains exactly **1,000 successful instantiations**: FULL 600, HALF 400.
+  - FULL: **0/600 below 20**; minimum `29.86995499692857`.
+  - HALF: **195/400 below 20**, all `bout=2`, exactly cycles **6–200**, with no missing cycle.
+  - Cycle-200 HALF second transfer: `19.429663774403465`.
+  - Every HALF second bout in cycles 151–200 is below 20.
+  - Raising the implemented threshold to 20 would classify those 195 attempts as stillbirths while preserving transfer loss.
+
+- **Scientific scoping:** The revised documents correctly withdraw the clean 600-vs-400 viable-recruitment interpretation, retain only isolated-parent reproductive-allocation capacity, distinguish this from population selection, terminate the current clean-fecundity program, and explain that changing the threshold would require new ecological calibration. The live constant remains `OFFSPRING_TROUGH=18`; the diagnostic made no threshold change.
+
+## Discrepancies
+
+### MAJOR — overbroad generality claim in §5a
+
+`project-report.md:234` claims that **any** artificial-life system with obligate one-offspring-per-cycle reproduction has no income→fitness channel and that metabolic efficiency cannot be selected “no matter how the energy model is designed.”
+
+That does not follow from `r=ln2/T`: income may alter `T`, probability of surviving to reproduction, or offspring establishment even when successful reproduction produces exactly one offspring. The report’s own §5c (`project-report.md:246`) recognizes reserve-dependent survival and offspring establishment. The claim should be confined to architectures where income affects neither timing nor survival once above a viability gate—not generalized to all obligate-single-offspring systems.
+
+### MINOR — “20.0 boundary” relies on floating-point residue
+
+The analytical spend is exactly 20.0, while the engine kills organisms at reserve `<=0`. Operationally, 20.0 survives only because binary floating arithmetic leaves `3.219646771412954e-15` after the READ tick (`offspring-first-extraction-threshold-summary.json:348–352`). In exact arithmetic it would reach zero and die before TRANSFORM.
+
+Thus “20.0 reaches extraction” is accurate for the current Python-float implementation, but should be scoped as an implementation-measured boundary rather than a mathematically robust viability threshold.
+
+### MINOR — machine-readable conditional artifact remains unreclassified
+
+The prose reclassification is clear, but:
+
+- `efficiency-conditional-third-bout-p1-summary.json:16` still states `"primary_clean_fecundity_gate": true`.
+- It still publishes `"expected_rate_contrast_if_pass": 1/17`.
+- `src/trace_efficiency_conditional_third_bout_p1.py:54–55` regenerates those fields without the post-hoc threshold caveat.
+
+This preserves the original code-threshold result but is misleading if the JSON is consumed without the later prose. It should be explicitly treated as an archival, originally classified artifact—not current evidence of clean viable fecundity.
+
+### MINOR — test invocation is working-directory dependent
+
+From project root, `python3 -m unittest -v src/test_offspring_first_extraction_threshold.py` fails because the test imports `trace_offspring_first_extraction_threshold` as a top-level module. Running from `src/` passes both tests. This does not affect the scientific result but weakens routine regression discoverability.
+
+## Files and issues
+
+- **Files modified/created:** None.
+- **Issue encountered:** `/opt/data/avida-life` is not a Git repository, so historical “no code change” could not be verified via Git diff; current source and manifest establish that the live threshold remains 18.

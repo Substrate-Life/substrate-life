@@ -1,0 +1,10 @@
+=== TAU NO-CLAMP COMPETITION ===
+Seeded 50/50: tau=10% (R5=26) vs 40% (R5=102) in one population
+
+seed 0: t=500: N=121, eff_tau=6.9%, k=0.52, dist=[10p=0,40p=110,oth=11] | t=1000: N=157, eff_tau=12.7%, k=0.60, dist=[10p=0,40p=141,oth=16] | max_gen=82
+seed 1: t=500: N=159, eff_tau=13.3%, k=0.56, dist=[10p=0,40p=139,oth=20] | t=1000: N=162, eff_tau=13.3%, k=0.57, dist=[10p=0,40p=151,oth=11] | max_gen=68
+seed 2: t=500: N=110, eff_tau=6.9%, k=0.55, dist=[10p=0,40p=103,oth=7] | t=1000: N=114, eff_tau=10.8%, k=0.58, dist=[10p=0,40p=104,oth=10] | max_gen=84
+seed 3: t=500: N=125, eff_tau=11.5%, k=0.58, dist=[10p=0,40p=115,oth=10] | t=1000: N=132, eff_tau=19.6%, k=0.48, dist=[10p=0,40p=125,oth=7] | max_gen=77
+seed 4: t=500: N=133, eff_tau=8.7%, k=0.68, dist=[10p=0,40p=116,oth=17] | t=1000: N=175, eff_tau=11.4%, k=0.50, dist=[10p=0,40p=162,oth=13] | max_gen=80
+
+=== DONE ===

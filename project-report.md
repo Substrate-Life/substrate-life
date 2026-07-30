@@ -1,0 +1,453 @@
+# Substrate — Project Report
+
+*Current model, empirical findings, superseded claims, and open questions.*
+*Date: 2026-07-30*
+
+---
+
+## 1. Current Model
+
+### 1a. Instruction Set
+
+| Instruction | Opcode | Base Cost | Notes |
+|-------------|--------|-----------|-------|
+| NOP / JUMP / JUMPZ / JUMPNZ | 0-3 | 1 | Control flow |
+| MOV | 4 | 1 | dst = literal register index (0-7); src = literal or register |
+| ADD/SUB/AND/OR/XOR | 5-9 | 2 | |
+| CMP | 10 | 2 | |
+| READ | 11 | 10 | Reads packet into working memory; 256 bytes required |
+| WRITE | 12 | 2 | |
+| ALLOC | 13 | 1 + size/64 | Allocates memory; address stored in R1 |
+| FREE | 14 | 1 | Frees allocation; cannot free minimum block [0,63] |
+| TRANSFORM | 15 | 3 + len/64 | Applies transform. Byte reduction → R3. Replenishment×10 → R4. |
+| SLEEP / DIE | 16-17 | 1 | |
+| ALLOC_OFFSPRING | 18 | 5 + size/64 | Allocates gestation region |
+| COPY_UNIT | 19 | 2 | Copies one instruction per tick; R2=1 when done |
+| DIVIDE | 20 | 5 | Creates 1 offspring. Transfer fraction from R5/256 (default 128=50%). No clamp — under-endowed offspring die. |
+| SET_P | 21 | 1 | Sets copy pointer |
+| READ_GESTATION | 22 | 2 | Reads instruction at gestation offset into register |
+| COPY_BLOCK | 23 | 2 | Copies n instructions (from R6) in 1 tick. Cost = 2 + n/64. Mutation per instruction copied. |
+### 1b. Energy Model
+
+**Income:** Packets arrive at constant rate P=5/tick. Each packet carries an extractable energy budget (E=300). Extraction is granted only for **lossless** transforms (reconstruction check: original bytes must be recoverable from the transformed output). HASH_SUM and FILTER_LOW are lossy — they reduce memory footprint but do not extract energy.
+
+**Phases differ in data structure, not budget:**
+- **Rich phase:** runs of exactly 3 identical bytes with varying deltas. RLE compresses (256→172, extraction 131). DIFF expands (256→341, extraction 0, capped by drawn=0 on fresh packets).
+- **Lean phase:** sawtooth wave (each byte = (i*7 + tick) % 256). RLE expands (256→512). DIFF compresses (256→3, extraction 315).
+- No transform yields >98 in both phases. Each specialist is non-viable in its bad phase.
+
+**Costs:** Per-tick upkeep = 0.1 + memory_bytes/640. Cycle cost for reference metaboliser M1 (L=11): 79.3 units over 31 ticks.
+
+**Signed extraction with expansion cap:** Compressing tagged bytes draws from the packet budget. Expanding tagged bytes charges the organism's reserve, clamped to the amount previously drawn from that packet. On a fresh packet (nothing drawn), charge is 0 — expansion becomes a wasted instruction (costing ~7 units) rather than an execution.
+
+**Expansion buffer integrity:** When a transform expands (new_size > length), the original data in working memory is left intact so a subsequent transform can process it. This was the critical bug fix for the switching phenotype — without it, the RLE probe overwrote the buffer with expanded garbage and the DIFF fallback processed garbage instead of the original packet.
+
+### 1c. Parameters
+
+| Parameter | Value | Notes |
+|-----------|-------|-------|
+| P (packets/tick) | 5 | Constant, independent of population |
+| Buffer depth | 8 | |
+| E | 300 | Same budget for both phases |
+| MEMORY_POOL | 80 KB | Safety rail, not foraging regulator |
+| R₀ (founder reserve) | 100 | |
+| μ (substitution per COPY_UNIT) | 0.001 | |
+| μ (indels per DIVIDE) | 0.01 | |
+| Transfer at DIVIDE | R5/256 (default 128 = 50%) | Heritable τ; no clamp; under-endowed offspring die |
+| Population cap | 500 | Safety limit, not ecological — memory pool binds first (~256) |
+
+### 1d. Derived Quantities (at E=300)
+
+| Quantity | Value | Notes |
+|----------|-------|-------|
+| M1 cycle cost C | 79.3 units / 31 ticks | Verified |
+| Per-capita cost | 2.56 units/tick | |
+| R* (at f=1) | ~220 | I - C = 300 - 79.3 |
+| R* (at f=0.86) | ~179 | At K density (margin ≈ 10× trough) |
+| R* (at f=0.58, N=268) | ~94 | Typical competition-run density |
+| Trough spend | ~18.4 | Costs before extraction arrives |
+| Viable band | L ∈ [11, 40] | Ceiling set by copy cost (3L), not mutation |
+| K (mean-field) | ≈ 423 | K = 31·P·E/110; memory pool leak capped at ~256 in all runs, see §4f |
+| f_crit | 0.081 | f_crit = 24.2/E = 24.2/300 |
+| N_crit (overshoot) | ≈ 660 | Beyond this, f < f_crit — unrecoverable; never approached experimentally |
+---
+
+## 2. Empirical Findings
+
+### 2a. Substrate Validation
+
+All findings labelled with measurement parameters. The model evolved through multiple revisions; §3 lists superseded claims.
+
+- **Population self-sustaining** through Phase A/B/C cycles at E=300/105. No founder-decay extinction. [E_rich=300, E_lean=105]
+- **Density dependence** measured at E_rich=129: K ≈ 144-173. At E=300, mean-field predicts K ≈ 423, but the memory pool leak (§4f) capped realised K at ~256 in all runs.
+- **0/20 extinction rate** across seeds at E=300/105. Single-organism bottleneck occasionally but recovers. [E_rich=300, E_lean=105]
+
+### 2b. Graded Selection (Waste-TRANSFORM Assay)
+
+Two genotypes: M1 (clean, 1 TRANSFORM) and waste-TRANSFORM (M1 + extra TRANSFORM on depleted buffer, cost ~7 units/cycle ≈ 9% of C). Seeded 50/50, E=300, N≈268 at t=1000.
+
+| Checkpoint | Waste frequency | Status |
+|-----------|----------------|--------|
+| t=500 | 29.9% | |
+| t=1000 | 32.1% | Pre-registered — inconclusive (between <30% pass, >40% fail) |
+| t=2000 | 13.7% | Post-hoc extension — clear downward trend |
+
+**Conclusion:** Graded selection is real at a ~5× R*/trough margin. Realised selection was roughly half the predicted rate (cost-to-s conversion off by ~2×).
+
+### 2c. Selection Cliff (R*/trough as Control Parameter)
+
+At tight margins, cost-adding traits are lethal rather than graded. The observable outcome is threshold culling plus mutational drift, with no regime in which small fitness differences accumulate.
+
+**Measured at:** E=129, M1 L=11. R* = 49.7. Trough = 18.4. Ratio ≈ 2.7×. With NOPs pushing R* toward trough, the population crashed at Phase B.
+
+At E=300 (R*/trough ≈ 5× at run density), graded selection becomes visible. The data supports the direction (higher ratio → graded selection visible) but not a functional form.
+
+**This is a genuine result about computational substrates:** the R*/trough ratio determines whether the system can produce measurable adaptive change. Below ~2×, selection is threshold-like. Above ~5×, graded selection emerges.
+
+### 2d. NOP Padding Assay
+
+Zero-cost NOPs (no selection coefficient) and cost-1 NOPs (~0.3% per NOP) erode at identical rates (~2.96 → 2.67 over 1000 ticks). The erosion is pure mutation load filtering — deletions that land in non-lethal positions survive to be counted, deletions in coding sequence vanish with their lineage. The assay had no statistical power at s≈0.3% over 30 generations with N≈120 and ~0.3 mutation events per lineage.
+
+### 2e. Stage 5: Phase-Switching Competition
+
+Three genotypes: RLE specialist (L=11, single RLE transform), DIFF specialist (L=11, single DIFF transform), and switcher (L=13, probes RLE first, falls through to DIFF if R3=0). Seeded equally. E=300.
+
+**Primary arm (50-tick phases, aimed at graded competition):**
+- Switcher fixes at 100% by t=500 in all 5 seeds.
+- Specialists die during their bad phase — not because the phase is too long, but because offspring inherit 50% of parent reserve (~70 units) which cannot survive a full 50-tick bad phase (burn ≈125 units).
+- **Result: demographic culling, not graded competition.** The inheritance rule (50% transfer) sets the constraint — no phase period shorter than the reserve-runway makes bad-phase survival possible for offspring. This is structural; see §5a (Open Questions).
+
+**Secondary arm (1000-tick phases):**
+- Tick 0-1000 (rich): RLE dominates (56-93%), DIFF extinct (starved on founding rich phase before first phase switch), switcher persists at 7-44%.
+- Tick 1000-2000 (lean): RLE specialists die within ~88 ticks (220 reserve / 2.5 burn per tick). By t=1500, switcher at 99-100%.
+- **Result: demographic culling.**
+
+**Control arm (monotonic rich, 4000 ticks):**
+- Switcher declines from 33% to 0-16% by t=2000 (~60 generations).
+- RLE specialist rises to 84-100%.
+- The switcher's cycle is 37 ticks (L=13) vs RLE specialist's 32 ticks (L=11) — a 13.5% r penalty. Over 60 generations this drives near-total elimination.
+- **Result: graded selection.** The sensing trait carries a real cost under monotony and is removed by selection.
+
+**Headline result:** Environmental alternation selects for a sensing-and-switching phenotype. Monotony selects it out. The effect is unambiguous across 5 seeds. This is the first result that speaks to the original research question — environmental information became functionally incorporated into a lineage's persistence, and the mechanism is traceable (R3 register in TRANSFORM → JUMPNZ branching → fallback transform).
+
+**Caveats:** Switching was seeded, not evolved de novo. All three arms ran post-fix (see §4). DIFF specialists died before the first phase switch (starved on founding rich phase), so **no arm in Stage 5 achieved three viable founding genotypes.** Both alternation arms reduce to the same two-genotype demographic comparison (RLE vs switcher). Fixing this requires either phase-matched seeding or founder reserves sized to survive one bad phase — which is the provisioning question (see §5e).
+
+---
+
+## 3. Superseded Claims
+
+| Claim | Document | Status | Reason |
+|-------|----------|--------|--------|
+| Lossless-only replenishment rule | v2 energy model | Removed | Replaced by reconstruction check — structural, not designer-favoured |
+| Memory pool regulates foraging | v3 §5 | Withdrawn | Instruction budget binds first; effort doesn't escalate under r-maximisation |
+| C-vs-D prediction (single-resource goes extinct) | v3 §5 | Withdrawn | Not supported by r-max analysis |
+| Prediction (2): life-history response to density | r-max §6 | Retracted as untestable | Adding a forage block requires 4 coordinated instructions — unreachable at μ=0.001 |
+| Wasteful-ancestor test | Discussion | Never ran | Fitness valley |
+| Trough-of-1 measurement artifact | Stage 3 test | Corrected | Sampled fresh simulation, not Phase B |
+| N=1 dose-response | Stage 3 test | Corrected | Demographically incomparable |
+| Mutation-dominated substrate | Stage 3 draft | Corrected | Tight margins; graded regime requires R*/trough > ~5× |
+| HASH as universal transform | Discussion | Removed | Reconstruction check denies extraction to lossy transforms |
+| R* = 2I − C form | v3 §3 | Corrected | Correct form is R* = I − C |
+| Pre-registration checkpoint shift | This report | Acknowledged | t=1000 inconclusive; t=2000 post-hoc |
+| s-estimate ~2× too high | This report | Acknowledged | Cost-to-s conversion off |
+| Stage 5 primary as "graded" | This report | Corrected | It's demographic culling — inheritance rule constrains selection regime |
+| MOV destination register bug | Stage 6 | Fixed | See §4e — affected τ initialisation in Stage 6 only |
+| Memory pool non-reclamation | All stages | Fixed | See §4f — K values systematically low by ~30%, relative outcomes valid |
+| RLE expansion bug | Stage 5 | Fixed | See §4a |
+| Partial-extent TRANSFORM pool inflation | Stray efficiency output / future partial transforms | Fixed | See §4g — full-extent runs unaffected |
+| Gestation allocation retained after DIVIDE | Post-overhaul verification runs | Fixed | See §4h — active parents accumulated 64B per completed attempt |
+| Lean packet `is_lean` metadata false | Metadata only | Fixed | See §4i — current dynamics never read the flag |
+
+---
+
+## 4. Code Defects
+
+### 4a. RLE-Expansion Buffer Corruption
+
+When TRANSFORM RLE expanded data (new_size > length, as on lean packets), the handler wrote the first `length` bytes of the expanded output into working memory, then clamped new_size = length. This overwrote the original packet data with RLE-compressed garbage (count-byte pairs). Any subsequent transform (e.g., the switcher's DIFF fallback) processed the corrupted data instead of the original packet.
+
+### 4b. Impact
+
+- All Stage 5 runs before the fix (stage5_results.txt) are void. Stage 5 results in §2e are from post-fix runs (stage5_results2.txt).
+- The graded selection assay (§2b) used only RLE on rich data (expansion never occurred), so it was unaffected.
+- Substrate validation runs (§2a) used only RLE on rich data, similarly unaffected.
+
+### 4c. The Fix
+
+Expansion branch changed from writing garbage to leaving original data intact:
+```
+# Expansion: don't overwrite memory — leave original data intact
+# so a subsequent transform (e.g. switcher's DIFF probe) can process it
+new_size = length
+```
+
+### 4d. Note on N_crit Values
+
+The r-max-analysis.md document states N_crit ≈ 286, derived at E=129. §1d of this report gives N_crit ≈ 660 at E=300. Both are correct for their parameter sets but the r-max document predates the E increase and has not been updated. The current figure at E=300 is 660; 286 refers to the superseded E=129 parameter set.
+
+### 4e. MOV Destination Register Bug
+
+The MOV handler previously used `_get_reg()` for both destination and source. Since `_get_reg` treats integers 0-7 as register references, `MOV 5, 38` (set R5=38) was interpreted as `MOV R5, R38` (copy R38 into R5), writing 0 to R5 instead of 38. This affected any genome that relied on setting a register to a literal value. Fixed by treating destination as a literal register index.
+
+**Impact:** All Stage 5 and earlier runs used hardcoded register initializer values that were silently wrong. The Stage 5 genomes used register arguments (R1 for buffer address from ALLOC, R2 for COPY_UNIT completion flag), which do not pass through the literal path and were unaffected. Stage 6 runs (heritable τ from R5) are affected — any run before this fix had effective τ ≈ 0 instead of the seeded value, meaning DIVIDE used the clamp floor instead of the intended τ. (Note: the clamp has since been removed from the current code; see §5e for the no-clamp implementation.)
+
+### 4f. Memory Pool Non-Reclamation
+
+When organisms die, their allocated memory was moved to `corpse_pool` but never returned to `shared_memory_pool`. This caused the effective pool to shrink over time, eventually exhausting the pool and causing ALLOC/ALLOC_OFFSPRING to fail (fail_flag=True, no death). The pool was not a death trigger — organisms survived with fail_flag — but new allocations became impossible once the pool was depleted.
+
+**Impact on prior runs:** The pool starts at 81920B. Each organism uses ~320B peak. With the leak, all prior runs had a declining effective cap on concurrent organisms (~256 before exhaustion). The memory cap was binded well before the administrative cap (500) in all runs. This means K was effectively ~256 rather than the intended higher value. Density dependence is real but was measured against a tighter cap than designed. Competition outcomes (switcher vs specialist, τ vs τ) are valid because both arms experienced the same cap — the relative outcome is correct. K values in §2a are systematically lower than they would be without the leak.
+
+### 4g. Partial-Extent TRANSFORM Pool Inflation
+
+The compression branch previously assumed that a transform beginning at an allocation base covered the whole allocation. For a 256-byte allocation transformed over only 128 bytes, RLE produced 86 bytes but the handler changed the allocation size to 86 and returned 170 bytes to the shared pool. Only 42 bytes had actually been removed from the transformed region. The untouched bytes 128–255 were orphaned outside the recorded allocation while retaining packet tags, inflating the pool by 128 bytes per transform and preventing packet-ledger cleanup.
+
+**Fix:** allocation size and shared-pool capacity are changed only when `length == allocation_size`. A partial transform writes its reduced output and clears tags only within the covered range; the allocation retains its original size and upkeep. Regression tests verify that a 128-byte rich-packet transform leaves a 256-byte allocation, does not change the pool, retains 214 packet tags, draws 65.625 energy, and returns exactly 256 bytes when freed. A full transform still shrinks 256→172, returns exactly 84 bytes, and draws 131.25.
+
+**Impact:** Stage 1–5 seeded genomes transformed their complete 256-byte allocation and are unaffected. `src/efficiency_assay.txt` has no retained runner, so it is impossible to determine whether its nominal 128-byte arm used a full allocation with a partial transform (affected by this defect) or an invalid 128-byte READ (which would fail under all-or-nothing READ). That artifact was already rejected and remains void. Any unrecorded partial-extent run before this fix is void for memory-pool, density, and fitness claims.
+
+### 4h. Gestation Allocation Retained after DIVIDE
+
+The supplied overhaul materialised `offspring_genome` and cleared `gestation_region` after DIVIDE but did not free the parent's 64-byte gestation allocation. Active parents therefore retained another unreachable 64-byte allocation after every completed attempt until death. This is a temporary active-organism leak rather than permanent loss—the corpse path eventually reclaimed it—but it artificially tightened memory contention and raised upkeep.
+
+**Fix:** `reproduce()` now frees the gestation allocation immediately after materialising the copied genome, on both offspring-instantiation and materialisation-failure paths. Tests close the pool ledger for both outcomes. Verification runs made after installing the 2026-07-27 overhaul and before this fix are void for population, pool, and carrying-capacity measurements. Earlier saved experimental artifacts used different source states; no additional retroactive impact is assigned without executable provenance.
+
+### 4i. Live Treatment Readback and Lean Metadata
+
+`DataStream` and `PacketBuffer` now store packet energies and packet rate as live object attributes. `Simulation.realised_parameter_header()` reads seed, phase mode, rich/lean energy, packet rate, buffer depth, population cap, and initial shared-memory size back from those objects. Experimental runners must print this header and assert a generated packet's budget before proceeding. This hardening follows the byte-identical E=300/E=500 channel-test failure.
+
+The same regression test found that lean packets omitted `is_lean=True`. The flag is now correct. No current dynamics read this metadata, so prior ecological outcomes are unaffected; any analysis that classified packets from the flag would have been wrong.
+
+### 4j. OFFSPRING_TROUGH Was a Hidden Interpreter Fitness Rule — Removed
+
+The former `OFFSPRING_TROUGH=18` was documented as the reserve required to reach first extraction, but it was inconsistent with the live conditional genome and scheduler. A population-born organism receives no instruction opportunity on its birth tick but pays 64-byte upkeep 0.2. Before TRANSFORM it then executes three MOVs (instruction plus upkeep 3.6 total), ALLOC 256 (5.6 including post-allocation upkeep), and READ (10.6 including upkeep). The exact ledger through the end of the READ tick is 20.0. Because death occurs at reserve `<=0`, exact arithmetic requires initial reserve strictly greater than 20 to enter TRANSFORM. In Python binary floating point, literal 20.0 reaches TRANSFORM only because the operations leave a positive residue of about `3.22e-15`; this is an implementation boundary, not a robust mathematical threshold. READ executes before its cost is charged; TRANSFORM would grant extraction before its own seven-unit cost. A deterministic normal-scheduler proxy confirmed that reserves 18.0, 19.0, and 19.9 complete a valid READ but die before TRANSFORM, while literal 20.0 reaches extraction in the measured implementation. Source and tick traces are preserved in `src/trace_offspring_first_extraction.py` and `offspring-first-extraction-ledger-summary.json`.
+
+**Design conclusion and fix:** no static threshold can be correct for arbitrary evolving genomes because cost to first extraction depends on genome, path, allocation, and scheduler. More fundamentally, the constant was a hidden interpreter fitness function: it decided which copied offspring were permitted to exist rather than allowing viability to emerge from conservation. The constant and reserve-based birth adjudication have therefore been removed. DIVIDE now instantiates every materially allocatable copied offspring with exactly the reserve transferred by its parent. The offspring pays birth-tick upkeep, ordinary instruction costs, cap displacement, minimum-block memory occupancy, and corpse-pool costs; if it cannot reach positive extraction, it dies through the ordinary reserve-exhaustion ledger. The old `stillbirth` category is replaced prospectively by measured instantiation, first positive extraction, first offspring instantiation, and death-stage outcomes. Missing copied genome, exhausted parent reserve, or unavailable shared memory remains a materialisation failure, not an offspring death. After the copied genome is detached and the spent gestation allocation is released, minimum offspring-memory feasibility is checked **before** τ is computed or reserve is debited. Failed materialisation therefore retains its failure reason and sunk ALLOC/COPY/DIVIDE costs but has no provisioning transfer and no `transfer_reserve` field.
+
+**Historical impact:** the threshold-18 conditional artifact's 600 FULL offspring all received at least 29.870. HALF's 400 instantiated offspring included 195 second-bout transfers below 20 (all cycles 6–200; steady value 19.4297). The prior description of 600/600 versus 400/400 as clean viable fecundity remains retracted. Under the no-threshold mechanism the same transfer is instantiated, bears memory/displacement costs, and dies before first extraction rather than being interpreter-blocked. Threshold removal changes ecology and makes every threshold-18 population or lifecycle result parameter-stale; it does not retroactively rewrite its observations. Original artifacts and hashes are archived under `failed-designs/2026-07-28-offspring-trough-removed/` and `failed-designs/2026-07-28-conditional-threshold18-reclassified/`.
+
+**Revised deterministic steady-orbit bookkeeping:** preserving the measured parent transfer orbit while removing the threshold gives three FULL versus one HALF offspring per 17-tick cycle whose transfer is energy-capable of reaching first positive extraction at p=1. The resulting capacity-plus-first-extraction contrast is `2/17 = 0.117647` per parent-tick, rather than the withdrawn `1/17` instantiation contrast. This is analytically classified from the recorded transfers and exact newborn ledger; it is not a newly measured offspring cohort. It jointly reflects reproductive allocation and offspring viability, and is neither pure fecundity nor an equilibrium population-fitness estimate.
+
+### 4k. Reproducing-Parent Displacement Protection Created a Kill Channel — Removed
+
+Under the former cap rule, every instantiated offspring selected a random non-parent resident for displacement while the reproducing parent was immune. After removing the offspring trough, a low-τ parent could therefore pay copy/DIVIDE costs plus negligible transfer to create a doomed offspring that still killed a resident. Repeating cheap doomed bouts before one provisioned bout could make DIVIDE function as a protected displacement strategy rather than a provisioning trade-off.
+
+**Fix:** cap victim sampling is now uniform over every existing resident, including the reproducing parent. Tests force and verify both parent and non-parent live victims. Self-displacement kills the parent through the ordinary lifecycle path; its memory enters the corpse pool exactly once. This removes reproduction-linked parent immunity and makes self/lineage removal part of the cost of producing displacement events.
+
+**Residual channel and diagnostic:** removing parent immunity does not remove the hard-cap mortality externality. The newborn is inserted after selecting among incumbents, so a doomed child can still remove another lineage before dying. Every cap event now records its causing offspring ID and is longitudinally resolved as `reached_first_extraction`, `died_before_first_extraction`, or unresolved. Future capped work must report live displacements caused by offspring dying before first extraction as a fraction of all live displacements, with vacancy fills separate, unresolved live-victim counts, and parent-victim fraction.
+
+**Measured mechanism finding — not a τ assay or stable rate estimate:** two mutation-free FULL monomorphic runs of one 17-tick cycle recorded 338 live cap displacements. Of these, 144 were already attributed to offspring that died before first extraction (`144/338 = 0.4260`); 108 causing-offspring outcomes remained unresolved at the short endpoint, and one reproducing parent was selected as victim. The censoring prevents interpreting 42.6% as a completed-cohort parameter, but its material observed magnitude establishes that the residual channel is active, not merely hypothetical. Parent eligibility fixed one asymmetry; it did not create a provisioning-only regulator.
+
+### 4l. Terminal Finding and Constructive Corollary: Census Turnover Must Be Exogenous to Birth and Reserve
+
+The failed clean-assay sequence has one regulator-level explanation. At a saturated hard cap, an offspring instantiation initiates incumbent replacement; when the selected slot contains a live resident, birth causes death regardless of whether the newborn will ever extract or reproduce. DIVIDE is therefore reproductive production and a mortality-imposition event by construction. The 42.6% censored smoke observation demonstrates that doomed births materially occupy this channel. It does **not** establish that low-τ weaponisation is selected, dominant, or evolutionarily stable; those remain ancestry- and frequency-dependent population claims.
+
+Dropping the cap does not produce an independent clean regulator within the current substrate. Population control then falls to packet scarcity and reserve exhaustion. The same reserve funds parent persistence, offspring provisioning, and offspring survival to first extraction, so resource-mediated mortality is coupled to the reproductive allocation being tested. Cap regulation couples reproduction to census removal through displacement; scarcity regulation couples reserve to census removal. Neither available regulator decouples physical turnover from the reproductive allocation process.
+
+**Terminal scope:** under the current substrate's regulator set, there is no provisioning-only τ landscape to recover by retuning the trough, parent protection, cap level, assay timing, or packet supply. Any τ landscape is a coupled life-history landscape involving physical turnover or loss of reproductive competence. The clean provisioning-assay line is therefore closed rather than rerun. This is a scoped architectural result, not a theorem that census turnover and reproductive state cannot be separated in all artificial-life systems.
+
+**Constructive corollary—the missing third regulator:** physical census turnover can be **mechanistically decoupled from birth events and reserve level** when removal is generated by a hazard exogenous to both. This is the artificial-life analogue of extrinsic mortality from predation, accident, or environmental hazard in biological life-history theory. The hazard must replace, not merely supplement, endogenous removal: saturated births must not displace incumbents and reserve exhaustion must cease to remove organisms in the strict treatment. If reserve death is retained but passes a preregistered zero-incidence gate, the treatment is only an empirical approximation to turnover decoupling. This claim concerns physical removal and lifespan control; it does not yet establish substantive independence of reproductive competence from reserve.
+
+A constant density-independent per-tick hazard is an exogenous removal mechanism but is not, by itself, a robust population-size regulator: with otherwise density-independent growth it produces net growth, extinction, or knife-edge balance. A stable turnover-decoupled ecology therefore needs either (a) a phenotype-blind density-dependent hazard `h(N)`, explicitly described as exogenous **conditional on N** rather than dynamically independent of reproduction—births can still alter N and hence aggregate hazard—or (b) constant exogenous removal plus non-displacing vacancy-limited recruitment. Under option (b), removal creates vacancies and recruitment may subsequently fill them. A DIVIDE attempted with no vacancy must fail census feasibility before transfer commitment, instantiate no offspring, and remove no incumbent; ALLOC/COPY work and the ordinary DIVIDE instruction cost remain sunk, but attempted provisioning is not debited. The census ceiling regulates admission while the hazard alone causes physical removal. Retaining the current displacement rule, or allowing reserve exhaustion to remove organisms, would preserve the original turnover coupling. This identifies a minimal requirement for exogenous census turnover, not yet a complete independent life-history ecology.
+
+**Age-structure corollary:** the same change addresses the earlier equilibrium-age failure. In an ideal saturated displacement-only process with constant census `N`, every accepted birth removes exactly one live incumbent and there are no other entries or exits. At demographic stationarity, mean residence time is `N/B`, where `B` is the long-run accepted-birth/live-displacement throughput per tick; equivalently it is the reciprocal of per-capita throughput `B/N`. Exchangeable victim sampling specifies individual displacement risk, but the `N/B` identity additionally requires stationary throughput, constant census, no vacancy fills or competing death routes, and consistent lifetime accounting. The earlier values of about 9.82 FULL and 11.83 HALF ticks were not measured `N/B` estimates: they were continuous-time independent-hazard Euler–Lotka approximations obtained from scheduled birth ages 10/13/16 and 10/13 repeating every 17 ticks. They remain heuristic evidence that the isolated-parent multi-cycle orbit poorly represented the intended equilibrium age structure, not measured capped lifetimes.
+
+Under an independent per-tick hazard `h`, geometric lifetime has mean `1/h` and survival to age `a` is `(1-h)^a`. Lifespan can therefore be selected before census and supply. For the measured `T=17` cycle, `1/h=5T=85` gives `h≈0.011765`, a 50%-survival crossing at 58.57 ticks (discrete median lifetime 59 ticks), and survival through three cycles ≈0.547; `1/h=10T=170` gives `h≈0.005882`, a 50%-survival crossing at 117.49 ticks (discrete median 118 ticks), and survival through five cycles ≈0.606. Mean lifetime does not guarantee that an individual completes that many cycles. A future registration must choose a cycle milestone `m` and minimum survival `q`, then require `(1-h)^(mT) ≥ q` (equivalently `h ≤ 1-q^(1/(mT))`). Only after fixing and verifying this age distribution should it size the census ceiling, packet supply, and buffer. This reverses the failed cap-first workflow in which lifespan emerged at an unusable value.
+
+**Vacancy-rejection cost:** non-displacing admission does not make excess reproduction free. At a full census, the organism has already paid ALLOC, COPY, and the ordinary DIVIDE instruction cost before census failure; only the uncommitted offspring transfer is retained. Genotypes that attempt more bouts can therefore waste more execution reserve on rejected reproduction. This is symmetric in rule but genotype-dependent in magnitude and can reduce the realised fecundity contrast relative to an isolated-parent birth-rate ratio, but the direction is not guaranteed: age-specific attempt timing, vacancy exposure, rejection costs, and reserve-mediated survival can attenuate, preserve, reverse, or amplify the contrast. Every future effect-size derivation must include age-specific DIVIDE attempts, vacancy availability, accepted offspring, `census_full` rejections, sunk cost per rejected attempt, and the resulting parent reserve trajectory before predicting established recruitment.
+
+**Vacancy scramble—future endpoint and feasibility constraint:** once the census is saturated, the vacancy-limited design is a contested-recruitment ecology. If `n_t` organisms face independent Bernoulli hazard in tick `t`, then `E[D_t | n_t]=h n_t`; this is `hN_cap` only when occupancy is exactly at the ceiling at hazard exposure. Let `V_t` be outstanding vacancies and `A_t` accepted admissions. The inventory identity is `V_(t+1)-V_t=D_t-A_t`, hence over a window `ΣA=ΣD+V_start-V_end`. Accepted recruitment equals death openings only as a stationary long-window flow balance with no secular vacancy accumulation; admissions may lag deaths. If realised attempts and hazard exposure share the same organism-time denominator and their long-window per-capita attempt rate is `b_attempt`, then the asymptotic accepted/attempted flow ratio is `h/b_attempt`, provided hazard deaths are the only vacancy source and there are no other admission failures. The finite-window statistic remains `ΣA/ΣQ`; it includes hazard noise and vacancy-boundary terms, and `E[A/Q]` need not equal `E[A]/E[Q]`.
+
+Under those stationary assumptions, census size cancels from the deterministic flow ratio. Retuning `N` therefore cannot make attempts mostly succeed, although finite `N` still changes variance, phase exposure, extinction risk, and scheduler effects. As recurrent-orbit benchmarks for `T=17`, `b_attempt=2/17` with mean lifetime 5 or 10 cycles gives asymptotic acceptance ratios 0.10 or 0.05; `b_attempt=3/17` gives 0.0667 or 0.0333. These are accounting benchmarks, not realised predictions: future work must measure `b_attempt` from organism-time because it can depend on `h`, age structure, synchrony, rejection costs, and reserve feedback. A 5–10-cycle lifespan nonetheless implies strong rejection if those recurrent attempt rates are approached, unless attempt rate is reduced or `h` is raised enough to sacrifice the long-lived age distribution.
+
+The primary demographic endpoint in this ecology is **vacancy-capture rate**, not intrinsic fecundity. Genotype `i` receives a share of the accepted flow determined by its attempt process, competing attempts, vacancy exposure, and scheduler timing. For fixed saturated `N`, lowering `h` lowers absolute accepted flow `hN`; with fluctuating occupancy the expected death flow is `h E[n_t]` and need not vary linearly with `h`. Relative accepted-recruitment share need not collapse: under genotype-blind, exchangeable acceptance probability for every attempt, accepted shares can remain proportional to attempt shares even when most attempts fail. This does not by itself establish relative frequency selection. The approximately 14-unit current minimum-block bout charge—`ALLOC_OFFSPRING` 6 + one positive `COPY_BLOCK` copying 1–64 remaining instructions 3 + `DIVIDE` 5 for 64-byte gestation, before tick and gestation-memory upkeep—is specified prospectively to be paid on accepted and rejected attempts. Current source still displaces at the cap; the rejected-attempt accounting requires the future census check to occur in DIVIDE after ALLOC/COPY and before transfer. The charge creates a marginal-return problem only if reserve depletion has a defined nonlethal consequence for later activity, allocation, provisioning, or reproduction. Because strict exogenous mortality forbids reserve exhaustion as a death cause, a future implementation must specify that depleted-state behavior explicitly; allowing unrestricted execution at negative reserve would make the sunk charge behaviorally inert. Timing, reserve feedback, and unequal exposure can therefore change accepted-recruitment shares in either direction.
+
+**Absorbing-stall caveat:** flooring reserve at zero while making cost-bearing instructions unavailable does not by itself establish the full organism state as absorbing. Under the additional semantics that every route from zero to positive reserve requires an unaffordable cost-bearing READ→TRANSFORM sequence—with no basal or external credit, passive packet income, arrears/debt execution, cost-free instruction, or other recovery transition—zero reserve is absorbing. The organism then occupies a census slot, contributes no attempts or recruitment, and waits for exogenous removal. Reserve no longer sets the physical death tick, but it still terminates reproductive competence; the hazard only clears a functionally starved organism later. Under these semantics the defensible claim is **census-turnover decoupling**, not independence of reproduction and mortality or reserve-independent reproductive lifespan.
+
+Let `A` and `S` denote active and stalled census. The continuous-rate balance assumes all recruitment enters `A`; `A→S` is the only stall transition at constant per-active rate `δ_stall`; there is no `S→A` recovery; hazard `h` applies equally to both states; there are no other exits or vacancy sources; and accepted admissions replace hazard removals in constant-census stationary flow. Then `0=δ_stall A-hS`, so `S/A≈δ_stall/h` and stalled fraction `S/(A+S)≈δ_stall/(δ_stall+h)`; the exact discrete relation depends on within-tick ordering and recruitment. Thus reducing `h` to lengthen physical lifespan can drive the census toward inert occupancy unless `δ_stall` also falls. Define `b_total=Q/∫(A+S)dt`, `b_active=Q/∫A dt`, and `f_active=∫A dt/∫(A+S)dt`. Under feasible stationary refill, `p_accept=h/b_total=h/(f_active b_active)`, capped at 1; if the implied value exceeds 1, vacancies accumulate and the constant-census assumption fails. Stalled organisms are hazard targets and vacancy donors but not attempt competitors, raising acceptance among active attempts while reducing the functional population. Future telemetry must classify active, depleted-recoverable, and absorbing-stalled organism-time separately and estimate stall incidence longitudinally.
+
+Substantive recovery requires an explicit added mechanism. Candidate examples are a basal income trickle credited while depleted, with net accumulation after upkeep sufficient to reach the cheapest READ→TRANSFORM recovery path in finite time, or a documented arrears/debt rule that permits that path. Either is a visible substrate change with its own conservation ledger and biological interpretation; neither may be inserted as an unreported implementation convenience. Pre-register time-to-recovery, net basal subsidy, stalled fraction, and any effect on provisioning and extraction selection before using it.
+
+**Potentially large but currently inaccessible vacancy-avoidance adaptation:** at acceptance 0.03–0.10, 90–97% of reproduction attempts fail census admission. The nominal 14-unit bout then implies 140–466.67 instruction-reserve units spent per accepted admission, of which 126–452.67 are failed-attempt charges, before upkeep. The avoidable failed-attempt charge could exceed the reserve-scale extraction contrast, depending on the quantified extraction difference, reserve-to-fitness mapping, and realised attempt process; dominance is not established here. No current instruction exposes vacancy state, so evolution cannot condition ALLOC_OFFSPRING on availability. This does not invalidate a scoped fixed-instruction assay, but it limits biological generality and must be named before interpretation. Adding a vacancy sensor later creates a new selectable mechanism and could alter or swamp the original treatment. A non-atomic sensor may reduce rejected attempts probabilistically, but it cannot guarantee that a sensed vacancy survives until DIVIDE. Guaranteed elimination of the post-sensing race requires an atomic reservation/permit before ALLOC_OFFSPRING or scheduler semantics proving that the sensed vacancy remains available through the bout. Either change requires a fresh preregistration and effect-size calculation rather than comparison with the no-sensor ecology.
+
+Cycle-matched descendants can form phase-locked attempt cohorts. Depending on within-tick ordering, hazard deaths may become visible before, during, or after scheduled reproductive attempts; vacancies accumulate only when admission does not immediately fill them. Synchronised bouts can therefore contest accumulated or same-tick-visible vacancies in bursts, making realised capture high-variance and phase-dependent without changing the stationary long-window inventory identity. A future implementation must specify ordering and log per tick: census at hazard exposure; deaths and newly opened/outstanding vacancies; every attempt's lineage, age, cycle phase, reserve, and scheduler position; competing attempts; acceptance/rejection and exact sunk cost; and longitudinal establishment. It must test scheduler-order bias and compare synchronised with deliberately phase-randomised starts. If the scientific target is intrinsic fecundity rather than scramble-mediated recruitment, a saturated vacancy ceiling is the wrong assay despite solving birth-caused death. Operating transiently below the ceiling can expose intrinsic output but is not a stationary population-fitness assay.
+
+**Design consequence:** “choose `h` and `N` so attempts mostly succeed” is not generally available at saturated equilibrium. For target long-window acceptance `s`, stationary feasibility requires `s b_attempt ≤ h ≤ min(b_attempt, 1-q^(1/(mT)))`. The lower bound supplies the target acceptance ratio; `h≤b_attempt` is required for attempts to refill hazard deaths without secular vacancy accumulation; the final bound is the age-survival gate. Because `b_attempt` can itself depend on `h`, age structure, and rejection costs, this is an implicit feasibility test that must be checked with live organism-time rates. If the bounds do not overlap, do not retune `N`: either accept vacancy capture as the fitness mechanism, lower the encoded attempt rate, shorten the target lifespan, redesign admission so organisms do not pay full copy cost before learning vacancy availability, or use a different explicitly specified ecology.
+
+**Stage 7 implication—add an allocation vocabulary rather than asking hazard to solve physiology:** the hazard-only vacancy design achieves two real but limited gains: birth no longer causes incumbent removal, and physical lifespan is independently parameterised. With absorbing reserve depletion it still cannot support a clean fecundity interpretation because reserve determines loss of reproductive competence. The constructive Stage 6 diagnosis is not that fecundity and viability can or should be made independent; it is that the one-wallet architecture could not genomically express allocation between them. Historical transfer τ conflated income allocation, reproductive work, provisioning quality, and establishment. Further elaboration of hazard alone should therefore pause. `stage-7-split-reserve-architecture.md` records a prospective semantic redesign with somatic reserve `S`, reproductive reserve `R`, heritable income-allocation fraction `α`, and a distinct per-offspring provisioning rule `τ_R`. Under the strong variant, upkeep and ordinary execution draw from `S`, while reproduction-specific allocation/copy/DIVIDE work and offspring transfer draw from `R`. `R=0` stops reproduction; recovery is possible only for `α>0` when the executed `S`-funded genome reaches positive extraction before somatic failure, escapes unaffordable reproductive loops, and accumulates enough net income for a complete later bout. A weak variant in which the current ≈14-unit reproductive bout remains somatic does not solve the shared-wallet problem.
+
+This redesign makes the intended life-history trade-off explicit but does not create reproduction–survival independence: high `α` can underfund soma, and vacancy-limited admission still measures contested recruitment. Historical transfer τ and the proposed acquisition allocation `α` are different traits and must not share a label. Its isolated exact-ledger Slice 1 and mechanics-only population Slice 2A are implemented, but remain non-comparable with all prior τ landscapes, K values, age structures, and effect sizes. Slice 2A fixes provisional population mechanics and exact ledgers only; mutation, scientific preregistration, evolutionary simulation, and every Stage 7 assay remain gated.
+
+**Verification artifacts:** full unittest discovery passed 30/30 after the source transition and audit fixes; a final independent read-only audit returned **PASS with no high/medium correctness blockers** after directly exercising both successful and insufficient-memory DIVIDE paths, the runner CLI, and every embedded artifact manifest. `doomed-offspring-lifecycle-trace.json` (SHA-256 `dd864d423eef5194a26a1520e5ab983b71f8e2d1f9a326cd67e33757f5462caa`) is a normal-scheduler trace of a 0.390625-reserve child that displaces a resident, dies at tick 1 before extraction with terminal reserve −0.809375, resolves its causing displacement as doomed, closes the memory ledger at every snapshot, and leaves zero corpse bytes after expiry. `offspring-first-extraction-ledger-summary.json` (SHA-256 `2e658e820dbd9bfdeb62cb7aabe82ce0bf29c13efb1543d9b763beb8c3487ee1`) records the natural VM boundary without any interpreter gate. `doomed-displacement-diagnostic-smoke.json` (SHA-256 `3a317aab8d91453405639b218084e8394e027c327afa382bb9c4b6be5cc4d842`) preserves the censored two-seed smoke counts. These are mechanism checks, not population-selection evidence.
+
+## 5. Stage 6 Findings and Closure
+
+### 5a. The Income→Fitness Gap (Finding About the Pre-COPY_BLOCK Architecture)
+
+Under the original architecture (no COPY_BLOCK, obligate one-offspring-per-cycle), no continuous surplus-income→fitness channel was demonstrated above the viability gate. Conditional on equal cycle time, survival to reproduction, offspring establishment, and subsequent contribution, the registered binary-fission benchmark is `r=ln(2)/T`, so earning 300 and earning 100 are equivalent once both clear the gate. The retained Stage 1–5 results—the waste-TRANSFORM decline, monotony control, and selection cliff—showed tempo or threshold effects, not a measured continuous metabolic-efficiency effect on invasion fitness.
+
+COPY_BLOCK supersedes the original architectural ceiling only at the level of reproductive capacity. The paired deterministic p=1 traces show that surplus can fund additional copied offspring when the genome exposes another bout: with the two-bout genome, FULL and HALF both instantiated two offspring per cycle, whereas the three-bout architecture let FULL instantiate and endow a third. This remains valid evidence for an organism-level income→reproductive-allocation route. It is not an equilibrium-fitness result. The traces removed offspring before execution and held parents for 200 cycles, while the capped process has a characteristic lifetime shorter than the 17-tick cycle and strongly discounts late bouts. Moreover, §4j shows that 195/400 HALF offspring in the conditional trace were instantiated below the true cost-to-first-extraction despite passing `OFFSPRING_TROUGH=18`. The earlier claim of a clean 600/600 versus 400/400 viable-fecundity contrast is withdrawn. Age- and survival-weighted lifetime established recruitment under equilibrium turnover is a required pathway measure and may serve as a fitness proxy only when the registered lifecycle demonstrates that it captures subsequent reproductive contribution; otherwise use invasion growth or reproductive value.
+
+**Scope:** The original constraint applies only when income affects neither cycle time, survival to reproduction, nor offspring establishment once reserve is above a viability gate. Under those conditions, obligate one-offspring reproduction has `r = ln(2)/T` and surplus income above the gate has no expression route. It does not follow that metabolic efficiency is unselectable in every one-offspring artificial-life system: income can affect `T`, parent survival, or offspring establishment. The broader earlier wording is withdrawn.
+
+### 5b. The Replication-Cost Constraint (Structural, Not Parametric)
+
+One-instruction-per-tick execution with genomic copy loops makes fecundity structurally unreachable at any genome length where copying dominates foraging. At L=11, the copy loop costs 26 ticks per offspring. Even at the floor of 1 tick/instruction, k=1 barely beats k=2 (0.0210 vs 0.0193 — 8% advantage). Closing the gap requires a processive replication primitive (COPY_BLOCK) that decouples time from length while preserving conservation (energy cost still scales with n). This is a structural constraint of the architecture, not a tuning detail.
+
+**Generality:** Any system where reproduction requires executing the genome instruction-by-instruction has the same property — the copy loop dominates cycle time, and fecundity (k>1) is always secondary to faster single-offspring cycles. The gap between k=1 and k=2 at the tick-per-instruction floor (8%) is the maximum advantage any architectural change can produce without introducing processive replication.
+
+### 5c. Two Ways to Create an Income→Fitness Channel (Design History)
+
+**Variable transfer (heritable provisioning):** Transfer fraction at DIVIDE is read from R5. Early versions used a clamp to enforce offspring/parent survival, but the clamp suppressed the trade-off. A later no-clamp implementation still used `OFFSPRING_TROUGH=18`, an interpreter gate that blocked under-endowed offspring after charging the parent. The current implementation has neither clamp nor trough: τ is whatever R5 specifies, every materially allocatable copied offspring is instantiated with the exact transfer, and viability emerges from its ordinary reserve ledger.
+
+**Variable offspring count:** Under COPY_BLOCK + heritable τ without clamp, the isolated parent can expose multiple bouts, but `k` from a steady immortal-parent orbit is not population fitness. The earlier shortcut `r = ln(1+k)/T(k)` is superseded for the capped overlapping-generation process. Fitness depends on age-specific established offspring, survival to each bout, offspring survival to extraction/reproduction, uniform incumbent displacement including possible self-removal, and reserve-dependent death. Because parent survival, offspring transfer, and offspring pre-income survival all draw on the same reserve, the tested manipulations jointly alter reproductive allocation and viability.
+
+### 5d. Two-Trait Evolutionary Analysis (n, τ) — Closed as a Standalone Stage 6 Target
+
+The R*-maximisation result (effort escalates) was wrong because `R*` is not population fitness. Under COPY_BLOCK + heritable τ, `k` emerges from τ rather than being substrate-computed: τ trades offspring quality against the number and age of DIVIDEs a parent can fund. But §4l shows that no regulator currently implemented supplies a population process with census turnover decoupled from birth and reserve, and the proposed vacancy ecology can still leave reproductive competence reserve-coupled through an absorbing stalled state. Regulator-specific lifetime established recruitment is a required pathway measure; it is a fitness proxy only when the registered lifecycle shows that it captures subsequent reproductive contribution, otherwise the endpoint must be invasion growth or reproductive value. No further Stage 6 assay is authorized under the present semantics; a two-trait evolutionary analysis would be a new program only after turnover, depleted-state recovery, recruitment rules, mutation kernel, initial conditions, and population endpoint are specified and validated, without presuming a unique optimum or ESS.
+
+### 5e. Stage 6 Results (τ Competition and Channel Test)
+
+**Historical τ competition assay (no clamp but threshold 18; 4-way competition, 5 seeds; now parameter-stale):**
+Seeded COPY_BLOCK genomes (L=15, COPY_BLOCK P=L=15) at τ values 10/20/40/70% in one population. All runs were post-MOV-fix (§4e) and had no transfer clamp, but the interpreter still blocked transfers below `OFFSPRING_TROUGH=18`.
+
+| Seeded τ | t=500 | t=1000 | Fate |
+|----------|-------|--------|------|
+| 10% (R5=26) | 0 in all seeds | 0 | Extinct |
+| **20% (R5=51)** | **84-142** | **114-142** | **Dominates all seeds** |
+| 40% (R5=102) | 0 in all seeds | 0 | Extinct |
+| 70% (R5=179) | 0-3 in most | 0-1 | Extinct |
+
+**Historical result under threshold-18 semantics:** the seeded τ≈20% genotype beat the seeded 10%, 40%, and 70% genotypes in all five runs, a measured interior shape across that coarse tested grid—not evidence of de novo convergence. This result cannot stand as an estimate for the current no-threshold substrate. Removing the trough changes which offspring instantiate, how long doomed offspring persist, live displacement, parent-protected turnover, memory occupancy, and corpse pressure. The old interpretation that 20% balanced provisioning and fecundity is therefore a hypothesis requiring a fresh registered assay, not a current result.
+
+**Registered prediction, closed without rerun:** the low-τ demographic response had been predicted to become smoother and the interior optimum to persist but shift modestly upward after threshold removal. Before any rerun, the stronger alternative was identified: parent-protected doomed births could dominate the landscape as displacement weapons. Parent protection was removed, but the `144/338` censored smoke finding showed that doomed-birth displacement remained materially active. This triggered the preregistered falsification condition for a provisioning-only interpretation. The clean landscape prediction is therefore closed rather than tested; no τ rerun was executed.
+
+**Withdrawn channel test (E=300 vs E=500, τ=20% monocultures, 3 seeds each):** This design cannot measure an organism-level income effect. At carrying capacity, density dependence drives per-capita income back toward per-capita cost; increasing environmental E primarily raises K. The arms were also separate monocultures rather than competing genotypes in one population. The saved raw artifact, `src/tau_channel_test.txt`, has an additional treatment-verification failure: every saved E=500 row is byte-for-byte identical to the corresponding E=300 row. The E=500 treatment therefore did not demonstrably take effect. The test is void as evidence for or against an income→fitness channel.
+
+**Fecundity WORKS.** Reproducers average k≈3 — multi-DIVIDE, multi-offspring behaviour. COPY_BLOCK successfully enables fecundity. The population mean k≈1 is pulled down by organisms that never reproduce.
+
+**Non-reproducer analysis (N=112 at t=500, seed 0):** All 112 organisms have DIVIDE in their genome. Non-reproducers (81/112) are not mutationally compromised. The bottleneck is survival to first reproduction. **Censoring caveat:** this is a snapshot, not a cohort. In a growing population, a large share of organisms at any instant are young and simply haven't reproduced yet. The 72% is an upper bound on failure, not a measurement. A cohort analysis (follow newborn organisms to death, record fraction that ever DIVIDEs) is needed for the true rate.
+
+**Historical juvenile-mortality hypothesis, unresolved:** offspring in the old τ runs were often transferred ~30–40 units, but no longitudinal birth cohort separated death before first positive extraction, later packet-capture failure, displacement, and establishment. The old snapshot cannot justify assigning most juvenile mortality to foraging rather than endowment. Under the current substrate these stages must be measured directly; no static trough is used as a proxy.
+
+**The income→fitness channel plausibly runs through offspring survival,** not fecundity. Higher income → better-endowed offspring → higher survival to first reproduction → higher realised fitness. The E=300 vs E=500 test cannot detect this (equilibria have identical per-capita income by construction). The correct assay is a within-population competition between extraction-efficient and extraction-inefficient genotypes sharing one packet stream, with survival to first DIVIDE and realised reproduction-bout k logged separately by genotype. **The channel is a mechanism argument, not a measurement.**
+
+`src/efficiency_assay.txt` is a stray exploratory output that claims 50/50 seeding and reports loss of a nominal 128-byte class in five seeds. It is **not accepted as the required efficiency assay**: no executable runner or pre-registration was retained; the output cannot independently establish that both arms shared one `Simulation` and packet stream; genotype identity was not recorded immutably; and it reports checkpoint snapshots rather than genotype-specific birth-cohort survival and realised bout k. Under the current all-or-nothing READ rule, both genotypes must allocate and READ the full 256-byte packet and differ only at the tested transform extent; a 128-byte READ would fail rather than represent lower extraction efficiency. The assay remains open and must be rerun with preserved provenance.
+
+The replacement assay was initially pre-registered on 2026-07-27 and amended before any mixed-population run after its complete reproduction ledger was closed. The original L=20/E=300 four-bout design was non-viable even at `f=1`: isolated FULL and HALF parents died at ticks 59 and 34. Its first-cycle three-versus-one birth contrast was transient founder-capital spending, not a sustainable `s=1` rate. That benchmark is withdrawn.
+
+The amended design uses identical L=14 two-bout genomes at assay-specific E=500, `PACKET_RATE=11`, `BUFFER_DEPTH=132`, `initial_buffer_packets=132`, and `POPULATION_CAP=155`. It seeds 78 FULL and 77 HALF founders directly at cap. Live PC returns measured T=12 and both arms peak at 320 bytes; the nominal memory ceiling is 256. At N=155, 132 arrivals per cycle against 155 READs predict `f_eq=0.851613`. The direct-cap standing-buffer initialization removes two superseded transients: cap=500 crossed the target density band in about 1.29 ticks, while grow-from-40/cap=155 left a full queue requiring about 68.9 ticks to drain.
+
+The fractional-mean threshold interpretation is now superseded for prediction. Whole-packet traces show that a captured FULL and captured HALF founder each produce two live offspring in cycle 1, while a miss gives each zero; their post-capture reserves differ (161.7355 versus 92.7970). Thus the former k=2:k=1, 3:2 multiplication, and `s=0.5` forecast is withdrawn before competition. `[0.80,0.90)` remains a registered supply-exposure gate, not a proven coexistence window. Any treatment contrast must emerge through later reserve buffering, miss sequences, survival, or stillbirths.
+
+Both the fractional counterfactual and exact captured/missed first-cycle traces are reproducible with `src/derive_efficiency_breakpoints.py` and retained in `efficiency-breakpoints.txt`.
+
+The fixed primary interval is zero-based ticks 4–63. Blocks are ecological cycles, not assumed discrete generations: cap births can remove block-start residents, newborns, and organisms awaiting a later same-tick DIVIDE. Turnover, newborn survival, and pre-empted DIVIDEs are measured per block. The confirmatory endpoint always uses Haldane-corrected ancestry log odds `ln((F+0.5)/(H+0.5))` at ticks 4 and 63, so fixation remains finite; last coexistence is secondary and does not move the endpoint.
+
+The engine retains timestamped DIVIDE events and cap events, including live displacement versus vacancy fill and whether the victim had a pending DIVIDE. Live recruitment is decomposed into attempt rate and `P(live birth|attempt)`. HALF disappearance counts as rate-driven only if it continued live recruitment in every adequately exposed block through its last such block, established non-displacement deaths stayed below 10% of births, and terminal losses were cap displacements. Stopping reproduction while still adequately exposed is exclusion.
+
+The census-binomial SD≈0.0402 at N=155 is not called a drift estimate. A preregistered 2,000-pair iid isolated-parent calibration and 20-seed-per-arm mutation-free monomorphic cap calibration then tested sustained recruitment before competition. Monomorphic FULL and HALF birth rates were 0.0880233 and 0.0650117 per organism-tick, giving a heuristic one-block Δp=0.0685361 (1.7066 census-reference SD), but this did not authorize a power run: HALF realised f=0.721890 and stillbirths/attempt=0.427677; FULL realised f=0.807164. All-age non-displacement deaths/live birth were 0.657837 and 0.097682 for HALF and FULL; among established reproducers (at least one prior live birth), they were 0.154454 and 0.003243.
+
+The original P=11 NO-GO was valid under its registered monomorphic gate, but that gate is now withdrawn prospectively: `[0.80,0.90)` came from the invalid fractional-energy threshold table, and equal monomorphic demand is stronger than a shared mixed queue requires. This does not retroactively turn the monomorphic runs into competition evidence. A simple 50:50 interpolation still places the unmeasured P=11 mixed ecology near f≈0.76, drifting toward ≈0.81 as FULL rises.
+
+A registered substrate-maturation test then falsified the proposed timing-only regulator. `offspring_maturation_delay=7` correctly produced first READ age 12 and recurrent interval 12 while charging full upkeep, but FULL/HALF demand became 0.053488/0.065797 per organism-tick and both f=1.0 at P=11. Random displacement removed 56.7% versus 37.4% before first READ. Equal intervals therefore do not close demand when zero-READ and mid-cycle lifetimes exist; delay 7 and its off-by-one predecessor are preserved but rejected.
+
+The replacement empirical response sweep used 2,000 paired established-parent trials at each p=0.60…0.95. FULL had a positive live-birth/person-time advantage at every grid point; paired-bootstrap 95% intervals excluded zero throughout. FULL b was nearly flat (0.14016→0.16636), HALF b rose steeply (0.09240→0.15750), and Δb declined monotonically 0.04777→0.00886. A post-hoc p=1 no-miss control gave exact convergence at b=1/6, Δb=0, zero deaths/stillbirths, and 100% survival, confirming miss tolerance under the two-bout ceiling. A registered unconditional three-bout p=1 trace then showed that the equality was architectural rather than a general absence of income value: FULL sustained 3 live births/cycle, but HALF sustained only 1 plus 2 stillbirths—not the predicted clean 2. The recurrent cycle was 15 rather than 12 ticks, so a clean 3-vs-2 contrast would have been 1/15, not 1/12. A subsequent equal-tempo conditional trace was invalidated at treatment verification: it used R4 threshold 656 carried from E=300, while live HALF R4 at E=500 was 1093, so HALF failed to take the padding branch and died after nine cycles. That failed run was preserved rather than repaired by equality-threshold substitution. A newly registered structural correction replaced equality with `AND R7,R4,2048`: over 200 deterministic cycles FULL R4 was always 2187 and HALF R4 always 1093, so the mask separated them on every cycle. Both paths had measured 17-tick recurrence. Under the configured `OFFSPRING_TROUGH=18`, FULL instantiated 600/600 offspring (3/cycle) and HALF 400/400 (2/cycle), with zero code-classified stillbirths, parent deaths, or allocation failures and end reserves 123.823 versus 57.900. This originally appeared to be an isolated-parent contrast of 1/17 instantiated offspring/parent-tick. The §4j audit supersedes the clean-fecundity interpretation: 195 of HALF's 400 instantiated offspring, including every second-bout offspring in the final 50 cycles, received less than the 20 units required to reach extraction under normal scheduling. FULL had no such under-endowed instantiations. The trace therefore establishes differential reproductive allocation/capacity only; it does not establish a clean viable-fecundity rate.
+
+A subsequent preregistered monomorphic capped calibration was stopped at independent design review. Population-born offspring do not enter the scheduler snapshot in their birth tick but do pay that tick's upkeep; their first possible bouts occur at ages 10/13/16 FULL or 10/13 HALF, not the seeded-founder ages 9/12/15 or 9/12. The paper equilibrium check gives characteristic lifetimes of about 9.8 FULL and 11.8 HALF ticks, both shorter than the 17-tick recurrent cycle. The 200-cycle isolated-parent orbit is therefore a capacity state that the equilibrium age distribution scarcely occupies. The reviewer executed exploratory P=20, f=1 diagnostics with two now-consumed registered seeds: FULL/61001 had 401 reserve-exhaustion deaths over 2,040 ticks; HALF/62001 had 6,387 reserve-exhaustion deaths, 12,040 stillbirths, and endpoint N=150. Exact packet capture and equal recurrent tempo thus do not produce a pure-fecundity population process. The same reserve funds parent persistence, each offspring transfer, and offspring survival to first extraction; late bouts are survival-discounted, under-endowed transfers depress subsequent parent reserve, and cap births protect the reproducing parent. For the current substrate semantics, fecundity and viability are structurally coupled. The clean-fecundity assay program is terminated rather than retuned. No remaining seeds or mixed population were run; the failed design is archived under `failed-designs/2026-07-28-conditional-population-calibration-no-go/`. This is evidence about the tested substrate class, not a theorem that age-specific fertility and viability can never be separated in any life-history model.
+
+By the preregistered parent-death gate, p=0.90 was the first provisional sweep point under threshold-18 semantics (Δb=0.01735, 95% CI [0.01625,0.01860]; parent deaths/live birth 0.00098 FULL and 0.06495 HALF). This was not a clean population regime: HALF survival to burn/end was only 0.5085/0.0205. Rates were survivor-conditioned because pre-burn deaths contributed neither births nor person-time; capture-fortunate HALF survivors likely attenuated Δb, particularly at low p, but the bias magnitude and direction were not identified. Around the rough P=11 band p≈0.76–0.81, recruitment differed while HALF parent mortality remained above 10%, supporting a historical coupled recruitment–viability response. The sweep is preserved as a threshold-18 miss-tolerance/life-history response surface but is parameter-stale for the current no-threshold substrate. p=0.95 is not a candidate for a clean assay, and no mixed-population efficiency run is planned without a new question and registration.
+
+**Superseded-claim ledger:**
+
+| Claim / artifact | Former status | Current status | Reason |
+|---|---|---|---|
+| Persistent gestation buffer in §5b/§5c and `stage-6-mechanism.md` | Proposed mechanism | Rejected | Unconserved free allocation; replaced by processive `COPY_BLOCK` with proportional cost. |
+| Historical carrying-capacity values before gestation-memory reclamation | Population measurements | Void for current K | Active-memory leak changed upkeep and available pool. |
+| τ≈20% interior optimum from `src/tau_noclamp2.txt` | Measured coarse-grid competitive result | Parameter-stale; hypothesis only | Generated with `OFFSPRING_TROUGH=18`; removing it changes instantiation, displacement, memory, corpse pressure, and age structure. |
+| p=0.60–0.95 capture-response surface and p=1 control | Established-parent response under threshold 18 | Historical threshold-state evidence; parameter-stale prospectively | Offspring were removed before execution and reserve-based DIVIDE adjudication has changed. |
+| Conditional 600/600 FULL versus 400/400 HALF | Clean viable-fecundity contrast | Retracted; threshold-18 instantiation record | 195/400 HALF transfers were below exact first-extraction spend. |
+| Threshold-18 `stillbirth` rates and death-stage summaries | Lifecycle outcomes | Historical only | The interpreter category no longer exists; use instantiation and longitudinal pre-extraction death. |
+| Parent-protected cap displacement | Current cap mechanism | Removed prospectively | Combined with no-threshold births, it made each low-transfer DIVIDE a protected kill attempt. Victims are now sampled uniformly over all incumbents, including the parent. |
+
+The current mechanism is processive `COPY_BLOCK`, per-copied-instruction mutation, heritable τ from R5, exact reserve transfer, no clamp, no offspring trough, explicit materialisation failure, uniform incumbent victim sampling including the reproducing parent, and longitudinal offspring/displacement outcomes. Historical files are preserved rather than rewritten.
+
+### 5f. Residual Questions Outside the Closed Stage 6 Assay
+
+- **R*/trough functional form:** The data supports the direction (higher ratio → graded selection visible) but not a functional form. Two data points (ratio≈2.7: cliff; ratio≈5-10: graded) establish directionality but not shape.
+- **Two-trait life-history outcome (n, τ):** Not reducible to an isolated-parent ESS from `k` or R*. Any future analysis must use age-specific established recruitment and equilibrium survival under the coupled reserve process; it is outside the terminated clean-fecundity assay program.
+
+**Stage 6 status:** complete. Its terminal contribution is the regulator-level result in §4l, not an unrun τ assay.
+
+---
+
+## 6. Remaining Program After Stage 6
+
+### 6a. Write-up
+
+The immediate remaining work is synthesis rather than another assay: consolidate the conservation-first reproduction transition, superseded-claim ledger, regulator result, and evidential classifications into a publishable account. Historical artifacts remain evidence for their source states and must not be rewritten as current-mechanism results.
+
+### 6b. Stage 7 Candidate — Split Somatic and Reproductive Reserves
+
+The hazard-only route is now closed as a sufficient basis for a clean fecundity assay. Its turnover and lifespan results remain useful components, but absorbing reserve depletion moves the coupling into reproductive competence. The prospective replacement is documented in `stage-7-split-reserve-architecture.md`. It separates somatic reserve `S` from reproductive reserve `R`, routes extraction income by a heritable allocation fraction `α`, and keeps per-offspring provisioning `τ_R` semantically distinct.
+
+The decisive accounting fork is whether reproduction-specific work is also paid from `R`. If ALLOC_OFFSPRING, COPY_BLOCK, DIVIDE, and gestation costs remain somatic, extra reproduction can still directly drain soma and the redesign fails its narrow shared-wallet purpose. Under the candidate strong split, one common dispatch unit and ordinary upkeep remain somatic while reproductive variable costs and transfer are conserved in `R`. This provides direct-debit isolation only; execution time, dispatch, foregone extraction, income allocation, offspring establishment, and vacancy capture remain real couplings. Recovery from `R=0` is conditional on `α>0`, an executed `S`-funded path to positive extraction, sufficient somatic runway, and control flow that escapes unaffordable reproductive attempts.
+
+The primary Stage 7 target is fixed as an explicit conserved life-history allocation landscape, not clean fecundity. The former global implementation NO-GO has now been partitioned by executable dependency. A deliberately isolated Slice 1 fixes four provisional defaults—strong cost splitting, `D=255`, parent-owned gestation, and recoverable `R=0` failure—and executes one organism through real RLE forage/extraction, exact `α` allocation, `R`-funded reproductive work, provisioning, a post-provision failed reversal, and a successful partial reversal. Exact reserve, packet-provenance, and shared-memory ledgers close; seven focused tests and full discovery at 37/37 pass. The retained trace is `stage7-slice1-trace.json` (SHA-256 `b20d33244af7d613fa7322cd197c41bda845a905b958d4d8b0bbd9506544ca90`). This is an implementation-mechanism PASS for Slice 1 only. Mechanics-only Slice 2A then integrated the exact two-account ledger across a shared consumptive packet buffer, phenotype-blind start-of-tick hazard, non-displacing vacancy admission, stable survivor scheduling, newborn deferral, somatic stalls, gestation/corpse memory, and exact mutation-off inheritance. The retained 20-tick artifact `stage7-slice2-mechanics-trace.json` (SHA-256 `750e664428ddd08f37abd83d9094bbc15ff05a2dbb02634288b908e2cf86fa4a`) contains 186 closure checkpoints, reserve equality `180699/20 = 180699/20`, 91 captured packets, and memory equality `63588+1520+0+428=65536`; `assay_run=false`. The final pinned-hash independent audit returned **PASS with no high/medium defects**, with focused tests 10/10, full discovery 47/47, and a direct 200-tick stress closing 1,907 checkpoints at `1768339/20 = 1768339/20`. This is a population-mechanics PASS only. Mutation, scientific contrasts, evolutionary assays, and fitness inference remain **NO-GO**. Later fixed-genome mechanism contrasts and dedicated-locus `α`-only evolution would answer channel-existence and restricted-genetic-architecture questions; they would not answer the motivating open-evolution question. Once realised extraction `Y`, foraging effort, timing, `τ_R`, genomic background, and vacancy exposure coevolve, trajectories may still estimate α-associated fitness differences, selection differentials, and descriptive gradients. Without interventions or structural assumptions they do not identify the direct causal effect or causal selection gradient of α while holding background, mediators, and ecological exposure fixed. The eventual open stage must therefore report the preregistered replicate distribution of invasion growth/reproductive value and joint genotype–phenotype–ecology outcomes under the specified mutation kernel, initial conditions, and ecology. Mediation, reciprocal invasion, common gardens, and controlled counterfactuals provide context-specific or assumption-dependent decompositions; they do not automatically create a background-invariant α effect. An α association or frequency change must not be relabelled direct or isolated causal selection on α.
+
+Lifetime-constant `A` and `T` are a deliberate scope decision: the first architecture expresses heritable **genotypic allocation**, not terminal investment, reproductive restraint under stress, plastic reserve-dependent adjustment of `T` or of the provisioning rule, or other reaction norms. Realised `P=(T/D)R_w` remains mechanically dependent on available `R_w`. A null fixed-allocation result cannot be interpreted as evidence about plasticity or the substrate's capacity to encode it. The denominator `D` is likewise scientific, not merely numerical: with all integer numerators legal it gives `D+1` strategies and adjacent values differ by `1/D`; otherwise `1/D` is the base lattice increment while the registered legal subset sets actual cardinality and minimum realised spacing. Together with the mutation kernel, `D` determines the phenotypic step distribution and landscape resolution. It must be preregistered and justified, with resolution sensitivity where conclusions may depend on discretization. The authoritative blocker list is in §13 of `stage-7-split-reserve-architecture.md`.
+
+**Methodological result—constraint–openness tension:** the project has repeatedly made assays interpretable by freezing genomes, loci, schedules, or ecology. Those controls identify channels but narrow the evolutionary openness that motivated the work. This is the inferential companion to the substrate-coupling diagnosis: one concerns what mechanisms can vary independently; the other concerns what direct causal effects can be identified independently when background, mediators, and exposure coevolve. Observability and descriptive selection are not denied. The evidential levels must remain separate: **channel exists**, **restricted architecture evolves through it**, and **open populations produce a replicate distribution of joint outcomes in which it participates**. Evidence from the first two cannot substitute for the third; the third need not yield a unique strategy or ESS.
+
+**Methodological result—review–execution asymmetry:** after the Stage 7 conservation and transaction specification had passed independent review, the first isolated implementation exposed three material defects: extraction/reversal quantities were synthetic rather than produced by live transform geometry; reversal reconstructed account debits from current `α` rather than stored packet provenance; and transform memory plus state-dependent costs were omitted. Correcting those defects produced exact closure in the executable Slice 1. This is direct within-project evidence for the stop-rule: once conservation, atomicity, causal intent, and explicit provisional defaults are coherent, the smallest dependency-complete execution can reveal mechanism errors that further wording review did not reveal. It does not show that review is generally dispensable—the reviewed invariants made the failures diagnosable—or that execution alone establishes scientific validity. It supports reopening a provisional choice when execution exposes a contradiction, exploit, unintended coupling, or changed estimand rather than merely because further prose refinement remains possible.
+
+**Methodological result—conservation–ecology insufficiency:** the first Slice 2A population harness generated a fresh packet inside each organism's cycle. Population reserve, per-packet provenance, and shared-memory ledgers all closed exactly, yet packet supply scaled with organism count and no organism consumed from a common finite queue. The intended resource-capture competition had been deleted, so the harness was non-diagnostic for that population ecology despite perfect conservation. Replacing it with one globally consumptive buffer—five exogenous arrivals per tick, successful READ removing one packet—restored shared depletion and produced observed packet misses while all ledgers still closed. Conservation and ecological validity are therefore separate gates: closure verifies honest accounting within implemented boundaries; it does not verify that arrival topology, sharedness, exclusivity, contention, or scheduler exposure instantiate the intended ecology. This does not weaken conservation or imply that the cloned harness measured literally nothing; it establishes that a perfectly conserved model can still be scientifically irrelevant to its proposed ecological estimand.
+
+**Prospective external-validation prediction:** conditional on first verifying that higher `α` advances age-specific established reproduction at a later somatic cost, standard life-history reasoning predicts a nondecreasing evolved `α*(h)` across registered phenotype-blind hazard levels. Under the first encoding this concerns evolution among lifetime-constant genotypic fractions only; it does not test terminal investment or condition-dependent allocation. `D` and the mutation kernel on `A` are part of the preregistered scientific treatment. This is an external prior, not a result derived from the project. At saturated vacancy-limited census, however, increasing `h` also opens more recruitment slots and changes attempt acceptance; `h` is then not a lifespan-only knob. Confirmation of the textbook mechanism therefore requires nonbinding or independently standardised admission, or a factorial design separating hazard exposure from recruitment opportunity. Otherwise any α shift is a combined mortality–turnover response. The registered falsification must be an ordered null or reversal after the mechanism and ecological-identification gates pass.
+
+### 6c. Real-Host Coupling — Founding Premise, Still Untested
+
+Real-host coupling remains untouched. The implemented experiments use abstract packet schedules; they do not establish that host CPU timing, disk-I/O latency, scheduler jitter, or another physical host process has crossed the substrate boundary and become functionally incorporated into lineage persistence. Existing design documents propose host-derived packet bytes and timing, but no retained runner, realised-treatment trace, or population result verifies that mode.
+
+**Constructive preregistered prediction:** if recorded host telemetry contains exploitable temporal structure, then a lineage able to condition transform choice on that structure should achieve higher age-specific established recruitment under an intact recorded host stream than under a temporal-null replay. The null permutes complete packet records across a fixed set of timestamp/arrival slots: packet bytes and budgets travel together, while packet count, empirical packet-level marginals, total duration, and the exact arrival schedule are preserved. Temporal and joint correlations are intentionally destroyed. This contrast identifies a contribution from temporal ordering; it supports host-information use only if the environmental mapping and expression gates below also pass.
+
+**Pre-assay falsification gate:** first test the environmental channel without organisms. The realised trace must verify the host-telemetry→packet mapping. If host-derived state does not predict packet compressibility, transform ranking, or arrival/scheduling structure above preregistered fixed-slot permutation, block-shuffle, and cyclic-shift controls, the host-coupling assay has no identifiable signal and stops. XORing timestamp-counter bits with disk latency may instead produce effectively incompressible noise; that would be a valid negative property of the proposed coupling, not organismal failure.
+
+**Population inference gate:** any later host assay must use census turnover mechanically exogenous to birth and reserve as specified in §4l, with displacement and reserve-triggered removal disabled. It must separately report functional competence transitions: active, recoverable-depleted, and stalled organism-time. A zero-incidence reserve-removal gate is only an empirical approximation, and absorbing reserve stall remains a coupled life-history route even when physical removal is exogenous. The assay must report realised host telemetry, generated packet bytes, packet-to-host timestamps, transform-expression state, immutable ancestry, first extraction, first reproduction, established recruitment, every removal cause, and every competence transition. A frequency change without verified host→packet structure and phenotype expression is not host information incorporation. The temporal-null contrast alone supports temporal-order use, not a unique host-information claim; that stronger interpretation additionally requires the verified host→packet mapping and a preregistered expression null, such as permuting host-state labels relative to expression records and comparing conditional lineages with packet-local fixed-transform controls.
+
+This prediction is sharper than the original premise: the target is not merely adaptation to unusual bytes, but support for the candidate chain—host state → verified substrate signal → organismal conditional expression → established recruitment—against fixed-slot temporal nulls and expression controls.
+
+---
+
+## 7. Project Files
+
+Key active and retained Substrate project artifacts in this working directory:
+
+| File | Content |
+|------|---------|
+| `project-report.md` | This report (current model, findings, superseded claims) |
+| `stage-7-split-reserve-architecture.md` | Split somatic/reproductive reserve design; isolated Slice 1 and mechanics-only population Slice 2A implemented; assays not authorized |
+| `src/stage7_slice1.py` | Exact-rational isolated two-account vertical slice with real RLE geometry and three asserted ledgers |
+| `src/test_stage7_slice1.py` | Slice 1 success, failure-atomicity, provenance, trait-domain, `R=0`, and memory regressions |
+| `stage7-slice1-trace.json` | Retained exact Slice 1 execution trace |
+| `src/stage7_slice2.py` | Mechanics-only population integration with shared packets, exogenous hazard, vacancy admission, exact reserve/packet/memory closure, and mutation disabled |
+| `src/test_stage7_slice2.py` | Population ordering, admission, stall, reproductive-failure, memory-pressure, packet-buffer, inheritance, and provenance regressions |
+| `src/run_stage7_slice2_trace.py` | Reproducible mechanics-only trace runner with embedded source manifest |
+| `stage7-slice2-mechanics-trace.json` | Retained 20-tick mechanics trace; no assay |
+| `stages1-6-findings-synthesis.md` | Five Stage 1–6 findings plus constraint–openness, review–execution, and conservation–ecology methodological results |
+| `docs/public-technical-essay.md` | Public-facing argument derived from the audited result ledger; independently audited for scientific scope and prose |
+| `r-max-analysis.md` | Foraging effort, overshoot threshold N_crit ≈ 286 (at E=129; see §4d) |
+| `energy-model-v3.md` | Derived parameter set |
+| `boundary-model.md` | Organism definition, state machine, instructions |
+| `genome-viability.md` | Viable band [11, 40], cycle cost 79.3 |
+| `metabolism-model.md` | Per-packet budgets, signed extraction, reconstruction check |
+| `src/engine.py` | Main simulation loop |
+| `src/organism.py` | Organism VM and substrate |
+| `src/datastream.py` | Packet generation with phased energy budgets and configurable phase period |
+| `src/transforms.py` | Transform functions and reconstruction check |
+| `src/consts.py` | Constants and parameters |
+| `src/stage5_results.txt` | Raw Stage 5 data (pre-fix, superseded — see §4b) |
+| `src/stage5_results2.txt` | Stage 5 results (post-fix, 3 arms × 5 seeds) |
+| `src/trace_offspring_first_extraction.py` | Deterministic no-gate newborn ledger and float-boundary trace |
+| `offspring-first-extraction-ledger-summary.json` | Raw normal-scheduler first-extraction traces and source manifest |
+| `failed-designs/2026-07-28-conditional-threshold18-reclassified/` | Byte-identical original conditional artifacts before machine-readable reclassification |
+| `failed-designs/2026-07-28-conditional-population-calibration-no-go/` | Archived invalid capped calibration, review, and termination record |

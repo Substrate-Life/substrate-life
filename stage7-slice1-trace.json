@@ -1,0 +1,295 @@
+{
+  "child": {
+    "r": "0",
+    "s": "413/50"
+  },
+  "costs": {
+    "c_r": "56/5",
+    "c_s": "2537/80"
+  },
+  "defaults": {
+    "A": 102,
+    "D": 255,
+    "T": 51,
+    "alpha": "2/5",
+    "gestation_owner": "parent until release before child memory commit",
+    "r_zero_behavior": "fail reproductive effect after S dispatch; no debt or S subsidy",
+    "tau_r": "1/5"
+  },
+  "events": [
+    {
+      "amount": "10",
+      "event": "charge_s",
+      "r": "0",
+      "reason": "READ",
+      "s": "90"
+    },
+    {
+      "amount": "1/2",
+      "event": "charge_s",
+      "r": "0",
+      "reason": "ordinary_upkeep:READ",
+      "s": "179/2"
+    },
+    {
+      "amount": "7",
+      "event": "charge_s",
+      "r": "0",
+      "reason": "TRANSFORM_COMPRESS_256",
+      "s": "165/2"
+    },
+    {
+      "amount": "59/160",
+      "event": "charge_s",
+      "r": "0",
+      "reason": "ordinary_upkeep:TRANSFORM_COMPRESS_256",
+      "s": "13141/160"
+    },
+    {
+      "delta_r": "105/2",
+      "delta_s": "315/4",
+      "event": "draw",
+      "input_bytes": 256,
+      "output_bytes": 172,
+      "packet_id": 1,
+      "quantity": "525/4",
+      "r": "105/2",
+      "s": "25741/160",
+      "transform": "RLE"
+    },
+    {
+      "amount": "1",
+      "event": "charge_s",
+      "r": "105/2",
+      "reason": "ALLOC_OFFSPRING:dispatch",
+      "s": "25581/160"
+    },
+    {
+      "amount": "5",
+      "event": "charge_r",
+      "r": "95/2",
+      "reason": "ALLOC_OFFSPRING:work",
+      "s": "25581/160"
+    },
+    {
+      "bytes": 64,
+      "event": "gestation_allocated",
+      "owner": "parent",
+      "r": "95/2",
+      "s": "25581/160"
+    },
+    {
+      "amount": "59/160",
+      "event": "charge_s",
+      "r": "95/2",
+      "reason": "ordinary_upkeep:ALLOC_OFFSPRING",
+      "s": "12761/80"
+    },
+    {
+      "amount": "1/10",
+      "event": "charge_r",
+      "r": "237/5",
+      "reason": "gestation_upkeep:ALLOC_OFFSPRING",
+      "s": "12761/80"
+    },
+    {
+      "amount": "1",
+      "event": "charge_s",
+      "r": "237/5",
+      "reason": "COPY_BLOCK:dispatch",
+      "s": "12681/80"
+    },
+    {
+      "amount": "2",
+      "event": "charge_r",
+      "r": "227/5",
+      "reason": "COPY_BLOCK:work",
+      "s": "12681/80"
+    },
+    {
+      "event": "copy_complete",
+      "instructions": 11,
+      "r": "227/5",
+      "s": "12681/80"
+    },
+    {
+      "amount": "59/160",
+      "event": "charge_s",
+      "r": "227/5",
+      "reason": "ordinary_upkeep:COPY_BLOCK",
+      "s": "25303/160"
+    },
+    {
+      "amount": "1/10",
+      "event": "charge_r",
+      "r": "453/10",
+      "reason": "gestation_upkeep:COPY_BLOCK",
+      "s": "25303/160"
+    },
+    {
+      "amount": "1",
+      "event": "charge_s",
+      "r": "453/10",
+      "reason": "DIVIDE:dispatch",
+      "s": "25143/160"
+    },
+    {
+      "amount": "4",
+      "event": "charge_r",
+      "r": "413/10",
+      "reason": "DIVIDE:work",
+      "s": "25143/160"
+    },
+    {
+      "child_id": "child",
+      "event": "provision_committed",
+      "provision": "413/50",
+      "r": "826/25",
+      "s": "25143/160"
+    },
+    {
+      "amount": "59/160",
+      "event": "charge_s",
+      "r": "826/25",
+      "reason": "ordinary_upkeep:DIVIDE",
+      "s": "6271/40"
+    },
+    {
+      "amount": "5",
+      "event": "charge_s",
+      "r": "826/25",
+      "reason": "TRANSFORM_EXPAND_80",
+      "s": "6071/40"
+    },
+    {
+      "amount": "59/160",
+      "event": "charge_s",
+      "r": "826/25",
+      "reason": "ordinary_upkeep:TRANSFORM_EXPAND_80",
+      "s": "4845/32"
+    },
+    {
+      "debit_r": "50",
+      "debit_s": "75",
+      "event": "reversal_failed",
+      "input_bytes": 80,
+      "output_bytes": 160,
+      "packet_id": 1,
+      "quantity": "125",
+      "r": "826/25",
+      "reason": "REVERSAL_ACCOUNT_UNAVAILABLE",
+      "s": "4845/32",
+      "transform": "RLE"
+    },
+    {
+      "amount": "4",
+      "event": "charge_s",
+      "r": "826/25",
+      "reason": "TRANSFORM_EXPAND_20",
+      "s": "4717/32"
+    },
+    {
+      "amount": "59/160",
+      "event": "charge_s",
+      "r": "826/25",
+      "reason": "ordinary_upkeep:TRANSFORM_EXPAND_20",
+      "s": "11763/80"
+    },
+    {
+      "debit_r": "25/2",
+      "debit_s": "75/4",
+      "event": "partial_reversal",
+      "input_bytes": 20,
+      "output_bytes": 40,
+      "packet_id": 1,
+      "quantity": "125/4",
+      "r": "1027/50",
+      "s": "10263/80",
+      "transform": "RLE"
+    }
+  ],
+  "memory": {
+    "checkpoints": 8,
+    "closed": true,
+    "corpse_reserved": 0,
+    "free_pool": 788,
+    "gestation": 0,
+    "initial_pool": 1024,
+    "somatic_active": 236
+  },
+  "memory_history": [
+    {
+      "corpse_reserved": 0,
+      "free_pool": 1024,
+      "gestation": 0,
+      "operation": "initial",
+      "somatic_active": 0
+    },
+    {
+      "corpse_reserved": 0,
+      "free_pool": 960,
+      "gestation": 0,
+      "operation": "allocate_somatic:parent",
+      "somatic_active": 64
+    },
+    {
+      "corpse_reserved": 0,
+      "free_pool": 768,
+      "gestation": 0,
+      "operation": "read_packet_working_memory",
+      "somatic_active": 256
+    },
+    {
+      "corpse_reserved": 0,
+      "free_pool": 852,
+      "gestation": 0,
+      "operation": "rle_compression_reclaim",
+      "somatic_active": 172
+    },
+    {
+      "corpse_reserved": 0,
+      "free_pool": 788,
+      "gestation": 64,
+      "operation": "allocate_gestation:parent",
+      "somatic_active": 172
+    },
+    {
+      "corpse_reserved": 0,
+      "free_pool": 852,
+      "gestation": 0,
+      "operation": "release_gestation:parent",
+      "somatic_active": 172
+    },
+    {
+      "corpse_reserved": 0,
+      "free_pool": 788,
+      "gestation": 0,
+      "operation": "allocate_somatic:child",
+      "somatic_active": 236
+    },
+    {
+      "corpse_reserved": 0,
+      "free_pool": 788,
+      "gestation": 0,
+      "operation": "cycle_complete",
+      "somatic_active": 236
+    }
+  ],
+  "packet": {
+    "budget_remaining": "200",
+    "closed": true,
+    "drawn_r": "40",
+    "drawn_s": "60",
+    "initial_budget": "300"
+  },
+  "parent": {
+    "r": "1027/50",
+    "s": "10263/80"
+  },
+  "reserve": {
+    "closed": true,
+    "lhs": "12567/80",
+    "net_income": "100",
+    "rhs": "12567/80"
+  }
+}

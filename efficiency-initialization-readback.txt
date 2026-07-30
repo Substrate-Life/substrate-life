@@ -1,0 +1,5 @@
+PARAMETERS buffer_depth=132 initial_buffer_packets=132 memory_allocation_failures_total=0 minimum_working_memory=64 offspring_maturation_delay=0 packet_e_lean=500 packet_e_rich=500 packet_rate=11 phase_mode=monotonic_rich population_cap=155 seed=201 shared_memory_pool_current=72000 shared_memory_pool_initial=81920
+MEMORY_CAPACITY memory_pool_bytes=81920 peak_bytes_per_organism=320 synchronous_peak_population_ceiling=256
+INITIAL population=155 FULL=78 HALF=77 queue=132 free_memory=72000 allocation_failures=0
+PRE_DIVIDE simulation_ticks=6 population=155 FULL_expressed=78 HALF_expressed=77 divide_events=0 cap_events=0 allocation_failures=0
+READ tick=4 attempts=155 captures=132 f=0.851612903226 queue_after=0
