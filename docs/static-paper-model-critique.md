@@ -1,6 +1,6 @@
 # Static Paper Model — Structured Critique Report
 
-**Document critiqued:** `/opt/data/avida-life/static-paper-model.md`
+**Document critiqued:** `/opt/data/avida-life/docs/static-paper-model.md`
 **Reviewer:** Hermes Agent
 **Date:** 2026-07-26
 

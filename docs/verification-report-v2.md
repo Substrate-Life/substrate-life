@@ -1,6 +1,6 @@
 # Genome Viability v2 — Verification Report
 
-**Document reviewed:** /opt/data/avida-life/genome-viability.md  
+**Document reviewed:** /opt/data/avida-life/docs/genome-viability.md
 **Date:** 2026-07-26  
 **Purpose:** Verify all 8 previously identified issues were fixed, and check for new errors.
 

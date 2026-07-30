@@ -1,6 +1,6 @@
 # Genome Viability Analysis — Structured Critique
 
-**Document:** `/opt/data/avida-life/genome-viability.md`
+**Document:** `/opt/data/avida-life/docs/genome-viability.md`
 **Critiqued:** 2026-07-26
 **Severity scale:** CRITICAL → MAJOR → MINOR → NOTE
 

@@ -1,6 +1,6 @@
 # Substrate — Energy Model v3 (Derived Parameter Set)
 
-*Replaces revised-v2-energy.md. Parameters derived rather than asserted; every constant traceable to a stated constraint.*
+*Replaces superseded/revised-v2-energy.md. Parameters derived rather than asserted; every constant traceable to a stated constraint.*
 
 ---
 
