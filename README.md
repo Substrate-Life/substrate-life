@@ -21,7 +21,8 @@ Stages 1–6 produced five scientific findings. Two verified Stage 7 implementat
 
 ## Read first
 
-- [Public technical essay](docs/public-technical-essay.md) — the argument in accessible form; a canonical Substack link will be added after publication.
+- [Canonical public essay on Substack](https://substratelife.substack.com/p/conservation-is-not-an-ecology) — the public-facing argument in accessible form.
+- [Archival Markdown copy](docs/public-technical-essay.md) — repository-preserved copy of the published argument.
 - [Audited findings synthesis](stages1-6-findings-synthesis.md) — the evidentiary source, with measured/inferred boundaries and superseded claims.
 - [Project report](project-report.md) — current model, retained results, failed assays, and open questions.
 - [`failed-designs/`](failed-designs/) — byte-preserved dead ends, audit transcripts, and the reasoning for abandonment.
