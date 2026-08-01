@@ -36,7 +36,7 @@ class HostTelemetryChannelTests(unittest.TestCase):
             sample,
             HostSample(
                 monotonic_ns=42,
-                cpu_total=577,
+                cpu_total=558,
                 cpu_idle=405,
                 context_switches=12345,
                 processes_started=678,

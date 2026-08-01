@@ -69,7 +69,7 @@ def parse_aggregate_counters(
         raise ValueError("incomplete aggregate cpu counter")
     return HostSample(
         monotonic_ns=int(monotonic_ns),
-        cpu_total=sum(cpu),
+        cpu_total=sum(cpu[:8]),
         cpu_idle=cpu[3] + cpu[4],
         context_switches=stat["ctxt"][0],
         processes_started=stat["processes"][0],
