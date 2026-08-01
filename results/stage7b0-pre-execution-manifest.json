@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "manifest_type": "stage7b0_deterministic_reproduction",
-  "source_commit": "7bc4c2424b376d32c95b3de069926b1fdc7ce902",
+  "source_commit": "864ea694b591fc70a6de03e39010b7e387ac04f9",
   "protocol_sha256": "8ecabac15a8487724b09ab6dca1340e55e63de39c9717c580cd18dd52947c113",
   "programme_specification_sha256": "5ddbf276aa0a836672b1b3011e66974ce9ecd6fedb0758a111c95766f534c344",
   "registered_blocks": [
@@ -21,8 +21,8 @@
       "bytes": 24032
     },
     "src/stage7b0_channel.py": {
-      "sha256": "438de6584ac3e7704d3aa593dc6b49a1eb30aa3745406594acff0d130eb5303d",
-      "bytes": 51651
+      "sha256": "154f7116188e1b6d3fc79156a4ff91e64b3b67617e0f04993b91956b0280a9b8",
+      "bytes": 51662
     },
     "src/run_stage7b0_channel.py": {
       "sha256": "4debd481338f8163f0f0ebe0912ed26973e9c6ea3fa4181a8fddc3fe11d59284",
@@ -33,8 +33,8 @@
       "bytes": 41164
     },
     "src/test_stage7b0_channel.py": {
-      "sha256": "1f452fdf5c401a1211fb634de48d0efe5af7c3c257f39f5ea7fd6cd94a275f04",
-      "bytes": 8844
+      "sha256": "40be0341993e76dfb2ab47bd72e29c7b5f1b901c8082dece3de5c5a1a39bff5f",
+      "bytes": 9107
     },
     "src/stage7_slice1.py": {
       "sha256": "dbc210da112c3244e935e768923d06384ee0815ae83b8b4f43afdcb8dd7c0587",
