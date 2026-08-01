@@ -1,0 +1,11 @@
+{
+  "artifact_version": 1,
+  "status": "INVALID",
+  "attempt": 1,
+  "registration_commit": "e8d2f515e69cf4c8871e729ca93534e36f253e85",
+  "manifest_commit": "3dfb70c",
+  "process_session_id": "proc_6f7a8002b126",
+  "reason": "Operator launched the bounded one-hour capture with a 600-second process timeout, which could not cover the registered duration. The process was terminated before scientific use and before the in-memory recorder emitted an artifact.",
+  "raw_retention_limitation": "The current recorder writes only on successful completion, so partial raw samples were not retained. This is a provenance implementation defect, not a scientific FAIL.",
+  "scientific_use": false
+}
