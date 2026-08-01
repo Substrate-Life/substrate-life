@@ -14,7 +14,6 @@ from typing import Any
 
 from analyze_stage7b0_channel import analyze_artifact, validate_attempt_artifact
 from stage7b0_channel import (
-    BLOCK_IDS,
     PROGRAM_SPEC_SHA256,
     PROTOCOL_SHA256,
     REQUIRED_FREEZE_FILES,
@@ -71,10 +70,7 @@ def run_deterministic(
             "artifact_version": 1,
             "run_status": "COMPLETED",
             "decision": analysis["decision"],
-            "blocks_expected": list(BLOCK_IDS),
             "analysis": analysis,
-            "exception": None,
-            "partial_progress": evidence,
         }
         validate_attempt_artifact(completed, manifest_sha256)
         payload = completed

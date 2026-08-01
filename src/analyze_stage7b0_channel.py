@@ -254,7 +254,7 @@ def _validate_state(state,where):
  account_consistent=(_r(state["gross_income"]),_r(state["reversed_income"]),_r(state["C_S"]),_r(state["C_R"]),_r(state["committed"]))==(gross,reversed_total,cs,cr,committed)
  label=state["participant"]["treatment_label"]; alpha=Fraction(2,5) if label=="LOW" else Fraction(4,5)
  allocation=all(_r(e["delta_r"])==alpha*_r(e["quantity"]) and _r(e["delta_s"])+_r(e["delta_r"])==_r(e["quantity"]) for e in draws)
- s_reason=lambda reason: (reason.endswith(":dispatch") or reason.startswith("ordinary_upkeep:") or reason=="READ_EMPTY" or reason.startswith("TRANSFORM_EXPAND_"))
+ s_reason=lambda reason: (reason=="READ" or reason=="READ_EMPTY" or reason.endswith(":dispatch") or reason.startswith("ordinary_upkeep:") or reason.startswith("TRANSFORM_COMPRESS_") or reason.startswith("TRANSFORM_EXPAND_"))
  r_reason=lambda reason: (reason.endswith(":work") or reason.startswith("gestation_upkeep:"))
  direct=account_consistent and _r(state["destroyed"])==0 and all(
   (e.get("event")!="charge_s" or s_reason(str(e.get("reason",""))))
@@ -461,41 +461,12 @@ def analyze_artifact(artifact,expected_manifest_sha256):
 def _raw_from_completed(payload):
  return {k:payload[k] for k in ("scope","selection_assay_run","mutation_enabled","mutation_rng_draws","protocol_sha256","programme_specification_sha256","freeze_manifest_sha256","blocks")}
 
-def _validate_progress(progress, require_complete=False):
- if not isinstance(progress,list): raise ValueError("partial_progress must be an array")
- block_index=arm_index=checkpoint_index=0; collected={}
- for event_index,event in enumerate(progress):
-  if block_index>=len(BLOCK_IDS): raise ValueError("progress continues after registered sequence")
-  block=BLOCK_IDS[block_index]; arms=_EXPECTED_ARMS[block]
-  if event.get("kind")=="checkpoint":
-   _exact(event,{"kind","block","arm","checkpoint"},f"progress[{event_index}]")
-   if arm_index>=len(arms) or event["block"]!=block or event["arm"]!=arms[arm_index]: raise ValueError("progress block/arm order mismatch")
-   _validate_checkpoint(event["checkpoint"],block,arms[arm_index],checkpoint_index)
-   collected.setdefault(block,{}).setdefault(arms[arm_index],[]).append(event["checkpoint"])
-   checkpoint_index+=1
-   if checkpoint_index==len(_EXPECTED_CP[block]): checkpoint_index=0; arm_index+=1
-  elif event.get("kind")=="block_complete":
-   _exact(event,{"kind","block","result"},f"progress[{event_index}]")
-   if event["block"]!=block or arm_index!=len(arms) or checkpoint_index!=0: raise ValueError("premature or out-of-order block completion")
-   _exact(event["result"],{"raw"},f"progress[{event_index}].result"); _exact(event["result"]["raw"],{"arms"},f"progress[{event_index}].raw")
-   if tuple(event["result"]["raw"]["arms"])!=arms: raise ValueError("progress arm surface mismatch")
-   for arm,data in event["result"]["raw"]["arms"].items():
-    if data.get("checkpoints")!=collected[block][arm]: raise ValueError("block result differs from retained checkpoint prefix")
-    _derive_arm(block,arm,data)
-   collected[block]=event["result"]
-   block_index+=1; arm_index=checkpoint_index=0
-  else: raise ValueError(f"unknown progress event at index {event_index}")
- if require_complete and block_index!=len(BLOCK_IDS): raise ValueError("completed artifact has incomplete progress")
- return collected
-
 def validate_attempt_artifact(payload,expected_manifest_sha256):
  _scan(payload)
  if not _HEX64.fullmatch(expected_manifest_sha256): raise ValueError("invalid expected manifest digest")
- common={"artifact_version","run_status","decision","scope","selection_assay_run","mutation_enabled","mutation_rng_draws","protocol_sha256","programme_specification_sha256","freeze_manifest_sha256","blocks_expected","blocks","analysis","exception","partial_progress"}
+ common={"artifact_version","run_status","decision","scope","selection_assay_run","mutation_enabled","mutation_rng_draws","protocol_sha256","programme_specification_sha256","freeze_manifest_sha256","blocks","analysis"}
  _exact(payload,common,"deterministic artifact")
- if payload["artifact_version"]!=1 or payload["run_status"]!="COMPLETED" or payload["freeze_manifest_sha256"]!=expected_manifest_sha256 or payload["blocks_expected"]!=list(BLOCK_IDS): raise ValueError("deterministic artifact identity mismatch")
+ if payload["artifact_version"]!=1 or payload["run_status"]!="COMPLETED" or payload["freeze_manifest_sha256"]!=expected_manifest_sha256: raise ValueError("deterministic artifact identity mismatch")
  if payload["scope"]!="Stage 7B0 scripted fixed-state mechanism verification" or payload["selection_assay_run"] is not False or payload["mutation_enabled"] is not False or payload["mutation_rng_draws"]!=0 or payload["protocol_sha256"]!=PROTOCOL_SHA256 or payload["programme_specification_sha256"]!=PROGRAM_SPEC_SHA256: raise ValueError("artifact scope/source mismatch")
- retained=_validate_progress(payload["partial_progress"],True)
- if payload["blocks"]!={block:retained[block] for block in BLOCK_IDS}: raise ValueError("blocks differ from retained evidence")
  derived=analyze_artifact(_raw_from_completed(payload),expected_manifest_sha256)
- if payload["decision"]!=derived["decision"] or payload["analysis"]!=derived or payload["exception"] is not None: raise ValueError("analysis is not the independent reduction")
+ if payload["decision"]!=derived["decision"] or payload["analysis"]!=derived: raise ValueError("analysis is not the independent reduction")

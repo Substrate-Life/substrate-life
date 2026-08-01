@@ -147,6 +147,24 @@ class Stage7B0StaticContractTests(unittest.TestCase):
             }
             self.assertTrue(_validate_state(state, treatment.label)["allocation"])
 
+    def test_somatic_read_and_compress_debits_are_direct(self):
+        participant = channel._participant_values(
+            "parent", "parent", "LOW", 102, 128, 255,
+        )
+        state = {
+            "participant": participant, "S": 98, "R": 0,
+            "C_S": 2, "C_R": 0, "gross_income": 0,
+            "reversed_income": 0, "committed": 0, "destroyed": 0,
+            "child": None,
+            "events": [
+                {"event": "charge_s", "s": 99, "r": 0,
+                 "reason": "READ", "amount": 1},
+                {"event": "charge_s", "s": 98, "r": 0,
+                 "reason": "TRANSFORM_COMPRESS_256", "amount": 1},
+            ],
+        }
+        self.assertTrue(_validate_state(state, "synthetic.direct")["direct"])
+
     def test_producer_block_constructor_emits_raw_only(self):
         self.assertEqual(
             channel._finish_block({"LOW": {}}),
