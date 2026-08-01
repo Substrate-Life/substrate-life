@@ -112,7 +112,15 @@ class MemoryLedger:
                 f"memory ledger failed after {operation}: "
                 f"{observed} != {self.initial_pool}; {totals}"
             )
-        self.history.append({"operation": operation, **totals})
+        self.history.append({
+            "operation": operation,
+            **totals,
+            "ownership": {
+                "somatic_active": dict(sorted(self.somatic_active.items())),
+                "gestation": dict(sorted(self.gestation.items())),
+                "corpse_reserved": dict(sorted(self.corpse_reserved.items())),
+            },
+        })
 
     def _allocate(self, bucket: dict[str, int], owner: str, size: int,
                   operation: str) -> None:
@@ -206,6 +214,9 @@ class Child:
     organism_id: str
     s: Fraction
     r: Fraction = Fraction(0)
+    a: int = ALPHA_NUMERATOR
+    t: int = PROVISION_NUMERATOR
+    d: int = TRAIT_DENOMINATOR
 
 
 @dataclass
@@ -372,7 +383,9 @@ class SliceOrganism:
         provision = self.tau_r * self.r
         self.r -= provision
         self.committed += provision
-        self.child = Child(child_id, s=provision)
+        self.child = Child(
+            child_id, s=provision, a=self.a, t=self.t, d=self.d,
+        )
         self._record("provision_committed", child_id=child_id, provision=provision)
         self.ordinary_upkeep("DIVIDE")
         return self.child

@@ -1,0 +1,1403 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://substrate.invalid/schema/stage7b0-output-schema.json",
+  "title": "Stage 7B0 retained attempt artifact",
+  "$defs": {
+    "rational": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "numerator": {
+              "type": "integer"
+            },
+            "denominator": {
+              "type": "integer",
+              "not": {
+                "const": 0
+              }
+            }
+          },
+          "required": [
+            "numerator",
+            "denominator"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "participant": {
+      "type": "object",
+      "properties": {
+        "role": {
+          "type": "string"
+        },
+        "organism_id": {
+          "type": "string"
+        },
+        "treatment_label": {
+          "enum": [
+            "LOW",
+            "HIGH"
+          ]
+        },
+        "A": {
+          "enum": [
+            102,
+            204
+          ]
+        },
+        "T": {
+          "const": 128
+        },
+        "D": {
+          "const": 255
+        },
+        "heritable_state_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "role",
+        "organism_id",
+        "treatment_label",
+        "A",
+        "T",
+        "D",
+        "heritable_state_sha256"
+      ],
+      "additionalProperties": false
+    },
+    "child": {
+      "type": "object",
+      "properties": {
+        "organism_id": {
+          "type": "string"
+        },
+        "S": {
+          "$ref": "#/$defs/rational"
+        },
+        "R": {
+          "$ref": "#/$defs/rational"
+        },
+        "A": {
+          "type": "integer"
+        },
+        "T": {
+          "type": "integer"
+        },
+        "D": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "organism_id",
+        "S",
+        "R",
+        "A",
+        "T",
+        "D"
+      ],
+      "additionalProperties": false
+    },
+    "organism": {
+      "type": "object",
+      "properties": {
+        "participant": {
+          "$ref": "#/$defs/participant"
+        },
+        "S": {
+          "$ref": "#/$defs/rational"
+        },
+        "R": {
+          "$ref": "#/$defs/rational"
+        },
+        "C_S": {
+          "$ref": "#/$defs/rational"
+        },
+        "C_R": {
+          "$ref": "#/$defs/rational"
+        },
+        "gross_income": {
+          "$ref": "#/$defs/rational"
+        },
+        "reversed_income": {
+          "$ref": "#/$defs/rational"
+        },
+        "committed": {
+          "$ref": "#/$defs/rational"
+        },
+        "destroyed": {
+          "$ref": "#/$defs/rational"
+        },
+        "child": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/child"
+            }
+          ]
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "event",
+              "s",
+              "r"
+            ]
+          }
+        }
+      },
+      "required": [
+        "participant",
+        "S",
+        "R",
+        "C_S",
+        "C_R",
+        "gross_income",
+        "reversed_income",
+        "committed",
+        "destroyed",
+        "child",
+        "events"
+      ],
+      "additionalProperties": false
+    },
+    "isolatedReserve": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "isolated"
+        },
+        "opening_S": {
+          "$ref": "#/$defs/rational"
+        },
+        "opening_R": {
+          "$ref": "#/$defs/rational"
+        },
+        "current_S": {
+          "$ref": "#/$defs/rational"
+        },
+        "current_R": {
+          "$ref": "#/$defs/rational"
+        },
+        "committed": {
+          "$ref": "#/$defs/rational"
+        },
+        "destroyed": {
+          "$ref": "#/$defs/rational"
+        },
+        "gross_income": {
+          "$ref": "#/$defs/rational"
+        },
+        "reversed_income": {
+          "$ref": "#/$defs/rational"
+        },
+        "C_S": {
+          "$ref": "#/$defs/rational"
+        },
+        "C_R": {
+          "$ref": "#/$defs/rational"
+        },
+        "lhs": {
+          "$ref": "#/$defs/rational"
+        },
+        "rhs": {
+          "$ref": "#/$defs/rational"
+        },
+        "closed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "kind",
+        "opening_S",
+        "opening_R",
+        "current_S",
+        "current_R",
+        "committed",
+        "destroyed",
+        "gross_income",
+        "reversed_income",
+        "C_S",
+        "C_R",
+        "lhs",
+        "rhs",
+        "closed"
+      ],
+      "additionalProperties": false
+    },
+    "populationReserve": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "population"
+        },
+        "opening_energy": {
+          "$ref": "#/$defs/rational"
+        },
+        "live_reserves": {
+          "$ref": "#/$defs/rational"
+        },
+        "destroyed": {
+          "$ref": "#/$defs/rational"
+        },
+        "gross_income": {
+          "$ref": "#/$defs/rational"
+        },
+        "reversed_income": {
+          "$ref": "#/$defs/rational"
+        },
+        "costs": {
+          "$ref": "#/$defs/rational"
+        },
+        "lhs": {
+          "$ref": "#/$defs/rational"
+        },
+        "rhs": {
+          "$ref": "#/$defs/rational"
+        },
+        "closed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "kind",
+        "opening_energy",
+        "live_reserves",
+        "destroyed",
+        "gross_income",
+        "reversed_income",
+        "costs",
+        "lhs",
+        "rhs",
+        "closed"
+      ],
+      "additionalProperties": false
+    },
+    "packet": {
+      "type": "object",
+      "properties": {
+        "packet_id": {
+          "type": "integer"
+        },
+        "kind": {
+          "enum": [
+            "captured",
+            "unread"
+          ]
+        },
+        "initial_budget": {
+          "$ref": "#/$defs/rational"
+        },
+        "budget_remaining": {
+          "$ref": "#/$defs/rational"
+        },
+        "drawn_S": {
+          "$ref": "#/$defs/rational"
+        },
+        "drawn_R": {
+          "$ref": "#/$defs/rational"
+        },
+        "lhs": {
+          "$ref": "#/$defs/rational"
+        },
+        "rhs": {
+          "$ref": "#/$defs/rational"
+        },
+        "closed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "packet_id",
+        "kind",
+        "initial_budget",
+        "budget_remaining",
+        "drawn_S",
+        "drawn_R",
+        "lhs",
+        "rhs",
+        "closed"
+      ],
+      "additionalProperties": false
+    },
+    "memoryTotals": {
+      "type": "object",
+      "properties": {
+        "free_pool": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "somatic_active": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "gestation": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "corpse_reserved": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "free_pool",
+        "somatic_active",
+        "gestation",
+        "corpse_reserved"
+      ],
+      "additionalProperties": false
+    },
+    "memory": {
+      "type": "object",
+      "properties": {
+        "initial_pool": {
+          "type": "integer"
+        },
+        "totals": {
+          "$ref": "#/$defs/memoryTotals"
+        },
+        "lhs": {
+          "type": "integer"
+        },
+        "rhs": {
+          "type": "integer"
+        },
+        "closed": {
+          "type": "boolean"
+        },
+        "ownership": {
+          "$ref": "#/$defs/memoryOwnership"
+        }
+      },
+      "required": [
+        "initial_pool",
+        "totals",
+        "ownership",
+        "lhs",
+        "rhs",
+        "closed"
+      ],
+      "additionalProperties": false
+    },
+    "census": {
+      "type": "object",
+      "properties": {
+        "founders": {
+          "type": "integer"
+        },
+        "admitted_births": {
+          "type": "integer"
+        },
+        "hazard_removals": {
+          "type": "integer"
+        },
+        "lhs": {
+          "type": "integer"
+        },
+        "rhs": {
+          "type": "integer"
+        },
+        "closed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "founders",
+        "admitted_births",
+        "hazard_removals",
+        "lhs",
+        "rhs",
+        "closed"
+      ],
+      "additionalProperties": false
+    },
+    "checkpoint": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "detail": {
+          "type": "string"
+        },
+        "reserve": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/isolatedReserve"
+            },
+            {
+              "$ref": "#/$defs/populationReserve"
+            }
+          ]
+        },
+        "packets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/packet"
+          }
+        },
+        "memory": {
+          "$ref": "#/$defs/memory"
+        },
+        "census": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/census"
+            }
+          ]
+        },
+        "participants": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/participant"
+          }
+        },
+        "accounts": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/organism"
+          }
+        },
+        "evictions": {
+          "const": 0
+        },
+        "closed": {
+          "type": "boolean"
+        },
+        "population_events": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "detail",
+        "reserve",
+        "packets",
+        "memory",
+        "census",
+        "participants",
+        "accounts",
+        "population_events",
+        "evictions",
+        "closed"
+      ],
+      "additionalProperties": false
+    },
+    "identity": {
+      "type": "object",
+      "properties": {
+        "programme_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "initial_participants": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/participant"
+          }
+        },
+        "terminal_participants": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/participant"
+          }
+        }
+      },
+      "required": [
+        "programme_sha256",
+        "initial_participants",
+        "terminal_participants"
+      ],
+      "additionalProperties": false
+    },
+    "transition": {
+      "type": "object",
+      "properties": {
+        "tick": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        },
+        "actor": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "result": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "tick",
+        "actor",
+        "operation",
+        "result"
+      ],
+      "additionalProperties": false
+    },
+    "arm": {
+      "type": "object",
+      "properties": {
+        "identity": {
+          "$ref": "#/$defs/identity"
+        },
+        "fixture": {
+          "type": "object",
+          "minProperties": 1
+        },
+        "checkpoints": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/checkpoint"
+          }
+        },
+        "transitions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/transition"
+          }
+        },
+        "terminal": {
+          "type": "object",
+          "required": [
+            "organisms",
+            "memory_history"
+          ],
+          "properties": {
+            "organisms": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/organism"
+              }
+            },
+            "memory_history": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "minProperties": 1
+              }
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "identity",
+        "fixture",
+        "checkpoints",
+        "transitions",
+        "terminal"
+      ],
+      "additionalProperties": false
+    },
+    "block": {
+      "type": "object",
+      "properties": {
+        "raw": {
+          "type": "object",
+          "properties": {
+            "arms": {
+              "type": "object",
+              "minProperties": 1,
+              "additionalProperties": {
+                "$ref": "#/$defs/arm"
+              }
+            }
+          },
+          "required": [
+            "arms"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "raw"
+      ],
+      "additionalProperties": false
+    },
+    "blocksFull": {
+      "type": "object",
+      "properties": {
+        "A": {
+          "$ref": "#/$defs/block"
+        },
+        "B": {
+          "$ref": "#/$defs/block"
+        },
+        "C": {
+          "$ref": "#/$defs/block"
+        },
+        "D1": {
+          "$ref": "#/$defs/block"
+        },
+        "D2": {
+          "$ref": "#/$defs/block"
+        },
+        "E1": {
+          "$ref": "#/$defs/block"
+        },
+        "E2": {
+          "$ref": "#/$defs/block"
+        }
+      },
+      "required": [
+        "A",
+        "B",
+        "C",
+        "D1",
+        "D2",
+        "E1",
+        "E2"
+      ],
+      "additionalProperties": false
+    },
+    "checkSummary": {
+      "type": "object",
+      "properties": {
+        "checks": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "boolean"
+          }
+        },
+        "result": {
+          "enum": [
+            "PASS",
+            "FAIL"
+          ]
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "checks",
+        "result",
+        "reasons"
+      ],
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "properties": {
+        "block": {
+          "type": "string"
+        },
+        "check": {
+          "type": "string"
+        },
+        "passed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "block",
+        "check",
+        "passed"
+      ],
+      "additionalProperties": false
+    },
+    "gate": {
+      "type": "object",
+      "properties": {
+        "classification": {
+          "enum": [
+            "PASS",
+            "FAIL"
+          ]
+        },
+        "passed": {
+          "type": "boolean"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        }
+      },
+      "required": [
+        "classification",
+        "passed",
+        "reason",
+        "evidence"
+      ],
+      "additionalProperties": false
+    },
+    "analysis": {
+      "type": "object",
+      "properties": {
+        "decision": {
+          "enum": [
+            "PASS",
+            "FAIL"
+          ]
+        },
+        "block_results": {
+          "type": "object",
+          "properties": {
+            "A": {
+              "$ref": "#/$defs/checkSummary"
+            },
+            "B": {
+              "$ref": "#/$defs/checkSummary"
+            },
+            "C": {
+              "$ref": "#/$defs/checkSummary"
+            },
+            "D1": {
+              "$ref": "#/$defs/checkSummary"
+            },
+            "D2": {
+              "$ref": "#/$defs/checkSummary"
+            },
+            "E1": {
+              "$ref": "#/$defs/checkSummary"
+            },
+            "E2": {
+              "$ref": "#/$defs/checkSummary"
+            }
+          },
+          "required": [
+            "A",
+            "B",
+            "C",
+            "D1",
+            "D2",
+            "E1",
+            "E2"
+          ],
+          "additionalProperties": false
+        },
+        "cross_checks": {
+          "type": "object",
+          "properties": {
+            "label_permutation": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "label_permutation"
+          ],
+          "additionalProperties": false
+        },
+        "gates": {
+          "type": "object",
+          "properties": {
+            "realised_treatment": {
+              "$ref": "#/$defs/gate"
+            },
+            "programme_identity": {
+              "$ref": "#/$defs/gate"
+            },
+            "allocation_identity": {
+              "$ref": "#/$defs/gate"
+            },
+            "direct_debit_isolation": {
+              "$ref": "#/$defs/gate"
+            },
+            "reversal_provenance": {
+              "$ref": "#/$defs/gate"
+            },
+            "recovery": {
+              "$ref": "#/$defs/gate"
+            },
+            "lifecycle": {
+              "$ref": "#/$defs/gate"
+            },
+            "topology": {
+              "$ref": "#/$defs/gate"
+            },
+            "closure": {
+              "$ref": "#/$defs/gate"
+            },
+            "no_hidden_gate": {
+              "$ref": "#/$defs/gate"
+            }
+          },
+          "required": [
+            "realised_treatment",
+            "programme_identity",
+            "allocation_identity",
+            "direct_debit_isolation",
+            "reversal_provenance",
+            "recovery",
+            "lifecycle",
+            "topology",
+            "closure",
+            "no_hidden_gate"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "decision",
+        "block_results",
+        "cross_checks",
+        "gates"
+      ],
+      "additionalProperties": false
+    },
+    "progressEvent": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "checkpoint"
+            },
+            "block": {
+              "enum": [
+                "A",
+                "B",
+                "C",
+                "D1",
+                "D2",
+                "E1",
+                "E2"
+              ]
+            },
+            "arm": {
+              "enum": [
+                "LOW",
+                "HIGH",
+                "fixture"
+              ]
+            },
+            "checkpoint": {
+              "$ref": "#/$defs/checkpoint"
+            }
+          },
+          "required": [
+            "kind",
+            "block",
+            "arm",
+            "checkpoint"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "block_complete"
+            },
+            "block": {
+              "enum": [
+                "A",
+                "B",
+                "C",
+                "D1",
+                "D2",
+                "E1",
+                "E2"
+              ]
+            },
+            "result": {
+              "$ref": "#/$defs/block"
+            }
+          },
+          "required": [
+            "kind",
+            "block",
+            "result"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "memoryOwnership": {
+      "type": "object",
+      "properties": {
+        "somatic_active": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "gestation": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "corpse_reserved": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      },
+      "required": [
+        "somatic_active",
+        "gestation",
+        "corpse_reserved"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "artifact_version": {
+          "const": 1
+        },
+        "run_status": {
+          "const": "STARTED"
+        },
+        "decision": {
+          "type": "null"
+        },
+        "scope": {
+          "const": "Stage 7B0 scripted fixed-state mechanism verification"
+        },
+        "selection_assay_run": {
+          "const": false
+        },
+        "mutation_enabled": {
+          "const": false
+        },
+        "mutation_rng_draws": {
+          "const": 0
+        },
+        "protocol_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "programme_specification_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "freeze_manifest_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "started_at_utc": {
+          "type": "string"
+        },
+        "claimed_at_utc": {
+          "type": "null"
+        },
+        "claim_sha256": {
+          "type": "null"
+        },
+        "blocks_expected": {
+          "const": [
+            "A",
+            "B",
+            "C",
+            "D1",
+            "D2",
+            "E1",
+            "E2"
+          ]
+        },
+        "blocks": {
+          "type": "object",
+          "maxProperties": 0
+        },
+        "analysis": {
+          "type": "null"
+        },
+        "exception": {
+          "type": "null"
+        },
+        "partial_progress": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/progressEvent"
+          }
+        }
+      },
+      "required": [
+        "artifact_version",
+        "run_status",
+        "decision",
+        "scope",
+        "selection_assay_run",
+        "mutation_enabled",
+        "mutation_rng_draws",
+        "protocol_sha256",
+        "programme_specification_sha256",
+        "freeze_manifest_sha256",
+        "started_at_utc",
+        "claimed_at_utc",
+        "claim_sha256",
+        "blocks_expected",
+        "blocks",
+        "analysis",
+        "exception",
+        "partial_progress"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "artifact_version": {
+          "const": 1
+        },
+        "run_status": {
+          "const": "EXECUTING"
+        },
+        "decision": {
+          "type": "null"
+        },
+        "scope": {
+          "const": "Stage 7B0 scripted fixed-state mechanism verification"
+        },
+        "selection_assay_run": {
+          "const": false
+        },
+        "mutation_enabled": {
+          "const": false
+        },
+        "mutation_rng_draws": {
+          "const": 0
+        },
+        "protocol_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "programme_specification_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "freeze_manifest_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "started_at_utc": {
+          "type": "string"
+        },
+        "claimed_at_utc": {
+          "type": "string"
+        },
+        "claim_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "blocks_expected": {
+          "const": [
+            "A",
+            "B",
+            "C",
+            "D1",
+            "D2",
+            "E1",
+            "E2"
+          ]
+        },
+        "blocks": {
+          "type": "object",
+          "maxProperties": 0
+        },
+        "analysis": {
+          "type": "null"
+        },
+        "exception": {
+          "type": "null"
+        },
+        "partial_progress": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/progressEvent"
+          }
+        }
+      },
+      "required": [
+        "artifact_version",
+        "run_status",
+        "decision",
+        "scope",
+        "selection_assay_run",
+        "mutation_enabled",
+        "mutation_rng_draws",
+        "protocol_sha256",
+        "programme_specification_sha256",
+        "freeze_manifest_sha256",
+        "started_at_utc",
+        "claimed_at_utc",
+        "claim_sha256",
+        "blocks_expected",
+        "blocks",
+        "analysis",
+        "exception",
+        "partial_progress"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "artifact_version": {
+          "const": 1
+        },
+        "run_status": {
+          "const": "INVALID"
+        },
+        "decision": {
+          "const": "INVALID"
+        },
+        "scope": {
+          "const": "Stage 7B0 scripted fixed-state mechanism verification"
+        },
+        "selection_assay_run": {
+          "const": false
+        },
+        "mutation_enabled": {
+          "const": false
+        },
+        "mutation_rng_draws": {
+          "const": 0
+        },
+        "protocol_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "programme_specification_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "freeze_manifest_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "started_at_utc": {
+          "type": "string"
+        },
+        "claimed_at_utc": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "claim_sha256": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          ]
+        },
+        "blocks_expected": {
+          "const": [
+            "A",
+            "B",
+            "C",
+            "D1",
+            "D2",
+            "E1",
+            "E2"
+          ]
+        },
+        "blocks": {
+          "type": "object",
+          "maxProperties": 0
+        },
+        "analysis": {
+          "type": "null"
+        },
+        "exception": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "type",
+            "message"
+          ],
+          "additionalProperties": false
+        },
+        "partial_progress": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/progressEvent"
+          }
+        },
+        "finished_at_utc": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact_version",
+        "run_status",
+        "decision",
+        "scope",
+        "selection_assay_run",
+        "mutation_enabled",
+        "mutation_rng_draws",
+        "protocol_sha256",
+        "programme_specification_sha256",
+        "freeze_manifest_sha256",
+        "started_at_utc",
+        "claimed_at_utc",
+        "claim_sha256",
+        "blocks_expected",
+        "blocks",
+        "analysis",
+        "exception",
+        "partial_progress",
+        "finished_at_utc"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "artifact_version": {
+          "const": 1
+        },
+        "run_status": {
+          "const": "COMPLETED"
+        },
+        "decision": {
+          "enum": [
+            "PASS",
+            "FAIL"
+          ]
+        },
+        "scope": {
+          "const": "Stage 7B0 scripted fixed-state mechanism verification"
+        },
+        "selection_assay_run": {
+          "const": false
+        },
+        "mutation_enabled": {
+          "const": false
+        },
+        "mutation_rng_draws": {
+          "const": 0
+        },
+        "protocol_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "programme_specification_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "freeze_manifest_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "started_at_utc": {
+          "type": "string"
+        },
+        "claimed_at_utc": {
+          "type": "string"
+        },
+        "claim_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "blocks_expected": {
+          "const": [
+            "A",
+            "B",
+            "C",
+            "D1",
+            "D2",
+            "E1",
+            "E2"
+          ]
+        },
+        "blocks": {
+          "$ref": "#/$defs/blocksFull"
+        },
+        "analysis": {
+          "$ref": "#/$defs/analysis"
+        },
+        "exception": {
+          "type": "null"
+        },
+        "partial_progress": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/progressEvent"
+          }
+        },
+        "executed_at_utc": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact_version",
+        "run_status",
+        "decision",
+        "scope",
+        "selection_assay_run",
+        "mutation_enabled",
+        "mutation_rng_draws",
+        "protocol_sha256",
+        "programme_specification_sha256",
+        "freeze_manifest_sha256",
+        "started_at_utc",
+        "claimed_at_utc",
+        "claim_sha256",
+        "blocks_expected",
+        "blocks",
+        "analysis",
+        "exception",
+        "partial_progress",
+        "executed_at_utc"
+      ],
+      "additionalProperties": false
+    }
+  ]
+}
