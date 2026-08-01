@@ -1,0 +1,26 @@
+{
+  "artifact_version": 1,
+  "status": "REGISTERED_BEFORE_CAPTURE",
+  "scope": "one-hour passive host compressibility channel; no organisms or workload intervention",
+  "registration_commit": "e8d2f515e69cf4c8871e729ca93534e36f253e85",
+  "python": "3.13.5",
+  "command": "PYTHONDONTWRITEBYTECODE=1 python3 src/host_compressibility_probe.py results/host-compressibility-long-window-360001x10ms.json --sample-count 360001 --cadence-ms 10",
+  "output": "results/host-compressibility-long-window-360001x10ms.json",
+  "sample_count": 360001,
+  "cadence_ms": 10,
+  "expected_packet_count": 36000,
+  "working_tree_disclosure": [
+    "M src/test_stage7_slice1.py — unrelated pre-existing modification excluded from registration and capture path"
+  ],
+  "source_sha256": {
+    "docs/host-compressibility-long-window-registration.md": "e3a7be1dab3e29b10eba4afa4d32e5e4ffa54cc3fb95500b8ced249ec2180d1a",
+    "src/host_compressibility_probe.py": "8cfca401900e06f5c7884b43422ab9aa9a465ea6b01fce99109e91fd7f815f8a",
+    "src/host_telemetry_channel.py": "5df10080a6f7f80f856b52eeeba10dc9ba072f9f8b73160b5df175848b8e9829",
+    "src/transforms.py": "234f72eb42a15f88cb2fe5831a9f9421d3f94448d0dd39fa6ab169687845b7a6",
+    "src/consts.py": "7dda03561176a30ff9e2050e53fe15b8878b8c3f593032f1f276be2867f3066b",
+    "src/test_host_compressibility_probe.py": "2ef9bac6471e1ec419807f77167541a5cc1e9d240a2d6732b6a2132d3c99124c",
+    "src/test_host_telemetry_channel.py": "1f64e4e9c7c5a49c992dbd39ea9b75734f1ecb80c9dae087f2e48b0e22e8690e",
+    "docs/project-report.md": "fc9961214557774d3519daceb645f74a5f0b7983f8d542f748775c9406b0603b"
+  },
+  "retention": "first attempt retained; output creation is exclusive and cannot overwrite"
+}
