@@ -1,0 +1,10 @@
+{
+  "permit_version": 1,
+  "permit_type": "stage7b0_detached_manifest_pin",
+  "created_at_utc": "2026-08-01T13:47:31.056763+00:00",
+  "manifest_path": "results/stage7b0-pre-execution-manifest.json",
+  "manifest_sha256": "dedc8f04041e4cdc3ec144d54e89a004c838abc35433d96082822a545db5275f",
+  "registered_execution_status": "not_run",
+  "selection_assay_run": false,
+  "mutation_enabled": false
+}
