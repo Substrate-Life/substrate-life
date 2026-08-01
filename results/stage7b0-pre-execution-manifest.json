@@ -1,8 +1,7 @@
 {
-  "manifest_version": 1,
-  "freeze_type": "stage7b0_pre_execution",
-  "frozen_at_utc": "2026-08-01T13:47:31.056763+00:00",
-  "parent_commit": "7765a59e16db6f24379227793c4b457a573a7129",
+  "manifest_version": 2,
+  "manifest_type": "stage7b0_deterministic_reproduction",
+  "source_commit": "7bc4c2424b376d32c95b3de069926b1fdc7ce902",
   "protocol_sha256": "8ecabac15a8487724b09ab6dca1340e55e63de39c9717c580cd18dd52947c113",
   "programme_specification_sha256": "5ddbf276aa0a836672b1b3011e66974ce9ecd6fedb0758a111c95766f534c344",
   "registered_blocks": [
@@ -14,39 +13,28 @@
     "E1",
     "E2"
   ],
-  "registered_blocks_executed": false,
   "selection_assay_run": false,
   "mutation_enabled": false,
-  "python_version": "3.13.5",
-  "static_verification": {
-    "legacy_and_static_tests_passed": 65,
-    "retained_artifact_tests_skipped": 4,
-    "registered_block_calls": 0
-  },
   "files": {
     "docs/stage-7b-fixed-allocation-channel-preregistration.md": {
       "sha256": "8ecabac15a8487724b09ab6dca1340e55e63de39c9717c580cd18dd52947c113",
       "bytes": 24032
     },
     "src/stage7b0_channel.py": {
-      "sha256": "6404d1a06188cca4cd445955cad83e4b8165f8b6c14d532235b5eb953b741afe",
-      "bytes": 65045
+      "sha256": "438de6584ac3e7704d3aa593dc6b49a1eb30aa3745406594acff0d130eb5303d",
+      "bytes": 51651
     },
     "src/run_stage7b0_channel.py": {
-      "sha256": "ab8c18a5a140251c62bce8e5514e0e6f91d109ee3fbfe8d19a316a17bbe5b80f",
-      "bytes": 7619
+      "sha256": "4debd481338f8163f0f0ebe0912ed26973e9c6ea3fa4181a8fddc3fe11d59284",
+      "bytes": 4344
     },
     "src/analyze_stage7b0_channel.py": {
-      "sha256": "4e04000500a90b6f5c45b88ccda0059735078102ca8f297f98ac573b6ad78083",
-      "bytes": 49439
+      "sha256": "86e276126da5fac27c4a897239b1cabb27a0cbd674af19e82c98f51b57f105f7",
+      "bytes": 41164
     },
     "src/test_stage7b0_channel.py": {
-      "sha256": "fd9d508e2468c0d8af47a3441732807bc1c6064cb87043d2a68ef884fff2278c",
-      "bytes": 13156
-    },
-    "src/stage7b0-output-schema.json": {
-      "sha256": "71efdd510eb3d65eec64354dd308efd251e551a8b397479477ac00c0c9ecbf89",
-      "bytes": 30380
+      "sha256": "1f452fdf5c401a1211fb634de48d0efe5af7c3c257f39f5ea7fd6cd94a275f04",
+      "bytes": 8844
     },
     "src/stage7_slice1.py": {
       "sha256": "dbc210da112c3244e935e768923d06384ee0815ae83b8b4f43afdcb8dd7c0587",
