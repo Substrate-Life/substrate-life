@@ -1,13 +1,13 @@
-# Substrate: Findings That Do Not Depend on Stage 7
+# Substrate: Consolidated Findings Synthesis
 
-*Consolidated result ledger for Stages 1–6 and three methodological findings*  
-*Date: 2026-07-30*
+*Consolidated result ledger for Stages 1–6 and four methodological findings*
+*Date: 2026-08-01*
 
 ## Status and dependency boundary
 
-The eight findings below are complete at the level stated here. The five substrate and life-history findings derive from Stages 1–6. The three methodological findings derive from the project's design and verification history through the first two Stage 7 implementation slices. None requires a successful Stage 7 allocation assay, an evolved allocation response, or a completed real-host coupling experiment.
+The nine findings below are complete at the level stated here. The five substrate and life-history findings derive from Stages 1–6. The four methodological findings derive from the project's design and verification history through deterministic Stage 7B0. None requires a stochastic Stage 7 allocation assay, an evolved allocation response, or a completed real-host coupling experiment.
 
-Stage 7 may provide a cleaner architecture for asking new questions. It cannot retroactively create, erase, or strengthen the evidence summarized below. Historical artifacts remain evidence only for the source semantics under which they were generated; superseded mechanisms are not silently reclassified as current-mechanism results.
+Further Stage 7 work may provide a cleaner architecture for asking new questions. It cannot retroactively create, erase, or strengthen the evidence summarized below. Historical artifacts remain evidence only for the source semantics under which they were generated; superseded mechanisms are not silently reclassified as current-mechanism results.
 
 ## Executive synthesis
 
@@ -21,6 +21,7 @@ Substrate did not fail because selection was absent. It exposed a hierarchy of a
 6. **Interpretability and evolutionary openness are in tension.** Freezing backgrounds and ecology identifies channels while narrowing the open-ended evolutionary claim.
 7. **Specification review and executable validation are asymmetric.** Review made conservation requirements legible; the smallest complete execution exposed mechanism defects that additional wording review had not.
 8. **Conservation closure is necessary but not sufficient for ecological validity.** Exact ledgers can certify honest bookkeeping while the implementation omits the resource interaction the experiment is meant to study.
+9. **Verification apparatus must match the experiment's threat model.** Deterministic fixed-input traces obtain their anti-selection guarantee from exact reproduction; one-use execution and prospective seed controls are proportionate when stochastic or inferential degrees of freedom exist.
 
 ---
 
@@ -126,12 +127,22 @@ The correction reused one globally consumptive packet buffer with five exogenous
 
 **Limitation.** This does not weaken the conservation requirement: without closure, even the intended ecology is energetically uninterpretable. Nor does the cloned harness measure literally nothing; it still exercises isolated per-organism mechanics. The narrower result is that exact bookkeeping alone cannot validate the intended ecological estimand. A conservation proof certifies honesty about the implemented system, not relevance of that system to the scientific question.
 
+## Methodological finding 4 — Verification apparatus must match the experiment's threat model
+
+**Claim.** Verification controls are rigorous only when they address researcher degrees of freedom that the specific experiment actually has. Preregistration, seed freezes, one-use execution, and prospective digest authorization guard against selective reporting, post-hoc tuning, and repeated stochastic sampling. A deterministic trace with fixed inputs and endpoints has no seed or outcome-selection freedom; its primary threat is that the implementation or reducer does not do what it claims.
+
+**Measured case.** Stage 7B0 fixed both treatments, packet identities, packet schedules, ticks, programme, and mutation-off execution. Before any block ran, three increasingly elaborate freeze designs accumulated one-use leases, filesystem claims, detached digest authorization, Git-blob checks, a partial schema engine, and append-only journal machinery. Simplifying the path deleted 2,234 lines and added 195 replacement lines. The first two direct executions then exposed two material defects: a checkpoint retained a live reference to a mutable event list, and the independent reducer's debit whitelist rejected registered somatic operations. The former authorization apparatus checked identity and execution exclusivity; it neither exercised nor semantically reconstructed those paths. Both defective artifacts were retained, the defects were corrected with focused regressions, and the final trace passed all reconstructed gates and reproduced byte-for-byte.
+
+**Interpretation.** Protection should be selected from the experiment's actual failure modes. For deterministic fixed-input work, source hashes, raw evidence, semantic reduction, adversarial tests, preservation of failures, and exact reruns directly test the live risks. Ceremony that only prevents rerunning cannot add an anti-selection guarantee when every rerun must produce the same bytes. For stochastic Stage 7B1, by contrast, seed choice, capture variance, repeated sampling, and inferential endpoints restore the threats for which prospective freezes and one-use controls are proportionate.
+
+**Limitation.** Determinism does not establish correctness: it can reproduce the same bug indefinitely. The guarantee is useful only with inspectable source, raw evidence, independent reconstruction, and tests aimed at semantic failure. Nor does this finding argue against preregistration generally. It argues that each control must name the degree of freedom or adversary it constrains, and that its cost should be justified against that threat.
+
 ---
 
 ## What remains outside this write-up
 
-- Stage 7 split-reserve population mechanics are an architectural continuation, not a dependency of these findings.
-- No allocation-versus-hazard assay is reported here.
+- Stage 7 split-reserve population mechanics and deterministic Stage 7B0 verification inform the methodological findings; they do not establish an evolutionary result.
+- No stochastic allocation-versus-hazard assay is reported here.
 - No claim is made about evolved `α`, dominance, ESS, convergence, or a causal allocation gradient.
 - Real-host coupling remains untested.
 

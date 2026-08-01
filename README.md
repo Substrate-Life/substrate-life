@@ -6,7 +6,7 @@ The project belongs to the research tradition established by Tierra and Avida, b
 
 ## Status
 
-Stages 1–6 produced five scientific findings. Two verified Stage 7 implementation slices then produced three methodological results. Stage 7 mutation, evolutionary runs, allocation contrasts, and fitness inference remain untested; verified mechanics are not an evolutionary result.
+Stages 1–6 produced five scientific findings. Stage 7 implementation and deterministic verification then produced four methodological results. Stage 7 mutation, stochastic allocation assays, evolutionary runs, and fitness inference remain untested; verified mechanics are not an evolutionary result.
 
 ## Findings
 
@@ -23,6 +23,7 @@ Stages 1–6 produced five scientific findings. Two verified Stage 7 implementat
 6. **Control and evolutionary openness are in tension.** Freezing genomes, traits, schedules, or ecology improves identification while narrowing the evolutionary claim.
 7. **Review and execution answer different questions.** Reviewed invariants made failures diagnosable, but the smallest complete execution exposed mechanism defects that further wording review had missed.
 8. **Conservation does not establish ecological validity.** Exact reserve, packet, and memory closure can coexist with an implementation that deletes the resource interaction under study.
+9. **Verification apparatus must match the experiment's threat model.** Deterministic fixed-input traces need transparent evidence and exact reproduction; one-use and seed-freeze ceremony earns its cost when stochastic or inferential degrees of freedom actually exist.
 
 ## Read first
 
