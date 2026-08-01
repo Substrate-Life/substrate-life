@@ -153,6 +153,11 @@ class Stage7B0StaticContractTests(unittest.TestCase):
             {"raw": {"arms": {"LOW": {}}}},
         )
 
+    def test_checkpoint_account_events_are_snapshotted(self):
+        source = (ROOT / "src" / "stage7b0_channel.py").read_text()
+        self.assertIn('"events": _jsonable(organism.events)', source)
+        self.assertNotIn('"events": organism.events', source)
+
     def test_isolated_child_identity_is_inherited_and_label_neutral(self):
         source = (ROOT / "src" / "stage7b0_channel.py").read_text()
         mechanics = (ROOT / "src" / "stage7_slice1.py").read_text()

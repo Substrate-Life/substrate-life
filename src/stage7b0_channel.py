@@ -203,7 +203,7 @@ def _organism_state(organism: SliceOrganism, role: str) -> dict[str, Any]:
             "organism_id": child.organism_id, "S": child.s, "R": child.r,
             "A": child.a, "T": child.t, "D": child.d,
         },
-        "events": organism.events,
+        "events": _jsonable(organism.events),
     }
 
 
