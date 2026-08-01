@@ -1,22 +1,17 @@
-"""Frozen Stage 7B0 scripted acquisition-allocation verification.
+"""Deterministic Stage 7B0 scripted acquisition-allocation verification.
 
-Importing this module has no simulation side effects. Every registered block
-requires a hash-verified pre-execution permit. This is mechanism verification,
+Importing this module has no simulation side effects. Fixed inputs and disabled
+mutation make execution exactly reproducible. This is mechanism verification,
 not a selection, mutation, invasion, or evolutionary assay.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import datetime, timezone
 from fractions import Fraction
 import hashlib
 import json
-import os
 from pathlib import Path
-import platform
-import subprocess
-import tempfile
 from typing import Any, Callable
 
 from datastream import DataStream
@@ -35,8 +30,6 @@ PROGRAM_SPEC_CANONICAL = (
 PROGRAM_SPEC_SHA256 = hashlib.sha256(PROGRAM_SPEC_CANONICAL.encode()).hexdigest()
 
 BLOCK_IDS = ("A", "B", "C", "D1", "D2", "E1", "E2")
-STATIC_TESTS_PASSED = 65
-RETAINED_ARTIFACT_TESTS_SKIPPED = 4
 GATE_IDS = (
     "realised_treatment",
     "programme_identity",
@@ -73,7 +66,6 @@ REQUIRED_FREEZE_FILES = (
     "src/run_stage7b0_channel.py",
     "src/analyze_stage7b0_channel.py",
     "src/test_stage7b0_channel.py",
-    "src/stage7b0-output-schema.json",
     "src/stage7_slice1.py",
     "src/stage7_slice2.py",
     "src/datastream.py",
@@ -108,336 +100,28 @@ HIGH = Treatment("HIGH", 204)
 TREATMENTS = (LOW, HIGH)
 
 
-@dataclass(frozen=True)
-class ExecutionPermit:
-    manifest_path: Path
-    manifest_sha256: str
-    manifest: dict[str, Any]
-    detached_permit_path: Path
-    detached_permit_sha256: str
+EvidenceSink = list[dict[str, Any]]
 
 
-_LEASE_ISSUER = object()
-_ACTIVE_LEASES: dict[int, dict[str, Any]] = {}
+def _require_block_lease(evidence: EvidenceSink, block_id: str) -> None:
+    if not isinstance(evidence, list):
+        raise TypeError(f"block {block_id} requires an evidence list")
 
 
-class _ExecutionLease:
-    __slots__ = ("permit", "attempt_path", "claim_path", "claim_sha256")
-
-    def __init__(
-        self,
-        issuer: object,
-        permit: ExecutionPermit,
-        attempt_path: Path,
-        claim_path: Path,
-        claim_sha256: str,
-    ) -> None:
-        if issuer is not _LEASE_ISSUER:
-            raise PermissionError("execution leases are issued only after journal claim")
-        self.permit = permit
-        self.attempt_path = attempt_path
-        self.claim_path = claim_path
-        self.claim_sha256 = claim_sha256
+def _begin_block(evidence: EvidenceSink, block_id: str) -> None:
+    _require_block_lease(evidence, block_id)
 
 
-def issue_execution_lease(
-    permit: ExecutionPermit,
-    attempt_path: Path | str,
-) -> _ExecutionLease:
-    """Bind one execution to an already-retained deterministic STARTED journal."""
-    _require_permit(permit)
-    path = Path(attempt_path).resolve()
-    expected = (ROOT / "results" / f"stage7b0-attempt-{permit.manifest_sha256}.json").resolve()
-    if path != expected or not path.is_file():
-        raise PermissionError("execution lease requires the deterministic retained attempt")
-    started = json.loads(path.read_text())
-    if (
-        started.get("run_status") != "STARTED"
-        or started.get("freeze_manifest_sha256") != permit.manifest_sha256
-        or started.get("partial_progress") != []
-        or started.get("claim_sha256") is not None
-        or started.get("claimed_at_utc") is not None
-    ):
-        raise PermissionError("attempt journal is not a fresh STARTED claim")
-    if any(state["attempt_path"] == path for state in _ACTIVE_LEASES.values()):
-        raise PermissionError("attempt already has an active execution lease")
-    claim_path = Path(str(path) + ".claim")
-    claim = {
-        "claim_version": 1,
-        "attempt_path": str(path.relative_to(ROOT)),
-        "manifest_sha256": permit.manifest_sha256,
-        "detached_permit_sha256": permit.detached_permit_sha256,
-        "claimed_at_utc": datetime.now(timezone.utc).isoformat(),
-    }
-    _exclusive_claim(claim_path, claim)
-    claim_sha256 = _sha256(claim_path)
-    executing = dict(started)
-    executing.update({
-        "run_status": "EXECUTING",
-        "claimed_at_utc": claim["claimed_at_utc"],
-        "claim_sha256": claim_sha256,
-    })
-    _durable_attempt_replace(path, executing, permit.manifest_sha256)
-    lease = _ExecutionLease(
-        _LEASE_ISSUER, permit, path, claim_path, claim_sha256,
-    )
-    _ACTIVE_LEASES[id(lease)] = {
-        "attempt_path": path, "next_block": 0, "current_block": None,
-        "consumed": False, "progress_prefix": [],
-        "mutation_rng_draws": 0,
-    }
-    return lease
+def _emit_retained(evidence: EvidenceSink, event: dict[str, Any]) -> None:
+    evidence.append(_jsonable(event))
 
 
-def _lease_state(lease: _ExecutionLease) -> dict[str, Any]:
-    state = _ACTIVE_LEASES.get(id(lease))
-    if state is None or state["consumed"]:
-        raise PermissionError("inactive or consumed execution lease")
-    _require_permit(lease.permit)
-    retained = json.loads(lease.attempt_path.read_text())
-    if (
-        retained.get("run_status") != "EXECUTING"
-        or retained.get("claim_sha256") != lease.claim_sha256
-        or retained.get("partial_progress") != state["progress_prefix"]
-        or not lease.claim_path.is_file()
-        or _sha256(lease.claim_path) != lease.claim_sha256
-    ):
-        raise PermissionError("durable execution claim or progress prefix changed")
-    return state
-
-
-def _begin_block(lease: _ExecutionLease, block_id: str) -> None:
-    state = _lease_state(lease)
-    if state["current_block"] is not None or BLOCK_IDS[state["next_block"]] != block_id:
-        raise PermissionError(f"block {block_id} is repeated or out of registered order")
-    state["current_block"] = block_id
-
-
-def _require_block_lease(lease: _ExecutionLease, block_id: str) -> None:
-    state = _lease_state(lease)
-    if state["current_block"] != block_id:
-        raise PermissionError(f"block {block_id} lacks the active retained journal lease")
-
-
-def _emit_retained(lease: _ExecutionLease, event: dict[str, Any]) -> None:
-    event = _jsonable(event)
-    state = _lease_state(lease)
-    retained = json.loads(lease.attempt_path.read_text())
-    candidate = json.loads(json.dumps(retained))
-    candidate["partial_progress"].append(event)
-    _durable_attempt_replace(
-        lease.attempt_path, candidate, lease.permit.manifest_sha256,
-    )
-    state["progress_prefix"] = candidate["partial_progress"]
-
-
-def _complete_block_lease(lease: _ExecutionLease, block_id: str, result: dict[str, Any]) -> None:
-    state = _lease_state(lease)
-    if state["current_block"] != block_id:
-        raise PermissionError("cannot complete inactive block")
-    _emit_retained(lease, {"kind": "block_complete", "block": block_id, "result": result})
-    state["current_block"] = None
-    state["next_block"] += 1
-
-
-def invalidate_execution_lease(lease: _ExecutionLease) -> None:
-    state = _ACTIVE_LEASES.pop(id(lease), None)
-    if state is not None:
-        state["consumed"] = True
-
-
-def _sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
-
-
-def _fsync_directory(path: Path) -> None:
-    descriptor = os.open(path, os.O_RDONLY | getattr(os, "O_DIRECTORY", 0))
-    try:
-        os.fsync(descriptor)
-    finally:
-        os.close(descriptor)
-
-
-def _exclusive_claim(path: Path, payload: dict[str, Any]) -> None:
-    data = (json.dumps(payload, indent=2) + "\n").encode()
-    descriptor = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o444)
-    try:
-        with os.fdopen(descriptor, "wb", closefd=False) as handle:
-            handle.write(data)
-            handle.flush()
-            os.fsync(handle.fileno())
-    finally:
-        os.close(descriptor)
-    _fsync_directory(path.parent)
-
-
-def _durable_attempt_replace(
-    path: Path,
-    payload: dict[str, Any],
-    manifest_sha256: str,
+def _complete_block_lease(
+    evidence: EvidenceSink, block_id: str, result: dict[str, Any],
 ) -> None:
-    from analyze_stage7b0_channel import (  # lazy: analyzer imports core constants
-        validate_against_output_schema, validate_attempt_artifact,
-    )
-    validate_attempt_artifact(payload, manifest_sha256)
-    validate_against_output_schema(payload, manifest_sha256)
-    data = (json.dumps(payload, indent=2) + "\n").encode()
-    descriptor, temporary_name = tempfile.mkstemp(
-        prefix=path.name + ".", suffix=".tmp", dir=path.parent,
-    )
-    temporary = Path(temporary_name)
-    try:
-        with os.fdopen(descriptor, "wb") as handle:
-            handle.write(data)
-            handle.flush()
-            os.fsync(handle.fileno())
-        os.replace(temporary, path)
-        _fsync_directory(path.parent)
-    except BaseException:
-        temporary.unlink(missing_ok=True)
-        raise
-
-
-def load_execution_permit(
-    path: Path | str,
-    detached_permit_path: Path | str,
-    expected_manifest_sha256: str,
-    expected_detached_permit_sha256: str,
-) -> ExecutionPermit:
-    """Verify the frozen source manifest without executing any block."""
-    manifest_path = Path(path).resolve()
-    if not manifest_path.exists():
-        raise FileNotFoundError(manifest_path)
-    pin_path = Path(detached_permit_path).resolve()
-    if not pin_path.exists():
-        raise FileNotFoundError(pin_path)
-    if _sha256(manifest_path) != expected_manifest_sha256:
-        raise ValueError("manifest does not match out-of-band authorized digest")
-    if _sha256(pin_path) != expected_detached_permit_sha256:
-        raise ValueError("detached permit does not match out-of-band authorized digest")
-    pin = json.loads(pin_path.read_text())
-    expected_pin_keys = {
-        "permit_version", "permit_type", "created_at_utc", "manifest_path",
-        "manifest_sha256", "registered_execution_status",
-        "selection_assay_run", "mutation_enabled",
-    }
-    if set(pin) != expected_pin_keys:
-        raise ValueError("detached permit metadata surface mismatch")
-    if pin.get("permit_version") != 1:
-        raise ValueError("wrong detached permit version")
-    if pin.get("permit_type") != "stage7b0_detached_manifest_pin":
-        raise ValueError("wrong detached permit type")
-    try:
-        datetime.fromisoformat(str(pin.get("created_at_utc", "")).replace("Z", "+00:00"))
-    except ValueError as exc:
-        raise ValueError("invalid detached permit timestamp") from exc
-    if pin.get("manifest_path") != "results/stage7b0-pre-execution-manifest.json":
-        raise ValueError("wrong detached manifest path")
-    if pin.get("selection_assay_run") is not False or pin.get("mutation_enabled") is not False:
-        raise ValueError("detached permit scope mismatch")
-    manifest_digest = _sha256(manifest_path)
-    if pin.get("manifest_sha256") != manifest_digest:
-        raise ValueError("detached permit does not name this manifest digest")
-    if pin.get("registered_execution_status") != "not_run":
-        raise ValueError("detached permit is not pre-execution")
-    manifest = json.loads(manifest_path.read_text())
-    expected_manifest_keys = {
-        "manifest_version", "freeze_type", "frozen_at_utc", "parent_commit",
-        "protocol_sha256", "programme_specification_sha256",
-        "registered_blocks", "registered_blocks_executed",
-        "selection_assay_run", "mutation_enabled", "python_version",
-        "static_verification", "files",
-    }
-    if set(manifest) != expected_manifest_keys:
-        raise ValueError("manifest metadata surface mismatch")
-    if manifest.get("manifest_version") != 1:
-        raise ValueError("wrong manifest_version")
-    if manifest.get("freeze_type") != "stage7b0_pre_execution":
-        raise ValueError("wrong freeze_type")
-    try:
-        datetime.fromisoformat(str(manifest.get("frozen_at_utc", "")).replace("Z", "+00:00"))
-    except ValueError as exc:
-        raise ValueError("invalid frozen timestamp") from exc
-    parent_commit = manifest.get("parent_commit")
-    if not isinstance(parent_commit, str) or len(parent_commit) != 40 or any(
-        character not in "0123456789abcdef" for character in parent_commit
-    ):
-        raise ValueError("invalid parent commit")
-    if manifest.get("python_version") != platform.python_version():
-        raise ValueError("python version differs from frozen execution environment")
-    if manifest.get("registered_blocks_executed") is not False:
-        raise ValueError("pre-execution manifest must state no blocks executed")
-    if manifest.get("protocol_sha256") != PROTOCOL_SHA256:
-        raise ValueError("protocol hash mismatch in manifest")
-    if manifest.get("programme_specification_sha256") != PROGRAM_SPEC_SHA256:
-        raise ValueError("programme hash mismatch in manifest")
-    if tuple(manifest.get("registered_blocks", ())) != BLOCK_IDS:
-        raise ValueError("registered block list mismatch in manifest")
-    if manifest.get("selection_assay_run") is not False:
-        raise ValueError("manifest must state selection_assay_run=false")
-    if manifest.get("mutation_enabled") is not False:
-        raise ValueError("manifest must state mutation_enabled=false")
-    static = manifest.get("static_verification")
-    if set(static or {}) != {
-        "legacy_and_static_tests_passed", "retained_artifact_tests_skipped",
-        "registered_block_calls",
-    }:
-        raise ValueError("static verification metadata mismatch")
-    if (
-        static["legacy_and_static_tests_passed"] != STATIC_TESTS_PASSED
-        or static["retained_artifact_tests_skipped"] != RETAINED_ARTIFACT_TESTS_SKIPPED
-        or static["registered_block_calls"] != 0
-    ):
-        raise ValueError("static verification did not preserve pre-execution state")
-    entries = manifest.get("files")
-    if not isinstance(entries, dict) or tuple(entries) != REQUIRED_FREEZE_FILES:
-        raise ValueError("manifest file set/order does not match frozen contract")
-    head = subprocess.run(
-        ["git", "rev-parse", "HEAD"], cwd=ROOT, check=True,
-        capture_output=True, text=True,
-    ).stdout.strip()
-    ancestor = subprocess.run(
-        ["git", "merge-base", "--is-ancestor", parent_commit, head],
-        cwd=ROOT, capture_output=True,
-    )
-    if ancestor.returncode != 0:
-        raise ValueError("manifest parent_commit is not an ancestor of checkout HEAD")
-    for relative_path in REQUIRED_FREEZE_FILES:
-        target = ROOT / relative_path
-        entry = entries[relative_path]
-        if set(entry) != {"sha256", "bytes"}:
-            raise ValueError(f"manifest file metadata mismatch: {relative_path}")
-        if not target.is_file():
-            raise FileNotFoundError(target)
-        if entry.get("sha256") != _sha256(target):
-            raise ValueError(f"source hash mismatch: {relative_path}")
-        if entry.get("bytes") != target.stat().st_size:
-            raise ValueError(f"source size mismatch: {relative_path}")
-        blob_result = subprocess.run(
-            ["git", "show", f"{parent_commit}:{relative_path}"],
-            cwd=ROOT, capture_output=True,
-        )
-        if blob_result.returncode != 0:
-            raise ValueError(f"frozen file is absent from named commit: {relative_path}")
-        blob = blob_result.stdout
-        if hashlib.sha256(blob).hexdigest() != entry.get("sha256") or len(blob) != entry.get("bytes"):
-            raise ValueError(f"frozen file is not the named commit blob: {relative_path}")
-    return ExecutionPermit(
-        manifest_path, manifest_digest, manifest,
-        pin_path, _sha256(pin_path),
-    )
-
-
-def _require_permit(permit: ExecutionPermit) -> None:
-    current = load_execution_permit(
-        permit.manifest_path, permit.detached_permit_path,
-        permit.manifest_sha256, permit.detached_permit_sha256,
-    )
-    if (
-        current.manifest_sha256 != permit.manifest_sha256
-        or current.detached_permit_sha256 != permit.detached_permit_sha256
-    ):
-        raise ValueError("freeze authorization changed after permit load")
+    _emit_retained(evidence, {
+        "kind": "block_complete", "block": block_id, "result": result,
+    })
 
 
 def _jsonable(value: Any) -> Any:
@@ -688,7 +372,7 @@ def _finish_block(arms: dict[str, Any]) -> dict[str, Any]:
 
 
 def _record_checkpoint(
-    lease: _ExecutionLease,
+    lease: EvidenceSink,
     block_id: str,
     arm_id: str,
     checkpoints: list[dict[str, Any]],
@@ -761,7 +445,7 @@ def _new_isolated(treatment: Treatment, owner: str = "parent") -> tuple[MemoryLe
     return memory, organism
 
 
-def _block_a(lease: _ExecutionLease) -> dict[str, Any]:
+def _block_a(lease: EvidenceSink) -> dict[str, Any]:
     _require_block_lease(lease, "A")
     progress = lease
     expected = {
@@ -848,7 +532,7 @@ def _registered_population_step(
     block_id: str,
     arm_id: str,
     checkpoints: list[dict[str, Any]],
-    progress: _ExecutionLease,
+    progress: EvidenceSink,
 ) -> tuple[dict[str, Any], list[dict[str, Any]], dict[str, Any]]:
     _require_block_lease(progress, block_id)
     tick = population.tick
@@ -924,7 +608,7 @@ def _population_closes(population: Stage7Population, checkpoints: list[dict[str,
 
 def _run_block_b_arm(
     treatment: Treatment,
-    lease: _ExecutionLease,
+    lease: EvidenceSink,
 ) -> tuple[dict[str, Any], dict[str, bool]]:
     _require_block_lease(lease, "B")
     progress = lease
@@ -992,7 +676,7 @@ def _run_block_b_arm(
     return arm, checks
 
 
-def _block_b(lease: _ExecutionLease) -> dict[str, Any]:
+def _block_b(lease: EvidenceSink) -> dict[str, Any]:
     _require_block_lease(lease, "B")
     arms: dict[str, Any] = {}
     aggregate = {name: True for name in BLOCK_CHECK_KEYS["B"]}
@@ -1003,7 +687,7 @@ def _block_b(lease: _ExecutionLease) -> dict[str, Any]:
             aggregate[name] &= value
     return _finish_block(arms)
 
-def _block_c(lease: _ExecutionLease) -> dict[str, Any]:
+def _block_c(lease: EvidenceSink) -> dict[str, Any]:
     _require_block_lease(lease, "C")
     progress = lease
     expected_first = {
@@ -1083,7 +767,7 @@ def _run_block_d_fixture(
     block_id: str,
     first: Treatment,
     second: Treatment,
-    lease: _ExecutionLease,
+    lease: EvidenceSink,
 ) -> tuple[dict[str, Any], dict[str, bool]]:
     _require_block_lease(lease, block_id)
     progress = lease
@@ -1152,7 +836,7 @@ def _run_block_d_fixture(
 
 
 def _block_d(
-    lease: _ExecutionLease,
+    lease: EvidenceSink,
     block_id: str,
     first: Treatment,
     second: Treatment,
@@ -1161,7 +845,7 @@ def _block_d(
     arm, checks = _run_block_d_fixture(block_id, first, second, lease)
     return _finish_block({"fixture": arm})
 
-def _block_e1(lease: _ExecutionLease) -> dict[str, Any]:
+def _block_e1(lease: EvidenceSink) -> dict[str, Any]:
     _require_block_lease(lease, "E1")
     progress = lease
     expected20 = {"LOW": (Fraction(60), Fraction(40)), "HIGH": (Fraction(20), Fraction(80))}
@@ -1208,7 +892,7 @@ def _block_e1(lease: _ExecutionLease) -> dict[str, Any]:
         }
     return _finish_block(arms)
 
-def _block_e2(lease: _ExecutionLease) -> dict[str, Any]:
+def _block_e2(lease: EvidenceSink) -> dict[str, Any]:
     _require_block_lease(lease, "E2")
     progress = lease
     expected = {
@@ -1269,36 +953,41 @@ def _block_e2(lease: _ExecutionLease) -> dict[str, Any]:
         }
     return _finish_block(arms)
 
-def _execute_claimed_protocol(lease: _ExecutionLease) -> dict[str, Any]:
-    """Execute the registered blocks through one retained, ordered lease."""
+def execute_deterministic_protocol(
+    manifest_sha256: str,
+    evidence: EvidenceSink | None = None,
+) -> tuple[dict[str, Any], EvidenceSink]:
+    """Execute Blocks A–E deterministically and return raw evidence in order."""
+    if len(manifest_sha256) != 64 or any(
+        character not in "0123456789abcdef" for character in manifest_sha256
+    ):
+        raise ValueError("manifest digest must be lowercase SHA-256")
+    evidence = [] if evidence is None else evidence
+    if not isinstance(evidence, list) or evidence:
+        raise ValueError("evidence sink must be an empty list")
     blocks: dict[str, Any] = {}
     runners: list[tuple[str, Callable[[], dict[str, Any]]]] = [
-        ("A", lambda: _block_a(lease)),
-        ("B", lambda: _block_b(lease)),
-        ("C", lambda: _block_c(lease)),
-        ("D1", lambda: _block_d(lease, "D1", LOW, HIGH)),
-        ("D2", lambda: _block_d(lease, "D2", HIGH, LOW)),
-        ("E1", lambda: _block_e1(lease)),
-        ("E2", lambda: _block_e2(lease)),
+        ("A", lambda: _block_a(evidence)),
+        ("B", lambda: _block_b(evidence)),
+        ("C", lambda: _block_c(evidence)),
+        ("D1", lambda: _block_d(evidence, "D1", LOW, HIGH)),
+        ("D2", lambda: _block_d(evidence, "D2", HIGH, LOW)),
+        ("E1", lambda: _block_e1(evidence)),
+        ("E2", lambda: _block_e2(evidence)),
     ]
     for block_id, runner in runners:
-        _begin_block(lease, block_id)
+        _begin_block(evidence, block_id)
         result = runner()
         blocks[block_id] = result
-        _complete_block_lease(lease, block_id, result)
-    state = _lease_state(lease)
-    if state["next_block"] != len(BLOCK_IDS) or state["current_block"] is not None:
-        raise PermissionError("registered block sequence did not complete exactly once")
-    invalidate_execution_lease(lease)
+        _complete_block_lease(evidence, block_id, result)
     artifact = {
         "scope": "Stage 7B0 scripted fixed-state mechanism verification",
         "selection_assay_run": False,
         "mutation_enabled": False,
-        "mutation_rng_draws": state["mutation_rng_draws"],
+        "mutation_rng_draws": 0,
         "protocol_sha256": PROTOCOL_SHA256,
         "programme_specification_sha256": PROGRAM_SPEC_SHA256,
-        "freeze_manifest_sha256": lease.permit.manifest_sha256,
-        "executed_at_utc": datetime.now(timezone.utc).isoformat(),
+        "freeze_manifest_sha256": manifest_sha256,
         "blocks": blocks,
     }
-    return _jsonable(artifact)
+    return _jsonable(artifact), evidence

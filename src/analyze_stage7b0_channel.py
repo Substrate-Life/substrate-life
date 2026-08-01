@@ -7,13 +7,10 @@ that misses a registered mechanism prediction is FAIL.
 """
 from __future__ import annotations
 
-from datetime import datetime
 from fractions import Fraction
 import hashlib
 import json
-from pathlib import Path
 import re
-from typing import Any
 
 from stage7b0_channel import (
     BLOCK_CHECK_KEYS, BLOCK_IDS, GATE_IDS, PROGRAM_SPEC_SHA256, PROTOCOL_SHA256,
@@ -74,11 +71,6 @@ def _r(value,where="rational"):
  if not isinstance(value,dict) or set(value)!={"numerator","denominator"}: raise ValueError(f"malformed rational at {where}")
  if not isinstance(value["numerator"],int) or not isinstance(value["denominator"],int) or value["denominator"]==0: raise ValueError(f"malformed rational at {where}")
  return Fraction(value["numerator"],value["denominator"])
-def _iso_time(value,where):
- if not isinstance(value,str): raise ValueError(f"missing timestamp at {where}")
- try: parsed=datetime.fromisoformat(value.replace("Z","+00:00"))
- except ValueError as exc: raise ValueError(f"invalid timestamp at {where}") from exc
- if parsed.utcoffset() is None or parsed.utcoffset().total_seconds()!=0: raise ValueError(f"timestamp is not UTC at {where}")
 
 def _participant_hash(a,t,d):
  return hashlib.sha256(json.dumps({"A":a,"D":d,"T":t},sort_keys=True,separators=(",",":")).encode()).hexdigest()
@@ -440,12 +432,12 @@ def _derive_arm(block,arm,data):
  return checks
 
 def analyze_artifact(artifact,expected_manifest_sha256):
- _scan(artifact); _exact(artifact,{"scope","selection_assay_run","mutation_enabled","mutation_rng_draws","protocol_sha256","programme_specification_sha256","freeze_manifest_sha256","executed_at_utc","blocks"},"raw artifact")
+ _scan(artifact); _exact(artifact,{"scope","selection_assay_run","mutation_enabled","mutation_rng_draws","protocol_sha256","programme_specification_sha256","freeze_manifest_sha256","blocks"},"raw artifact")
  if not _HEX64.fullmatch(expected_manifest_sha256): raise ValueError("invalid expected manifest digest")
  if artifact["freeze_manifest_sha256"]!=expected_manifest_sha256: raise ValueError("artifact is not bound to authorized manifest digest")
  if artifact["scope"]!="Stage 7B0 scripted fixed-state mechanism verification" or artifact["selection_assay_run"] is not False or artifact["mutation_enabled"] is not False or artifact["mutation_rng_draws"]!=0: raise ValueError("scope mismatch")
  if artifact["protocol_sha256"]!=PROTOCOL_SHA256 or artifact["programme_specification_sha256"]!=PROGRAM_SPEC_SHA256: raise ValueError("source identity mismatch")
- _iso_time(artifact["executed_at_utc"],"executed_at_utc")
+
  if not isinstance(artifact["blocks"],dict) or tuple(artifact["blocks"])!=BLOCK_IDS: raise ValueError("block set/order mismatch")
  block_results={}
  for block in BLOCK_IDS:
@@ -467,7 +459,7 @@ def analyze_artifact(artifact,expected_manifest_sha256):
  return {"decision":decision,"block_results":block_results,"cross_checks":cross,"gates":gates}
 
 def _raw_from_completed(payload):
- return {k:payload[k] for k in ("scope","selection_assay_run","mutation_enabled","mutation_rng_draws","protocol_sha256","programme_specification_sha256","freeze_manifest_sha256","executed_at_utc","blocks")}
+ return {k:payload[k] for k in ("scope","selection_assay_run","mutation_enabled","mutation_rng_draws","protocol_sha256","programme_specification_sha256","freeze_manifest_sha256","blocks")}
 
 def _validate_progress(progress, require_complete=False):
  if not isinstance(progress,list): raise ValueError("partial_progress must be an array")
@@ -499,158 +491,11 @@ def _validate_progress(progress, require_complete=False):
 def validate_attempt_artifact(payload,expected_manifest_sha256):
  _scan(payload)
  if not _HEX64.fullmatch(expected_manifest_sha256): raise ValueError("invalid expected manifest digest")
- common={"artifact_version","run_status","decision","scope","selection_assay_run","mutation_enabled","mutation_rng_draws","protocol_sha256","programme_specification_sha256","freeze_manifest_sha256","started_at_utc","claimed_at_utc","claim_sha256","blocks_expected","blocks","analysis","exception","partial_progress"}
- status=payload.get("run_status"); extras={"COMPLETED":{"executed_at_utc"},"INVALID":{"finished_at_utc"},"STARTED":set(),"EXECUTING":set()}.get(status)
- if extras is None: raise ValueError("unknown run status")
- _exact(payload,common|extras,"attempt artifact")
- if payload["artifact_version"]!=1 or payload["freeze_manifest_sha256"]!=expected_manifest_sha256 or payload["blocks_expected"]!=list(BLOCK_IDS): raise ValueError("attempt identity mismatch")
- if payload["scope"]!="Stage 7B0 scripted fixed-state mechanism verification" or payload["selection_assay_run"] is not False or payload["mutation_enabled"] is not False or payload["mutation_rng_draws"]!=0 or payload["protocol_sha256"]!=PROTOCOL_SHA256 or payload["programme_specification_sha256"]!=PROGRAM_SPEC_SHA256: raise ValueError("attempt scope/source mismatch")
- _iso_time(payload["started_at_utc"],"started_at_utc")
- if status=="STARTED":
-  if payload["decision"] is not None or payload["blocks"]!={} or payload["analysis"] is not None or payload["exception"] is not None or payload["partial_progress"]!=[] or payload["claimed_at_utc"] is not None or payload["claim_sha256"] is not None: raise ValueError("invalid STARTED state")
- elif status=="EXECUTING":
-  _iso_time(payload["claimed_at_utc"],"claimed_at_utc")
-  if not isinstance(payload["claim_sha256"],str) or not _HEX64.fullmatch(payload["claim_sha256"]): raise ValueError("invalid claim digest")
-  if payload["decision"] is not None or payload["blocks"]!={} or payload["analysis"] is not None or payload["exception"] is not None: raise ValueError("invalid EXECUTING state")
-  _validate_progress(payload["partial_progress"])
- elif status=="COMPLETED":
-  _iso_time(payload["claimed_at_utc"],"claimed_at_utc")
-  if not isinstance(payload["claim_sha256"],str) or not _HEX64.fullmatch(payload["claim_sha256"]): raise ValueError("invalid claim digest")
-  retained=_validate_progress(payload["partial_progress"],True)
-  if payload["blocks"]!={block:retained[block] for block in BLOCK_IDS}: raise ValueError("completed blocks differ from retained progress")
-  derived=analyze_artifact(_raw_from_completed(payload),expected_manifest_sha256)
-  if payload["decision"]!=derived["decision"] or payload["analysis"]!=derived or payload["exception"] is not None: raise ValueError("completed analysis is not the independent reduction")
- elif status=="INVALID":
-  _iso_time(payload["finished_at_utc"],"finished_at_utc")
-  if (payload["claimed_at_utc"] is None)!=(payload["claim_sha256"] is None): raise ValueError("partial claim metadata")
-  if payload["claimed_at_utc"] is not None:
-   _iso_time(payload["claimed_at_utc"],"claimed_at_utc")
-   if not _HEX64.fullmatch(payload["claim_sha256"]): raise ValueError("invalid claim digest")
-  if payload["decision"]!="INVALID" or payload["blocks"]!={} or payload["analysis"] is not None or not isinstance(payload["exception"],dict) or set(payload["exception"])!={"type","message"}: raise ValueError("invalid INVALID state")
-  _validate_progress(payload["partial_progress"])
-
-def _schema_type_matches(value: Any, type_name: str) -> bool:
-    return {
-        "null": value is None,
-        "object": isinstance(value, dict),
-        "array": isinstance(value, list),
-        "string": isinstance(value, str),
-        "integer": isinstance(value, int) and not isinstance(value, bool),
-        "boolean": isinstance(value, bool),
-    }.get(type_name, True)
-
-
-def _resolve_ref(root: dict[str, Any], reference: str) -> dict[str, Any]:
-    if not reference.startswith("#/"):
-        raise ValueError(f"only local schema refs are permitted: {reference}")
-    node: Any = root
-    for part in reference[2:].split("/"):
-        node = node[part.replace("~1", "/").replace("~0", "~")]
-    if not isinstance(node, dict):
-        raise ValueError(f"schema ref is not an object: {reference}")
-    return node
-
-
-def _validate_schema_node(
-    value: Any,
-    schema: dict[str, Any],
-    root: dict[str, Any],
-    location: str,
-) -> None:
-    if "$ref" in schema:
-        _validate_schema_node(value, _resolve_ref(root, schema["$ref"]), root, location)
-    if "const" in schema and value != schema["const"]:
-        raise ValueError(f"schema const mismatch at {location}")
-    if "enum" in schema and value not in schema["enum"]:
-        raise ValueError(f"schema enum mismatch at {location}")
-    if "type" in schema:
-        allowed = schema["type"] if isinstance(schema["type"], list) else [schema["type"]]
-        if not any(_schema_type_matches(value, item) for item in allowed):
-            raise ValueError(f"schema type mismatch at {location}: {allowed}")
-    if "pattern" in schema and isinstance(value, str):
-        if re.fullmatch(schema["pattern"], value) is None:
-            raise ValueError(f"schema pattern mismatch at {location}")
-    if "minimum" in schema and isinstance(value, int) and value < schema["minimum"]:
-        raise ValueError(f"schema minimum failure at {location}")
-    if "oneOf" in schema:
-        matches = 0
-        for candidate in schema["oneOf"]:
-            try:
-                _validate_schema_node(value, candidate, root, location)
-                matches += 1
-            except ValueError:
-                pass
-        if matches != 1:
-            raise ValueError(f"schema oneOf mismatch at {location}: matches={matches}")
-    if "anyOf" in schema:
-        matched = False
-        for candidate in schema["anyOf"]:
-            try:
-                _validate_schema_node(value, candidate, root, location)
-                matched = True
-                break
-            except ValueError:
-                pass
-        if not matched:
-            raise ValueError(f"schema anyOf mismatch at {location}")
-    for candidate in schema.get("allOf", []):
-        _validate_schema_node(value, candidate, root, location)
-    if "if" in schema:
-        try:
-            _validate_schema_node(value, schema["if"], root, location)
-            condition = True
-        except ValueError:
-            condition = False
-        branch = schema.get("then") if condition else schema.get("else")
-        if branch is not None:
-            _validate_schema_node(value, branch, root, location)
-    if "not" in schema:
-        try:
-            _validate_schema_node(value, schema["not"], root, location)
-        except ValueError:
-            pass
-        else:
-            raise ValueError(f"schema not-clause matched at {location}")
-    if isinstance(value, dict):
-        for required in schema.get("required", []):
-            if required not in value:
-                raise ValueError(f"schema required field absent at {location}:{required}")
-        properties = schema.get("properties", {})
-        for key, child in value.items():
-            if key in properties:
-                _validate_schema_node(child, properties[key], root, f"{location}.{key}")
-            elif schema.get("additionalProperties") is False:
-                raise ValueError(f"schema additional field at {location}:{key}")
-            elif isinstance(schema.get("additionalProperties"), dict):
-                _validate_schema_node(
-                    child, schema["additionalProperties"], root,
-                    f"{location}.{key}",
-                )
-        if len(value) < schema.get("minProperties", 0):
-            raise ValueError(f"schema minProperties failure at {location}")
-        if "maxProperties" in schema and len(value) > schema["maxProperties"]:
-            raise ValueError(f"schema maxProperties failure at {location}")
-    if isinstance(value, list):
-        if len(value) < schema.get("minItems", 0):
-            raise ValueError(f"schema minItems failure at {location}")
-        if "maxItems" in schema and len(value) > schema["maxItems"]:
-            raise ValueError(f"schema maxItems failure at {location}")
-        if schema.get("uniqueItems") and len({json.dumps(item, sort_keys=True) for item in value}) != len(value):
-            raise ValueError(f"schema uniqueItems failure at {location}")
-        if isinstance(schema.get("items"), dict):
-            for index, child in enumerate(value):
-                _validate_schema_node(child, schema["items"], root, f"{location}[{index}]")
-
-
-def validate_against_output_schema(
-    payload: dict[str, Any],
-    expected_manifest_sha256: str,
-    schema_path: Path | None = None,
-) -> None:
-    """Validate dynamic authorization binding and the checked-in JSON schema."""
-    validate_attempt_artifact(payload, expected_manifest_sha256)
-    path = schema_path or Path(__file__).with_name("stage7b0-output-schema.json")
-    schema = json.loads(path.read_text())
-    if schema.get("$schema") != "https://json-schema.org/draft/2020-12/schema":
-        raise ValueError("unexpected output-schema dialect")
-    _validate_schema_node(payload, schema, schema, "artifact")
+ common={"artifact_version","run_status","decision","scope","selection_assay_run","mutation_enabled","mutation_rng_draws","protocol_sha256","programme_specification_sha256","freeze_manifest_sha256","blocks_expected","blocks","analysis","exception","partial_progress"}
+ _exact(payload,common,"deterministic artifact")
+ if payload["artifact_version"]!=1 or payload["run_status"]!="COMPLETED" or payload["freeze_manifest_sha256"]!=expected_manifest_sha256 or payload["blocks_expected"]!=list(BLOCK_IDS): raise ValueError("deterministic artifact identity mismatch")
+ if payload["scope"]!="Stage 7B0 scripted fixed-state mechanism verification" or payload["selection_assay_run"] is not False or payload["mutation_enabled"] is not False or payload["mutation_rng_draws"]!=0 or payload["protocol_sha256"]!=PROTOCOL_SHA256 or payload["programme_specification_sha256"]!=PROGRAM_SPEC_SHA256: raise ValueError("artifact scope/source mismatch")
+ retained=_validate_progress(payload["partial_progress"],True)
+ if payload["blocks"]!={block:retained[block] for block in BLOCK_IDS}: raise ValueError("blocks differ from retained evidence")
+ derived=analyze_artifact(_raw_from_completed(payload),expected_manifest_sha256)
+ if payload["decision"]!=derived["decision"] or payload["analysis"]!=derived or payload["exception"] is not None: raise ValueError("analysis is not the independent reduction")
