@@ -18,6 +18,8 @@ The safeguards retained here are:
 - preservation of failed/invalid runs;
 - direct byte-for-byte reproduction.
 
+**Legacy Slice 1/2A provenance boundary:** the retained Slice 1 and Slice 2A artifacts predate this timestamp-free format. Slice 2A embeds `mtime_ns`, which Git does not preserve, so a clean checkout is not expected to regenerate the same whole-artifact hash; verify commit `23aa663` and the recorded per-file content hashes instead. Its five-file embedded manifest also omits transitive runtime dependencies including `datastream.py`, `consts.py`, and `transforms.py`, so the full commit—not that manifest alone—is the provenance boundary. Both historical artifacts remain unchanged.
+
 ## Retained execution history
 
 No Stage 7B0 block had run before the execution path was simplified.

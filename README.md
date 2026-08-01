@@ -55,7 +55,7 @@ cd src
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -v
 ```
 
-The current suite contains 47 tests. Stage 7 traces additionally embed source manifests and close reserve, packet-provenance, and shared-memory ledgers exactly.
+Stage 7 traces close reserve, packet-provenance, and shared-memory ledgers exactly. For the legacy Slice 1/2A artifacts, verify commit `23aa663` and recorded content hashes—not regenerated whole-artifact byte identity—because the Slice 2A manifest embeds Git-unstable `mtime_ns` and does not cover all transitive dependencies; see the [Stage 7B0 execution note](docs/stage-7b0-deterministic-execution-note.md).
 
 ## Archive policy
 
