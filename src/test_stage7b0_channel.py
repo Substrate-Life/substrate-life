@@ -9,6 +9,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import subprocess
 import unittest
 
 import stage7b0_channel as channel
@@ -19,7 +20,6 @@ from analyze_stage7b0_channel import (
     analyze_artifact,
     validate_attempt_artifact,
 )
-from run_stage7b0_channel import load_source_manifest
 from stage7b0_channel import (
     BLOCK_IDS, BLOCK_CHECK_KEYS, CHECKPOINT_REQUIREMENTS, GATE_IDS,
     PROGRAM_SPEC_CANONICAL, PROGRAM_SPEC_SHA256, PROTOCOL_RELATIVE_PATH,
@@ -81,9 +81,24 @@ class Stage7B0StaticContractTests(unittest.TestCase):
     def test_source_manifest_is_plain_and_self_checked(self):
         manifest = ROOT / "results" / "stage7b0-pre-execution-manifest.json"
         if manifest.exists():
-            loaded, digest = load_source_manifest(manifest)
+            manifest_bytes = manifest.read_bytes()
+            loaded = json.loads(manifest_bytes)
+            digest = hashlib.sha256(manifest_bytes).hexdigest()
             self.assertEqual(len(digest), 64)
             self.assertEqual(tuple(loaded["files"]), REQUIRED_FREEZE_FILES)
+            source_commit = loaded["source_commit"]
+            for relative_path, expected in loaded["files"].items():
+                result = subprocess.run(
+                    ["git", "show", f"{source_commit}:{relative_path}"],
+                    cwd=ROOT,
+                    capture_output=True,
+                    check=True,
+                )
+                self.assertEqual(len(result.stdout), expected["bytes"])
+                self.assertEqual(
+                    hashlib.sha256(result.stdout).hexdigest(),
+                    expected["sha256"],
+                )
 
     def test_forged_closed_boolean_cannot_override_reserve_equation(self):
         forged = {

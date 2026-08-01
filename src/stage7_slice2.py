@@ -69,6 +69,7 @@ class Stage7Population:
         self.opening_energy = Fraction(founder_s) * founder_count
         self.next_id = founder_count
         self.event_log: list[dict[str, Any]] = []
+        self.packet_retirements: list[dict[str, Any]] = []
         self.closure_history: list[dict[str, Any]] = []
         self.packet_buffer = PacketBuffer(
             seed=42,
@@ -128,6 +129,25 @@ class Stage7Population:
                 "organism_id": organism_id,
             })
             self.assert_all_ledgers(f"corpse_expiry:{organism_id}")
+
+    def _retire_unread_packet(self, packet: Any) -> None:
+        initial = Fraction(packet.e_initial)
+        residual = Fraction(packet.e_budget)
+        event = {
+            "tick": self.tick,
+            "phase": "packet_arrival",
+            "event": "packet_retired",
+            "packet_id": packet.packet_id,
+            "reason": "unread_buffer_eviction",
+            "initial_budget": initial,
+            "residual_destroyed": residual,
+            "retired_drawn_s": Fraction(0),
+            "retired_drawn_r": Fraction(0),
+            "closed": residual == initial,
+        }
+        self.packet_retirements.append(dict(event))
+        self.event_log.append(dict(event))
+        self.assert_all_ledgers(f"packet_retired:{packet.packet_id}")
 
     def _release_failed_cycle_gestation(self, organism: SliceOrganism,
                                          reason: str) -> None:
@@ -267,6 +287,17 @@ class Stage7Population:
                     f"unread packet budget failed after {operation}: "
                     f"packet={packet.packet_id} remaining={packet.e_budget} "
                     f"initial={packet.e_initial}")
+        for retirement in self.packet_retirements:
+            retirement_closed = (
+                retirement["residual_destroyed"]
+                + retirement["retired_drawn_s"]
+                + retirement["retired_drawn_r"]
+                == retirement["initial_budget"]
+            )
+            if not retirement_closed or not retirement["closed"]:
+                raise AssertionError(
+                    f"retired packet ledger failed after {operation}: "
+                    f"{retirement}")
         memory_closed = sum(self.memory.totals().values()) == self.memory.initial_pool
         if not memory_closed:
             raise AssertionError(f"memory ledger failed after {operation}")
@@ -282,7 +313,9 @@ class Stage7Population:
         return snapshot
 
     def step(self) -> dict[str, Any]:
-        self.packet_buffer.advance_tick()
+        evicted_packets = self.packet_buffer.advance_tick()
+        for packet in evicted_packets:
+            self._retire_unread_packet(packet)
         hazard_deaths: list[str] = []
         if self.tick in self.hazard_schedule:
             selected_hazards = set(self.hazard_schedule[self.tick])

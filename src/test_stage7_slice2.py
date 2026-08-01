@@ -66,6 +66,32 @@ class Stage7Slice2PopulationTests(unittest.TestCase):
         with self.assertRaises(AssertionError):
             population.assert_all_ledgers("injected_buffer_corruption")
 
+    def test_unread_buffer_eviction_is_logged_and_closes(self):
+        population = Stage7Population(
+            capacity=1,
+            founder_count=1,
+            founder_s=Fraction(100),
+            memory_pool=2048,
+            packet_rate=3,
+            buffer_depth=1,
+            hazard_rate=Fraction(0),
+        )
+
+        snapshot = population.step()
+
+        self.assertEqual(
+            [event["packet_id"] for event in population.packet_retirements],
+            [1, 2],
+        )
+        for event in population.packet_retirements:
+            self.assertEqual(event["reason"], "unread_buffer_eviction")
+            self.assertEqual(event["initial_budget"], Fraction(300))
+            self.assertEqual(event["residual_destroyed"], Fraction(300))
+            self.assertEqual(event["retired_drawn_s"], Fraction(0))
+            self.assertEqual(event["retired_drawn_r"], Fraction(0))
+            self.assertTrue(event["closed"])
+        self.assertTrue(snapshot["packets_closed"])
+
     def test_failed_reproductive_work_releases_cycle_gestation(self):
         population = Stage7Population(
             capacity=1,

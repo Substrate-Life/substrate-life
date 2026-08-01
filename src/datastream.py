@@ -135,16 +135,18 @@ class PacketBuffer:
         for _ in range(self.initial_buffer_packets):
             self.buffer.append(self.stream.generate_packet(self.current_tick))
 
-    def advance_tick(self):
+    def advance_tick(self) -> list[Packet]:
         """Advance one tick. May enqueue packets at PACKET_RATE per tick."""
+        evicted: list[Packet] = []
         self.current_tick += 1
         for _ in range(self.packet_rate):
             if len(self.buffer) < self.max_depth:
                 self.buffer.append(self.stream.generate_packet(self.current_tick))
             else:
                 # Buffer full: discard oldest
-                self.buffer.pop(0)
+                evicted.append(self.buffer.pop(0))
                 self.buffer.append(self.stream.generate_packet(self.current_tick))
+        return evicted
 
     def read(self) -> Packet | None:
         """Read and consume the oldest packet. Returns None if buffer empty."""
