@@ -1,0 +1,23 @@
+{
+  "cadence_ns": 10000000,
+  "diagnostic_version": 1,
+  "input_sha256": "623f59af1b6dd76a0f050337345881b93059981547ffe96a89eaa8b9a3a57c5f",
+  "interpretation": "Absolute deadlines resumed after delays, creating short catch-up intervals. The registered protocol did not make missed deadlines an INVALID criterion. Report as a limitation; classification remains mechanical.",
+  "intervals_above_20ms": 7,
+  "intervals_below_1ms": 193,
+  "longest_consecutive_late_samples": 59,
+  "read_end_interval_ns": {
+    "max": 606801359,
+    "median": 9999151,
+    "min": 103741,
+    "p90": 10107039
+  },
+  "samples_waking_at_least_one_cadence_late": 187,
+  "scope": "post-reduction timing integrity; does not alter registered classification",
+  "wake_lateness_ns": {
+    "max": 587245508,
+    "median": 108654,
+    "min": 1800,
+    "p90": 147408
+  }
+}

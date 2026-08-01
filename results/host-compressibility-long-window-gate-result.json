@@ -1,0 +1,5006 @@
+{
+  "claim_boundary": {
+    "measured": "one retained one-hour host channel under the frozen mapping",
+    "not_established": [
+      "controlled workload dependence",
+      "organismal sensing",
+      "wall-clock to logical-tick exposure",
+      "fitness",
+      "generality"
+    ]
+  },
+  "counter_deltas": {
+    "context_switches": {
+      "max": 396,
+      "median": 6,
+      "min": 0,
+      "nonzero_intervals": 359814,
+      "unique_values": 157,
+      "zero_intervals": 186
+    },
+    "cpu_idle": {
+      "max": 61,
+      "median": 2,
+      "min": 0,
+      "nonzero_intervals": 359561,
+      "unique_values": 11,
+      "zero_intervals": 439
+    },
+    "cpu_total": {
+      "max": 121,
+      "median": 2,
+      "min": 0,
+      "nonzero_intervals": 359803,
+      "unique_values": 13,
+      "zero_intervals": 197
+    },
+    "pages_in": {
+      "max": 128,
+      "median": 0,
+      "min": 0,
+      "nonzero_intervals": 116,
+      "unique_values": 18,
+      "zero_intervals": 359884
+    },
+    "pages_out": {
+      "max": 1680,
+      "median": 0,
+      "min": 0,
+      "nonzero_intervals": 512,
+      "unique_values": 83,
+      "zero_intervals": 359488
+    },
+    "processes_started": {
+      "max": 7,
+      "median": 0,
+      "min": 0,
+      "nonzero_intervals": 78,
+      "unique_values": 5,
+      "zero_intervals": 359922
+    }
+  },
+  "input": {
+    "manifest_path": "results/host-compressibility-long-window-360001x10ms.pre-execution.json",
+    "manifest_sha256": "e9dea1b823ad5d17ce3537f7f14ad3b96460a84ed02edcaf8a5f5da89c96dd6f",
+    "packet_count": 36000,
+    "path": "results/host-compressibility-long-window-360001x10ms.json",
+    "sample_count": 360001,
+    "sha256": "623f59af1b6dd76a0f050337345881b93059981547ffe96a89eaa8b9a3a57c5f"
+  },
+  "primary_payload": {
+    "five_minute_blocks": [
+      {
+        "block_index": 0,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "packet_start": 0,
+        "packet_stop_exclusive": 3000,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 3000,
+          "TIE": 0
+        }
+      },
+      {
+        "block_index": 1,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "packet_start": 3000,
+        "packet_stop_exclusive": 6000,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 3000,
+          "TIE": 0
+        }
+      },
+      {
+        "block_index": 2,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "packet_start": 6000,
+        "packet_stop_exclusive": 9000,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 3000,
+          "TIE": 0
+        }
+      },
+      {
+        "block_index": 3,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "packet_start": 9000,
+        "packet_stop_exclusive": 12000,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 3000,
+          "TIE": 0
+        }
+      },
+      {
+        "block_index": 4,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "packet_start": 12000,
+        "packet_stop_exclusive": 15000,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 3000,
+          "TIE": 0
+        }
+      },
+      {
+        "block_index": 5,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "packet_start": 15000,
+        "packet_stop_exclusive": 18000,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 3000,
+          "TIE": 0
+        }
+      },
+      {
+        "block_index": 6,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "packet_start": 18000,
+        "packet_stop_exclusive": 21000,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 3000,
+          "TIE": 0
+        }
+      },
+      {
+        "block_index": 7,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "packet_start": 21000,
+        "packet_stop_exclusive": 24000,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 3000,
+          "TIE": 0
+        }
+      },
+      {
+        "block_index": 8,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "packet_start": 24000,
+        "packet_stop_exclusive": 27000,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 3000,
+          "TIE": 0
+        }
+      },
+      {
+        "block_index": 9,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "packet_start": 27000,
+        "packet_stop_exclusive": 30000,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 3000,
+          "TIE": 0
+        }
+      },
+      {
+        "block_index": 10,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "packet_start": 30000,
+        "packet_stop_exclusive": 33000,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 3000,
+          "TIE": 0
+        }
+      },
+      {
+        "block_index": 11,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "packet_start": 33000,
+        "packet_stop_exclusive": 36000,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 3000,
+          "TIE": 0
+        }
+      }
+    ],
+    "five_minute_median_ranges": {
+      "DIFF": 0,
+      "RLE": 0
+    },
+    "thirty_second_slices": [
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 0,
+        "packet_stop_exclusive": 300,
+        "slice_index": 0,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 300,
+        "packet_stop_exclusive": 600,
+        "slice_index": 1,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 600,
+        "packet_stop_exclusive": 900,
+        "slice_index": 2,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 900,
+        "packet_stop_exclusive": 1200,
+        "slice_index": 3,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 1200,
+        "packet_stop_exclusive": 1500,
+        "slice_index": 4,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 1500,
+        "packet_stop_exclusive": 1800,
+        "slice_index": 5,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 1800,
+        "packet_stop_exclusive": 2100,
+        "slice_index": 6,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 2100,
+        "packet_stop_exclusive": 2400,
+        "slice_index": 7,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 2400,
+        "packet_stop_exclusive": 2700,
+        "slice_index": 8,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 2700,
+        "packet_stop_exclusive": 3000,
+        "slice_index": 9,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 3000,
+        "packet_stop_exclusive": 3300,
+        "slice_index": 10,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 3300,
+        "packet_stop_exclusive": 3600,
+        "slice_index": 11,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 3600,
+        "packet_stop_exclusive": 3900,
+        "slice_index": 12,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 3900,
+        "packet_stop_exclusive": 4200,
+        "slice_index": 13,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 4200,
+        "packet_stop_exclusive": 4500,
+        "slice_index": 14,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 4500,
+        "packet_stop_exclusive": 4800,
+        "slice_index": 15,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 4800,
+        "packet_stop_exclusive": 5100,
+        "slice_index": 16,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 5100,
+        "packet_stop_exclusive": 5400,
+        "slice_index": 17,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 5400,
+        "packet_stop_exclusive": 5700,
+        "slice_index": 18,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 5700,
+        "packet_stop_exclusive": 6000,
+        "slice_index": 19,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 6000,
+        "packet_stop_exclusive": 6300,
+        "slice_index": 20,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 6300,
+        "packet_stop_exclusive": 6600,
+        "slice_index": 21,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 6600,
+        "packet_stop_exclusive": 6900,
+        "slice_index": 22,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 6900,
+        "packet_stop_exclusive": 7200,
+        "slice_index": 23,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 7200,
+        "packet_stop_exclusive": 7500,
+        "slice_index": 24,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 7500,
+        "packet_stop_exclusive": 7800,
+        "slice_index": 25,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 7800,
+        "packet_stop_exclusive": 8100,
+        "slice_index": 26,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 8100,
+        "packet_stop_exclusive": 8400,
+        "slice_index": 27,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 8400,
+        "packet_stop_exclusive": 8700,
+        "slice_index": 28,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 8700,
+        "packet_stop_exclusive": 9000,
+        "slice_index": 29,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 9000,
+        "packet_stop_exclusive": 9300,
+        "slice_index": 30,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 9300,
+        "packet_stop_exclusive": 9600,
+        "slice_index": 31,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 9600,
+        "packet_stop_exclusive": 9900,
+        "slice_index": 32,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 9900,
+        "packet_stop_exclusive": 10200,
+        "slice_index": 33,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 10200,
+        "packet_stop_exclusive": 10500,
+        "slice_index": 34,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 10500,
+        "packet_stop_exclusive": 10800,
+        "slice_index": 35,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 10800,
+        "packet_stop_exclusive": 11100,
+        "slice_index": 36,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 11100,
+        "packet_stop_exclusive": 11400,
+        "slice_index": 37,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 11400,
+        "packet_stop_exclusive": 11700,
+        "slice_index": 38,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 11700,
+        "packet_stop_exclusive": 12000,
+        "slice_index": 39,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 12000,
+        "packet_stop_exclusive": 12300,
+        "slice_index": 40,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 12300,
+        "packet_stop_exclusive": 12600,
+        "slice_index": 41,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 12600,
+        "packet_stop_exclusive": 12900,
+        "slice_index": 42,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 12900,
+        "packet_stop_exclusive": 13200,
+        "slice_index": 43,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 13200,
+        "packet_stop_exclusive": 13500,
+        "slice_index": 44,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 13500,
+        "packet_stop_exclusive": 13800,
+        "slice_index": 45,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 13800,
+        "packet_stop_exclusive": 14100,
+        "slice_index": 46,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 14100,
+        "packet_stop_exclusive": 14400,
+        "slice_index": 47,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 14400,
+        "packet_stop_exclusive": 14700,
+        "slice_index": 48,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 14700,
+        "packet_stop_exclusive": 15000,
+        "slice_index": 49,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 15000,
+        "packet_stop_exclusive": 15300,
+        "slice_index": 50,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 15300,
+        "packet_stop_exclusive": 15600,
+        "slice_index": 51,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 15600,
+        "packet_stop_exclusive": 15900,
+        "slice_index": 52,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 15900,
+        "packet_stop_exclusive": 16200,
+        "slice_index": 53,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 16200,
+        "packet_stop_exclusive": 16500,
+        "slice_index": 54,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 16500,
+        "packet_stop_exclusive": 16800,
+        "slice_index": 55,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 16800,
+        "packet_stop_exclusive": 17100,
+        "slice_index": 56,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 17100,
+        "packet_stop_exclusive": 17400,
+        "slice_index": 57,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 17400,
+        "packet_stop_exclusive": 17700,
+        "slice_index": 58,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 17700,
+        "packet_stop_exclusive": 18000,
+        "slice_index": 59,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 18000,
+        "packet_stop_exclusive": 18300,
+        "slice_index": 60,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 18300,
+        "packet_stop_exclusive": 18600,
+        "slice_index": 61,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 18600,
+        "packet_stop_exclusive": 18900,
+        "slice_index": 62,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 18900,
+        "packet_stop_exclusive": 19200,
+        "slice_index": 63,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 19200,
+        "packet_stop_exclusive": 19500,
+        "slice_index": 64,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 19500,
+        "packet_stop_exclusive": 19800,
+        "slice_index": 65,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 19800,
+        "packet_stop_exclusive": 20100,
+        "slice_index": 66,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 20100,
+        "packet_stop_exclusive": 20400,
+        "slice_index": 67,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 20400,
+        "packet_stop_exclusive": 20700,
+        "slice_index": 68,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 20700,
+        "packet_stop_exclusive": 21000,
+        "slice_index": 69,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 21000,
+        "packet_stop_exclusive": 21300,
+        "slice_index": 70,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 21300,
+        "packet_stop_exclusive": 21600,
+        "slice_index": 71,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 21600,
+        "packet_stop_exclusive": 21900,
+        "slice_index": 72,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 21900,
+        "packet_stop_exclusive": 22200,
+        "slice_index": 73,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 22200,
+        "packet_stop_exclusive": 22500,
+        "slice_index": 74,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 22500,
+        "packet_stop_exclusive": 22800,
+        "slice_index": 75,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 22800,
+        "packet_stop_exclusive": 23100,
+        "slice_index": 76,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 23100,
+        "packet_stop_exclusive": 23400,
+        "slice_index": 77,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 23400,
+        "packet_stop_exclusive": 23700,
+        "slice_index": 78,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 23700,
+        "packet_stop_exclusive": 24000,
+        "slice_index": 79,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 24000,
+        "packet_stop_exclusive": 24300,
+        "slice_index": 80,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 24300,
+        "packet_stop_exclusive": 24600,
+        "slice_index": 81,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 24600,
+        "packet_stop_exclusive": 24900,
+        "slice_index": 82,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 24900,
+        "packet_stop_exclusive": 25200,
+        "slice_index": 83,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 25200,
+        "packet_stop_exclusive": 25500,
+        "slice_index": 84,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 25500,
+        "packet_stop_exclusive": 25800,
+        "slice_index": 85,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 25800,
+        "packet_stop_exclusive": 26100,
+        "slice_index": 86,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 26100,
+        "packet_stop_exclusive": 26400,
+        "slice_index": 87,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 26400,
+        "packet_stop_exclusive": 26700,
+        "slice_index": 88,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 26700,
+        "packet_stop_exclusive": 27000,
+        "slice_index": 89,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 27000,
+        "packet_stop_exclusive": 27300,
+        "slice_index": 90,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 27300,
+        "packet_stop_exclusive": 27600,
+        "slice_index": 91,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 27600,
+        "packet_stop_exclusive": 27900,
+        "slice_index": 92,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 27900,
+        "packet_stop_exclusive": 28200,
+        "slice_index": 93,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 28200,
+        "packet_stop_exclusive": 28500,
+        "slice_index": 94,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 28500,
+        "packet_stop_exclusive": 28800,
+        "slice_index": 95,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 28800,
+        "packet_stop_exclusive": 29100,
+        "slice_index": 96,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 29100,
+        "packet_stop_exclusive": 29400,
+        "slice_index": 97,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 29400,
+        "packet_stop_exclusive": 29700,
+        "slice_index": 98,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 29700,
+        "packet_stop_exclusive": 30000,
+        "slice_index": 99,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 30000,
+        "packet_stop_exclusive": 30300,
+        "slice_index": 100,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 30300,
+        "packet_stop_exclusive": 30600,
+        "slice_index": 101,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 30600,
+        "packet_stop_exclusive": 30900,
+        "slice_index": 102,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 30900,
+        "packet_stop_exclusive": 31200,
+        "slice_index": 103,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 31200,
+        "packet_stop_exclusive": 31500,
+        "slice_index": 104,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 31500,
+        "packet_stop_exclusive": 31800,
+        "slice_index": 105,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 31800,
+        "packet_stop_exclusive": 32100,
+        "slice_index": 106,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 32100,
+        "packet_stop_exclusive": 32400,
+        "slice_index": 107,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 32400,
+        "packet_stop_exclusive": 32700,
+        "slice_index": 108,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 32700,
+        "packet_stop_exclusive": 33000,
+        "slice_index": 109,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 33000,
+        "packet_stop_exclusive": 33300,
+        "slice_index": 110,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 33300,
+        "packet_stop_exclusive": 33600,
+        "slice_index": 111,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 33600,
+        "packet_stop_exclusive": 33900,
+        "slice_index": 112,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 33900,
+        "packet_stop_exclusive": 34200,
+        "slice_index": 113,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 34200,
+        "packet_stop_exclusive": 34500,
+        "slice_index": 114,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 34500,
+        "packet_stop_exclusive": 34800,
+        "slice_index": 115,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 34800,
+        "packet_stop_exclusive": 35100,
+        "slice_index": 116,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 35100,
+        "packet_stop_exclusive": 35400,
+        "slice_index": 117,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 35400,
+        "packet_stop_exclusive": 35700,
+        "slice_index": 118,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 61,
+          "RLE": 120
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 35700,
+        "packet_stop_exclusive": 36000,
+        "slice_index": 119,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      }
+    ],
+    "winner_counts": {
+      "DIFF": 0,
+      "RLE": 36000,
+      "TIE": 0
+    }
+  },
+  "registered_classification": "LONG_WINDOW_NARROW_STABLE",
+  "result_version": 1,
+  "secondary_whole_packet": {
+    "five_minute_blocks": [
+      {
+        "block_index": 0,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "packet_start": 0,
+        "packet_stop_exclusive": 3000,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 3000,
+          "TIE": 0
+        }
+      },
+      {
+        "block_index": 1,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "packet_start": 3000,
+        "packet_stop_exclusive": 6000,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 3000,
+          "TIE": 0
+        }
+      },
+      {
+        "block_index": 2,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "packet_start": 6000,
+        "packet_stop_exclusive": 9000,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 3000,
+          "TIE": 0
+        }
+      },
+      {
+        "block_index": 3,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "packet_start": 9000,
+        "packet_stop_exclusive": 12000,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 3000,
+          "TIE": 0
+        }
+      },
+      {
+        "block_index": 4,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "packet_start": 12000,
+        "packet_stop_exclusive": 15000,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 3000,
+          "TIE": 0
+        }
+      },
+      {
+        "block_index": 5,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "packet_start": 15000,
+        "packet_stop_exclusive": 18000,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 3000,
+          "TIE": 0
+        }
+      },
+      {
+        "block_index": 6,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "packet_start": 18000,
+        "packet_stop_exclusive": 21000,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 3000,
+          "TIE": 0
+        }
+      },
+      {
+        "block_index": 7,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "packet_start": 21000,
+        "packet_stop_exclusive": 24000,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 3000,
+          "TIE": 0
+        }
+      },
+      {
+        "block_index": 8,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "packet_start": 24000,
+        "packet_stop_exclusive": 27000,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 3000,
+          "TIE": 0
+        }
+      },
+      {
+        "block_index": 9,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "packet_start": 27000,
+        "packet_stop_exclusive": 30000,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 3000,
+          "TIE": 0
+        }
+      },
+      {
+        "block_index": 10,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "packet_start": 30000,
+        "packet_stop_exclusive": 33000,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 3000,
+          "TIE": 0
+        }
+      },
+      {
+        "block_index": 11,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "packet_start": 33000,
+        "packet_stop_exclusive": 36000,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 3000,
+          "TIE": 0
+        }
+      }
+    ],
+    "thirty_second_slices": [
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 49,
+          "RLE": 112
+        },
+        "p90_minus_p10": {
+          "DIFF": 2,
+          "RLE": 2
+        },
+        "packet_start": 0,
+        "packet_stop_exclusive": 300,
+        "slice_index": 0,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 300,
+        "packet_stop_exclusive": 600,
+        "slice_index": 1,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 600,
+        "packet_stop_exclusive": 900,
+        "slice_index": 2,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 900,
+        "packet_stop_exclusive": 1200,
+        "slice_index": 3,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 1200,
+        "packet_stop_exclusive": 1500,
+        "slice_index": 4,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 1500,
+        "packet_stop_exclusive": 1800,
+        "slice_index": 5,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 1800,
+        "packet_stop_exclusive": 2100,
+        "slice_index": 6,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 2100,
+        "packet_stop_exclusive": 2400,
+        "slice_index": 7,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 2400,
+        "packet_stop_exclusive": 2700,
+        "slice_index": 8,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 2700,
+        "packet_stop_exclusive": 3000,
+        "slice_index": 9,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 3000,
+        "packet_stop_exclusive": 3300,
+        "slice_index": 10,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 3300,
+        "packet_stop_exclusive": 3600,
+        "slice_index": 11,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 3600,
+        "packet_stop_exclusive": 3900,
+        "slice_index": 12,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 3900,
+        "packet_stop_exclusive": 4200,
+        "slice_index": 13,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 4200,
+        "packet_stop_exclusive": 4500,
+        "slice_index": 14,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 4500,
+        "packet_stop_exclusive": 4800,
+        "slice_index": 15,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 4800,
+        "packet_stop_exclusive": 5100,
+        "slice_index": 16,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 5100,
+        "packet_stop_exclusive": 5400,
+        "slice_index": 17,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 5400,
+        "packet_stop_exclusive": 5700,
+        "slice_index": 18,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 5700,
+        "packet_stop_exclusive": 6000,
+        "slice_index": 19,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 6000,
+        "packet_stop_exclusive": 6300,
+        "slice_index": 20,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 6300,
+        "packet_stop_exclusive": 6600,
+        "slice_index": 21,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 6600,
+        "packet_stop_exclusive": 6900,
+        "slice_index": 22,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 6900,
+        "packet_stop_exclusive": 7200,
+        "slice_index": 23,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 7200,
+        "packet_stop_exclusive": 7500,
+        "slice_index": 24,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 7500,
+        "packet_stop_exclusive": 7800,
+        "slice_index": 25,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 7800,
+        "packet_stop_exclusive": 8100,
+        "slice_index": 26,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 8100,
+        "packet_stop_exclusive": 8400,
+        "slice_index": 27,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 8400,
+        "packet_stop_exclusive": 8700,
+        "slice_index": 28,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 8700,
+        "packet_stop_exclusive": 9000,
+        "slice_index": 29,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 9000,
+        "packet_stop_exclusive": 9300,
+        "slice_index": 30,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 9300,
+        "packet_stop_exclusive": 9600,
+        "slice_index": 31,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 9600,
+        "packet_stop_exclusive": 9900,
+        "slice_index": 32,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 9900,
+        "packet_stop_exclusive": 10200,
+        "slice_index": 33,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 10200,
+        "packet_stop_exclusive": 10500,
+        "slice_index": 34,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 10500,
+        "packet_stop_exclusive": 10800,
+        "slice_index": 35,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 10800,
+        "packet_stop_exclusive": 11100,
+        "slice_index": 36,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 11100,
+        "packet_stop_exclusive": 11400,
+        "slice_index": 37,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 11400,
+        "packet_stop_exclusive": 11700,
+        "slice_index": 38,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 11700,
+        "packet_stop_exclusive": 12000,
+        "slice_index": 39,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 12000,
+        "packet_stop_exclusive": 12300,
+        "slice_index": 40,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 12300,
+        "packet_stop_exclusive": 12600,
+        "slice_index": 41,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 12600,
+        "packet_stop_exclusive": 12900,
+        "slice_index": 42,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 12900,
+        "packet_stop_exclusive": 13200,
+        "slice_index": 43,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 13200,
+        "packet_stop_exclusive": 13500,
+        "slice_index": 44,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 13500,
+        "packet_stop_exclusive": 13800,
+        "slice_index": 45,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 13800,
+        "packet_stop_exclusive": 14100,
+        "slice_index": 46,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 14100,
+        "packet_stop_exclusive": 14400,
+        "slice_index": 47,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 14400,
+        "packet_stop_exclusive": 14700,
+        "slice_index": 48,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 14700,
+        "packet_stop_exclusive": 15000,
+        "slice_index": 49,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 15000,
+        "packet_stop_exclusive": 15300,
+        "slice_index": 50,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 15300,
+        "packet_stop_exclusive": 15600,
+        "slice_index": 51,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 15600,
+        "packet_stop_exclusive": 15900,
+        "slice_index": 52,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 15900,
+        "packet_stop_exclusive": 16200,
+        "slice_index": 53,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 16200,
+        "packet_stop_exclusive": 16500,
+        "slice_index": 54,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 16500,
+        "packet_stop_exclusive": 16800,
+        "slice_index": 55,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 16800,
+        "packet_stop_exclusive": 17100,
+        "slice_index": 56,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 17100,
+        "packet_stop_exclusive": 17400,
+        "slice_index": 57,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 17400,
+        "packet_stop_exclusive": 17700,
+        "slice_index": 58,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 17700,
+        "packet_stop_exclusive": 18000,
+        "slice_index": 59,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 18000,
+        "packet_stop_exclusive": 18300,
+        "slice_index": 60,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 18300,
+        "packet_stop_exclusive": 18600,
+        "slice_index": 61,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 18600,
+        "packet_stop_exclusive": 18900,
+        "slice_index": 62,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 18900,
+        "packet_stop_exclusive": 19200,
+        "slice_index": 63,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 19200,
+        "packet_stop_exclusive": 19500,
+        "slice_index": 64,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 19500,
+        "packet_stop_exclusive": 19800,
+        "slice_index": 65,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 19800,
+        "packet_stop_exclusive": 20100,
+        "slice_index": 66,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 20100,
+        "packet_stop_exclusive": 20400,
+        "slice_index": 67,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 20400,
+        "packet_stop_exclusive": 20700,
+        "slice_index": 68,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 20700,
+        "packet_stop_exclusive": 21000,
+        "slice_index": 69,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 21000,
+        "packet_stop_exclusive": 21300,
+        "slice_index": 70,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 21300,
+        "packet_stop_exclusive": 21600,
+        "slice_index": 71,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 21600,
+        "packet_stop_exclusive": 21900,
+        "slice_index": 72,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 21900,
+        "packet_stop_exclusive": 22200,
+        "slice_index": 73,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 22200,
+        "packet_stop_exclusive": 22500,
+        "slice_index": 74,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 22500,
+        "packet_stop_exclusive": 22800,
+        "slice_index": 75,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 22800,
+        "packet_stop_exclusive": 23100,
+        "slice_index": 76,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 23100,
+        "packet_stop_exclusive": 23400,
+        "slice_index": 77,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 23400,
+        "packet_stop_exclusive": 23700,
+        "slice_index": 78,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 23700,
+        "packet_stop_exclusive": 24000,
+        "slice_index": 79,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 24000,
+        "packet_stop_exclusive": 24300,
+        "slice_index": 80,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 24300,
+        "packet_stop_exclusive": 24600,
+        "slice_index": 81,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 24600,
+        "packet_stop_exclusive": 24900,
+        "slice_index": 82,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 24900,
+        "packet_stop_exclusive": 25200,
+        "slice_index": 83,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 25200,
+        "packet_stop_exclusive": 25500,
+        "slice_index": 84,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 25500,
+        "packet_stop_exclusive": 25800,
+        "slice_index": 85,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 25800,
+        "packet_stop_exclusive": 26100,
+        "slice_index": 86,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 26100,
+        "packet_stop_exclusive": 26400,
+        "slice_index": 87,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 26400,
+        "packet_stop_exclusive": 26700,
+        "slice_index": 88,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 26700,
+        "packet_stop_exclusive": 27000,
+        "slice_index": 89,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 27000,
+        "packet_stop_exclusive": 27300,
+        "slice_index": 90,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 27300,
+        "packet_stop_exclusive": 27600,
+        "slice_index": 91,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 27600,
+        "packet_stop_exclusive": 27900,
+        "slice_index": 92,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 27900,
+        "packet_stop_exclusive": 28200,
+        "slice_index": 93,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 28200,
+        "packet_stop_exclusive": 28500,
+        "slice_index": 94,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 28500,
+        "packet_stop_exclusive": 28800,
+        "slice_index": 95,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 28800,
+        "packet_stop_exclusive": 29100,
+        "slice_index": 96,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 29100,
+        "packet_stop_exclusive": 29400,
+        "slice_index": 97,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 29400,
+        "packet_stop_exclusive": 29700,
+        "slice_index": 98,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 29700,
+        "packet_stop_exclusive": 30000,
+        "slice_index": 99,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 30000,
+        "packet_stop_exclusive": 30300,
+        "slice_index": 100,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 30300,
+        "packet_stop_exclusive": 30600,
+        "slice_index": 101,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 30600,
+        "packet_stop_exclusive": 30900,
+        "slice_index": 102,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 30900,
+        "packet_stop_exclusive": 31200,
+        "slice_index": 103,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 31200,
+        "packet_stop_exclusive": 31500,
+        "slice_index": 104,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 31500,
+        "packet_stop_exclusive": 31800,
+        "slice_index": 105,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 31800,
+        "packet_stop_exclusive": 32100,
+        "slice_index": 106,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 32100,
+        "packet_stop_exclusive": 32400,
+        "slice_index": 107,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 32400,
+        "packet_stop_exclusive": 32700,
+        "slice_index": 108,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 32700,
+        "packet_stop_exclusive": 33000,
+        "slice_index": 109,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 33000,
+        "packet_stop_exclusive": 33300,
+        "slice_index": 110,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 33300,
+        "packet_stop_exclusive": 33600,
+        "slice_index": 111,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 33600,
+        "packet_stop_exclusive": 33900,
+        "slice_index": 112,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 33900,
+        "packet_stop_exclusive": 34200,
+        "slice_index": 113,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 34200,
+        "packet_stop_exclusive": 34500,
+        "slice_index": 114,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 34500,
+        "packet_stop_exclusive": 34800,
+        "slice_index": 115,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 34800,
+        "packet_stop_exclusive": 35100,
+        "slice_index": 116,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 35100,
+        "packet_stop_exclusive": 35400,
+        "slice_index": 117,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 35400,
+        "packet_stop_exclusive": 35700,
+        "slice_index": 118,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      },
+      {
+        "locally_narrow_stable": true,
+        "median_reduction": {
+          "DIFF": 47,
+          "RLE": 110
+        },
+        "p90_minus_p10": {
+          "DIFF": 0,
+          "RLE": 0
+        },
+        "packet_start": 35700,
+        "packet_stop_exclusive": 36000,
+        "slice_index": 119,
+        "winner_counts": {
+          "DIFF": 0,
+          "RLE": 300,
+          "TIE": 0
+        }
+      }
+    ],
+    "winner_counts": {
+      "DIFF": 0,
+      "RLE": 36000,
+      "TIE": 0
+    }
+  },
+  "status": "VALID",
+  "timing": {
+    "elapsed_read_end_ns": 3599999816288,
+    "first_read_end_monotonic_ns": 1596342288398,
+    "last_read_end_monotonic_ns": 5196342104686,
+    "wake_lateness_ns": {
+      "max": 587245508,
+      "median": 108654,
+      "min": 1800,
+      "p90": 147408
+    }
+  }
+}
