@@ -425,7 +425,8 @@ Key active and retained Substrate project artifacts in this working directory:
 | File | Content |
 |------|---------|
 | `docs/project-report.md` | This report (current model, findings, superseded claims) |
-| `docs/stage-7-split-reserve-architecture.md` | Split somatic/reproductive reserve design; isolated Slice 1 and mechanics-only population Slice 2A implemented; assays not authorized |
+| `docs/stage-7-split-reserve-architecture.md` | Split somatic/reproductive reserve design; isolated Slice 1 and mechanics-only population Slice 2A implemented; population-fitness and evolutionary assays not authorized |
+| `docs/stage-7b-fixed-allocation-channel-preregistration.md` | Registered scripted fixed-state allocation-channel protocol; implementation and execution not yet authorized; no fitness or evolutionary endpoint |
 | `src/stage7_slice1.py` | Exact-rational isolated two-account vertical slice with real RLE geometry and three asserted ledgers |
 | `src/test_stage7_slice1.py` | Slice 1 success, failure-atomicity, provenance, trait-domain, `R=0`, and memory regressions |
 | `results/stage7-slice1-trace.json` | Retained exact Slice 1 execution trace |
