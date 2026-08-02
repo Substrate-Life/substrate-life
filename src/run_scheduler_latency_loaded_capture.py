@@ -202,6 +202,14 @@ def run_loaded_capture(
             journal.close()
     if failure is not None: raise failure
     if failures: raise RuntimeError("worker or journal failure") from failures[0]
+    if mode == "compile" and any(
+        state["nonzero"] != 0 or state["completed"] <= 0 for state in terminal_states
+    ):
+        raise RuntimeError("compile workload integrity failure")
+    if mode == "sham" and any(state["invocations"] != 0 for state in terminal_states):
+        raise RuntimeError("sham invocation integrity failure")
+    if not cleanup_success:
+        raise RuntimeError("temporary cache cleanup failure")
     if artifact_bytes is None: raise RuntimeError("capture produced no artifact")
     return {"arm": arm, "mode": mode, "output_sha256": hashlib.sha256(artifact_bytes).hexdigest(),
             "output_bytes": len(artifact_bytes), "workers": terminal_states,
