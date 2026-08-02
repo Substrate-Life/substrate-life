@@ -12,6 +12,7 @@ from scheduler_latency_gate import (
     extract_latency_values,
     nearest_index_percentile,
     reduction_sign_counts,
+    verify_journal_coverage,
     zigzag,
 )
 
@@ -89,6 +90,39 @@ class SchedulerLatencyGateTests(unittest.TestCase):
         self.assertEqual(
             result["classification"], "MORPHOLOGY_CHANGE_WITHOUT_DIRECT_SHIFT"
         )
+
+    def test_sham_journal_coverage_rejects_heartbeat_gap(self):
+        billion = 1_000_000_000
+        records = [
+            {"scheduled_deadline_monotonic_ns": 40 * billion,
+             "read_end_monotonic_ns": 40 * billion},
+            {"scheduled_deadline_monotonic_ns": 80 * billion,
+             "read_end_monotonic_ns": 79 * billion},
+        ]
+        events = [
+            {"event": "manager_started", "monotonic_ns": 0},
+            {"event": "worker_ready", "worker": 0, "monotonic_ns": billion},
+            {"event": "worker_ready", "worker": 1, "monotonic_ns": 2*billion},
+            {"event": "workload_started", "arm": "S", "mode": "sham", "monotonic_ns": 10*billion},
+            {"event": "heartbeat", "live_workers": 2, "monotonic_ns": 10*billion},
+            {"event": "heartbeat", "live_workers": 2, "monotonic_ns": 20*billion},
+            {"event": "heartbeat", "live_workers": 2, "monotonic_ns": 30*billion},
+            {"event": "capture_started", "monotonic_ns": 40*billion},
+            {"event": "heartbeat", "live_workers": 2, "monotonic_ns": 40*billion},
+            {"event": "heartbeat", "live_workers": 2, "monotonic_ns": 50*billion},
+            {"event": "heartbeat", "live_workers": 2, "monotonic_ns": 60*billion},
+            {"event": "heartbeat", "live_workers": 2, "monotonic_ns": 70*billion},
+            {"event": "heartbeat", "live_workers": 2, "monotonic_ns": 80*billion},
+            {"event": "capture_completed", "monotonic_ns": 80*billion},
+            {"event": "workload_stopped", "monotonic_ns": 81*billion,
+             "cleanup_success": True, "live_workers_after_join": 0,
+             "workers": [{"invocations": 0}, {"invocations": 0}]},
+        ]
+        result = verify_journal_coverage(events, records, "S", "sham")
+        self.assertEqual(result["heartbeat_count"], 8)
+        broken = [dict(event) for event in events if event.get("monotonic_ns") != 60*billion]
+        with self.assertRaisesRegex(ValueError, "heartbeat gap"):
+            verify_journal_coverage(broken, records, "S", "sham")
 
 
 if __name__ == "__main__":

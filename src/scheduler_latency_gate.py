@@ -330,41 +330,67 @@ def _read_journal(path: Path) -> tuple[bytes, list[dict[str, object]]]:
     return encoded, events
 
 
-def _verify_workload_coverage(
-    events: list[dict[str, object]], loaded_records: list[dict[str, object]]
-) -> dict[str, object]:
-    starts = [event for event in events if event.get("event") == "workload_started"]
-    stops = [event for event in events if event.get("event") == "workload_stopped"]
-    if len(starts) != 1 or len(stops) != 1:
-        raise ValueError("workload journal lacks unique start/stop")
-    start, stop = starts[0], stops[0]
-    first_deadline = loaded_records[0]["scheduled_deadline_monotonic_ns"]
-    last_read = loaded_records[-1]["read_end_monotonic_ns"]
-    if start.get("worker_count") != 2 or stop.get("worker_count") != 2:
-        raise ValueError("loaded arm requires exactly two workers")
+def verify_journal_coverage(events, records, arm: str, mode: str) -> dict[str, object]:
+    def unique(kind):
+        found = [event for event in events if event.get("event") == kind]
+        if len(found) != 1:
+            raise ValueError(f"journal requires one {kind}")
+        return found[0]
+    allowed = {"manager_started", "worker_ready", "invocation_started", "invocation_ended",
+               "workload_started", "heartbeat", "capture_started", "capture_completed",
+               "workload_stopped"}
+    if any(event.get("event") not in allowed for event in events):
+        raise ValueError("invalid or failed journal event")
+    if any(events[i]["monotonic_ns"] > events[i + 1]["monotonic_ns"] for i in range(len(events) - 1)):
+        raise ValueError("nonmonotonic journal")
+    unique("manager_started"); unique("capture_started")
+    start, complete, stop = unique("workload_started"), unique("capture_completed"), unique("workload_stopped")
+    ready = [event.get("worker") for event in events if event.get("event") == "worker_ready"]
+    if sorted(ready) != [0, 1] or start.get("arm") != arm or start.get("mode") != mode:
+        raise ValueError("arm or worker readiness mismatch")
+    first_deadline = records[0]["scheduled_deadline_monotonic_ns"]
+    last_read = records[-1]["read_end_monotonic_ns"]
     if start["monotonic_ns"] > first_deadline - 30_000_000_000:
         raise ValueError("workload warmup shorter than 30 seconds")
-    if stop["monotonic_ns"] < last_read:
-        raise ValueError("workload did not cover final read")
-    workers = stop.get("workers", [])
-    if len(workers) != 2:
-        raise ValueError("missing worker terminal summaries")
-    if any(
-        worker.get("nonzero_exits") != 0
-        or worker.get("completed_compiles", 0) <= 0
-        or worker.get("alive_during_capture") is not True
-        for worker in workers
-    ):
-        raise ValueError("compile workload integrity failure")
+    if complete["monotonic_ns"] < last_read or stop["monotonic_ns"] < complete["monotonic_ns"]:
+        raise ValueError("incomplete workload coverage")
     heartbeats = [event for event in events if event.get("event") == "heartbeat"]
-    if not heartbeats or any(event.get("live_workers") != 2 for event in heartbeats):
-        raise ValueError("workload heartbeat coverage failure")
-    return {
-        "warmup_ns": first_deadline - start["monotonic_ns"],
-        "coverage_after_last_read_ns": stop["monotonic_ns"] - last_read,
-        "heartbeat_count": len(heartbeats),
-        "workers": workers,
-    }
+    points = [start["monotonic_ns"]] + [event["monotonic_ns"] for event in heartbeats] + [complete["monotonic_ns"]]
+    if len(heartbeats) < 2 or any(b - a > 15_000_000_000 for a, b in zip(points, points[1:])):
+        raise ValueError("heartbeat gap")
+    if any(event.get("live_workers") != 2 for event in heartbeats):
+        raise ValueError("worker liveness failure")
+    begins = [event for event in events if event.get("event") == "invocation_started"]
+    ends = [event for event in events if event.get("event") == "invocation_ended"]
+    if mode == "sham":
+        if begins or ends:
+            raise ValueError("sham started invocation")
+    else:
+        for worker in (0, 1):
+            starts = [event for event in begins if event.get("worker") == worker]
+            finishes = [event for event in ends if event.get("worker") == worker]
+            if not starts or len(starts) != len(finishes):
+                raise ValueError("invocation pairing failure")
+            for begun, ended in zip(starts, finishes):
+                if begun.get("invocation") != ended.get("invocation") or ended.get("exit_status") != 0:
+                    raise ValueError("compile invocation failure")
+            if starts[0]["monotonic_ns"] - start["monotonic_ns"] > 2_000_000_000:
+                raise ValueError("late first invocation")
+            if any(following["monotonic_ns"] - prior["monotonic_ns"] > 2_000_000_000
+                   for prior, following in zip(finishes, starts[1:])):
+                raise ValueError("inter-invocation gap")
+            if complete["monotonic_ns"] - finishes[-1]["monotonic_ns"] > 2_000_000_000:
+                raise ValueError("early final invocation")
+    workers = stop.get("workers", [])
+    if len(workers) != 2 or stop.get("cleanup_success") is not True or stop.get("live_workers_after_join") != 0:
+        raise ValueError("terminal workload failure")
+    if mode == "compile" and any(worker.get("completed", 0) <= 0 or worker.get("nonzero") != 0 for worker in workers):
+        raise ValueError("terminal compile failure")
+    if mode == "sham" and any(worker.get("invocations") != 0 for worker in workers):
+        raise ValueError("terminal sham failure")
+    return {"warmup_ns": first_deadline - start["monotonic_ns"],
+            "coverage_after_last_read_ns": stop["monotonic_ns"] - last_read,
+            "heartbeat_count": len(heartbeats), "workers": workers}
 
 
 def _arm_for_gate(channel: dict[str, object], primary_distribution: dict[str, int]) -> dict:
@@ -391,25 +417,35 @@ def _arm_for_gate(channel: dict[str, object], primary_distribution: dict[str, in
 
 def reduce_gate(
     passive_path: Path,
-    loaded_path: Path,
-    journal_path: Path,
+    compile_path: Path,
+    sham_path: Path,
+    compile_journal_path: Path,
+    sham_journal_path: Path,
     manifest_path: Path,
 ) -> dict[str, object]:
     manifest_bytes = manifest_path.read_bytes()
     manifest = json.loads(manifest_bytes)
     passive_bytes, passive_artifact = _load_arm(passive_path, _PASSIVE_SHA256)
-    loaded_expected = manifest.get("loaded_artifact_sha256")
-    journal_expected = manifest.get("workload_journal_sha256")
-    if not isinstance(loaded_expected, str) or not isinstance(journal_expected, str):
-        raise ValueError("reduction manifest lacks loaded bindings")
-    loaded_bytes, loaded_artifact = _load_arm(loaded_path, loaded_expected)
-    journal_bytes, journal_events = _read_journal(journal_path)
-    if hashlib.sha256(journal_bytes).hexdigest() != journal_expected:
-        raise ValueError("workload journal hash mismatch")
-    workload = _verify_workload_coverage(journal_events, loaded_artifact["raw_records"])
+    arm_inputs = {
+        "COMPILE": (compile_path, compile_journal_path, "C", "compile"),
+        "SHAM": (sham_path, sham_journal_path, "S", "sham"),
+    }
+    artifacts = {"PASSIVE": passive_artifact}
+    sources = {"passive": {"path": str(passive_path), "sha256": hashlib.sha256(passive_bytes).hexdigest()}}
+    workload = {}
+    for arm_name, (artifact_path, journal_path, arm_code, mode) in arm_inputs.items():
+        key = arm_name.lower()
+        artifact_bytes, artifact = _load_arm(artifact_path, manifest[f"{key}_artifact_sha256"])
+        journal_bytes, events = _read_journal(journal_path)
+        if hashlib.sha256(journal_bytes).hexdigest() != manifest[f"{key}_journal_sha256"]:
+            raise ValueError("workload journal hash mismatch")
+        workload[arm_name] = verify_journal_coverage(events, artifact["raw_records"], arm_code, mode)
+        artifacts[arm_name] = artifact
+        sources[key] = {"path": str(artifact_path), "sha256": hashlib.sha256(artifact_bytes).hexdigest()}
+        sources[f"{key}_journal"] = {"path": str(journal_path), "sha256": hashlib.sha256(journal_bytes).hexdigest()}
 
     arms = {}
-    for arm_name, artifact in (("PASSIVE", passive_artifact), ("COMPILE_LOAD", loaded_artifact)):
+    for arm_name, artifact in artifacts.items():
         lateness, deviation = extract_latency_values(
             artifact["raw_records"], artifact["cadence_ns"]
         )
@@ -422,33 +458,33 @@ def reduce_gate(
             ),
         }
 
-    passive_primary_distribution = arms["PASSIVE"]["deadline_lateness"]["raw_value_distribution_ns"]
-    loaded_primary_distribution = arms["COMPILE_LOAD"]["deadline_lateness"]["raw_value_distribution_ns"]
+    distributions = {name: data["deadline_lateness"]["raw_value_distribution_ns"] for name, data in arms.items()}
     primary_gate = classify_gate(
-        _arm_for_gate(arms["PASSIVE"]["deadline_lateness"], passive_primary_distribution),
-        _arm_for_gate(arms["COMPILE_LOAD"]["deadline_lateness"], loaded_primary_distribution),
+        _arm_for_gate(arms["SHAM"]["deadline_lateness"], distributions["SHAM"]),
+        _arm_for_gate(arms["COMPILE"]["deadline_lateness"], distributions["COMPILE"]),
     )
     secondary_gate = classify_gate(
-        _arm_for_gate(arms["PASSIVE"]["cadence_deviation"], passive_primary_distribution),
-        _arm_for_gate(arms["COMPILE_LOAD"]["cadence_deviation"], loaded_primary_distribution),
+        _arm_for_gate(arms["SHAM"]["cadence_deviation"], distributions["SHAM"]),
+        _arm_for_gate(arms["COMPILE"]["cadence_deviation"], distributions["COMPILE"]),
     )
+    primary_gate["tenfold_p99_prediction_confirmed"] = distributions["COMPILE"]["p99"] >= 10 * distributions["SHAM"]["p99"]
+    sources["manifest"] = {"path": str(manifest_path), "sha256": hashlib.sha256(manifest_bytes).hexdigest()}
     return {
-        "result_version": 1,
+        "result_version": 2,
         "status": "VALID",
         "registered_classification": primary_gate["classification"],
         "primary_gate": primary_gate,
-        "secondary_gate": secondary_gate,
-        "sources": {
-            "passive": {"path": str(passive_path), "sha256": hashlib.sha256(passive_bytes).hexdigest()},
-            "loaded": {"path": str(loaded_path), "sha256": hashlib.sha256(loaded_bytes).hexdigest()},
-            "journal": {"path": str(journal_path), "sha256": hashlib.sha256(journal_bytes).hexdigest()},
-            "manifest": {"path": str(manifest_path), "sha256": hashlib.sha256(manifest_bytes).hexdigest()},
-        },
+        "secondary_derivative_gate": secondary_gate,
+        "historical_passive_is_descriptive_only": True,
+        "sources": sources,
         "workload_coverage": workload,
         "arms": arms,
         "claim_boundary": {
             "sensitivity_gate_only": True,
-            "loaded_arm_is_imposed_treatment": True,
+            "matched_single_pair": True,
+            "compilation_specific_causality": False,
+            "secondary_is_deterministic_first_difference": True,
+            "winner_may_only_expand_less": True,
             "not_established": [
                 "ordinary-use morphology", "organism exposure", "fitness",
                 "adaptation", "selection", "cross-host generality",
@@ -460,12 +496,17 @@ def reduce_gate(
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("passive", type=Path)
-    parser.add_argument("loaded", type=Path)
-    parser.add_argument("journal", type=Path)
+    parser.add_argument("compile", type=Path)
+    parser.add_argument("sham", type=Path)
+    parser.add_argument("compile_journal", type=Path)
+    parser.add_argument("sham_journal", type=Path)
     parser.add_argument("manifest", type=Path)
     parser.add_argument("output", type=Path)
     args = parser.parse_args()
-    result = reduce_gate(args.passive, args.loaded, args.journal, args.manifest)
+    result = reduce_gate(
+        args.passive, args.compile, args.sham,
+        args.compile_journal, args.sham_journal, args.manifest,
+    )
     encoded = (json.dumps(result, indent=2, sort_keys=True) + "\n").encode()
     descriptor = os.open(args.output, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
     with os.fdopen(descriptor, "wb") as stream:
@@ -475,7 +516,7 @@ def main() -> None:
         "sha256": hashlib.sha256(encoded).hexdigest(),
         "classification": result["registered_classification"],
         "primary_gate": result["primary_gate"],
-        "secondary_gate": result["secondary_gate"],
+        "secondary_derivative_gate": result["secondary_derivative_gate"],
         "arm_primary_distributions": {
             arm: data["deadline_lateness"]["raw_value_distribution_ns"]
             for arm, data in result["arms"].items()
