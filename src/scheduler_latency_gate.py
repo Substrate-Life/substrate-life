@@ -83,9 +83,9 @@ def classify_gate(passive: dict, loaded: dict) -> dict[str, object]:
         loaded["latency"]["median_ns"] >= 2 * passive["latency"]["median_ns"]
         or loaded["latency"]["p99_ns"] >= 2 * passive["latency"]["p99_ns"]
     )
-    new_within_arm_morphology = (
-        (loaded["criteria"]["switching"] and not passive["criteria"]["switching"])
-        or (loaded["criteria"]["block_drift"] and not passive["criteria"]["block_drift"])
+    changed_within_arm_morphology = (
+        loaded["criteria"]["switching"] != passive["criteria"]["switching"]
+        or loaded["criteria"]["block_drift"] != passive["criteria"]["block_drift"]
     )
     median_shift = any(
         abs(
@@ -100,7 +100,7 @@ def classify_gate(passive: dict, loaded: dict) -> dict[str, object]:
         Fraction(loaded["winner_counts"]["RLE"], loaded_total)
         - Fraction(passive["winner_counts"]["RLE"], passive_total)
     ) > Fraction(1, 5)
-    morphologically_responsive = new_within_arm_morphology or median_shift or winner_shift
+    morphologically_responsive = changed_within_arm_morphology or median_shift or winner_shift
     if directly_responsive and morphologically_responsive:
         classification = "LOAD_SENSITIVE_LATENCY_MORPHOLOGY"
     elif directly_responsive:
@@ -113,7 +113,7 @@ def classify_gate(passive: dict, loaded: dict) -> dict[str, object]:
         "directly_responsive": directly_responsive,
         "morphologically_responsive": morphologically_responsive,
         "components": {
-            "new_within_arm_morphology": new_within_arm_morphology,
+            "changed_within_arm_morphology": changed_within_arm_morphology,
             "between_arm_median_shift": median_shift,
             "rle_winner_fraction_shift": winner_shift,
         },
@@ -124,9 +124,16 @@ def classify_gate(passive: dict, loaded: dict) -> dict[str, object]:
     }
 
 
-def _median(values: list[Fraction]) -> Fraction:
+def nearest_index_percentile(values: list, numerator: int, denominator: int):
+    if not values or denominator <= 0 or not 0 <= numerator <= denominator:
+        raise ValueError("invalid percentile input")
     ordered = sorted(values)
-    return ordered[round((len(ordered) - 1) * 0.5)]
+    index = (2 * (len(ordered) - 1) * numerator + denominator) // (2 * denominator)
+    return ordered[index]
+
+
+def _median(values: list[Fraction]) -> Fraction:
+    return nearest_index_percentile(values, 1, 2)
 
 
 _PASSIVE_SHA256 = "623f59af1b6dd76a0f050337345881b93059981547ffe96a89eaa8b9a3a57c5f"
@@ -136,9 +143,8 @@ _BLOCK_SIZE = 3_000
 _TRANSFORMS = {"RLE": TRANSFORM_RLE, "DIFF": TRANSFORM_DIFF}
 
 
-def _percentile_int(values: list[int], fraction: float) -> int:
-    ordered = sorted(values)
-    return ordered[round((len(ordered) - 1) * fraction)]
+def _percentile_int(values: list[int], numerator: int, denominator: int) -> int:
+    return nearest_index_percentile(values, numerator, denominator)
 
 
 def _fraction_record(value: Fraction) -> dict[str, int]:
@@ -149,11 +155,19 @@ def _winner_counts(values: list[str]) -> dict[str, int]:
     return {name: values.count(name) for name in ("RLE", "DIFF", "TIE")}
 
 
+def reduction_sign_counts(values: list[int]) -> dict[str, int]:
+    return {
+        "positive": sum(value > 0 for value in values),
+        "zero": sum(value == 0 for value in values),
+        "negative": sum(value < 0 for value in values),
+    }
+
+
 def _group_summaries(
     raw_values: list[int],
     winners: list[str],
     fractions: dict[str, list[Fraction]],
-    positive: dict[str, list[bool]],
+    reductions: dict[str, list[int]],
     packet_group_size: int,
     label: str,
 ) -> list[dict[str, object]]:
@@ -165,11 +179,11 @@ def _group_summaries(
             f"{label}_index": index,
             "packet_start": packet_start,
             "packet_stop_exclusive": packet_stop,
-            "raw_value_median_ns": _percentile_int(raw_values[raw_start:raw_stop], 0.5),
+            "raw_value_median_ns": _percentile_int(raw_values[raw_start:raw_stop], 1, 2),
             "winner_counts": _winner_counts(winners[packet_start:packet_stop]),
-            "positive_compression_counts": {
-                name: sum(flags[packet_start:packet_stop])
-                for name, flags in positive.items()
+            "reduction_sign_counts": {
+                name: reduction_sign_counts(values[packet_start:packet_stop])
+                for name, values in reductions.items()
             },
             "median_compression_fraction": {
                 name: _fraction_record(_median(values[packet_start:packet_stop]))
@@ -185,7 +199,7 @@ def _analyze_channel(name: str, raw_values: list[int], signed: bool) -> dict[str
     packets = []
     winners = []
     fractions = {transform: [] for transform in _TRANSFORMS}
-    positive = {transform: [] for transform in _TRANSFORMS}
+    reductions = {transform: [] for transform in _TRANSFORMS}
     lengths = []
     for packet_index, start in enumerate(range(0, len(raw_values), 10)):
         values = raw_values[start:start + 10]
@@ -200,7 +214,7 @@ def _analyze_channel(name: str, raw_values: list[int], signed: bool) -> dict[str
             reduction = len(encoded) - len(transformed)
             fraction = Fraction(reduction, len(encoded))
             fractions[transform].append(fraction)
-            positive[transform].append(reduction > 0)
+            reductions[transform].append(reduction)
             sizes[transform] = len(transformed)
             outcomes[transform] = {
                 "output_length": len(transformed),
@@ -223,10 +237,10 @@ def _analyze_channel(name: str, raw_values: list[int], signed: bool) -> dict[str
             "outcomes": outcomes,
         })
     slices = _group_summaries(
-        raw_values, winners, fractions, positive, _SLICE_SIZE, "slice"
+        raw_values, winners, fractions, reductions, _SLICE_SIZE, "slice"
     )
     blocks = _group_summaries(
-        raw_values, winners, fractions, positive, _BLOCK_SIZE, "block"
+        raw_values, winners, fractions, reductions, _BLOCK_SIZE, "block"
     )
     block_medians = {
         transform: [
@@ -244,27 +258,41 @@ def _analyze_channel(name: str, raw_values: list[int], signed: bool) -> dict[str
         [block["winner_counts"] for block in blocks],
         block_medians,
     )
+    positive_support_by_transform = {
+        transform: (
+            reduction_sign_counts(reductions[transform])["positive"] >= 3_600
+            and any(
+                block["reduction_sign_counts"][transform]["positive"] * 2 > _BLOCK_SIZE
+                for block in blocks
+            )
+        )
+        for transform in _TRANSFORMS
+    }
     return {
         "channel": name,
         "packet_count": len(packets),
         "encoded_length": {
             "min": min(lengths),
-            "median": _percentile_int(lengths, 0.5),
+            "median": _percentile_int(lengths, 1, 2),
             "max": max(lengths),
         },
         "raw_value_distribution_ns": {
             "min": min(raw_values),
-            "median": _percentile_int(raw_values, 0.5),
-            "p90": _percentile_int(raw_values, 0.9),
-            "p99": _percentile_int(raw_values, 0.99),
-            "p999": _percentile_int(raw_values, 0.999),
+            "median": _percentile_int(raw_values, 1, 2),
+            "p90": _percentile_int(raw_values, 9, 10),
+            "p99": _percentile_int(raw_values, 99, 100),
+            "p999": _percentile_int(raw_values, 999, 1000),
             "max": max(raw_values),
         },
         "winner_counts": counts,
-        "positive_compression_counts": {
-            name: sum(flags) for name, flags in positive.items()
+        "reduction_sign_counts": {
+            name: reduction_sign_counts(values) for name, values in reductions.items()
         },
         "criteria": criteria,
+        "positive_compression_support": {
+            "supported": any(positive_support_by_transform.values()),
+            "by_transform": positive_support_by_transform,
+        },
         "five_minute_median_ranges": {
             name: _fraction_record(max(values) - min(values))
             for name, values in block_medians.items()

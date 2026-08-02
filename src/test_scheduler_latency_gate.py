@@ -10,6 +10,8 @@ from scheduler_latency_gate import (
     classify_morphology,
     encode_uleb128,
     extract_latency_values,
+    nearest_index_percentile,
+    reduction_sign_counts,
     zigzag,
 )
 
@@ -28,6 +30,11 @@ class SchedulerLatencyGateTests(unittest.TestCase):
     def test_zigzag_and_uleb128_match_registered_vectors(self):
         self.assertEqual([zigzag(x) for x in (0, -1, 1, -2, 2)], [0, 1, 2, 3, 4])
         self.assertEqual(encode_uleb128([0, 127, 128, 300]), bytes.fromhex("007f8001ac02"))
+        self.assertEqual(nearest_index_percentile([10, 20], 1, 2), 20)
+        self.assertEqual(
+            reduction_sign_counts([-2, 0, 1, 3]),
+            {"positive": 2, "zero": 1, "negative": 1},
+        )
 
     def test_gate_separates_direct_from_morphological_response(self):
         passive = {
@@ -64,6 +71,24 @@ class SchedulerLatencyGateTests(unittest.TestCase):
              "DIFF": [Fraction(0), Fraction(1, 15)]},
         )
         self.assertEqual(result, {"switching": False, "block_drift": False})
+
+    def test_morphology_property_disappearance_is_a_symmetric_response(self):
+        sham = {
+            "latency": {"median_ns": 100, "p99_ns": 500},
+            "winner_counts": {"RLE": 18000, "DIFF": 18000, "TIE": 0},
+            "criteria": {"switching": True, "block_drift": False},
+            "block_medians": {"RLE": [Fraction(0)] * 12,
+                              "DIFF": [Fraction(0)] * 12},
+        }
+        compile_arm = {
+            **sham,
+            "criteria": {"switching": False, "block_drift": False},
+        }
+        result = classify_gate(sham, compile_arm)
+        self.assertTrue(result["morphologically_responsive"])
+        self.assertEqual(
+            result["classification"], "MORPHOLOGY_CHANGE_WITHOUT_DIRECT_SHIFT"
+        )
 
 
 if __name__ == "__main__":
