@@ -69,11 +69,11 @@ def classify_mapping(
 ) -> dict[str, bool]:
     """Apply the registered switching and exact block-drift criteria."""
     rle_majority = any(
-        block["RLE"] > block["DIFF"] and block["RLE"] > block["TIE"]
+        block["RLE"] * 2 > sum(block.values())
         for block in block_winner_counts
     )
     diff_majority = any(
-        block["DIFF"] > block["RLE"] and block["DIFF"] > block["TIE"]
+        block["DIFF"] * 2 > sum(block.values())
         for block in block_winner_counts
     )
     switching = (

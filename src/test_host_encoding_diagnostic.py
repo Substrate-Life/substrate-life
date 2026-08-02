@@ -53,6 +53,18 @@ class EncodingDiagnosticTests(unittest.TestCase):
             "MAPPING_DEPENDENT_SIGNAL",
         )
 
+    def test_plurality_with_ties_is_not_a_strict_majority(self):
+        result = classify_mapping(
+            {"RLE": 18000, "DIFF": 18000, "TIE": 0},
+            [
+                {"RLE": 1200, "DIFF": 1000, "TIE": 800},
+                {"RLE": 1000, "DIFF": 1200, "TIE": 800},
+            ],
+            {"RLE": [Fraction(0), Fraction(0)],
+             "DIFF": [Fraction(0), Fraction(0)]},
+        )
+        self.assertEqual(result, {"switching": False, "block_drift": False})
+
 
 if __name__ == "__main__":
     unittest.main()
