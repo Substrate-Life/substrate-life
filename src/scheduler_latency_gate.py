@@ -10,6 +10,7 @@ import os
 from pathlib import Path
 
 from consts import TRANSFORM_DIFF, TRANSFORM_RLE
+from host_telemetry_channel import HostSample, packet_from_samples, parse_aggregate_counters
 from transforms import can_reconstruct, compute_transform
 
 
@@ -311,14 +312,37 @@ def _load_arm(path: Path, expected_sha256: str) -> tuple[bytes, dict[str, object
     if artifact.get("sample_count") != 360_001 or artifact.get("cadence_ns") != 10_000_000:
         raise ValueError(f"registered dimensions mismatch: {path}")
     records = artifact.get("raw_records", [])
-    if len(records) != 360_001:
-        raise ValueError(f"raw record count mismatch: {path}")
+    retained_packets = artifact.get("packets", [])
+    if len(records) != 360_001 or len(retained_packets) != 36_000:
+        raise ValueError(f"retained record count mismatch: {path}")
+    samples = []
     for index, record in enumerate(records):
         if record.get("sequence") != index:
             raise ValueError(f"sequence mismatch: {path} {index}")
         expected_deadline = records[0]["scheduled_deadline_monotonic_ns"] + index * 10_000_000
         if record.get("scheduled_deadline_monotonic_ns") != expected_deadline:
             raise ValueError(f"deadline sequence mismatch: {path} {index}")
+        wake = record.get("wake_monotonic_ns")
+        read_start = record.get("read_start_monotonic_ns")
+        read_end = record.get("read_end_monotonic_ns")
+        if not expected_deadline <= wake <= read_start <= read_end:
+            raise ValueError(f"timing order mismatch: {path} {index}")
+        reparsed = parse_aggregate_counters(
+            read_end,
+            "\n".join(record.get("proc_stat_allowlisted_lines", [])),
+            "\n".join(record.get("proc_vmstat_allowlisted_lines", [])),
+        )
+        if reparsed.to_record() != record.get("parsed"):
+            raise ValueError(f"parsed counter mismatch: {path} {index}")
+        samples.append(reparsed)
+    for index, retained in enumerate(retained_packets):
+        packet = packet_from_samples(index, samples[index * 10:index * 10 + 11])
+        if retained.get("index") != index or retained.get("sample_start") != index * 10:
+            raise ValueError(f"packet window mismatch: {path} {index}")
+        if retained.get("sample_stop_inclusive") != index * 10 + 10:
+            raise ValueError(f"packet window stop mismatch: {path} {index}")
+        if retained.get("data_hex") != packet.hex() or retained.get("sha256") != hashlib.sha256(packet).hexdigest():
+            raise ValueError(f"packet reconstruction mismatch: {path} {index}")
     return encoded, artifact
 
 
@@ -433,16 +457,28 @@ def reduce_gate(
     artifacts = {"PASSIVE": passive_artifact}
     sources = {"passive": {"path": str(passive_path), "sha256": hashlib.sha256(passive_bytes).hexdigest()}}
     workload = {}
+    journals = {}
     for arm_name, (artifact_path, journal_path, arm_code, mode) in arm_inputs.items():
         key = arm_name.lower()
         artifact_bytes, artifact = _load_arm(artifact_path, manifest[f"{key}_artifact_sha256"])
         journal_bytes, events = _read_journal(journal_path)
         if hashlib.sha256(journal_bytes).hexdigest() != manifest[f"{key}_journal_sha256"]:
             raise ValueError("workload journal hash mismatch")
+        completed = [event for event in events if event.get("event") == "capture_completed"]
+        if len(completed) != 1 or completed[0].get("artifact_sha256") != hashlib.sha256(artifact_bytes).hexdigest():
+            raise ValueError("journal artifact hash mismatch")
+        if completed[0].get("artifact_bytes") != len(artifact_bytes):
+            raise ValueError("journal artifact size mismatch")
         workload[arm_name] = verify_journal_coverage(events, artifact["raw_records"], arm_code, mode)
+        journals[arm_name] = events
         artifacts[arm_name] = artifact
         sources[key] = {"path": str(artifact_path), "sha256": hashlib.sha256(artifact_bytes).hexdigest()}
         sources[f"{key}_journal"] = {"path": str(journal_path), "sha256": hashlib.sha256(journal_bytes).hexdigest()}
+
+    compile_stop = next(event for event in journals["COMPILE"] if event.get("event") == "workload_stopped")
+    sham_start = next(event for event in journals["SHAM"] if event.get("event") == "manager_started")
+    if sham_start["monotonic_ns"] - compile_stop["monotonic_ns"] < 600_000_000_000:
+        raise ValueError("registered ten-minute washout not satisfied")
 
     arms = {}
     for arm_name, artifact in artifacts.items():
@@ -503,14 +539,33 @@ def main() -> None:
     parser.add_argument("manifest", type=Path)
     parser.add_argument("output", type=Path)
     args = parser.parse_args()
-    result = reduce_gate(
-        args.passive, args.compile, args.sham,
-        args.compile_journal, args.sham_journal, args.manifest,
-    )
+    try:
+        result = reduce_gate(
+            args.passive, args.compile, args.sham,
+            args.compile_journal, args.sham_journal, args.manifest,
+        )
+    except Exception as error:
+        result = {
+            "result_version": 2,
+            "status": "INVALID",
+            "registered_classification": "INVALID",
+            "error_type": type(error).__name__,
+            "error": str(error),
+            "manifest_path": str(args.manifest),
+        }
     encoded = (json.dumps(result, indent=2, sort_keys=True) + "\n").encode()
     descriptor = os.open(args.output, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
     with os.fdopen(descriptor, "wb") as stream:
         stream.write(encoded)
+    if result["status"] == "INVALID":
+        print(json.dumps({
+            "output": str(args.output),
+            "sha256": hashlib.sha256(encoded).hexdigest(),
+            "classification": "INVALID",
+            "error_type": result["error_type"],
+            "error": result["error"],
+        }, indent=2, sort_keys=True))
+        return
     print(json.dumps({
         "output": str(args.output),
         "sha256": hashlib.sha256(encoded).hexdigest(),
