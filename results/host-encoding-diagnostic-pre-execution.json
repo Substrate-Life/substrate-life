@@ -1,0 +1,25 @@
+{
+  "artifact_version": 1,
+  "status": "REGISTERED_BEFORE_REDUCTION",
+  "scope": "three mandatory diagnostic projections of one retained trace; no acquisition or organisms",
+  "registration_commit": "d340e08",
+  "implementation_commit": "13e46cbf594a4936839183602ca94cb9ceb66a41",
+  "python": "3.13.5",
+  "command": "PYTHONDONTWRITEBYTECODE=1 python3 src/host_encoding_diagnostic.py results/host-compressibility-long-window-360001x10ms.json results/host-encoding-diagnostic-pre-execution.json results/host-encoding-diagnostic-result.json",
+  "source_artifact": "results/host-compressibility-long-window-360001x10ms.json",
+  "source_artifact_sha256": "623f59af1b6dd76a0f050337345881b93059981547ffe96a89eaa8b9a3a57c5f",
+  "output": "results/host-encoding-diagnostic-result.json",
+  "mandatory_mappings": ["NORMALIZED_U8", "ULEB128", "LOW_U8"],
+  "expected_packet_count_per_mapping": 36000,
+  "working_tree_disclosure": [
+    "M src/test_stage7_slice1.py — unrelated pre-existing modification excluded from the diagnostic path"
+  ],
+  "source_sha256": {
+    "docs/host-encoding-diagnostic-registration.md": "61c1cb4c3f14c452fbcdd41a147cc5eab3b01228ab5ac9826f8085d4ce92eb7a",
+    "src/host_encoding_diagnostic.py": "c01721179031e8ea23905e87eb4cb927922af3a40ab7933d2485e16c1df8b72a",
+    "src/test_host_encoding_diagnostic.py": "9ecacca9eaa5cab8c695b88af64846f033bca032d45f4b2607f7b4626315041c",
+    "src/transforms.py": "234f72eb42a15f88cb2fe5831a9f9421d3f94448d0dd39fa6ab169687845b7a6",
+    "src/consts.py": "7dda03561176a30ff9e2050e53fe15b8878b8c3f593032f1f276be2867f3066b"
+  },
+  "retention": "exclusive output creation; all three mappings mandatory; no selection or overwrite"
+}
