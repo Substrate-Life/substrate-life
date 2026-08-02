@@ -1,0 +1,68 @@
+{
+  "manifest_version": 1,
+  "status": "PRE_EXECUTION_AUTHORIZATION",
+  "first_attempt_only": true,
+  "created_before_scientific_capture": true,
+  "created_before_latency_transform_reduction": true,
+  "cwd": "/opt/data/avida-life",
+  "git_head": "5d008a9f32c6d55588c149187fdfbbeb095770f2",
+  "protocol_commits": {
+    "original": "b1e561635dc90df62503b9b80ebdb5421ffff16c",
+    "amendment": "cd48c91ae9e0b2cc9dad02d14cdf6e78f1dd3bea"
+  },
+  "environment": {
+    "python": "Python 3.13.5",
+    "nproc": 2,
+    "kernel": "Linux 6.8.0-136-generic x86_64 GNU/Linux"
+  },
+  "registered_order": ["C_COMPILE", "WASHOUT_600_SECONDS", "S_SHAM"],
+  "parameters": {
+    "sample_count": 360001,
+    "cadence_ms": 10,
+    "worker_count": 2,
+    "warmup_seconds": 30.0,
+    "heartbeat_seconds_implementation_default": 10.0,
+    "minimum_washout_seconds": 600
+  },
+  "paths": {
+    "compile_artifact": "results/scheduler-latency-arm-c-compile-360001x10ms.json",
+    "compile_journal": "results/scheduler-latency-arm-c-compile-360001x10ms.journal.jsonl",
+    "sham_artifact": "results/scheduler-latency-arm-s-sham-360001x10ms.json",
+    "sham_journal": "results/scheduler-latency-arm-s-sham-360001x10ms.journal.jsonl",
+    "compile_corpus": "results/scheduler-latency-compile-corpus-5d008a9/src",
+    "compile_corpus_manifest": "results/scheduler-latency-compile-corpus-5d008a9.manifest.json"
+  },
+  "exact_pair_command": "set -e; PYTHONDONTWRITEBYTECODE=1 python3 src/run_scheduler_latency_loaded_capture.py results/scheduler-latency-arm-c-compile-360001x10ms.json results/scheduler-latency-arm-c-compile-360001x10ms.journal.jsonl --arm C --mode compile --source-dir results/scheduler-latency-compile-corpus-5d008a9/src --sample-count 360001 --cadence-ms 10 --worker-count 2 --warmup-seconds 30; sleep 600; PYTHONDONTWRITEBYTECODE=1 python3 src/run_scheduler_latency_loaded_capture.py results/scheduler-latency-arm-s-sham-360001x10ms.json results/scheduler-latency-arm-s-sham-360001x10ms.journal.jsonl --arm S --mode sham --sample-count 360001 --cadence-ms 10 --worker-count 2 --warmup-seconds 30",
+  "pre_and_post_integrity_command": "git rev-parse HEAD; git status --short; sha256sum docs/scheduler-latency-sensitivity-registration.md docs/scheduler-latency-sensitivity-registration-amendment.md src/run_scheduler_latency_loaded_capture.py src/scheduler_latency_gate.py src/test_run_scheduler_latency_loaded_capture.py src/test_scheduler_latency_gate.py src/host_compressibility_probe.py src/host_telemetry_channel.py src/transforms.py src/consts.py results/scheduler-latency-compile-corpus-5d008a9.manifest.json",
+  "sha256": {
+    "docs/scheduler-latency-sensitivity-registration.md": "dca96ed526c39a56e415ef56960d8e2940ae8ca86bdbca0e92f5a72c92e89a60",
+    "docs/scheduler-latency-sensitivity-registration-amendment.md": "2442f8079c011189b61f5ab9f33e1cb03542ec029bd9fd1bcad5bb1b21d7b19c",
+    "src/run_scheduler_latency_loaded_capture.py": "7ce1f604c16248f5d5a3daa3b60608d05343839947e59f496f8b1f8666dbe3c4",
+    "src/scheduler_latency_gate.py": "66b16bb42137fa719ee279f6fefc549963a5f4056ac838ebce01758784c96d5c",
+    "src/test_run_scheduler_latency_loaded_capture.py": "d098c6ef160fb85c093b3e79f3931afa5e73b3000475cdffb49dc43f81c5d958",
+    "src/test_scheduler_latency_gate.py": "0aa2148f725012ee1605c4bcf3ab7b1681c7080a3dfcbf4b82b40a7422801b0a",
+    "src/host_compressibility_probe.py": "8cfca401900e06f5c7884b43422ab9aa9a465ea6b01fce99109e91fd7f815f8a",
+    "src/host_telemetry_channel.py": "5df10080a6f7f80f856b52eeeba10dc9ba072f9f8b73160b5df175848b8e9829",
+    "src/transforms.py": "234f72eb42a15f88cb2fe5831a9f9421d3f94448d0dd39fa6ab169687845b7a6",
+    "src/consts.py": "7dda03561176a30ff9e2050e53fe15b8878b8c3f593032f1f276be2867f3066b",
+    "compile_corpus_manifest": "a54a42f2668d546da137e23eb7aa277cff101686cfef9171bbef8e062ad95dd8"
+  },
+  "compile_corpus": {
+    "source_commit": "5d008a9f32c6d55588c149187fdfbbeb095770f2",
+    "file_count": 52,
+    "read_only": true,
+    "cache_policy": "mode-0700 temporary per-worker caches; deleted before terminal journal event"
+  },
+  "disclosed_unrelated_worktree_state": {
+    "path": "src/test_stage7_slice1.py",
+    "status": "modified before this study; excluded from commits and corpus because corpus is git archive",
+    "working_file_sha256": "a867ad24d8e7753cede984306e5c18a03d51c0ca7be352023a2d8c9aafddf965",
+    "git_diff_sha256": "b17bfe608c0a2923fec4229b5b638d78552956838841cc6fe18a1c2c8d092ea9"
+  },
+  "authorization": {
+    "arm_c": "first exclusive launch at registered paths",
+    "arm_s": "first exclusive launch only after successful Arm C process and 600-second washout",
+    "replacement_runs_forbidden": true,
+    "pair_invalid_if_either_arm_invalid": true
+  }
+}
