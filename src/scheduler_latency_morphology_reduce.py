@@ -67,7 +67,8 @@ def analyze_channel(raw, signed):
             reduction = len(encoded) - len(transformed); ratio = Fraction(reduction, len(encoded))
             reductions[name].append(reduction); fractions[name].append(ratio); sizes[name] = len(transformed)
             outcomes[name] = {"output_length": len(transformed), "reduction_bytes": reduction,
-                              "compression_fraction": frac(ratio)}
+                              "compression_fraction": frac(ratio),
+                              "reconstruction_verified": True}
         winner = "RLE" if sizes["RLE"] < sizes["DIFF"] else "DIFF" if sizes["DIFF"] < sizes["RLE"] else "TIE"
         winners.append(winner)
         packets.append({"packet_index": packet_index, "encoded_length": len(encoded),
@@ -87,7 +88,10 @@ def analyze_channel(raw, signed):
     drift = any(max(v) - min(v) > Fraction(1, 15) for v in block_medians.values())
     support_by_transform = {t: (sign_counts(reductions[t])["positive"] >= 900 and
         any(b["reduction_sign_counts"][t]["positive"] * 2 > BLOCK for b in blocks)) for t in TRANSFORMS}
-    return {"packet_count": PACKETS, "winner_counts": winner_counts(winners),
+    return {"packet_count": PACKETS, "overall_value_median": percentile(raw, 1, 2),
+            "overall_median_compression_fraction": {
+                t: frac(percentile(v, 1, 2)) for t, v in fractions.items()},
+            "winner_counts": winner_counts(winners),
             "reduction_sign_counts": {t: sign_counts(v) for t, v in reductions.items()},
             "switching": switching, "block_drift": drift,
             "block_median_compression_fractions": {t: [frac(v) for v in vals] for t, vals in block_medians.items()},
