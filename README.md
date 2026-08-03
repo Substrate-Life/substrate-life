@@ -29,7 +29,7 @@ Stages 1–6 produced five scientific findings. Stage 7 implementation and deter
 
 - [Canonical public essay on Substack](https://substratelife.substack.com/p/conservation-is-not-an-ecology) — the public-facing argument in accessible form.
 - [Archival Markdown copy](docs/public-technical-essay.md) — repository-preserved copy of the published argument.
-- [Host-coupling essay](docs/the-host-varied-organisms-couldnt-eat-it.md) — why measurable host variation remained outside the repetition metabolism's nutritional currency.
+- [Host-coupling essay](docs/the-host-varied-metabolism-couldnt-eat-it.md) — why measurable host variation remained outside the repetition metabolism's nutritional currency.
 - [Audited findings synthesis](docs/stages1-6-findings-synthesis.md) — the evidentiary source, with measured/inferred boundaries and superseded claims.
 - [Project report](docs/project-report.md) — current model, retained results, failed assays, and open questions.
 - [`failed-designs/`](failed-designs/) — byte-preserved dead ends, audit transcripts, and the reasoning for abandonment.
