@@ -1,0 +1,209 @@
+{
+  "purpose": "Split storage for the registered one-hour host-compressibility raw artifact, removed from Git history on 2026-08-22 because it exceeds GitHub's 100 MB per-file hard limit. Reassembly is byte-exact; the original SHA-256 is authoritative.",
+  "original_path": "results/host-compressibility-long-window-360001x10ms.json",
+  "original_sha256": "623f59af1b6dd76a0f050337345881b93059981547ffe96a89eaa8b9a3a57c5f",
+  "original_bytes": 312139776,
+  "removal_commit_old_id": "30753c9999",
+  "parts_dir": "results/host-compressibility-long-window-360001x10ms.parts",
+  "reassembly": "concatenate part files in listed order; sha256 of the concatenation must equal original_sha256",
+  "parts": [
+    {
+      "file": "part-000.bin",
+      "sha256": "6e2ac0fc2dd59c2d0bbc18978b08676d4f98315a537fa7a992694d713f3ffd0d",
+      "bytes": 41943040,
+      "offset": 0
+    },
+    {
+      "file": "part-001.bin",
+      "sha256": "bf071215761b91441277e90789e27fc241348601be2f7fef79a99a28756038b9",
+      "bytes": 41943040,
+      "offset": 41943040
+    },
+    {
+      "file": "part-002.bin",
+      "sha256": "0857aad79749e646684b151d3f85cd1efb81839c6358a5f0e853812be758f389",
+      "bytes": 41943040,
+      "offset": 83886080
+    },
+    {
+      "file": "part-003.bin",
+      "sha256": "7158a4adbe1fadaf102aafcef7a26f6ba35c3de68e9d4a0a60f32fa57371844d",
+      "bytes": 41943040,
+      "offset": 125829120
+    },
+    {
+      "file": "part-004.bin",
+      "sha256": "692bbfb443b6dde6b27b9ee4c80d2061ee99a1424e15179ee596332fd3650981",
+      "bytes": 41943040,
+      "offset": 167772160
+    },
+    {
+      "file": "part-005.bin",
+      "sha256": "441977384f11e1ce1e9532d98db27b636d6809a90a45f6f7ea1983084360f168",
+      "bytes": 41943040,
+      "offset": 209715200
+    },
+    {
+      "file": "part-006.bin",
+      "sha256": "c8a0b3aeb96d10e15e2946d2d0f70be0ad38c50d35bcc62797cc7f90b3ab3600",
+      "bytes": 41943040,
+      "offset": 251658240
+    },
+    {
+      "file": "part-007.bin",
+      "sha256": "2c19cea347897b202f41f3ef1e088e02a84f618d07f4bde28eec4a5f9ed2f3a0",
+      "bytes": 18538496,
+      "offset": 293601280
+    }
+  ],
+  "migration_map": {
+    "note": "old-to-new commit ID map from removing results/host-compressibility-long-window-360001x10ms.json on 2026-08-22. Fork point 3c340476 and all commits older than 30753c9 are unchanged.",
+    "rewritten_commits": {
+      "ec77a831a26825eabb49110973ddd4e8db879aa0": {
+        "new": "9a005a3b8f2d205bbd8698d391048300a6f1f64e",
+        "subject": "Record push block: 297MB raw artifact exceeds GitHub hard limit"
+      },
+      "96d6cff279c6da9a6febbde380eb533f7ec37078": {
+        "new": "2b4aac0ebbba27c78699e299887aa03c8d8d5e34",
+        "subject": "Audit addendum: third-auditor re-verification of Stage 7B0 (225 checks PASS)"
+      },
+      "99c8ca462b62e5c7ad98db7b01595b95ddbd6cdd": {
+        "new": "a5ed3512d524558a13405727578c15dce5689721",
+        "subject": "Stage 7B1 design: how each section-11 blocker will be met (design only)"
+      },
+      "09b2f7eb9aaf9ce448c6e6e3c5c72b581d4bea0b": {
+        "new": "7b90ef4e8058e619342c03a6984e27d9554dea1a",
+        "subject": "Audit addendum: second-auditor re-verification of Stage 7B0 (183 checks PASS)"
+      },
+      "92bd6fdca320eacebbcddf5025ce82fe3fd96389": {
+        "new": "939f6480f2d26008e1e35869be46cadcd4204b57",
+        "subject": "Independent audit of Stage 7B0 result pair: PASS"
+      },
+      "36ab24bbdf3d559afbe5d6955fb2a0ad8ca72b92": {
+        "new": "d830ecbb1cb802631529d4deda8e3f9573afc7dd",
+        "subject": "Classify first Stage 7B0 blocks execution: PASS on all ten gates"
+      },
+      "a2362d2ea7f66a7cb0c8c1884801b280b709c318": {
+        "new": "47dbe7499616f7878a379e852e6aa3657b447f7e",
+        "subject": "Retain first classified Stage 7B0 execution: PASS 10/10 gates"
+      },
+      "e2f580b8ed4e048704fa1ce3c79319e0757ffa4c": {
+        "new": "df7b1f54f7f981d1ef647138458e02fc0bfb899f",
+        "subject": "Freeze Stage 7B0 implementation before first classified execution"
+      },
+      "f90da66cef24a55988094b05b8d87f2e67590326": {
+        "new": "7ab6dbac06cf22f403f0fcbeb48e95e9ef55d774",
+        "subject": "Fix DIVIDE child-memory failure to atomic CHILD_MEMORY_UNAVAILABLE"
+      },
+      "1080b11df559c8b64402aa01bc0315be1b7aac01": {
+        "new": "1392813ef01eca94033a8577c06b7161c4917886",
+        "subject": "Correct host essay scope before publication"
+      },
+      "ba002d96e4bfde4184fbcad798bacff621706980": {
+        "new": "24a042b11d78f24dea4f6f28f47a77abb9876e79",
+        "subject": "Add host coupling essay"
+      },
+      "6c5f9a23d1f5b212f0f2d25804ed811de619fbc4": {
+        "new": "41fd781be4d1fda3f80613f129138cc113f8a47d",
+        "subject": "Close host coupling thread"
+      },
+      "06f836f088dc53b16f6bac0fb4b50fae55a1a23a": {
+        "new": "be1ecb5cd8aa1b3726325f50fa9b8aa9209fb5eb",
+        "subject": "Register predictive reference-model guard"
+      },
+      "6043b50d19029cc41428f0d36b5ee2a866f598a3": {
+        "new": "c9f563bd72658a44fdb2e21c88f58fb1e9e89e2b",
+        "subject": "Record predictive metabolism as host-coupling successor"
+      },
+      "bcdff890675d91e23408e920f48fe0b3d275fbee": {
+        "new": "9f48893bb138a81040cb2fb4f308c5deea4a0ec1",
+        "subject": "Reframe host coupling as transform-signal mismatch"
+      },
+      "ee3bcfc7565540285342dee74ab94bf4544b74c7": {
+        "new": "0de3788da85420b1a6cbef612a3ba14de87aba11",
+        "subject": "Complete registered latency morphology outputs"
+      },
+      "ba84fa39449dd38f7069b4b59e65306b8c78869a": {
+        "new": "ff8d959f8bfb66f56d2c64b179d4520f05c2dd7d",
+        "subject": "Record terminal scheduler latency morphology result"
+      },
+      "99ba6450b7d20bc6e2f72fc683c19ae4cefd8aa2": {
+        "new": "27fcf8dad97ac730bbd7ed62f23aa2b3f13cf602",
+        "subject": "Retain fifteen-minute latency morphology raw arms"
+      },
+      "f0b5148de68d04ee62036307447f2ec712bae003": {
+        "new": "dcd47e036383c82a82fab8fa565c23ff557c7223",
+        "subject": "Implement fifteen-minute latency morphology characterization"
+      },
+      "fe0dfb9db8cd376ec13949ca30e093148c654791": {
+        "new": "12969f3043f02ea360a9f47171774449fcddb554",
+        "subject": "Register fifteen-minute latency morphology characterization"
+      },
+      "45a606a7f3c173bf9d911ff2cc4b00b13bb34f95": {
+        "new": "b3f4dc68819f8a7ed17049d961f21fc8981f6b79",
+        "subject": "Withdraw overbuilt scheduler latency sensitivity gate"
+      },
+      "9d886a1e79d55d339b31539d55e6c18e51703381": {
+        "new": "69d1b0baa2a517e5c71a5a9caa7b1a576b41ce6f",
+        "subject": "Authorize matched scheduler latency acquisition"
+      },
+      "5d008a9f32c6d55588c149187fdfbbeb095770f2": {
+        "new": "0c5c077cab344ba6cf3096c832a87386025d510a",
+        "subject": "Fail closed on workload integrity"
+      },
+      "177e86fbb99c7192e7fed2413afb53875641f077": {
+        "new": "72fc5bec989d72debe6a5d9c41106412bf6ad699",
+        "subject": "Harden latency provenance and invalid handling"
+      },
+      "65eaa6bb4e947b3a53a33caee8e4b34cf5b6dff0": {
+        "new": "5e50f9d8827d8d6c9d21b33e843d7d4bdbf405f3",
+        "subject": "Complete matched-arm latency reduction"
+      },
+      "a6e51e1b240381b3669bb36e8a19d9e8a8b4f5f2": {
+        "new": "35344ec011bb1143f18d3d3c318de0bbe9a4ee4e",
+        "subject": "Conform latency gate to matched sham amendment"
+      },
+      "cd48c91ae9e0b2cc9dad02d14cdf6e78f1dd3bea": {
+        "new": "6a0ccedb44db5f893913419da7e3ddf9ef6ecce4",
+        "subject": "Amend scheduler latency gate with matched sham control"
+      },
+      "0f17c8901b44f0ec5bbf0d0caa8109e01e0506ba": {
+        "new": "903b1a03a58e4cfca9ee34e7568ae7785da5f6a9",
+        "subject": "Implement scheduler latency sensitivity gate"
+      },
+      "b1e561635dc90df62503b9b80ebdb5421ffff16c": {
+        "new": "9207148fda8301b5c7d8943fc89135cfa5f8da82",
+        "subject": "Register scheduler latency sensitivity gate"
+      },
+      "9af41907286210ba17781360ffacd974fc849846": {
+        "new": "f3a84be773e4c6b81ea04f92f3c947ea9dad0dd1",
+        "subject": "Correct and document encoding diagnostic majority rule"
+      },
+      "9e0b94e03f1303d2bde5e2aa9ad769a1138a147c": {
+        "new": "302bd8a8b26008fa4c42d1cd85a07bcce25fa134",
+        "subject": "Retain registered host encoding diagnostic result"
+      },
+      "9ccb36b7c662c3983851daad9bdf056669b0588c": {
+        "new": "50856bbd35fa527061feaddfd2fefa0c89396e98",
+        "subject": "Freeze host encoding diagnostic manifest"
+      },
+      "13e46cbf594a4936839183602ca94cb9ceb66a41": {
+        "new": "9ba74c5e34c281f9185535fa59caf983bb77d776",
+        "subject": "Implement registered host encoding diagnostic"
+      },
+      "d340e08555313270bd92d5fa50d0db95baab6b26": {
+        "new": "8f7c6caedf661410a1e328b1ff2288ee53f8643c",
+        "subject": "Register retained-trace encoding diagnostic"
+      },
+      "f375297b06a10f5a184227766652fbdad75c4272": {
+        "new": "de59c5399190dcdab573debc2aadf835d24c99ef",
+        "subject": "Document audited long-window host result"
+      },
+      "30753c99992f4ab234d92b8795ef2283ea1243f8": {
+        "new": "f77c1bd8b4b9091541c00fd5426a6797b84caff1",
+        "subject": "Retain one-hour host compressibility result"
+      }
+    },
+    "migration_note_doc": "docs/history-migration-2026-08-22.md"
+  }
+}
