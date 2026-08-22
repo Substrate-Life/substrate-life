@@ -1,0 +1,131 @@
+{
+  "decision": "PASS",
+  "decision_scope": "Permits only the mechanism-verification conclusion of preregistration section 9.3 for the registered fault-injection, retirement, death/corpse, no-eviction, and shadow-telemetry tests; establishes nothing about generality, fitness, selection, invasion growth, reproductive value, mutation accessibility, plasticity, optimum, or ESS.",
+  "evidence_class": "deterministic, mutation-disabled mechanics verification of preregistration sections 2-5 and 6.2; no fitness endpoint",
+  "matrix_result": {
+    "errors": 0,
+    "failures": 0,
+    "passed": true,
+    "records": [
+      {
+        "outcome": "PASS",
+        "test": "test_rollback_after_child_memory (test_stage7b1_mechanics.Stage7B1RollbackMatrixTests.test_rollback_after_child_memory)"
+      },
+      {
+        "outcome": "PASS",
+        "test": "test_rollback_after_mutation (test_stage7b1_mechanics.Stage7B1RollbackMatrixTests.test_rollback_after_mutation)"
+      },
+      {
+        "outcome": "PASS",
+        "test": "test_rollback_after_vacancy (test_stage7b1_mechanics.Stage7B1RollbackMatrixTests.test_rollback_after_vacancy)"
+      },
+      {
+        "outcome": "PASS",
+        "test": "test_rollback_before_commit (test_stage7b1_mechanics.Stage7B1RollbackMatrixTests.test_rollback_before_commit)"
+      },
+      {
+        "outcome": "PASS",
+        "test": "test_rollback_in_child_memory (test_stage7b1_mechanics.Stage7B1RollbackMatrixTests.test_rollback_in_child_memory)"
+      },
+      {
+        "outcome": "PASS",
+        "test": "test_rollback_in_mutation (test_stage7b1_mechanics.Stage7B1RollbackMatrixTests.test_rollback_in_mutation)"
+      },
+      {
+        "outcome": "PASS",
+        "test": "test_rollback_in_provisioning (test_stage7b1_mechanics.Stage7B1RollbackMatrixTests.test_rollback_in_provisioning)"
+      },
+      {
+        "outcome": "PASS",
+        "test": "test_child_memory_unavailable_is_atomic (test_stage7b1_mechanics.Stage7B1CommitSemanticsTests.test_child_memory_unavailable_is_atomic)"
+      },
+      {
+        "outcome": "PASS",
+        "test": "test_commit_is_atomic (test_stage7b1_mechanics.Stage7B1CommitSemanticsTests.test_commit_is_atomic)"
+      },
+      {
+        "outcome": "PASS",
+        "test": "test_no_stale_bout_retry (test_stage7b1_mechanics.Stage7B1CommitSemanticsTests.test_no_stale_bout_retry)"
+      },
+      {
+        "outcome": "PASS",
+        "test": "test_rng_consumption_survives_failure (test_stage7b1_mechanics.Stage7B1CommitSemanticsTests.test_rng_consumption_survives_failure)"
+      },
+      {
+        "outcome": "PASS",
+        "test": "test_destroyed_budget_exact (test_stage7b1_mechanics.Stage7B1RetirementTests.test_destroyed_budget_exact)"
+      },
+      {
+        "outcome": "PASS",
+        "test": "test_double_retirement_raises (test_stage7b1_mechanics.Stage7B1RetirementTests.test_double_retirement_raises)"
+      },
+      {
+        "outcome": "PASS",
+        "test": "test_retire_on_holder_death (test_stage7b1_mechanics.Stage7B1RetirementTests.test_retire_on_holder_death)"
+      },
+      {
+        "outcome": "PASS",
+        "test": "test_retired_provenance_not_a_sink (test_stage7b1_mechanics.Stage7B1RetirementTests.test_retired_provenance_not_a_sink)"
+      },
+      {
+        "outcome": "PASS",
+        "test": "test_all_stalled_triggers_guard (test_stage7b1_mechanics.Stage7B1NoEvictionTests.test_all_stalled_triggers_guard)"
+      },
+      {
+        "outcome": "PASS",
+        "test": "test_bound_holds_for_registered_fixture (test_stage7b1_mechanics.Stage7B1NoEvictionTests.test_bound_holds_for_registered_fixture)"
+      },
+      {
+        "outcome": "PASS",
+        "test": "test_overflow_raises_not_drops (test_stage7b1_mechanics.Stage7B1NoEvictionTests.test_overflow_raises_not_drops)"
+      },
+      {
+        "outcome": "PASS",
+        "test": "test_corpse_expiry_restores_memory_closure (test_stage7b1_mechanics.Stage7B1HazardDeathTests.test_corpse_expiry_restores_memory_closure)"
+      },
+      {
+        "outcome": "PASS",
+        "test": "test_dead_member_not_scheduled (test_stage7b1_mechanics.Stage7B1HazardDeathTests.test_dead_member_not_scheduled)"
+      },
+      {
+        "outcome": "PASS",
+        "test": "test_death_between_alloc_and_copy (test_stage7b1_mechanics.Stage7B1HazardDeathTests.test_death_between_alloc_and_copy)"
+      },
+      {
+        "outcome": "PASS",
+        "test": "test_death_disposal_exact (test_stage7b1_mechanics.Stage7B1HazardDeathTests.test_death_disposal_exact)"
+      },
+      {
+        "outcome": "PASS",
+        "test": "test_death_holding_packet (test_stage7b1_mechanics.Stage7B1HazardDeathTests.test_death_holding_packet)"
+      },
+      {
+        "outcome": "PASS",
+        "test": "test_shadow_counters_side_effect_free (test_stage7b1_mechanics.Stage7B1ShadowTelemetryTests.test_shadow_counters_side_effect_free)"
+      }
+    ],
+    "tests_run": 24
+  },
+  "mutation_enabled": false,
+  "protocol": "stage-7b1-preregistration",
+  "protocol_sha256_note": "hash of the protocol document is recorded in the pre-execution manifest, not recomputed here",
+  "registered_test_classes": [
+    "Stage7B1RollbackMatrixTests",
+    "Stage7B1CommitSemanticsTests",
+    "Stage7B1RetirementTests",
+    "Stage7B1NoEvictionTests",
+    "Stage7B1HazardDeathTests",
+    "Stage7B1ShadowTelemetryTests"
+  ],
+  "selection_assay_run": false,
+  "source_manifest_sha256": {
+    "consts.py": "7dda03561176a30ff9e2050e53fe15b8878b8c3f593032f1f276be2867f3066b",
+    "datastream.py": "62719958ac39dd79b5a59bab9534ae3fa7253451e6e12d3457905ced9f0c8148",
+    "run_stage7b1.py": "f2c8362e8ada6a4245c4ab569920f111fe40ed60304a50af36f9fcb1819a0d69",
+    "stage7_slice1.py": "c297b3947c16128e67ffdc9c4dc9f050ed8764c628b9d2855265a21d68bde7fd",
+    "stage7_slice2.py": "7d7ca9a82a27e65799951d15c95fd49a5b97276f13db3612b9ecd1068f8576a8",
+    "stage7b1_mechanics.py": "615726900a1d3d3a36af1807ad0dc7c30ce76c09596c1d2f1fab44870d904cde",
+    "test_stage7b1_mechanics.py": "a10b17a39bdb8dd4922dc1b3271a4f72471d374478d0fa624ddd9d21733add09",
+    "transforms.py": "234f72eb42a15f88cb2fe5831a9f9421d3f94448d0dd39fa6ab169687845b7a6"
+  }
+}
