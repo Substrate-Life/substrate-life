@@ -375,6 +375,23 @@ class SliceOrganism:
             self.ordinary_upkeep("DIVIDE_FAILED_R")
             return None
 
+        # Atomic child-memory feasibility decided BEFORE surrendering the
+        # parent-owned gestation block (architecture spec §7 steps 4-5,
+        # strengthened ordering). The gestation bytes count toward
+        # availability because releasing them into the pool is the next
+        # unconditional act, so the boundary is exact and no feasible birth
+        # is rejected. On failure the bout stays intact for the caller's
+        # single-owner release; prepaid work stays sunk; nothing commits.
+        gestation_bytes = self.memory.gestation[self.organism_id]
+        if self.memory.free_pool + gestation_bytes < MIN_WORKING_MEMORY:
+            self._record(
+                "child_memory_unavailable",
+                required=MIN_WORKING_MEMORY,
+                available=self.memory.free_pool + gestation_bytes,
+            )
+            self.ordinary_upkeep("DIVIDE_CHILD_MEMORY_UNAVAILABLE")
+            return None
+
         # Guaranteed isolated admission. Parent gestation is released exactly
         # once before child memory is independently committed.
         self.memory.release_gestation(self.organism_id)

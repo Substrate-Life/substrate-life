@@ -74,6 +74,44 @@ class Stage7Slice1Tests(unittest.TestCase):
             INITIAL_SHARED_MEMORY_POOL,
         )
 
+    def test_failed_divide_memory_transfer_is_atomic(self):
+        memory = MemoryLedger(initial_pool=MIN_WORKING_MEMORY + 1)
+        parent = SliceOrganism(
+            "parent", memory, s=Fraction(100), r=Fraction(100))
+        self.assertTrue(parent.allocate_offspring(size=1))
+        before_memory = (
+            memory.free_pool,
+            dict(memory.somatic_active),
+            dict(memory.gestation),
+            dict(memory.corpse_reserved),
+        )
+        before_committed = parent.committed
+
+        # Registered failure mode: CHILD_MEMORY_UNAVAILABLE returns None
+        # atomically instead of raising mid-transfer (architecture §7 step 5).
+        self.assertIsNone(parent.divide_and_provision("child"))
+
+        self.assertEqual(
+            (
+                memory.free_pool,
+                dict(memory.somatic_active),
+                dict(memory.gestation),
+                dict(memory.corpse_reserved),
+            ),
+            before_memory,
+        )
+        self.assertEqual(parent.committed, before_committed)
+        self.assertIsNone(parent.child)
+        self.assertFalse(any(
+            event["event"] == "provision_committed" for event in parent.events))
+        self.assertGreater(parent.c_r, 0)
+        # The bout stays parent-owned and intact so the caller performs the
+        # single-owner gestation release on this failure path.
+        self.assertIn(parent.organism_id, memory.gestation)
+        self.assertTrue(any(
+            event["event"] == "child_memory_unavailable"
+            for event in parent.events))
+
     def test_failed_post_provision_reversal_is_packet_atomic(self):
         memory = MemoryLedger()
         organism = SliceOrganism(
