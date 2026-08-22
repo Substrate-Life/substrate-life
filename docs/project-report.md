@@ -460,6 +460,14 @@ This prediction is sharper than the original premise: the target is not merely a
 
 ---
 
+### 6d. Stage 7B1 Transaction Mechanics — Registered, Frozen, Verified PASS; Stage 7B2 Parameters Registered
+
+The six architecture §11/§13 blockers that gated every population-fitness assay were resolved by the superseding Stage 7B1 preregistration (`d865afb`): atomic DIVIDE publication as a fixed six-stage transaction `G…C` with a registered rollback rule and invariant set I1–I8; packet retirement equations keeping physical destruction and provenance retirement separate; a proven three-layer no-eviction configuration; hazard-death-with-live-gestation cleanup ordering; the invasion-growth/reproductive-value endpoint with cohort mediators and no-imputation censoring; and the vacancy-capture estimand decision (binding capture is part of the primary estimand, decomposed via side-effect-free `would_admit` shadow counters). The design document that preceded it (`a5ed351`, now superseded and immutable) was execution-unauthorized by construction; the preregistration superseded it before any implementation existed.
+
+Implementation, runner, and the full 24-test registered matrix were frozen together with a pre-execution manifest at `62f2672` (`results/stage7b1/pre-execution-manifest.json`), and the single authorised execution class — the deterministic, mutation-disabled mechanics verification — ran once to **PASS 24/24**, retained and self-classified at `95b5c24` (`results/stage7b1/stage7b1-result.json`, SHA-256 `d1feb0fd07636b16f54f773c9b75932480c29dec2274134d8e3d95483809bedd`, 6,127 bytes; embedded per-source hashes match the pre-execution manifest exactly). Every injected-exception boundary left all ledgers exactly closed with no partial child observable; retirement, death/corpse, no-eviction, and shadow-telemetry assertions all held. This discharges architecture §12 trace 17 and the §11 packet-sink and vacancy gates at the mechanics level. Decision scope is mechanism verification only: no fitness, selection, invasion-growth, reproductive-value, or evolutionary claim exists or is authorised by that result.
+
+Under the 7B1 post-PASS gate (§9.5), the separate superseding Stage 7B2 preregistration (`docs/stage-7b2-preregistration.md`) now registers the deferred Blocker 3/5/6 parameters: `r=5`, `d=64` under no-eviction layers 1–2, `N=12`, `W=600`, a single hazard arm `h=1/120`, `k=32` paired replicates seeded `20260822+i`, `Δr_min=1/100`, and solver resolution `ρ_r=1/256`, over the carried genotypes `A∈{102,204}`, `T=128`, `D=255`. It fixes the exact event-ledger estimators, the subcritical-aware solver contract, and an exhaustive once-applied decision rule. It authorises no execution; its implementation window requires the same freeze-before-execution manifest discipline before any retained run. Mutation remains unauthorised in every form.
+
 ## 7. Project Files
 
 Key active and retained Substrate project artifacts in this working directory:
@@ -508,6 +516,14 @@ Key active and retained Substrate project artifacts in this working directory:
 | `src/test_stage7b0_blocks.py` | Registered design-calibration regressions for every §6 exact value |
 | `results/stage7b0/pre-execution-manifest.json` | Freeze manifest for the blocks implementation, committed before its first classified run |
 | `results/stage7b0/stage7b0-result.json` | Retained classified blocks result (PASS, ten gates); byte-identical rerun |
+| `src/stage7b1_mechanics.py` | Frozen 7B1 transaction/retirement/death/no-eviction/shadow mechanics |
+| `src/test_stage7b1_mechanics.py` | Registered 24-test fault-injection/retirement/death/no-eviction/shadow matrix |
+| `src/run_stage7b1.py` | Deterministic verification runner with embedded per-source hashes |
+| `results/stage7b1/pre-execution-manifest.json` | Freeze manifest committed before the first classified 7B1 run |
+| `results/stage7b1/stage7b1-result.json` | Retained classified PASS 24/24; embedded hashes match manifest exactly |
+| `docs/stage-7b1-design.md` | Superseded design record (immutable) |
+| `docs/stage-7b1-preregistration.md` | Superseding six-blocker registration and authorised execution class |
+| `docs/stage-7b2-preregistration.md` | Confirmatory parameter registration (`r,d,N,W,h,k,Δr_min,ρ_r`); authorises no execution |
 | `docs/stages1-6-findings-synthesis.md` | Five Stage 1–6 findings plus constraint–openness, review–execution, and conservation–ecology methodological results |
 | `docs/public-technical-essay.md` | Public-facing argument derived from the audited result ledger; independently audited for scientific scope and prose |
 | `docs/r-max-analysis.md` | Foraging effort, overshoot threshold N_crit ≈ 286 (at E=129; see §4d) |
