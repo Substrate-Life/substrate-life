@@ -142,3 +142,45 @@ additions relative to the original audit text:
   0–3, four logged `org-0` full-census rejections each requiring a
   completed capture-and-work cycle). Block B newborn identity, order,
   ticks, and provisions were recounted from raw `birth_admitted` events.
+
+## Re-verification by a third auditor (2026-08-22, subsequent session)
+
+A fresh verifier was again written from scratch against the retained
+artifact, the pre-execution manifest, frozen git objects, and current
+`src/` bytes; it imports none of the runner or builder code and trusts
+no `gate_analysis` field. All 225 checks pass; the verdict above is
+unchanged. Checks not already listed in the passes above:
+
+- *Programme-spec hash origin.* The registered
+  `5ddbf276…c344` was **recomputed** as the SHA-256 of the §2.1
+  canonical JSON under compact serialisation (both key orders agree),
+  not merely compared to the stored string.
+- *Freeze provenance.* Each of the seven manifest sources is
+  byte-identical to its blob at freeze commit `e2f580b` (read from git
+  objects, not the working tree alone), and all four pre-execution
+  manifest entries match current bytes.
+- *Per-stage ledger identities (gate 4, structural).* In Block A each
+  consecutive checkpoint pair satisfies, exactly: forage step
+  `ΔS = (1−A/D)·Y − ΔC_S`, `ΔR = (A/D)·Y − ΔC_R`; ALLOC/COPY steps debit
+  only `ΔC_S`/`ΔC_R` on their own accounts; DIVIDE step
+  `ΔR = −ΔC_R − P` with `P` equal to the child endowment — direct-debit
+  isolation holds without any fitted constant. `R_w` recovered as
+  `P·D/T` reproduces the registered `413/10` and `469/5`.
+- *Closure recomputation.* The §5.1 equation was recomputed as exact
+  `Fraction` at all 22 named checkpoints across A/C/E1/E2 (not by
+  trusting `closed` booleans), the memory-pool sum at each of them, and
+  the B/D aggregates including founder inputs (`100 + net_income − costs
+  = live_reserves + destroyed`). All close exactly.
+- *E-block decomposition.* E2: `Δparent_S = −859/160 = −ΔC_S` with
+  parent `R` and packet fields identical. E1 extent-20: movement
+  reproduces the stored-provenance split plus charge,
+  `ΔS = −ΔC_S − (drawn_S share)·125/4`, `ΔR = −(drawn_R share)·125/4`.
+- *Block B recount.* Raw-event provisions equal the second auditor's
+  triples per arm; the first provision equals the same arm's Block A
+  endowment and the grandchild repeats it.
+- *Hygiene scans.* Token scan of the frozen sources reproduced (only
+  gate-10 detail strings, the legacy `MUTATION_DELETION` constant, the
+  registered hazard comparison at `stage7_slice2.py:327`, and a
+  `"displacements": 0` counter; ledger files clean). No forbidden
+  analysis fields exist anywhere in the artifact; value-level mentions
+  of fitness/optimum/ESS occur only inside negated scope prose.
