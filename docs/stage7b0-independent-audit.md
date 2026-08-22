@@ -17,7 +17,7 @@ Without importing `run_stage7b0.py`'s analysis path, the auditor:
 
 - rehashed the retained artifact and confirmed identity with the recorded
   SHA-256;
-- verified all six embedded `source_manifest_sha256` entries against the
+- verified all seven embedded `source_manifest_sha256` entries against the
   current files in `src/` (all match);
 - confirmed the programme-specification hash equals the registered
   `5ddbf276aa0a836672b1b3011e66974ce9ecd6fedb0758a111c95766f534c344` in
@@ -96,3 +96,49 @@ across other `A/T/D` values or programmes, population fitness, selection,
 invasion growth, reproductive value, mutation accessibility, plasticity,
 optimum, or ESS. Per preregistration §11, a PASS authorises design — not
 execution — of Stage 7B1.
+
+## Re-verification by a second auditor (2026-08-22, later session)
+
+An independent verifier was written that reads only the retained artifact,
+the pre-execution manifest, and the current bytes of `src/` — it imports
+none of the runner's or builder's code and trusts no `gate_analysis` field.
+All 183 checks pass; the verdict above is unchanged. Corrections and
+additions relative to the original audit text:
+
+- *Correction.* The source manifest embeds **seven** entries, not six as
+  originally stated (the runner hashes itself plus six modules). All seven
+  match the current files, as do the four pre-execution-manifest entries.
+- *Reversal-charge derivation (new).* From the frozen cost functions:
+  `transform_cost(E)=3+(E+63)//64`, giving `4` for extents 20 and 64 and
+  `5` for extent 80; ordinary upkeep after the 256→172 forage is
+  `1/10 + 172/640 = 59/160`. Each committed E1 reversal therefore nets
+  `−699/160` in `S` plus its stored-provenance debits (`75/4` and `25/2`
+  LOW; `25/4` and `50` HIGH at extent 20), and the failed extent-80
+  attempt costs exactly `5 + 59/160 = 859/160` — the registered E2 charge —
+  with `R`, packet, and memory snapshots byte-identical across the failure.
+- *Provisioning-law cross-check (new).* The mechanics provision
+  `P=(T/D)·R_w` with `R_w` the parent's `R` at DIVIDE, and parent `R`
+  carries across cycles. This law reproduces, exactly and without fitting:
+  the Block A endowments (`26432/1275`, `60032/1275`); all three Block B
+  provisions per arm — LOW `(26432/1275, 10097024/325125, 26432/1275)`,
+  HIGH `(60032/1275, 22932224/325125, 60032/1275)` — including the
+  second-cycle founder provision, which follows from carried
+  `R = 52451/2550` (LOW) and `59563/1275` (HIGH), the very values Block E2
+  registers before its reversal attempt; and the grandchild provision,
+  which repeats the founder endowment because a newborn starts at
+  `R_birth=0`.
+- *Token-scan classification (new).* The only hidden-gate token hits in
+  the seven frozen sources are: the gate-10 detail strings themselves;
+  the registered hazard comparison `hazard_rng.random() < float(rate)`
+  (zero hazard configured; no death event in any fixture; hazard is a
+  registered mechanism, not a viability rule); `MUTATION_DELETION`, an
+  unused legacy-mutation constant (mutation disabled, no mutation RNG
+  exists in the executed path); and a literal `"displacements": 0`
+  counter. `stage7_slice1.py` and `transforms.py` — the ledger mechanics —
+  contain no hits.
+- *Recount provenance notes (new).* Successful packet captures are not
+  directly logged; the registered Block D capture count is verified
+  structurally (one offer per tick, four logged `org-1` failures at ticks
+  0–3, four logged `org-0` full-census rejections each requiring a
+  completed capture-and-work cycle). Block B newborn identity, order,
+  ticks, and provisions were recounted from raw `birth_admitted` events.
