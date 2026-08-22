@@ -1,0 +1,23 @@
+{
+  "files": {
+    "docs/stage-7b1-preregistration.md": {
+      "bytes": 20006,
+      "sha256": "f925d92505d8278364205e4b5b156ba954a364b1d3e763cefd46070b8d8fe53a"
+    },
+    "src/run_stage7b1.py": {
+      "bytes": 5725,
+      "sha256": "f2c8362e8ada6a4245c4ab569920f111fe40ed60304a50af36f9fcb1819a0d69"
+    },
+    "src/stage7b1_mechanics.py": {
+      "bytes": 46861,
+      "sha256": "615726900a1d3d3a36af1807ad0dc7c30ce76c09596c1d2f1fab44870d904cde"
+    },
+    "src/test_stage7b1_mechanics.py": {
+      "bytes": 36288,
+      "sha256": "a10b17a39bdb8dd4922dc1b3271a4f72471d374478d0fa624ddd9d21733add09"
+    }
+  },
+  "note": "Committed before the first classified run of the registered Stage 7B1 deterministic mechanics verification (preregistration section 9.2/9.3). The runner additionally embeds per-source SHA-256 in every output artifact. Exploratory executions of this test matrix during implementation were calibration checks against the registered assertions and produced no retained artifact; the first retained raw output under this manifest is results/stage7b1/stage7b1-result.json.",
+  "protocol": "stage-7b1-preregistration",
+  "purpose": "Stage 7B1 pre-execution freeze (preregistration section 9.2)"
+}
