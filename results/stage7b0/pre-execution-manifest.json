@@ -1,0 +1,23 @@
+{
+  "files": {
+    "docs/stage-7b-fixed-allocation-channel-preregistration.md": {
+      "bytes": 24032,
+      "sha256": "8ecabac15a8487724b09ab6dca1340e55e63de39c9717c580cd18dd52947c113"
+    },
+    "src/run_stage7b0.py": {
+      "bytes": 13064,
+      "sha256": "be88e8ea0f38629a002520ad31fee651f3c859f5491a957cb47a6e0d2ea6468e"
+    },
+    "src/stage7b0_blocks.py": {
+      "bytes": 22742,
+      "sha256": "57aa113205195f766bd01757c9dd524173f02368f5cfe8032fd3eb1fe439ad5b"
+    },
+    "src/test_stage7b0_blocks.py": {
+      "bytes": 11331,
+      "sha256": "738f563ed4e2167c2ec6bec3342a174d65bbe6774acc5d316019820fcca02c41"
+    }
+  },
+  "note": "Committed before the first classified run of any registered block. The runner additionally embeds per-source SHA-256 in every output artifact. Earlier exploratory executions of these blocks during implementation were calibration checks against the registered regression values and produced no retained artifact; the first retained raw output under this manifest is results/stage7b0/stage7b0-result.json.",
+  "protocol": "stage-7b-fixed-allocation-channel-preregistration",
+  "purpose": "Stage 7B0 pre-execution freeze (preregistration section 10)"
+}
