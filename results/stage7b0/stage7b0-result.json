@@ -1,0 +1,1455 @@
+{
+  "blocks": {
+    "A": {
+      "arms": {
+        "HIGH": {
+          "A": 204,
+          "checkpoints": [
+            {
+              "C_R": "0/1",
+              "C_S": "0/1",
+              "checkpoint": "INITIAL",
+              "committed_child_S": "0/1",
+              "destroyed": "0/1",
+              "gross_income": "0/1",
+              "memory": {
+                "corpse_reserved": 0,
+                "free_pool": 8128,
+                "gestation": 0,
+                "somatic_active": 64
+              },
+              "packets": [],
+              "parent_R": "0/1",
+              "parent_S": "100/1",
+              "reversed_income": "0/1"
+            },
+            {
+              "C_R": "0/1",
+              "C_S": "2859/160",
+              "checkpoint": "POST_FORAGE",
+              "committed_child_S": "0/1",
+              "destroyed": "0/1",
+              "gross_income": "525/4",
+              "memory": {
+                "corpse_reserved": 0,
+                "free_pool": 8020,
+                "gestation": 0,
+                "somatic_active": 172
+              },
+              "packets": [
+                {
+                  "budget_remaining": "675/4",
+                  "drawn_R": "105/1",
+                  "drawn_S": "105/4",
+                  "initial_budget": "300/1",
+                  "packet_id": 1
+                }
+              ],
+              "parent_R": "105/1",
+              "parent_S": "17341/160",
+              "reversed_income": "0/1"
+            },
+            {
+              "C_R": "51/10",
+              "C_S": "1539/80",
+              "checkpoint": "POST_ALLOC",
+              "committed_child_S": "0/1",
+              "destroyed": "0/1",
+              "gross_income": "525/4",
+              "memory": {
+                "corpse_reserved": 0,
+                "free_pool": 7956,
+                "gestation": 64,
+                "somatic_active": 172
+              },
+              "packets": [
+                {
+                  "budget_remaining": "675/4",
+                  "drawn_R": "105/1",
+                  "drawn_S": "105/4",
+                  "initial_budget": "300/1",
+                  "packet_id": 1
+                }
+              ],
+              "parent_R": "999/10",
+              "parent_S": "8561/80",
+              "reversed_income": "0/1"
+            },
+            {
+              "C_R": "36/5",
+              "C_S": "3297/160",
+              "checkpoint": "POST_COPY",
+              "committed_child_S": "0/1",
+              "destroyed": "0/1",
+              "gross_income": "525/4",
+              "memory": {
+                "corpse_reserved": 0,
+                "free_pool": 7956,
+                "gestation": 64,
+                "somatic_active": 172
+              },
+              "packets": [
+                {
+                  "budget_remaining": "675/4",
+                  "drawn_R": "105/1",
+                  "drawn_S": "105/4",
+                  "initial_budget": "300/1",
+                  "packet_id": 1
+                }
+              ],
+              "parent_R": "489/5",
+              "parent_S": "16903/160",
+              "reversed_income": "0/1"
+            },
+            {
+              "C_R": "56/5",
+              "C_S": "879/40",
+              "checkpoint": "POST_DIVIDE",
+              "committed_child_S": "60032/1275",
+              "destroyed": "0/1",
+              "gross_income": "525/4",
+              "memory": {
+                "corpse_reserved": 0,
+                "free_pool": 7956,
+                "gestation": 0,
+                "somatic_active": 236
+              },
+              "packets": [
+                {
+                  "budget_remaining": "675/4",
+                  "drawn_R": "105/1",
+                  "drawn_S": "105/4",
+                  "initial_budget": "300/1",
+                  "packet_id": 1
+                }
+              ],
+              "parent_R": "59563/1275",
+              "parent_S": "4171/40",
+              "reversed_income": "0/1"
+            }
+          ],
+          "child_R_birth": "0/1",
+          "child_S_birth": "60032/1275",
+          "committed_children": 1,
+          "events": [
+            {
+              "event": "FORAGE_RLE",
+              "label": "HIGH",
+              "output_bytes": 172,
+              "packet_id": 1,
+              "r": "105/1",
+              "s": "17341/160"
+            },
+            {
+              "committed": true,
+              "event": "ALLOC_OFFSPRING",
+              "label": "HIGH",
+              "r": "999/10",
+              "s": "8561/80"
+            },
+            {
+              "committed": true,
+              "event": "COPY_BLOCK",
+              "label": "HIGH",
+              "r": "489/5",
+              "s": "16903/160"
+            },
+            {
+              "committed": true,
+              "event": "DIVIDE",
+              "label": "HIGH",
+              "r": "59563/1275",
+              "s": "4171/40"
+            }
+          ],
+          "final_parent_R": "59563/1275",
+          "final_parent_S": "4171/40",
+          "heritable_state_hash": "792bf28f1bd5e8917a6c6149c66a5e0ea81030409cd7fcd8551cf76b82cacb84",
+          "label": "HIGH",
+          "memory_closed": true,
+          "programme_specification_sha256": "5ddbf276aa0a836672b1b3011e66974ce9ecd6fedb0758a111c95766f534c344",
+          "reserve_closure": {
+            "closed": true,
+            "lhs": "7923/40",
+            "rhs": "7923/40"
+          },
+          "transform_output_bytes": 172
+        },
+        "LOW": {
+          "A": 102,
+          "checkpoints": [
+            {
+              "C_R": "0/1",
+              "C_S": "0/1",
+              "checkpoint": "INITIAL",
+              "committed_child_S": "0/1",
+              "destroyed": "0/1",
+              "gross_income": "0/1",
+              "memory": {
+                "corpse_reserved": 0,
+                "free_pool": 8128,
+                "gestation": 0,
+                "somatic_active": 64
+              },
+              "packets": [],
+              "parent_R": "0/1",
+              "parent_S": "100/1",
+              "reversed_income": "0/1"
+            },
+            {
+              "C_R": "0/1",
+              "C_S": "2859/160",
+              "checkpoint": "POST_FORAGE",
+              "committed_child_S": "0/1",
+              "destroyed": "0/1",
+              "gross_income": "525/4",
+              "memory": {
+                "corpse_reserved": 0,
+                "free_pool": 8020,
+                "gestation": 0,
+                "somatic_active": 172
+              },
+              "packets": [
+                {
+                  "budget_remaining": "675/4",
+                  "drawn_R": "105/2",
+                  "drawn_S": "315/4",
+                  "initial_budget": "300/1",
+                  "packet_id": 1
+                }
+              ],
+              "parent_R": "105/2",
+              "parent_S": "25741/160",
+              "reversed_income": "0/1"
+            },
+            {
+              "C_R": "51/10",
+              "C_S": "1539/80",
+              "checkpoint": "POST_ALLOC",
+              "committed_child_S": "0/1",
+              "destroyed": "0/1",
+              "gross_income": "525/4",
+              "memory": {
+                "corpse_reserved": 0,
+                "free_pool": 7956,
+                "gestation": 64,
+                "somatic_active": 172
+              },
+              "packets": [
+                {
+                  "budget_remaining": "675/4",
+                  "drawn_R": "105/2",
+                  "drawn_S": "315/4",
+                  "initial_budget": "300/1",
+                  "packet_id": 1
+                }
+              ],
+              "parent_R": "237/5",
+              "parent_S": "12761/80",
+              "reversed_income": "0/1"
+            },
+            {
+              "C_R": "36/5",
+              "C_S": "3297/160",
+              "checkpoint": "POST_COPY",
+              "committed_child_S": "0/1",
+              "destroyed": "0/1",
+              "gross_income": "525/4",
+              "memory": {
+                "corpse_reserved": 0,
+                "free_pool": 7956,
+                "gestation": 64,
+                "somatic_active": 172
+              },
+              "packets": [
+                {
+                  "budget_remaining": "675/4",
+                  "drawn_R": "105/2",
+                  "drawn_S": "315/4",
+                  "initial_budget": "300/1",
+                  "packet_id": 1
+                }
+              ],
+              "parent_R": "453/10",
+              "parent_S": "25303/160",
+              "reversed_income": "0/1"
+            },
+            {
+              "C_R": "56/5",
+              "C_S": "879/40",
+              "checkpoint": "POST_DIVIDE",
+              "committed_child_S": "26432/1275",
+              "destroyed": "0/1",
+              "gross_income": "525/4",
+              "memory": {
+                "corpse_reserved": 0,
+                "free_pool": 7956,
+                "gestation": 0,
+                "somatic_active": 236
+              },
+              "packets": [
+                {
+                  "budget_remaining": "675/4",
+                  "drawn_R": "105/2",
+                  "drawn_S": "315/4",
+                  "initial_budget": "300/1",
+                  "packet_id": 1
+                }
+              ],
+              "parent_R": "52451/2550",
+              "parent_S": "6271/40",
+              "reversed_income": "0/1"
+            }
+          ],
+          "child_R_birth": "0/1",
+          "child_S_birth": "26432/1275",
+          "committed_children": 1,
+          "events": [
+            {
+              "event": "FORAGE_RLE",
+              "label": "LOW",
+              "output_bytes": 172,
+              "packet_id": 1,
+              "r": "105/2",
+              "s": "25741/160"
+            },
+            {
+              "committed": true,
+              "event": "ALLOC_OFFSPRING",
+              "label": "LOW",
+              "r": "237/5",
+              "s": "12761/80"
+            },
+            {
+              "committed": true,
+              "event": "COPY_BLOCK",
+              "label": "LOW",
+              "r": "453/10",
+              "s": "25303/160"
+            },
+            {
+              "committed": true,
+              "event": "DIVIDE",
+              "label": "LOW",
+              "r": "52451/2550",
+              "s": "6271/40"
+            }
+          ],
+          "final_parent_R": "52451/2550",
+          "final_parent_S": "6271/40",
+          "heritable_state_hash": "1d025a00238557fb418cdfefc241da804d223c13147d02d9a23d547c341c9823",
+          "label": "LOW",
+          "memory_closed": true,
+          "programme_specification_sha256": "5ddbf276aa0a836672b1b3011e66974ce9ecd6fedb0758a111c95766f534c344",
+          "reserve_closure": {
+            "closed": true,
+            "lhs": "7923/40",
+            "rhs": "7923/40"
+          },
+          "transform_output_bytes": 172
+        }
+      },
+      "block": "A",
+      "mutation_enabled": false,
+      "selection_assay_run": false,
+      "title": "paired_exact_one_cycle_regression"
+    },
+    "B": {
+      "arms": {
+        "HIGH": {
+          "A": 204,
+          "admitted_births_total": 3,
+          "closure_ok": true,
+          "counts": {
+            "birth_admitted": 3
+          },
+          "events": [
+            {
+              "child_id": "org-1",
+              "event": "birth_admitted",
+              "parent_id": "org-0",
+              "phase": "admission",
+              "provision": "60032/1275",
+              "tick": 0
+            },
+            {
+              "child_id": "org-2",
+              "event": "birth_admitted",
+              "parent_id": "org-0",
+              "phase": "admission",
+              "provision": "22932224/325125",
+              "tick": 1
+            },
+            {
+              "child_id": "org-3",
+              "event": "birth_admitted",
+              "parent_id": "org-1",
+              "phase": "admission",
+              "provision": "60032/1275",
+              "tick": 1
+            }
+          ],
+          "final_live_census": 4,
+          "hazard_removals_total": 0,
+          "heritable_state_hash": "792bf28f1bd5e8917a6c6149c66a5e0ea81030409cd7fcd8551cf76b82cacb84",
+          "packet_evictions": 0,
+          "rejected_births_total": 0,
+          "reserve_closure": {
+            "closed": true,
+            "costs": "3981/40",
+            "destroyed": "0/1",
+            "lhs": "15769/40",
+            "live_reserves": "15769/40",
+            "net_income": "1575/4",
+            "rhs": "15769/40"
+          },
+          "tick_snapshots": [
+            {
+              "admitted_births": 1,
+              "displacements": 0,
+              "hazard_deaths": [],
+              "live_census": 2,
+              "memory_blocked_attempts": 0,
+              "memory_closed": true,
+              "newborn_ids": [
+                "org-1"
+              ],
+              "packets_closed": true,
+              "rejected_births": 0,
+              "reproductive_failures": 0,
+              "reserve_closed": true,
+              "stalled_census": 0,
+              "tick": 0
+            },
+            {
+              "admitted_births": 2,
+              "displacements": 0,
+              "hazard_deaths": [],
+              "live_census": 4,
+              "memory_blocked_attempts": 0,
+              "memory_closed": true,
+              "newborn_ids": [
+                "org-2",
+                "org-3"
+              ],
+              "packets_closed": true,
+              "rejected_births": 0,
+              "reproductive_failures": 0,
+              "reserve_closed": true,
+              "stalled_census": 0,
+              "tick": 1
+            }
+          ],
+          "ticks_run": 2,
+          "trait_values": [
+            [
+              204,
+              128,
+              255
+            ]
+          ]
+        },
+        "LOW": {
+          "A": 102,
+          "admitted_births_total": 3,
+          "closure_ok": true,
+          "counts": {
+            "birth_admitted": 3
+          },
+          "events": [
+            {
+              "child_id": "org-1",
+              "event": "birth_admitted",
+              "parent_id": "org-0",
+              "phase": "admission",
+              "provision": "26432/1275",
+              "tick": 0
+            },
+            {
+              "child_id": "org-2",
+              "event": "birth_admitted",
+              "parent_id": "org-0",
+              "phase": "admission",
+              "provision": "10097024/325125",
+              "tick": 1
+            },
+            {
+              "child_id": "org-3",
+              "event": "birth_admitted",
+              "parent_id": "org-1",
+              "phase": "admission",
+              "provision": "26432/1275",
+              "tick": 1
+            }
+          ],
+          "final_live_census": 4,
+          "hazard_removals_total": 0,
+          "heritable_state_hash": "1d025a00238557fb418cdfefc241da804d223c13147d02d9a23d547c341c9823",
+          "packet_evictions": 0,
+          "rejected_births_total": 0,
+          "reserve_closure": {
+            "closed": true,
+            "costs": "3981/40",
+            "destroyed": "0/1",
+            "lhs": "15769/40",
+            "live_reserves": "15769/40",
+            "net_income": "1575/4",
+            "rhs": "15769/40"
+          },
+          "tick_snapshots": [
+            {
+              "admitted_births": 1,
+              "displacements": 0,
+              "hazard_deaths": [],
+              "live_census": 2,
+              "memory_blocked_attempts": 0,
+              "memory_closed": true,
+              "newborn_ids": [
+                "org-1"
+              ],
+              "packets_closed": true,
+              "rejected_births": 0,
+              "reproductive_failures": 0,
+              "reserve_closed": true,
+              "stalled_census": 0,
+              "tick": 0
+            },
+            {
+              "admitted_births": 2,
+              "displacements": 0,
+              "hazard_deaths": [],
+              "live_census": 4,
+              "memory_blocked_attempts": 0,
+              "memory_closed": true,
+              "newborn_ids": [
+                "org-2",
+                "org-3"
+              ],
+              "packets_closed": true,
+              "rejected_births": 0,
+              "reproductive_failures": 0,
+              "reserve_closed": true,
+              "stalled_census": 0,
+              "tick": 1
+            }
+          ],
+          "ticks_run": 2,
+          "trait_values": [
+            [
+              102,
+              128,
+              255
+            ]
+          ]
+        }
+      },
+      "block": "B",
+      "mutation_enabled": false,
+      "selection_assay_run": false,
+      "title": "normal_scheduler_two_generation_fixture"
+    },
+    "C": {
+      "arms": {
+        "HIGH": {
+          "A": 204,
+          "child_S_birth": "62272/1275",
+          "events": [
+            {
+              "event": "FORAGE_RLE",
+              "label": "HIGH",
+              "output_bytes": 172,
+              "packet_id": 1,
+              "r": "7/2",
+              "s": "13281/160"
+            },
+            {
+              "committed": false,
+              "event": "ALLOC_OFFSPRING",
+              "label": "HIGH",
+              "r": "7/2",
+              "s": "6531/80"
+            },
+            {
+              "event": "FORAGE_RLE",
+              "label": "HIGH",
+              "output_bytes": 172,
+              "packet_id": 2,
+              "r": "217/2",
+              "s": "14403/160"
+            },
+            {
+              "committed": true,
+              "event": "ALLOC_OFFSPRING",
+              "label": "HIGH",
+              "r": "517/5",
+              "s": "1773/20"
+            },
+            {
+              "committed": true,
+              "event": "COPY_BLOCK",
+              "label": "HIGH",
+              "r": "1013/10",
+              "s": "2793/32"
+            },
+            {
+              "committed": true,
+              "event": "DIVIDE",
+              "label": "HIGH",
+              "r": "123571/2550",
+              "s": "6873/80"
+            }
+          ],
+          "first_cycle_post_alloc_failure": {
+            "C_R": "0/1",
+            "C_S": "1539/80",
+            "checkpoint": "FIRST_CYCLE_POST_ALLOC_FAILURE",
+            "committed_child_S": "0/1",
+            "destroyed": "0/1",
+            "gross_income": "35/8",
+            "memory": {
+              "corpse_reserved": 0,
+              "free_pool": 8020,
+              "gestation": 0,
+              "somatic_active": 172
+            },
+            "packets": [
+              {
+                "budget_remaining": "45/8",
+                "drawn_R": "7/2",
+                "drawn_S": "7/8",
+                "initial_budget": "10/1",
+                "packet_id": 1
+              }
+            ],
+            "parent_R": "7/2",
+            "parent_S": "6531/80",
+            "reversed_income": "0/1"
+          },
+          "label": "HIGH",
+          "memory_closed": true,
+          "recovered": true,
+          "reserve_closure": {
+            "closed": true,
+            "lhs": "14657/80",
+            "rhs": "14657/80"
+          },
+          "second_cycle_post_divide": {
+            "C_R": "56/5",
+            "C_S": "3297/80",
+            "checkpoint": "SECOND_CYCLE_POST_DIVIDE",
+            "committed_child_S": "62272/1275",
+            "destroyed": "0/1",
+            "gross_income": "1085/8",
+            "memory": {
+              "corpse_reserved": 0,
+              "free_pool": 7956,
+              "gestation": 0,
+              "somatic_active": 236
+            },
+            "packets": [
+              {
+                "budget_remaining": "45/8",
+                "drawn_R": "7/2",
+                "drawn_S": "7/8",
+                "initial_budget": "10/1",
+                "packet_id": 1
+              },
+              {
+                "budget_remaining": "675/4",
+                "drawn_R": "105/1",
+                "drawn_S": "105/4",
+                "initial_budget": "300/1",
+                "packet_id": 2
+              }
+            ],
+            "parent_R": "123571/2550",
+            "parent_S": "6873/80",
+            "reversed_income": "0/1"
+          }
+        },
+        "LOW": {
+          "A": 102,
+          "child_S_birth": "9184/425",
+          "events": [
+            {
+              "event": "FORAGE_RLE",
+              "label": "LOW",
+              "output_bytes": 172,
+              "packet_id": 1,
+              "r": "7/4",
+              "s": "13561/160"
+            },
+            {
+              "committed": false,
+              "event": "ALLOC_OFFSPRING",
+              "label": "LOW",
+              "r": "7/4",
+              "s": "6671/80"
+            },
+            {
+              "event": "FORAGE_RLE",
+              "label": "LOW",
+              "output_bytes": 172,
+              "packet_id": 2,
+              "r": "217/4",
+              "s": "23083/160"
+            },
+            {
+              "committed": true,
+              "event": "ALLOC_OFFSPRING",
+              "label": "LOW",
+              "r": "983/20",
+              "s": "1429/10"
+            },
+            {
+              "committed": true,
+              "event": "COPY_BLOCK",
+              "label": "LOW",
+              "r": "941/20",
+              "s": "4529/32"
+            },
+            {
+              "committed": true,
+              "event": "DIVIDE",
+              "label": "LOW",
+              "r": "36449/1700",
+              "s": "11213/80"
+            }
+          ],
+          "first_cycle_post_alloc_failure": {
+            "C_R": "0/1",
+            "C_S": "1539/80",
+            "checkpoint": "FIRST_CYCLE_POST_ALLOC_FAILURE",
+            "committed_child_S": "0/1",
+            "destroyed": "0/1",
+            "gross_income": "35/8",
+            "memory": {
+              "corpse_reserved": 0,
+              "free_pool": 8020,
+              "gestation": 0,
+              "somatic_active": 172
+            },
+            "packets": [
+              {
+                "budget_remaining": "45/8",
+                "drawn_R": "7/4",
+                "drawn_S": "21/8",
+                "initial_budget": "10/1",
+                "packet_id": 1
+              }
+            ],
+            "parent_R": "7/4",
+            "parent_S": "6671/80",
+            "reversed_income": "0/1"
+          },
+          "label": "LOW",
+          "memory_closed": true,
+          "recovered": true,
+          "reserve_closure": {
+            "closed": true,
+            "lhs": "14657/80",
+            "rhs": "14657/80"
+          },
+          "second_cycle_post_divide": {
+            "C_R": "56/5",
+            "C_S": "3297/80",
+            "checkpoint": "SECOND_CYCLE_POST_DIVIDE",
+            "committed_child_S": "9184/425",
+            "destroyed": "0/1",
+            "gross_income": "1085/8",
+            "memory": {
+              "corpse_reserved": 0,
+              "free_pool": 7956,
+              "gestation": 0,
+              "somatic_active": 236
+            },
+            "packets": [
+              {
+                "budget_remaining": "45/8",
+                "drawn_R": "7/4",
+                "drawn_S": "21/8",
+                "initial_budget": "10/1",
+                "packet_id": 1
+              },
+              {
+                "budget_remaining": "675/4",
+                "drawn_R": "105/2",
+                "drawn_S": "315/4",
+                "initial_budget": "300/1",
+                "packet_id": 2
+              }
+            ],
+            "parent_R": "36449/1700",
+            "parent_S": "11213/80",
+            "reversed_income": "0/1"
+          }
+        }
+      },
+      "block": "C",
+      "mutation_enabled": false,
+      "selection_assay_run": false,
+      "title": "low_budget_reproductive_failure_and_recovery"
+    },
+    "D": {
+      "block": "D",
+      "fixtures": {
+        "D1_org0_LOW_org1_HIGH": {
+          "admitted_births_total": 0,
+          "capture_failures_by_organism": {
+            "org-1": 4
+          },
+          "captures_by_organism": {
+            "org-0": 4,
+            "org-1": 0
+          },
+          "closure_ok": true,
+          "counts": {
+            "birth_rejected_no_vacancy": 4,
+            "packet_capture_failed": 4
+          },
+          "events": [
+            {
+              "event": "birth_rejected_no_vacancy",
+              "parent_id": "org-0",
+              "phase": "admission",
+              "tick": 0
+            },
+            {
+              "event": "packet_capture_failed",
+              "organism_id": "org-1",
+              "phase": "packet_capture",
+              "tick": 0
+            },
+            {
+              "event": "birth_rejected_no_vacancy",
+              "parent_id": "org-0",
+              "phase": "admission",
+              "tick": 1
+            },
+            {
+              "event": "packet_capture_failed",
+              "organism_id": "org-1",
+              "phase": "packet_capture",
+              "tick": 1
+            },
+            {
+              "event": "birth_rejected_no_vacancy",
+              "parent_id": "org-0",
+              "phase": "admission",
+              "tick": 2
+            },
+            {
+              "event": "packet_capture_failed",
+              "organism_id": "org-1",
+              "phase": "packet_capture",
+              "tick": 2
+            },
+            {
+              "event": "birth_rejected_no_vacancy",
+              "parent_id": "org-0",
+              "phase": "admission",
+              "tick": 3
+            },
+            {
+              "event": "packet_capture_failed",
+              "organism_id": "org-1",
+              "phase": "packet_capture",
+              "tick": 3
+            }
+          ],
+          "final_live_census": 2,
+          "full_census_rejections_by_organism": {
+            "org-0": 4
+          },
+          "hazard_removals_total": 0,
+          "org0_A": 102,
+          "org1_A": 204,
+          "packet_evictions": 0,
+          "rejected_births_total": 4,
+          "reserve_closure": {
+            "closed": true,
+            "costs": "1747/10",
+            "destroyed": "0/1",
+            "lhs": "5503/10",
+            "live_reserves": "5503/10",
+            "net_income": "525/1",
+            "rhs": "5503/10"
+          },
+          "ticks_run": 4
+        },
+        "D2_org0_HIGH_org1_LOW": {
+          "admitted_births_total": 0,
+          "capture_failures_by_organism": {
+            "org-1": 4
+          },
+          "captures_by_organism": {
+            "org-0": 4,
+            "org-1": 0
+          },
+          "closure_ok": true,
+          "counts": {
+            "birth_rejected_no_vacancy": 4,
+            "packet_capture_failed": 4
+          },
+          "events": [
+            {
+              "event": "birth_rejected_no_vacancy",
+              "parent_id": "org-0",
+              "phase": "admission",
+              "tick": 0
+            },
+            {
+              "event": "packet_capture_failed",
+              "organism_id": "org-1",
+              "phase": "packet_capture",
+              "tick": 0
+            },
+            {
+              "event": "birth_rejected_no_vacancy",
+              "parent_id": "org-0",
+              "phase": "admission",
+              "tick": 1
+            },
+            {
+              "event": "packet_capture_failed",
+              "organism_id": "org-1",
+              "phase": "packet_capture",
+              "tick": 1
+            },
+            {
+              "event": "birth_rejected_no_vacancy",
+              "parent_id": "org-0",
+              "phase": "admission",
+              "tick": 2
+            },
+            {
+              "event": "packet_capture_failed",
+              "organism_id": "org-1",
+              "phase": "packet_capture",
+              "tick": 2
+            },
+            {
+              "event": "birth_rejected_no_vacancy",
+              "parent_id": "org-0",
+              "phase": "admission",
+              "tick": 3
+            },
+            {
+              "event": "packet_capture_failed",
+              "organism_id": "org-1",
+              "phase": "packet_capture",
+              "tick": 3
+            }
+          ],
+          "final_live_census": 2,
+          "full_census_rejections_by_organism": {
+            "org-0": 4
+          },
+          "hazard_removals_total": 0,
+          "org0_A": 204,
+          "org1_A": 102,
+          "packet_evictions": 0,
+          "rejected_births_total": 4,
+          "reserve_closure": {
+            "closed": true,
+            "costs": "1747/10",
+            "destroyed": "0/1",
+            "lhs": "5503/10",
+            "live_reserves": "5503/10",
+            "net_income": "525/1",
+            "rhs": "5503/10"
+          },
+          "ticks_run": 4
+        }
+      },
+      "mutation_enabled": false,
+      "selection_assay_run": false,
+      "title": "shared_source_topology_and_label_permutation"
+    },
+    "E": {
+      "block": "E",
+      "mutation_enabled": false,
+      "selection_assay_run": false,
+      "sub_blocks": {
+        "E1_partial_then_complete_return": {
+          "HIGH": {
+            "A": 204,
+            "after_extent_20": {
+              "C_R": "0/1",
+              "C_S": "1779/80",
+              "checkpoint": "E1_AFTER_EXTENT_20",
+              "committed_child_S": "0/1",
+              "destroyed": "0/1",
+              "gross_income": "525/4",
+              "memory": {
+                "corpse_reserved": 0,
+                "free_pool": 8020,
+                "gestation": 0,
+                "somatic_active": 172
+              },
+              "packets": [
+                {
+                  "budget_remaining": "200/1",
+                  "drawn_R": "80/1",
+                  "drawn_S": "20/1",
+                  "initial_budget": "300/1",
+                  "packet_id": 1
+                }
+              ],
+              "parent_R": "80/1",
+              "parent_S": "7821/80",
+              "reversed_income": "125/4"
+            },
+            "after_extent_64": {
+              "C_R": "0/1",
+              "C_S": "4257/160",
+              "checkpoint": "E1_AFTER_EXTENT_64",
+              "committed_child_S": "0/1",
+              "destroyed": "0/1",
+              "gross_income": "525/4",
+              "memory": {
+                "corpse_reserved": 0,
+                "free_pool": 8020,
+                "gestation": 0,
+                "somatic_active": 172
+              },
+              "packets": [
+                {
+                  "budget_remaining": "300/1",
+                  "drawn_R": "0/1",
+                  "drawn_S": "0/1",
+                  "initial_budget": "300/1",
+                  "packet_id": 1
+                }
+              ],
+              "parent_R": "0/1",
+              "parent_S": "11743/160",
+              "reversed_income": "525/4"
+            },
+            "events": [
+              {
+                "event": "FORAGE_RLE",
+                "label": "HIGH",
+                "output_bytes": 172,
+                "packet_id": 1,
+                "r": "105/1",
+                "s": "17341/160"
+              },
+              {
+                "committed": true,
+                "event": "REVERSAL",
+                "extent": 20,
+                "packet_index": 0,
+                "r": "80/1",
+                "s": "7821/80"
+              },
+              {
+                "committed": true,
+                "event": "REVERSAL",
+                "extent": 64,
+                "packet_index": 0,
+                "r": "0/1",
+                "s": "11743/160"
+              }
+            ],
+            "memory_closed": true,
+            "reserve_closure": {
+              "closed": true,
+              "lhs": "11743/160",
+              "rhs": "11743/160"
+            }
+          },
+          "LOW": {
+            "A": 102,
+            "after_extent_20": {
+              "C_R": "0/1",
+              "C_S": "1779/80",
+              "checkpoint": "E1_AFTER_EXTENT_20",
+              "committed_child_S": "0/1",
+              "destroyed": "0/1",
+              "gross_income": "525/4",
+              "memory": {
+                "corpse_reserved": 0,
+                "free_pool": 8020,
+                "gestation": 0,
+                "somatic_active": 172
+              },
+              "packets": [
+                {
+                  "budget_remaining": "200/1",
+                  "drawn_R": "40/1",
+                  "drawn_S": "60/1",
+                  "initial_budget": "300/1",
+                  "packet_id": 1
+                }
+              ],
+              "parent_R": "40/1",
+              "parent_S": "11021/80",
+              "reversed_income": "125/4"
+            },
+            "after_extent_64": {
+              "C_R": "0/1",
+              "C_S": "4257/160",
+              "checkpoint": "E1_AFTER_EXTENT_64",
+              "committed_child_S": "0/1",
+              "destroyed": "0/1",
+              "gross_income": "525/4",
+              "memory": {
+                "corpse_reserved": 0,
+                "free_pool": 8020,
+                "gestation": 0,
+                "somatic_active": 172
+              },
+              "packets": [
+                {
+                  "budget_remaining": "300/1",
+                  "drawn_R": "0/1",
+                  "drawn_S": "0/1",
+                  "initial_budget": "300/1",
+                  "packet_id": 1
+                }
+              ],
+              "parent_R": "0/1",
+              "parent_S": "11743/160",
+              "reversed_income": "525/4"
+            },
+            "events": [
+              {
+                "event": "FORAGE_RLE",
+                "label": "LOW",
+                "output_bytes": 172,
+                "packet_id": 1,
+                "r": "105/2",
+                "s": "25741/160"
+              },
+              {
+                "committed": true,
+                "event": "REVERSAL",
+                "extent": 20,
+                "packet_index": 0,
+                "r": "40/1",
+                "s": "11021/80"
+              },
+              {
+                "committed": true,
+                "event": "REVERSAL",
+                "extent": 64,
+                "packet_index": 0,
+                "r": "0/1",
+                "s": "11743/160"
+              }
+            ],
+            "memory_closed": true,
+            "reserve_closure": {
+              "closed": true,
+              "lhs": "11743/160",
+              "rhs": "11743/160"
+            }
+          }
+        },
+        "E2_spent_credit_atomic_failure": {
+          "HIGH": {
+            "A": 204,
+            "after_failed_attempt": {
+              "C_R": "56/5",
+              "C_S": "875/32",
+              "checkpoint": "E2_AFTER_FAILED_ATTEMPT",
+              "committed_child_S": "60032/1275",
+              "destroyed": "0/1",
+              "gross_income": "525/4",
+              "memory": {
+                "corpse_reserved": 0,
+                "free_pool": 7956,
+                "gestation": 0,
+                "somatic_active": 236
+              },
+              "packets": [
+                {
+                  "budget_remaining": "675/4",
+                  "drawn_R": "105/1",
+                  "drawn_S": "105/4",
+                  "initial_budget": "300/1",
+                  "packet_id": 1
+                }
+              ],
+              "parent_R": "59563/1275",
+              "parent_S": "3165/32",
+              "reversed_income": "0/1"
+            },
+            "atomic": true,
+            "before_attempt": {
+              "C_R": "56/5",
+              "C_S": "879/40",
+              "checkpoint": "E2_BEFORE_ATTEMPT",
+              "committed_child_S": "60032/1275",
+              "destroyed": "0/1",
+              "gross_income": "525/4",
+              "memory": {
+                "corpse_reserved": 0,
+                "free_pool": 7956,
+                "gestation": 0,
+                "somatic_active": 236
+              },
+              "packets": [
+                {
+                  "budget_remaining": "675/4",
+                  "drawn_R": "105/1",
+                  "drawn_S": "105/4",
+                  "initial_budget": "300/1",
+                  "packet_id": 1
+                }
+              ],
+              "parent_R": "59563/1275",
+              "parent_S": "4171/40",
+              "reversed_income": "0/1"
+            },
+            "events": [
+              {
+                "event": "FORAGE_RLE",
+                "label": "HIGH",
+                "output_bytes": 172,
+                "packet_id": 1,
+                "r": "105/1",
+                "s": "17341/160"
+              },
+              {
+                "committed": true,
+                "event": "ALLOC_OFFSPRING",
+                "label": "HIGH",
+                "r": "999/10",
+                "s": "8561/80"
+              },
+              {
+                "committed": true,
+                "event": "COPY_BLOCK",
+                "label": "HIGH",
+                "r": "489/5",
+                "s": "16903/160"
+              },
+              {
+                "committed": true,
+                "event": "DIVIDE",
+                "label": "HIGH",
+                "r": "59563/1275",
+                "s": "4171/40"
+              },
+              {
+                "committed": false,
+                "event": "REVERSAL",
+                "extent": 80,
+                "packet_index": 0,
+                "r": "59563/1275",
+                "s": "3165/32"
+              }
+            ],
+            "failure_code": "REVERSAL_ACCOUNT_UNAVAILABLE",
+            "memory_closed": true,
+            "reserve_closure": {
+              "closed": true,
+              "lhs": "30833/160",
+              "rhs": "30833/160"
+            }
+          },
+          "LOW": {
+            "A": 102,
+            "after_failed_attempt": {
+              "C_R": "56/5",
+              "C_S": "875/32",
+              "checkpoint": "E2_AFTER_FAILED_ATTEMPT",
+              "committed_child_S": "26432/1275",
+              "destroyed": "0/1",
+              "gross_income": "525/4",
+              "memory": {
+                "corpse_reserved": 0,
+                "free_pool": 7956,
+                "gestation": 0,
+                "somatic_active": 236
+              },
+              "packets": [
+                {
+                  "budget_remaining": "675/4",
+                  "drawn_R": "105/2",
+                  "drawn_S": "315/4",
+                  "initial_budget": "300/1",
+                  "packet_id": 1
+                }
+              ],
+              "parent_R": "52451/2550",
+              "parent_S": "4845/32",
+              "reversed_income": "0/1"
+            },
+            "atomic": true,
+            "before_attempt": {
+              "C_R": "56/5",
+              "C_S": "879/40",
+              "checkpoint": "E2_BEFORE_ATTEMPT",
+              "committed_child_S": "26432/1275",
+              "destroyed": "0/1",
+              "gross_income": "525/4",
+              "memory": {
+                "corpse_reserved": 0,
+                "free_pool": 7956,
+                "gestation": 0,
+                "somatic_active": 236
+              },
+              "packets": [
+                {
+                  "budget_remaining": "675/4",
+                  "drawn_R": "105/2",
+                  "drawn_S": "315/4",
+                  "initial_budget": "300/1",
+                  "packet_id": 1
+                }
+              ],
+              "parent_R": "52451/2550",
+              "parent_S": "6271/40",
+              "reversed_income": "0/1"
+            },
+            "events": [
+              {
+                "event": "FORAGE_RLE",
+                "label": "LOW",
+                "output_bytes": 172,
+                "packet_id": 1,
+                "r": "105/2",
+                "s": "25741/160"
+              },
+              {
+                "committed": true,
+                "event": "ALLOC_OFFSPRING",
+                "label": "LOW",
+                "r": "237/5",
+                "s": "12761/80"
+              },
+              {
+                "committed": true,
+                "event": "COPY_BLOCK",
+                "label": "LOW",
+                "r": "453/10",
+                "s": "25303/160"
+              },
+              {
+                "committed": true,
+                "event": "DIVIDE",
+                "label": "LOW",
+                "r": "52451/2550",
+                "s": "6271/40"
+              },
+              {
+                "committed": false,
+                "event": "REVERSAL",
+                "extent": 80,
+                "packet_index": 0,
+                "r": "52451/2550",
+                "s": "4845/32"
+              }
+            ],
+            "failure_code": "REVERSAL_ACCOUNT_UNAVAILABLE",
+            "memory_closed": true,
+            "reserve_closure": {
+              "closed": true,
+              "lhs": "30833/160",
+              "rhs": "30833/160"
+            }
+          }
+        }
+      },
+      "title": "allocation_specific_reversal_provenance_regressions"
+    }
+  },
+  "decision": "PASS",
+  "decision_scope": "Permits only the scripted-channel conclusion of preregistration \u00a78 at the registered treatment points and states; establishes nothing about generality, fitness, selection, invasion growth, reproductive value, mutation accessibility, plasticity, optimum, or ESS.",
+  "evidence_class": "scripted fixed-state mechanism verification; design-calibration regressions; no fitness endpoint",
+  "gate_analysis": [
+    {
+      "detail": "population traits are exactly (A,128,255) per arm; mutation disabled and no mutation RNG exists in code",
+      "gate": 1,
+      "name": "realised_treatment",
+      "passed": true
+    },
+    {
+      "detail": "both isolated arms report the registered hash",
+      "gate": 2,
+      "name": "programme_identity",
+      "passed": true
+    },
+    {
+      "detail": "every live draw satisfies Y_S=(1-A/D)Y and Y_R=(A/D)Y exactly",
+      "gate": 3,
+      "name": "allocation_identity",
+      "passed": true
+    },
+    {
+      "detail": "reproductive variable work, gestation upkeep, and provisioning debit R; dispatch and somatic upkeep debit S",
+      "gate": 4,
+      "name": "direct_debit_isolation",
+      "passed": true
+    },
+    {
+      "detail": "E1 restores budget via stored proportions; E2 fails atomically leaving R and packet fields unchanged",
+      "gate": 5,
+      "name": "reversal_provenance",
+      "passed": true
+    },
+    {
+      "detail": "exactly two FORAGE opportunities; DIVIDE commits on the second packet only",
+      "gate": 6,
+      "name": "recovery_no_extra_opportunity",
+      "passed": true
+    },
+    {
+      "detail": "tick 0 admits org-1; tick 1 admits org-2, org-3; no death, stall, rejection, eviction, or extension in either arm",
+      "gate": 7,
+      "name": "lifecycle_two_generation_exact",
+      "passed": true
+    },
+    {
+      "detail": "org-0 captures and is rejected four times; org-1 fails capture four times; history follows scheduler ID, not label",
+      "gate": 8,
+      "name": "shared_source_topology_label_permutation",
+      "passed": true
+    },
+    {
+      "detail": "reserve, packet, memory, and census ledgers close at every registered checkpoint in every block",
+      "gate": 9,
+      "name": "checkpoint_closure",
+      "passed": true
+    },
+    {
+      "detail": "SliceOrganism has no OFFSPRING_TROUGH, no transfer clamp, no offspring deletion, no incumbent displacement, and exact Fraction arithmetic only; Block B/C/D fixtures contain no birth-reserve adjudication whatsoever",
+      "gate": 10,
+      "name": "no_hidden_gate",
+      "passed": true
+    }
+  ],
+  "heritable_state_hashes": {
+    "HIGH": "792bf28f1bd5e8917a6c6149c66a5e0ea81030409cd7fcd8551cf76b82cacb84",
+    "LOW": "1d025a00238557fb418cdfefc241da804d223c13147d02d9a23d547c341c9823"
+  },
+  "mutation_enabled": false,
+  "programme_specification_sha256": "5ddbf276aa0a836672b1b3011e66974ce9ecd6fedb0758a111c95766f534c344",
+  "protocol": "stage-7b-fixed-allocation-channel-preregistration",
+  "protocol_sha256_note": "hash of the protocol document is recorded in the pre-execution manifest, not recomputed here",
+  "selection_assay_run": false,
+  "source_manifest_sha256": {
+    "consts.py": "7dda03561176a30ff9e2050e53fe15b8878b8c3f593032f1f276be2867f3066b",
+    "datastream.py": "62719958ac39dd79b5a59bab9534ae3fa7253451e6e12d3457905ced9f0c8148",
+    "run_stage7b0.py": "be88e8ea0f38629a002520ad31fee651f3c859f5491a957cb47a6e0d2ea6468e",
+    "stage7_slice1.py": "c297b3947c16128e67ffdc9c4dc9f050ed8764c628b9d2855265a21d68bde7fd",
+    "stage7_slice2.py": "7d7ca9a82a27e65799951d15c95fd49a5b97276f13db3612b9ecd1068f8576a8",
+    "stage7b0_blocks.py": "57aa113205195f766bd01757c9dd524173f02368f5cfe8032fd3eb1fe439ad5b",
+    "transforms.py": "234f72eb42a15f88cb2fe5831a9f9421d3f94448d0dd39fa6ab169687845b7a6"
+  },
+  "treatments": {
+    "HIGH": {
+      "A": 204,
+      "D": 255,
+      "T": 128
+    },
+    "LOW": {
+      "A": 102,
+      "D": 255,
+      "T": 128
+    }
+  }
+}
