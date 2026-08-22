@@ -94,3 +94,16 @@ Observed reproduction SHA-256:
 **Measured:** under the fixed Stage 7B0 fixtures, all registered mechanism checks and closure checks pass for both fixed treatments, and the result is byte-reproducible.
 
 **Not measured:** selection, invasion, evolutionary stability, stochastic capture performance, or comparative fitness. Those remain outside Stage 7B0.
+
+## Second implementation cross-check (2026-08-22)
+
+A second, independently written implementation of the same registered protocol was frozen at commit `e2f580b` (`src/stage7b0_blocks.py`, `src/run_stage7b0.py`, `src/test_stage7b0_blocks.py`, and `results/stage7b0/pre-execution-manifest.json`). That commit message stated that no retained Stage 7B0 execution had occurred; the statement overlooked the canonical lineage documented above and was corrected in `docs/project-report.md` §6b. The first retained execution under the new manifest is therefore a cross-check, not the project's first Stage 7B0 run.
+
+The run returned PASS on all ten registered gates:
+
+- Artifact: `results/stage7b0/stage7b0-result.json`
+- SHA-256: `00315fab10217912d1bd02c965bdbc6cd69df9f67f53b95900d01feb791ebddf`
+- Size: 44,809 bytes
+- Reproduction: an independent rerun was byte-identical (`cmp` success).
+
+Every registered §6 exact value reproduced. Thirteen registered exact literals appear verbatim in both this artifact and `stage7b0-channel-result-final.json`; the remaining registered value, the `859/160` E2 somatic charge, is a derived delta pinned by regression test rather than a stored literal. This run is also the first Stage 7B0 coverage across the `f90da66` DIVIDE atomic child-memory pre-check; the fix is behaviour-neutral on the registered fixtures. The two artifacts are independent implementations of one registration; neither supersedes the other.
