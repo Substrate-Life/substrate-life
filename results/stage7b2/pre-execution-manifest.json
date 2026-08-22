@@ -1,0 +1,40 @@
+{
+  "files": {
+    "docs/stage-7b2-preregistration.md": {
+      "bytes": 16344,
+      "sha256": "311a9995304ef9824971aa03c62f1aaefa92787b8e5d9cc27fcb759f034b6e40"
+    },
+    "docs/stage7b2-output-schema.md": {
+      "bytes": 5852,
+      "sha256": "3f70496d53306f08516ce2d75264a3c3d3af8584adeeed2d6f2c03cf2be9906f"
+    },
+    "src/reduce_stage7b2.py": {
+      "bytes": 9002,
+      "sha256": "a6e46c04550c157c49e9f741b491d6758c64db03bf3b11b47bbf854018e73da1"
+    },
+    "src/run_stage7b2.py": {
+      "bytes": 10997,
+      "sha256": "3e0cac5fc83430cfef1694faaf619efa7bf94a205166719d95d85c76df161e5c"
+    },
+    "src/stage7b2_measure.py": {
+      "bytes": 12742,
+      "sha256": "5664bcecdd0f87c0f1650a93ad95ef90728daa3b5236e652bf4866a909b054fd"
+    },
+    "src/stage7b2_population.py": {
+      "bytes": 13435,
+      "sha256": "86e1b67031bfa68778f7690f645ec94a9047f6cd2141fb27baa5b4e31f3503cb"
+    },
+    "src/stage7b2_solver.py": {
+      "bytes": 10673,
+      "sha256": "43756a830b565add8284ccdc0852141a91c1550b73cc63f7780f64714e28c5e5"
+    },
+    "src/test_stage7b2_mechanics.py": {
+      "bytes": 24753,
+      "sha256": "86a5343e2bd60aaa3157e0149a88ab565dee5f97575ea6d1b550abe543f47cf2"
+    }
+  },
+  "frozen_sources_embed_their_hashes_in_runner_output": true,
+  "note": "Committed before the first retained run of the registered Stage 7B2 confirmatory suite. Implementation-window calibration (preregistration section 2) was performed on exploratory, NON-RETAINED executions with outputs kept outside the repository: every one of the 32 registered seeds (hazard_seed = 20260822 + i) ran the full registered window with zero BUFFER_OVERFLOW triggers (layer-1 guard never fired; maximum observed buffered occupancy 3 packets against depth 64) and demonstrated the registered precondition on every replicate: at least one offspring first-reproduction event, at least one binding admission following saturation with nonzero would_admit shadow counters. A full runner-to-reducer rehearsal over all 32 seeds reproduced bit-exact recomputation and applied the section 5 rule once without error; no number from those rehearsals is retained evidence. The first retained raw output under this manifest will be results/stage7b2/stage7b2-result.json, reduced by results/stage7b2/stage7b2-reduced.json. Disclosed implementation decisions frozen here: (i) stage7b2_population.assert_all_ledgers verifies live ledgers after every operation and rescans the full immutable packet/retirement history at every tick-complete checkpoint (the frozen stage7b1_mechanics.py is byte-identical to commit 62f2672); (ii) retention scope per docs/stage7b2-output-schema.md retains full-fidelity estimator inputs plus event-stream digests instead of verbatim streams, avoiding a repeat of the 297 MB artifact incident.",
+  "protocol": "stage-7b2-preregistration",
+  "purpose": "Stage 7B2 pre-execution freeze (preregistration section 8): implementation, runner, tests, output schema, reducer, and analysis frozen together before any retained run, per the df7b1f5/e2f580b/62f2672 precedent."
+}
