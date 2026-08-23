@@ -568,6 +568,65 @@ green; push after every commit.
   runtime, as disclosed in Rounds 2–6). Hold remains in force; lawful
   work unchanged.
 
+- 2026-08-23 (session 13): **fifth consecutive stale-cron arrival
+  disclosed; verification battery reproduced bit-for-bit AND its
+  mechanical core consolidated into a single durable command-line
+  verifier (`src/verify_retained_integrity.py`) with 13 new unit
+  tests; no execution registered or run under the Part V item 3
+  hold.** Arrival state: cron briefing stale a fifth time (it still
+  describes the ~08:05 UTC state at `f753894` with the fault-matrix
+  tests untracked; every listed standing task was discharged by
+  sessions 1–9), actual HEAD `dd39382` = origin/main (`0/0`), tree
+  clean. Evidence gathered at arrival: (i) full suite green (**423
+  tests, OK, 4 skipped** — fourth consecutive identical count);
+  (ii) all three standalone read-only auditors exit 0 with numbers
+  identical to session 12 (signed-bracket: hashes match, outcome
+  agrees — 32 complete pairs, median −1/128, sign 9/21/2, reducer
+  rerun byte-identical; post-retention **17/17 PASS**;
+  follow-on-memo **21/21 clean**, zero exact-claim failures);
+  (iii) every pin in BOTH manifests re-hashed reproducing sessions
+  10–12 bit-for-bit (signed-bracket 8/8 byte-exact; paired 29/30 +
+  the debate log's frozen 20,869-byte prefix hashing to the pinned
+  `512fd400…`, file standing at exactly 45,421 bytes — **zero bytes
+  appended since session 10**), both retained-directory inventories
+  closed; (iv) doors R1–R3 verified unfired mechanically: `git diff
+  d19d7c2..HEAD` over `results/` + `failed-designs/` is empty and
+  `failed-designs/` still holds exactly its 8 archived entries; no
+  σ_D ≤ 3.0 u coexistence measurement (R1), no de-saturated ecology
+  or life-cycle promotion demonstration (R2), and the stale briefing
+  carries no owner redirection (R3); the hold forbids running
+  evolutionary executions to hunt for R1/R2 data. **New durable
+  work:** the wake-by-wake battery was consolidated into
+  `src/verify_retained_integrity.py` (standalone, read-only,
+  stdlib-only, house audit-script precedent) so every future wake
+  re-establishes retained-class immutability with one command:
+  P1 tamper-evident self-integrity anchors on both pre-execution
+  manifests (their SHA-256 digests recorded as constants); P2 full
+  pin re-hash with the debate log recognised solely under the proven
+  pure-append rule; P3 exact inventory closure per retained
+  directory (manifest + pins + declared first-retained outputs +
+  explicitly named pre-convention outputs for the Stage 7B directory
+  — nothing silently tolerated); T1 strict working-tree check;
+  D1 door check against base `d19d7c2` plus the failed-designs
+  append-only count; optional `--auditors` flag requiring exit 0
+  from all three auditors. Exit code 0 iff everything passes.
+  `src/test_verify_retained_integrity.py` adds 13 tests (synthetic
+  tmp-tree fixtures for EXACT/PURE_APPEND/DRIFT/MISSING
+  classification including the alteration-not-append negative
+  control and the absolute-path defensive case, inventory-closure
+  extra/missing detection, known-outputs handling, git-door failure
+  on an absent base commit, plus live-repo smoke made commit-order-
+  safe by asserting the tracked-file invariant rather than untracked
+  presence). The tooling caught two real defects in itself during
+  authoring, both fixed and regression-tested: a repo-relative vs
+  absolute path-normalization bug in inventory closure, and pure-
+  append membership fragility to absolute path inputs. Post-unit
+  suite: **436 tests, OK, 4 skipped** (13 net new). No decision fork
+  arose, so no adversarial round was convened this session (the
+  Round-5 computed closure stands; delegation tooling also remains
+  unavailable on this runtime, as disclosed in Rounds 2–6). Hold
+  remains in force; lawful work unchanged.
+
 ## Part V — Next run should pick up
 
 1. **The programme is CLOSED on computed grounds (session 8).** The
@@ -628,6 +687,16 @@ green; push after every commit.
    follow-on-memo 21/21 clean), reproduced the full two-manifest pin
    re-hash bit-for-bit (8/8 and 29/30 + proven pure-append), and
    confirmed zero debate-log bytes appended since session 10;
+   session 13 reproduced the same battery bit-for-bit (suite 423 OK /
+   4 skipped at arrival `dd39382`; auditors exit 0 with session-12-
+   identical numbers; pins 8/8 + 29/30 + pure-append prefix intact;
+   doors mechanically unfired: zero changed paths under `results/` /
+   `failed-designs/` since `d19d7c2`, failed-designs at 8 entries)
+   and consolidated the mechanical core into the one-command verifier
+   `src/verify_retained_integrity.py` (+13 tests; post-unit suite
+   **436 tests, OK, 4 skipped**) — future wakes should run
+   `python3 src/verify_retained_integrity.py --auditors` plus the
+   suite before anything else;
    session 9 added the follow-on-memo independent audit
    (`docs/followon-power-memo-independent-audit.md`,
    `src/audit_followon_power_memo.py`) and the Round-6-authorized memo

@@ -1,0 +1,330 @@
+#!/usr/bin/env python3
+"""Retained-class integrity verifier: one-command mechanical re-verification battery.
+
+Standalone, read-only, stdlib-only (house precedent: src/audit_*.py). Consolidates
+the verification battery performed ad hoc in programme-review sessions 10-12 into
+a single reproducible command so every future wake can re-establish the Part V
+item-4 retained-class immutability invariant cheaply and without skipped steps.
+
+What it checks (all mechanical, all read-only):
+
+  P1  Both retained pre-execution manifests are themselves bit-intact against
+      the digests recorded below (tamper-evident anchor: the manifests are
+      retained-class objects and must never change).
+  P2  Every pinned file of both manifests re-hashes byte-exactly to its pinned
+      {bytes, sha256}. The single lawful exception is docs/stage-8-debate-log.md,
+      which is append-only by Round-2/6 design: it passes iff its frozen prefix
+      of exactly the pinned length hashes to the pinned digest (pure-append rule,
+      proven in programme-review session 10 and reproduced in every later wake).
+  P3  Inventory close: each retained directory contains exactly the manifest plus
+      the pins/first-retained-outputs the manifest declares -- nothing added,
+      nothing missing.
+  T1  Working tree clean (git status --porcelain empty).
+  D1  Doors: zero changed paths under results/ or failed-designs/ since the last
+      artifact-producing commit d19d7c2 (the R1-R3 door check used by sessions
+      10-12), and failed-designs/ still holds exactly its 8 archived entries.
+
+With --auditors it additionally spawns the three standalone read-only auditors
+(signed-bracket, post-retention, follow-on-memo) and requires exit 0 from each;
+it never runs the test suite and never executes anything evolutionary (Part V
+item-3 hold respected by construction).
+
+Exit code 0 iff every check passes. Any FAIL line means: stop, do not treat the
+wake as verified, diagnose before anything else.
+"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import pathlib
+import subprocess
+import sys
+
+REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
+
+# Retained manifests (P1 anchors). These digests were recorded at session 13
+# (2026-08-23) after reproducing the session 10-12 re-hash battery bit-for-bit;
+# both manifests are retained-class and must match these forever.
+RETAINED_MANIFESTS: tuple[tuple[str, str], ...] = (
+    (
+        "results/stage7b-signed-bracket/pre-execution-manifest.json",
+        "a9e3d532299d2b111fc00d33d09c8e627aa737033f4e2ea738f2b8f379a737a7",
+    ),
+    (
+        "results/stage8-alpha-evolution-paired/pre-execution-manifest.json",
+        "c7cec747ab997a0fc9ede498d2e0f050498b24f77db93f6083a46bcb7c9054e7",
+    ),
+)
+
+# Sole path for which the pure-append rule (P2 exception) is recognised. Any
+# other pinned path must match exactly or the check fails.
+PURE_APPEND_PATHS = frozenset({"docs/stage-8-debate-log.md"})
+
+# Retained execution outputs that predate the manifest "first_retained_outputs"
+# declaration convention: they live beside their manifest, are retained-class,
+# and are named explicitly here so P3 can require exact directory membership
+# without silently tolerating undeclared files.
+KNOWN_DIR_OUTPUTS: dict[str, tuple[str, ...]] = {
+    "results/stage7b-signed-bracket": (
+        "stage7b-signed-bracket-result.json",
+        "stage7b-signed-bracket-reduced.json",
+    ),
+}
+
+# Last artifact-producing commit (programme-review sessions 10-12 door check).
+LAST_ARTIFACT_COMMIT = "d19d7c2"
+
+# Append-only archive directory must hold exactly this many entries.
+FAILED_DESIGNS_COUNT = 8
+
+AUDITORS: tuple[str, ...] = (
+    "src/audit_stage7b_signed_bracket.py",
+    "src/audit_stage8_post_retention.py",
+    "src/audit_followon_power_memo.py",
+)
+
+
+def sha256_hex(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
+
+
+def load_manifest(path: pathlib.Path) -> dict:
+    return json.loads(path.read_text())
+
+
+def classify_pin(
+    root: pathlib.Path, rel: str, meta: dict
+) -> tuple[str, str]:
+    """Return (verdict, detail) for one pinned path; verdict in
+    {EXACT, PURE_APPEND, MISSING, DRIFT}."""
+    p = root / rel
+    if not p.is_file():
+        return "MISSING", f"{rel}: absent from working tree"
+    # Normalize to a repo-relative posix path so the PURE_APPEND_PATHS
+    # membership test is robust to absolute vs relative input styles.
+    norm_rel = _rel_to_root(p, root) or pathlib.PurePosixPath(rel).as_posix()
+    data = p.read_bytes()
+    if len(data) == meta["bytes"] and sha256_hex(data) == meta["sha256"]:
+        return "EXACT", f"{rel}: byte-exact ({meta['bytes']} B)"
+    if norm_rel in PURE_APPEND_PATHS:
+        prefix = data[: meta["bytes"]]
+        if sha256_hex(prefix) == meta["sha256"]:
+            appended = len(data) - meta["bytes"]
+            return (
+                "PURE_APPEND",
+                f"{rel}: frozen prefix ({meta['bytes']} B) bit-exact; "
+                f"{appended} B lawfully appended (append-only debate log)",
+            )
+        return (
+            "DRIFT",
+            f"{rel}: frozen prefix no longer hashes to pinned digest "
+            "(alteration, not append)",
+        )
+    return (
+        "DRIFT",
+        f"{rel}: len {len(data)} != {meta['bytes']} or sha mismatch",
+    )
+
+
+def _rel_to_root(p: pathlib.Path, root: pathlib.Path) -> str | None:
+    try:
+        return str(p.resolve().relative_to(root.resolve()))
+    except ValueError:
+        return None
+
+
+def inventory_close(
+    root: pathlib.Path,
+    manifest_path: str | pathlib.Path,
+    manifest: dict,
+    known_outputs: tuple[str, ...] = (),
+) -> tuple[list[str], list[str]]:
+    """Extra files present in the retained dir, and declared-but-missing files.
+
+    All inputs and returns are repo-root-relative strings. Expected membership
+    is exactly: the manifest itself, any pinned files located in this
+    directory, any first_retained_outputs located here, plus `known_outputs`
+    (pre-convention retained outputs named explicitly by the caller).
+    """
+    mdir = pathlib.PurePosixPath(manifest_path).parent
+    declared = set(manifest.get("files", {}))
+    for k in ("raw", "reduced"):
+        out = manifest.get("first_retained_outputs", {}).get(k)
+        if out:
+            declared.add(out)
+    declared.add(str(manifest_path))
+    for out in known_outputs:
+        declared.add(f"{mdir.as_posix()}/{out}")
+    actual: set[str] = set()
+    for q in (root / mdir).iterdir():
+        if q.is_file():
+            rel = _rel_to_root(q, root)
+            if rel is not None:
+                actual.add(rel)
+    local_declared = {
+        rel for rel in declared if (root / rel).parent == (root / mdir)
+    }
+    extra = sorted(actual - local_declared)
+    missing = sorted(local_declared - actual)
+    return extra, missing
+
+
+def git(root: pathlib.Path, *args: str) -> subprocess.CompletedProcess:
+    return subprocess.run(
+        ["git", "-C", str(root), *args],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+
+def tree_clean(root: pathlib.Path, strict: bool = True) -> tuple[bool, str]:
+    args = ["status", "--porcelain"]
+    if not strict:
+        args.append("--untracked-files=no")
+    r = git(root, *args)
+    lines = [ln for ln in r.stdout.splitlines() if ln.strip()]
+    if r.returncode != 0:
+        return False, f"git status failed: {r.stderr.strip()}"
+    if lines:
+        return False, "working tree dirty:\n      " + "\n      ".join(lines[:10])
+    return True, (
+        "working tree clean"
+        if strict
+        else "no modifications to tracked files (untracked ignored)"
+    )
+
+
+def doors(
+    root: pathlib.Path, base: str, expected_failed_designs: int
+) -> tuple[bool, str]:
+    rb = git(root, "rev-parse", "--verify", base)
+    if rb.returncode != 0:
+        return False, f"base commit {base} not found"
+    rd = git(root, "diff", "--name-only", f"{base}..HEAD", "--", "results/", "failed-designs/")
+    moved = [ln for ln in rd.stdout.splitlines() if ln.strip()]
+    fd = root / "failed-designs"
+    n = len([q for q in fd.iterdir() if q.is_dir()]) if fd.is_dir() else -1
+    ok = (rd.returncode == 0 and not moved and n == expected_failed_designs)
+    return ok, (
+        f"changed artifact paths since {base}: {len(moved)}; "
+        f"failed-designs entries: {n} (expected {expected_failed_designs})"
+        + ("" if not moved else "; moved=" + ",".join(moved[:5]))
+    )
+
+
+def run_auditors(root: pathlib.Path) -> tuple[bool, str]:
+    outs = []
+    ok = True
+    for script in AUDITORS:
+        r = subprocess.run(
+            [sys.executable, "-B", str(root / script)],
+            capture_output=True,
+            text=True,
+            cwd=str(root),
+            check=False,
+        )
+        text = (r.stdout or r.stderr or "").strip()
+        tail = text.splitlines()[-1:] or ["<no output>"]
+        outs.append(f"{script}: exit {r.returncode}; {tail[0][:110]}")
+        ok = ok and r.returncode == 0
+    return ok, "; ".join(outs)
+
+
+def verify(
+    root: pathlib.Path = REPO_ROOT,
+    with_auditors: bool = False,
+    include_tree_check: bool = True,
+) -> tuple[bool, list[str]]:
+    lines: list[str] = []
+    failures = 0
+
+    def record(ok: bool, label: str, detail: str) -> None:
+        nonlocal failures
+        if not ok:
+            failures += 1
+        lines.append(f"[{'PASS' if ok else 'FAIL'}] {label}: {detail}")
+
+    # P1 manifest self-integrity
+    for rel, digest in RETAINED_MANIFESTS:
+        p = root / rel
+        ok = p.is_file() and sha256_hex(p.read_bytes()) == digest
+        record(ok, "P1 manifest anchor", f"{rel}" if ok else f"{rel} missing or digest drifted")
+
+    # P2/P3 pins and inventories
+    for rel, _digest in RETAINED_MANIFESTS:
+        mp = root / rel
+        if not mp.is_file():
+            record(False, "P2 pins", f"{rel}: unreadable")
+            continue
+        manifest = load_manifest(mp)
+        verdicts = [
+            classify_pin(root, r, m) for r, m in sorted(manifest["files"].items())
+        ]
+        exact = sum(1 for v, _ in verdicts if v == "EXACT")
+        append = sum(1 for v, _ in verdicts if v == "PURE_APPEND")
+        bad = [(v, d) for v, d in verdicts if v in ("MISSING", "DRIFT")]
+        n = len(verdicts)
+        record(
+            not bad,
+            f"P2 pins [{rel.rsplit('/', 2)[-2]}]",
+            f"{exact}/{n} exact, {append} pure-append, {len(bad)} bad"
+            + ("" if not bad else "; e.g. " + bad[0][1]),
+        )
+        for _v, d in bad:
+            lines.append(f"       detail: {d}")
+        extra, missing = inventory_close(
+            root,
+            rel,
+            manifest,
+            known_outputs=KNOWN_DIR_OUTPUTS.get(
+                pathlib.PurePosixPath(rel).parent.as_posix(), ()
+            ),
+        )
+        record(
+            not extra and not missing,
+            f"P3 inventory [{rel.rsplit('/', 2)[-2]}]",
+            f"extra={extra or 'none'} missing={missing or 'none'}",
+        )
+
+    # T1 tree clean (strict: includes untracked). Skippable for in-suite
+    # smoke runs where the verifier's own new files are legitimately
+    # untracked until their commit lands.
+    if include_tree_check:
+        ok, detail = tree_clean(root, strict=True)
+        record(ok, "T1 tree", detail)
+
+    # D1 doors
+    ok, detail = doors(root, LAST_ARTIFACT_COMMIT, FAILED_DESIGNS_COUNT)
+    record(ok, "D1 doors", detail)
+
+    # Optional auditors
+    if with_auditors:
+        ok, detail = run_auditors(root)
+        record(ok, "A1 auditors", detail)
+
+    total = len(lines)
+    lines.append(
+        f"VERIFY_RETAINED_INTEGRITY: {'ALL CHECKS PASS' if failures == 0 else 'FAILURES PRESENT'} "
+        f"({total - failures}/{total})"
+    )
+    return failures == 0, lines
+
+
+def main(argv: list[str] | None = None) -> int:
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument(
+        "--auditors",
+        action="store_true",
+        help="also run the three standalone read-only auditors (requires exit 0)",
+    )
+    args = ap.parse_args(argv)
+    ok, lines = verify(with_auditors=args.auditors)
+    print("\n".join(lines))
+    return 0 if ok else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
