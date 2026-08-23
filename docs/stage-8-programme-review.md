@@ -261,25 +261,67 @@ green; push after every commit.
   Implementation window opens on that commit; no retained execution
   before gate + freeze. Suite green at 303 tests at commit time.
 
+- 2026-08-23 (window session): implementation window completed in two
+  units. (1) `d8b2053`: carried 7B1 fault-injection matrix
+  re-parameterised onto `Stage8Population`, all seven boundaries, with
+  the registered draws-stay-consumed-across-rollbacks assertion (suite
+  323). (2) `91986f4`: measurement layer `stage8_alpha_measure` (exact
+  census snapshots incl. the registered ᾱ estimator; checkpoint loop
+  proven bit-identical to frozen `run_window` with snapshot purity
+  asserted; kernel reconciliation identities; genome-freeze T/D audit;
+  bit-exact stream replay; ancestry birth counts; terminal α-terciles),
+  runner `run_stage8_alpha` (confirmatory/shakedown tables,
+  kernel_draw_chain per replicate, retained-directory guard), source-
+  frozen reducer `reduce_stage8_alpha` (§5 rule, pre-rule validation),
+  gate `stage8_gate` (G1–G3 with in-gate re-execution replay), output
+  schema doc; 52 new tests, suite 375.
+
+- 2026-08-23 (same session, mid-flight): a concurrent session committed
+  the pre-freeze adversarial review (`docs/stage-8-debate-log.md`,
+  `8f7bb89`) BLOCKING the as-registered chain — O1 founder-priority
+  confound, O2 missing H1 power, O3 exchangeability contradicted by the
+  retained record. The block was honoured before any execution: the §6
+  gate was about to run and was NOT run; zero executions consumed;
+  tables `20284617+i` / `20293311+j` retired unexecuted (disposition
+  item 1 keeps the additive layer byte-identically). Per binding
+  disposition item 2, committed this programme's superseding repair
+  registration
+  `docs/stage-8-alpha-evolution-repair-preregistration.md`:
+  **paired mutation-on/off reference arms** at identical seeds (Arm M =
+  registered kernel verbatim; Arm R0 = frozen stack, no mutation site),
+  endpoint restated as the paired difference
+  `D_i = ᾱ_end(M,s_i) − ᾱ_end(R0,s_i)` beyond floor `4/255`
+  (= max kernel step AND ≥ 2σ of the null cloud-mean deviation),
+  thresholds 16/18/24 carried, fresh tables `20310529+i` (24 pairs) /
+  `20421301+j` (12 shakedown pairs), G1–G4 gate with reference-arm
+  zero-draw checks, one-shot confirmatory class of 48 runs (~85 min at
+  two workers), and the O2-mandated H1 power derivation in α-units:
+  detectable slope β ≈ 4.4×10⁻⁴ realistic (7.7×10⁻⁵ permanent-coexistence
+  ceiling) vs the recorded cross-sectional bound ≈ 8×10⁻⁵ — expected-null
+  registered up front as a clean paired closure of direction (c), with
+  non-null as genuine discovery.
+
 ## Part V — Next run should pick up
 
-1. **Stage 8 implementation window** per
-   `docs/stage-8-alpha-evolution-preregistration.md` §7(1): additive
-   modules only — `Stage8` population subclass overriding Stage M via a
-   verbatim-copied `divide_publish` with the registered kernel
-   substituted, configuration layer, gate tooling, runner, reducer,
-   output schema, and tests (including the carried 7B1 fault-injection
-   matrix re-parameterised onto the subclass, plus kernel unit tests:
-   boundary clamps, `T`/`D` immutability, no-mutation identity path,
-   stream determinism/disjointness). Commit early; frozen files are
-   never edited.
-2. Then, in order: §6 feasibility gate on the 12-seed shakedown table →
-   §7 freeze manifest at `results/stage8-alpha-evolution/` → single
-   retained confirmatory suite (`20284617+i`, `i∈0..23`, `W=2400`) →
-   one-shot reduction and classification under the §5 rule.
-3. If the gate fails: superseding preregistration with diagnosis,
-   archived under `failed-designs/`; never tune the registered design
-   against shakedown outcomes.
+1. **Stage 8 REPAIR implementation window** per
+   `docs/stage-8-alpha-evolution-repair-preregistration.md` §8(1):
+   additive modules only — R0 constructor path (frozen
+   `Stage7B2Population` at the stage-8 configuration/window), runner
+   extension for pairwise execution (`arm`, `pair_index`; retained-
+   directory guard updated for `results/stage8-alpha-evolution-paired/`),
+   NEW source-frozen paired reducer (`reduce_stage8_paired.py`, §5 rule),
+   gate updates (G4 reference-arm checks, pair table completeness),
+   schema addendum, tests. The existing measurement layer carries over;
+   edit only files no freeze manifest has pinned; Stage 7B frozen stack
+   byte-untouched.
+2. Then, in order: §7 feasibility gate on the 12-pair shakedown table →
+   §8 freeze manifest → single retained confirmatory suite
+   (`20310529+i`, both arms, `W=2400`) → one-shot reduction under §5 →
+   execution note + post-retention audit.
+3. Read the outcome per §6's registered interpretation: null ⇒ direction
+   (c) closes at this ecology with the paired redistribution bound (feed
+   into review directions (a)/(d)); established ⇒ discovery at 20× finer
+   longitudinal resolution. Either way the NEXT registration decides the
+   follow-on; nothing may be added to escape a null.
 4. Keep the suite green; push after every commit; keep the tree clean;
-   do not rerun the closed signed-bracket line or touch retained
-   artifacts.
+   do not rerun closed lines or touch retained artifacts.
