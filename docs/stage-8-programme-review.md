@@ -494,6 +494,40 @@ green; push after every commit.
   unfired (no new artifacts since `d19d7c2`; no owner input channel on
   cron). Hold remains in force; lawful work unchanged.
 
+- 2026-08-23 (session 11): **verification-only unit under the Part V
+  item 3 hold — third consecutive stale-cron arrival disclosed;
+  consolidated re-verification (suite + all three standalone auditors +
+  full two-manifest pin re-hash reproduction); no execution registered
+  or run.** Arrival state: cron briefing stale a third time (it still
+  describes the ~08:05 UTC state at `f753894` with the fault-matrix
+  tests untracked; every listed standing task was discharged by
+  sessions 1–9), actual HEAD `4498e38` = origin/main, tree clean, last
+  unit landed 19:45 UTC the same day. Evidence gathered this session:
+  (i) full suite green at arrival (**423 tests, OK, 4 skipped** —
+  identical to the session-10 count); (ii) all three standalone
+  read-only auditors re-run at HEAD, each exit 0 — signed-bracket
+  auditor (artifact hashes match, independent outcome matches
+  retained, reducer rerun byte-identical), post-retention auditor
+  **17/17 PASS**, follow-on-memo auditor **21/21 clean**
+  (exact-claim failures = 0); (iii) every pin in BOTH pre-execution
+  manifests re-hashed from disk, reproducing session 10 bit-for-bit:
+  signed-bracket **8/8**, paired **29/30**, the sole exception again
+  the debate log whose frozen 20,869-byte prefix hashes to
+  `512fd400…` — the file now stands at exactly 45,421 bytes =
+  pinned prefix + the 24,552 post-freeze Rounds 4–6 bytes, i.e.
+  **zero debate-log bytes appended since session 10**; pure-append
+  property intact; (iv) retained-directory inventories closed against
+  both manifests' pin sets — nothing added, nothing missing. Doors
+  R1–R3 verified unfired: R1 requires an independent σ_D ≤ 3.0 u
+  measurement at demonstrated ≥ 40-turnover coexistence, R2 a
+  de-saturated ecology breaking the admitted-births identity plus a
+  passed 7B1 §6.2 life-cycle promotion demonstration, R3 owner input —
+  none obtainable from a stale cron wake, and the hold forbids running
+  evolutionary executions to hunt for R1/R2 data. No decision fork
+  arose, so no adversarial round was convened this session (the Round-5
+  computed closure remains the binding disposition). Hold remains in
+  force; lawful work unchanged.
+
 ## Part V — Next run should pick up
 
 1. **The programme is CLOSED on computed grounds (session 8).** The
@@ -535,8 +569,14 @@ green; push after every commit.
    remains untouched append-only history; closed lines stay closed.
 5. **Housekeeping:** suite green re-verified session 8 (**419 passed,
    4 skipped**, 19 subtests), at session 9 arrival at HEAD
-   `20765f3` (**419 passed, 4 skipped**, 19 subtests), and at session
-   10 arrival at HEAD `b6deee7` (**423 tests, OK, 4 skipped**);
+   `20765f3` (**419 passed, 4 skipped**, 19 subtests), at session
+   10 arrival at HEAD `b6deee7` (**423 tests, OK, 4 skipped**), and at
+   session 11 arrival at HEAD `4498e38` (**423 tests, OK, 4 skipped**);
+   session 11 additionally re-ran all three standalone auditors green
+   at one HEAD (signed-bracket exit 0, post-retention 17/17,
+   follow-on-memo 21/21 clean), reproduced the full two-manifest pin
+   re-hash bit-for-bit (8/8 and 29/30 + proven pure-append), and
+   confirmed zero debate-log bytes appended since session 10;
    session 9 added the follow-on-memo independent audit
    (`docs/followon-power-memo-independent-audit.md`,
    `src/audit_followon_power_memo.py`) and the Round-6-authorized memo
