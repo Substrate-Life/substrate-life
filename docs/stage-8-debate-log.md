@@ -229,3 +229,138 @@ impose obligations, not retunes:
 Frozen quantities remain frozen: floor 4/255, thresholds 16/18/24, both
 tables, both arm definitions. Any future change goes through a
 superseding registration, never an edit.
+
+---
+
+# Round 3 — pre-freeze debate on the GATE-REPAIR design (registration #3): proceed through corrected gate → freeze → the one retained execution?
+
+*Conducted 2026-08-23 ≈ 11:35–11:55 UTC, after the implementation window
+of `docs/stage-8-alpha-evolution-gate-repair-preregistration.md`
+completed (`8392963`) and while the single authorised corrected-gate
+shakedown re-execution (registration §4, table `20421301 + j`) was
+running in this session. Adoption of any verdict is deferred until the
+gate result exists; nothing below reads gate endpoint data. **Delegation
+disclosure:** the delegation tooling was again unavailable in this
+session (Round 1's subagent transcripts remain archived under
+`cache/delegation/live/deleg_44629ee8/`), so per standing orders the
+three roles were argued and cross-examined by the parent agent against
+repo facts, with every check re-verified against source or artifacts
+rather than asserted.*
+
+**Proposition:** accept the checkpoint-bookkeeping repair as sufficient
+and proceed — corrected-gate PASS → freeze commit → ONE retained
+confirmatory suite (`20310529 + i`, 48 runs) → one-shot reduction.
+
+## Advocate's case
+
+1. **The failure was bookkeeping, not machinery.** Across all 24 arms of
+   the first full-window execution ever run in this programme
+   (12 pairs × {M, R0}, `W = 2400`, wall ≈ 118 min): zero
+   `BUFFER_OVERFLOW`, zero `INVALID_IMPLEMENTATION`. The byte-frozen
+   assertion machinery verifies live ledgers after *every* operation and
+   rescans full immutable history at every tick-complete checkpoint;
+   had the registered substance of G2 been violated anywhere, the run
+   would have raised. The wrong quantity was a *derived expectation*
+   (`W + 1` from a docstring-derived schema parenthetical), now
+   superseded by a strictly stronger pin: count `W + 2` AND head labels
+   `['initial', 'initial', 'tick_complete:0']` AND tail label
+   `tick_complete:<W−1>` on every COMPLETE arm.
+2. **Decision-path fields are multiply validated end-to-end.** (a)
+   Corrected G2 pins closure semantics on every COMPLETE arm; (b)
+   G3 re-executes one full Arm M replicate and verifies event digest,
+   admitted births, draw totals, and kernel chain bit-exactly against
+   the shakedown twin, plus documented-stream replay; (c)
+   `test_stage8_paired.py` drives the real population + measurement
+   layer at plumbing scale (`W = 120`) on both arms; (d) the
+   source-frozen reducer refuses ≥ 15 classes of malformed input
+   pre-rule (protocol echo, table membership, double reduction,
+   histogram↔endpoint inconsistency, kernel-evidence reconciliation,
+   seed identity), so no silent inconsistency reaches the §5 rule.
+3. **Shakedown reuse is uncontaminated.** Verified from the archived
+   first-run summary: it emitted only condition pass/fail facts,
+   complete-pair counts, threshold arithmetic, and replay identity
+   evidence — no endpoint values, no direction information, nothing
+   readable as an outcome statistic (the factual-context block did not
+   exist yet). No frozen quantity can have been tuned.
+4. **Cost discipline.** 48 runs ≈ 4 h at two workers buys the registered
+   one-shot answer either way — expected-null closure of direction (c)
+   at ~20× finer longitudinal resolution than the closed cross-sectional
+   bound, or discovery.
+
+## Adversarial reviewer's attacks
+
+- **A1 (strongest) — "one proven miss implies unknown misses":** the
+  `W + 1 → W + 2` episode proves the measurement layer carried
+  docstring-derived expectations never validated against a full-window
+  execution. Any *other* unvalidated derived field detonates only AFTER
+  the retained run — burning the one-shot confirmatory table into a
+  refused reduction and forcing a further repair registration. A prudent
+  agent audits every recorded field at full window BEFORE spending the
+  table.
+- **Advocate's response:** the audit was performed, field class by field
+  class. Exactly two recorded quantities are W-derived *counts*:
+  `ticks_completed` (= W, trivially) and `tick_checkpoints`
+  (closure-history length — the field that failed, now pinned with
+  label substrates). The trajectory grid is a module constant asserted
+  to be exactly the registered 20 points (`CHECKPOINT_TICKS`,
+  test-pinned). Every remaining decision-path field is either
+  W-independent arithmetic on a recorded object (histogram ↔ mean
+  consistency), replay-verified at full W by G3 (digests, births, draw
+  chain), or exercised end-to-end by the W = 120 plumbing tests whose
+  code paths are identical at W = 2400. Residual risk is therefore NOT
+  zero — disclosed as such — but the adversary's proposed alternative
+  (a further full-window exploratory audit suite) is authorised by NO
+  registration and would itself consume exploratory executions outside
+  the standing rules; and the reducer/§7(5) backstop retains, archives,
+  and classifies rather than silently misclassifies if anything does
+  surface.
+- **A2 — shakedown reuse contamination:** refuted on the archived
+  artifacts (advocate point 3).
+- **A3 — "expected-null prior makes the run foregone":** registering the
+  expected-null up front IS the O2-repaired honest design; discovery
+  remains live at the registered thresholds; declining to execute leaves
+  direction (c) unclosed while burning nothing — pure loss under the
+  programme's advance mandate.
+
+## Method auditor's findings
+
+1. **Freezing order intact for the rerun:** registration #3 was
+   committed (`06e03a1`, 11:21:55 UTC) before the second shakedown
+   execution launched (~11:33 UTC); the rerun is the single execution
+   §4 authorises on `20421301 + j`.
+2. **Zero retained artifacts:** `results/stage8-alpha-evolution-paired`
+   absent from the tree at session start (verified); shakedown output is
+   stdout-only under `/tmp`.
+3. **Suite green at `8392963`:** 423 tests OK (4 pre-existing skips),
+   including new pins that the superseded `W + 1` count FAILS corrected
+   G2, both closure-label pins, factual-context aggregates, and the
+   freeze-manifest builder's refusal/happy-path/digest matrix.
+4. **Duplicate-session handoff disclosed:** `06e03a1`'s message described
+   both-gate fixes whose files were still unstaged when that session
+   exited; the mismatch and its completion are recorded in the `8392963`
+   commit message per house precedent.
+5. **Rule hygiene unchanged:** telemetry labels unread by mechanics;
+   kernel draws integer-only outside ledgers; exact Fractions in every
+   ledger; frozen stack imported byte-identically.
+
+## Verdict
+
+**ADVOCATE SURVIVES — proceed: corrected-gate PASS → freeze commit →
+the ONE retained confirmatory execution → one-shot reduction, exactly as
+registered.** The adversary's A1 survives in weakened form as a
+disclosed residual risk with obligations, not retunes:
+
+1. **A1 obligation (new):** the freeze-commit note must state the
+   decision-path-field validation substrate (corrected G2 labels, G3
+   bit-exact re-execution, W = 120 plumbing coverage, ≥15 pre-rule
+   reducer refusals) and disclose the nonzero residual risk for
+   W-derived counts explicitly.
+2. **Carried obligations:** Round 2's A2/A3 stand — the execution note
+   must report the empirical null spread of `D_i` descriptively and read
+   the co-reported leakage monitor (`leakage_pairs`, ancestry-plurality)
+   whatever the outcome class.
+
+If the corrected gate FAILS: no freeze; further superseding
+registration with diagnosis archived under `failed-designs/`; this
+verdict lapses. Frozen quantities remain frozen.
+

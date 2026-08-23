@@ -301,24 +301,51 @@ green; push after every commit.
   registered up front as a clean paired closure of direction (c), with
   non-null as genuine discovery.
 
+- 2026-08-23 (sessions 3–5, incl. a concurrent duplicate): the binding
+  §7 gate ran on `20421301+j` (first full-window execution in the
+  programme; ≈118 min) and **FAILED G2 only** — 12/12 pairs COMPLETE,
+  G1/G3/G4 clean, zero overflows/invalid runs, but all 24 arms recorded
+  `tick_checkpoints = W+2` against the tooling's derived expectation
+  `W+1`. Diagnosis verified against frozen source: two constructor
+  layers each append an `initial` closure entry
+  (`stage7_slice2.py:91`, `stage7b2_population.py:164`) plus one
+  `tick_complete:<t>` per tick. Archived
+  `failed-designs/stage8-paired-gate-g2-checkpoint-bookkeeping/`;
+  superseding registration #3
+  (`docs/stage-8-alpha-evolution-gate-repair-preregistration.md`)
+  carries every substantive element verbatim and changes ONLY the G2
+  operationalization (W+2 + head/tail label pins), the schema §1.1
+  parenthetical (by supersession), and re-authorises ONE corrected-gate
+  execution on the same shakedown table (first run emitted no endpoint
+  data — uncontaminated). A duplicate-session handoff left part of the
+  window uncommitted (`06e03a1` message/content mismatch, disclosed);
+  this session completed it (`8392963`): corrected G2 in BOTH gate
+  modules, threshold-free `factual_shakedown_context` block, freeze-
+  manifest builder + its test matrix, fixtures aligned — suite **423
+  OK** (4 skipped). Round-3 pre-freeze debate recorded (ADVOCATE
+  SURVIVES; new A1 obligation on the freeze note). The single authorised
+  corrected-gate rerun is executing as this entry is committed.
+
 ## Part V — Next run should pick up
 
-1. **Stage 8 REPAIR implementation window** per
-   `docs/stage-8-alpha-evolution-repair-preregistration.md` §8(1):
-   additive modules only — R0 constructor path (frozen
-   `Stage7B2Population` at the stage-8 configuration/window), runner
-   extension for pairwise execution (`arm`, `pair_index`; retained-
-   directory guard updated for `results/stage8-alpha-evolution-paired/`),
-   NEW source-frozen paired reducer (`reduce_stage8_paired.py`, §5 rule),
-   gate updates (G4 reference-arm checks, pair table completeness),
-   schema addendum, tests. The existing measurement layer carries over;
-   edit only files no freeze manifest has pinned; Stage 7B frozen stack
-   byte-untouched.
-2. Then, in order: §7 feasibility gate on the 12-pair shakedown table →
-   §8 freeze manifest → single retained confirmatory suite
-   (`20310529+i`, both arms, `W=2400`) → one-shot reduction under §5 →
-   execution note + post-retention audit.
-3. Read the outcome per §6's registered interpretation: null ⇒ direction
+1. **Corrected §7 gate result** (registration #3 §4 rerun on
+   `20421301+j`, in flight): PASS → build the freeze manifest with
+   `src/build_stage8_paired_freeze_manifest.py` (refuses any freeze
+   unless all four conditions passed) → commit the freeze → ONE
+   retained confirmatory suite (`20310529+i`, both arms, `W=2400`,
+   48 runs) → one-shot reduction under the §5 rule by the source-frozen
+   reducer → execution note + post-retention audit. FAIL → further
+   superseding registration with diagnosis archived under
+   `failed-designs/`.
+2. **Obligations travel with the execution note** (debate Rounds 2–3):
+   report the empirical null spread of `D_i` descriptively whatever the
+   class; read and report the leakage monitor (`leakage_pairs`,
+   ancestry-plurality); the freeze-commit note states the decision-path-
+   field validation substrate (corrected G2 labels, G3 bit-exact
+   re-execution, W = 120 plumbing coverage, ≥15 pre-rule reducer
+   refusals) and discloses the nonzero residual risk for W-derived
+   counts.
+3. Read the outcome per §5's registered interpretation: null ⇒ direction
    (c) closes at this ecology with the paired redistribution bound (feed
    into review directions (a)/(d)); established ⇒ discovery at 20× finer
    longitudinal resolution. Either way the NEXT registration decides the
