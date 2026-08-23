@@ -218,6 +218,36 @@ def rerun_reducer_byte_comparison() -> dict[str, Any]:
     }
 
 
+def compare_to_retained(independent: dict[str, Any]) -> dict[str, Any]:
+    """Field-by-field agreement of the independent recomputation with the
+    retained reduced artifact's registered outcome block."""
+    retained = json.loads(
+        (REPO / SIGNED_BRACKET_DIR / REDUCED_NAME).read_text())["outcome"]
+    per_genotype_agrees = all(
+        independent["statuses"][genotype]["SUPERCRITICAL"]
+        == retained["per_genotype"][genotype]["supercritical_replicates"]
+        and independent["statuses"][genotype]["SUBCRITICAL"]
+        == retained["per_genotype"][genotype]["subcritical_replicates"]
+        and independent["statuses"][genotype]["CRITICAL"]
+        == retained["per_genotype"][genotype]["critical_replicates"]
+        for genotype in ("102", "204"))
+    fields = {
+        "complete_pairs": independent["complete_pairs"]
+        == retained["complete_pairs"],
+        "median_paired_difference":
+            independent["median_paired_difference"]
+            == retained["median_paired_difference"],
+        "sign_split": independent["sign_split"] == retained["sign_split"],
+        "subcritical_at_this_ecology": all(
+            independent["subcritical_at_this_ecology"][genotype]
+            == retained["per_genotype"][genotype][
+                "subcritical_at_this_ecology"]
+            for genotype in ("102", "204")),
+        "per_genotype_status_counts": per_genotype_agrees,
+    }
+    return {"agrees": all(fields.values()), "fields": fields}
+
+
 def dispersion_scope(replicates: list[dict[str, Any]]) -> dict[str, Any]:
     """Descriptive dispersions of the paired differences (design input)."""
     mids = {"102": [], "204": []}
@@ -284,6 +314,7 @@ def build_report() -> dict[str, Any]:
             "artifacts; no new contrast, fitness, or selection claim"),
         "artifact_hashes": check_artifact_hashes(),
         "independent_outcome_recomputation": outcome,
+        "comparison_to_retained": compare_to_retained(outcome),
         "reducer_rerun": rerun_reducer_byte_comparison(),
         "manifest_drift_checks": [
             check_manifest(relpath)
@@ -307,7 +338,8 @@ def main(argv: list[str] | None = None) -> int:
         "artifact_hashes_match": (
             report["artifact_hashes"]["matches_execution_note"]
             and report["artifact_hashes"]["matches_reduced_embedded_record"]),
-        "independent_outcome_matches_retained_class": True,
+        "independent_outcome_matches_retained":
+            report["comparison_to_retained"]["agrees"],
         "reducer_rerun_byte_identical":
             report["reducer_rerun"]["ok"],
         "all_manifests_ok": all(check["ok"]
