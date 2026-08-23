@@ -325,112 +325,150 @@ green; push after every commit.
   OK** (4 skipped). Round-3 pre-freeze debate recorded (ADVOCATE
   SURVIVES; new A1 obligation on the freeze note). The single authorised
   corrected-gate rerun is executing as this entry is committed.
-+
-+- 2026-08-23 (session 6): **corrected gate PASSED — freeze `f1e6880`
-+  committed; the ONE retained execution is in flight.** Disclosure
-+  first: session 5's in-flight rerun died with that session before its
-+  process emitted anything observable (no stdout capture, no file, no
-+  transcript); zero observations were consumed or seen, so registration
-+  #3 §4's "execute once more" is discharged by exactly ONE observed
-+  corrected-gate execution — this session's (~2 h 05 m wall, two
-+  workers, stdout-only/unretained, transcript under `/tmp` only).
-+  Result: **12/12 pairs both arms COMPLETE** (threshold 8); G1 PASS
-+  12/12 with zero genome-freeze violations; G2 PASS zero overflows,
-+  zero checkpoint failures under the corrected semantics (`W + 2`,
-+  head `['initial','initial','tick_complete:0']`, tail
-+  `'tick_complete:2399'`); G3 PASS zero kernel-audit failures plus
-+  bit-exact full-replicate re-execution replay of seed 20421301 (1034
-+  records, 1574 draws; digest/births/draw-chain identical); G4 PASS
-+  zero R0 mutation events or draws, zero seed mismatches. Factual
-+  shakedown context (threshold-free): Arm-M mutation decisions 12023,
-+  kernel draws 18037, terminal live census 48..48 on all 24 complete
-+  arms (zero extinctions), Arm-M distinct-A range 8..15. The
-+  pre-execution freeze manifest was built by the registered builder
-+  from this gate summary: 30 files pinned SHA-256 + byte size, ZERO
-+  hash drift versus every prior retained manifest, full factual gate
-+  summary embedded. Single freeze commit `f1e6880` carries the Round-3
-+  A1 obligation in its message: decision-path-field validation
-+  substrate (corrected G2 labels, G3 bit-exact re-execution, W = 120
-+  plumbing coverage, reducer ≥ 15 pre-rule refusals) and the disclosed
-+  nonzero residual risk for W-derived counts (read by no mechanic;
-+  outside the §5 decision path). Immediately after the push, the ONE
-+  authorised retained confirmatory suite was launched
-+  (`20310529+i`, k = 24 pairs = 48 runs, W = 2400, two workers) toward
-+  `results/stage8-alpha-evolution-paired/confirmatory-paired-20310529.json`
-+  — executing as this entry is committed.
-+
-+- 2026-08-23 (session 7): **THE ONE retained confirmatory suite
-+  executed and reduced exactly once — registered NULL
-+  (`NO_ESTABLISHED_DIRECTION`); Stage 8 rung 2 closes at this ecology.**
-+  Execution: launched 14:55:41 UTC immediately after this entry's
-+  predecessor was pushed, `--workers 2`, exit 0, wall ≈ 2 h 46 m (the
-+  prereg §8 estimate was ≈ 85 min; disclosed as fact — event digests
-+  and draw chains bind streams, not clocks). Pre-reduction integrity
-+  checked twice: all 30 manifest pins matched the working tree both
-+  before launch and before reduction (zero drift), and the raw
-+  artifact's embedded `source_manifest_sha256` over its 14 sources
-+  matched the freeze manifest exactly. Runner summary: 24/24 pairs both
-+  arms COMPLETE, 48/48 runs COMPLETE, `PENDING_REDUCTION`. The
-+  source-frozen reducer applied §5 exactly once (pre-rule validation
-+  silent pass): k_eff = 24/24 eligible, movers-up **9**, movers-down
-+  **6**, non-movers 9 against concordance 18 ⇒ **NO_ESTABLISHED_DIRECTION**;
-+  `leakage_pairs = 0`. Obligations from debate Rounds 2–3 discharged in
-+  `docs/stage-8-paired-execution-note.md`: empirical null spread of D_i
-+  reported descriptively (mean −47/73440 ᾱ-units ≈ −0.16/255 lattice
-+  units; population sd ≈ 5.71/255 — ≈ 2.9–3.6× the Round-2
-+  composition-noise proxy band; recorded as proxy-underestimation,
-+  size unaffected under the frozen count-based rule); ancestry-
-+  plurality monitor clean so A3 flip-sign leakage is not indicated
-+  (sign split 13 positive / 11 negative); residual W-derived-count risk
-+  pointer restated. Factual threshold-free context: Arm M 23,933
-+  mutation decisions / 35,981 kernel draws / 0 problems; Arm R0
-+  zero-decision, zero-draw, empty chain, telemetry passing on every run;
-+  admitted births identical across arms (23,933 each — the shared
-+  phenotype-blind demographic skeleton at equal seeds); terminal
-+  distinct-A M 9..17 vs R0 1..2; zero extinctions, n_live = 48 on all
-+  48 runs. Reading per §5 / former Part V item 3: direction (c) closes
-+  AT THIS ECOLOGY with the paired redistribution bound (best side 9/24
-+  < 18; median |D| = 4.6/255 at floor scale but signs split), feeding
-+  review directions (a)/(d). Nothing added to escape the null. Raw +
-+  reduced artifacts, the execution note, and this entry are committed
-+  together; retained artifacts immutable henceforth.
+
+- 2026-08-23 (session 6): **corrected gate PASSED — freeze `f1e6880`
+  committed; the ONE retained execution is in flight.** Disclosure
+  first: session 5's in-flight rerun died with that session before its
+  process emitted anything observable (no stdout capture, no file, no
+  transcript); zero observations were consumed or seen, so registration
+  #3 §4's "execute once more" is discharged by exactly ONE observed
+  corrected-gate execution — this session's (~2 h 05 m wall, two
+  workers, stdout-only/unretained, transcript under `/tmp` only).
+  Result: **12/12 pairs both arms COMPLETE** (threshold 8); G1 PASS
+  12/12 with zero genome-freeze violations; G2 PASS zero overflows,
+  zero checkpoint failures under the corrected semantics (`W + 2`,
+  head `['initial','initial','tick_complete:0']`, tail
+  `'tick_complete:2399'`); G3 PASS zero kernel-audit failures plus
+  bit-exact full-replicate re-execution replay of seed 20421301 (1034
+  records, 1574 draws; digest/births/draw-chain identical); G4 PASS
+  zero R0 mutation events or draws, zero seed mismatches. Factual
+  shakedown context (threshold-free): Arm-M mutation decisions 12023,
+  kernel draws 18037, terminal live census 48..48 on all 24 complete
+  arms (zero extinctions), Arm-M distinct-A range 8..15. The
+  pre-execution freeze manifest was built by the registered builder
+  from this gate summary: 30 files pinned SHA-256 + byte size, ZERO
+  hash drift versus every prior retained manifest, full factual gate
+  summary embedded. Single freeze commit `f1e6880` carries the Round-3
+  A1 obligation in its message: decision-path-field validation
+  substrate (corrected G2 labels, G3 bit-exact re-execution, W = 120
+  plumbing coverage, reducer ≥ 15 pre-rule refusals) and the disclosed
+  nonzero residual risk for W-derived counts (read by no mechanic;
+  outside the §5 decision path). Immediately after the push, the ONE
+  authorised retained confirmatory suite was launched
+  (`20310529+i`, k = 24 pairs = 48 runs, W = 2400, two workers) toward
+  `results/stage8-alpha-evolution-paired/confirmatory-paired-20310529.json`
+  — executing as this entry is committed.
+
+- 2026-08-23 (session 7): **THE ONE retained confirmatory suite
+  executed and reduced exactly once — registered NULL
+  (`NO_ESTABLISHED_DIRECTION`); Stage 8 rung 2 closes at this ecology.**
+  Execution: launched 14:55:41 UTC immediately after this entry's
+  predecessor was pushed, `--workers 2`, exit 0, wall ≈ 2 h 46 m (the
+  prereg §8 estimate was ≈ 85 min; disclosed as fact — event digests
+  and draw chains bind streams, not clocks). Pre-reduction integrity
+  checked twice: all 30 manifest pins matched the working tree both
+  before launch and before reduction (zero drift), and the raw
+  artifact's embedded `source_manifest_sha256` over its 14 sources
+  matched the freeze manifest exactly. Runner summary: 24/24 pairs both
+  arms COMPLETE, 48/48 runs COMPLETE, `PENDING_REDUCTION`. The
+  source-frozen reducer applied §5 exactly once (pre-rule validation
+  silent pass): k_eff = 24/24 eligible, movers-up **9**, movers-down
+  **6**, non-movers 9 against concordance 18 ⇒ **NO_ESTABLISHED_DIRECTION**;
+  `leakage_pairs = 0`. Obligations from debate Rounds 2–3 discharged in
+  `docs/stage-8-paired-execution-note.md`: empirical null spread of D_i
+  reported descriptively (mean −47/73440 ᾱ-units ≈ −0.16/255 lattice
+  units; population sd ≈ 5.71/255 — ≈ 2.9–3.6× the Round-2
+  composition-noise proxy band; recorded as proxy-underestimation,
+  size unaffected under the frozen count-based rule); ancestry-
+  plurality monitor clean so A3 flip-sign leakage is not indicated
+  (sign split 13 positive / 11 negative); residual W-derived-count risk
+  pointer restated. Factual threshold-free context: Arm M 23,933
+  mutation decisions / 35,981 kernel draws / 0 problems; Arm R0
+  zero-decision, zero-draw, empty chain, telemetry passing on every run;
+  admitted births identical across arms (23,933 each — the shared
+  phenotype-blind demographic skeleton at equal seeds); terminal
+  distinct-A M 9..17 vs R0 1..2; zero extinctions, n_live = 48 on all
+  48 runs. Reading per §5 / former Part V item 3: direction (c) closes
+  AT THIS ECOLOGY with the paired redistribution bound (best side 9/24
+  < 18; median |D| = 4.6/255 at floor scale but signs split), feeding
+  review directions (a)/(d). Nothing added to escape the null. Raw +
+  reduced artifacts, the execution note, and this entry are committed
+  together; retained artifacts immutable henceforth.
+
+- 2026-08-23 (session 8): **the deferred follow-on question is ANSWERED
+  — computed closure.** The cron briefing snapshot was already stale on
+  arrival: every listed standing task had been discharged by sessions
+  1–7 (fault-matrix tests tracked and passing within the suite; §G-gate
+  lineage closed through registration #3; freeze `f1e6880` → THE ONE
+  retained execution → one-shot reduction `NO_ESTABLISHED_DIRECTION` →
+  post-retention audit 17/17 PASS at `8ebe36d`; direction (d)
+  close-out at `cd88d11`/`9059753`). Session verification pass first:
+  origin synced 0 ahead / 0 behind at `8ebe36d`, tree clean, suite
+  green (**419 passed, 4 skipped**, 19 subtests, via
+  `uv run --with pytest python -m pytest src -q`). The one genuinely
+  open item was repair-prereg §6's deferred follow-on fork, so Round 5
+  of the adversarial debate was conducted on exact arithmetic
+  (delegation tooling unavailable again — disclosed in-log;
+  parent-argued against repo facts). The ADVOCATE's coexistence-regime
+  probe fell to measured-number attacks: assumption-light shift-method
+  power on the retained 24 `D_i` gives **3.0% power for a true shift
+  equal to the whole floor**; ~50% power needs μ ≈ 7.48 lattice units
+  (1.87× floor); the concordance k-cliff means adding replicates
+  *reduces* power below per-pair p = 0.75; realistic-regime window
+  requirements reach W ≈ 26k ticks static-σ and diverge (T ≈ 400
+  turnovers) once σ_D ∝ √W cloud drift is priced; the mean-rule
+  alternative is powered only for slopes ≥ 4.5× the cross-sectional
+  bound; the recruitment family is mechanically null at saturation
+  (admitted-births identity `23,933 = 23,933`). Verdict **CLOSURE
+  SURVIVES** (commit `b4b730a`); obligations executed same session:
+  `docs/stage-8-followon-power-memo.md` committed with every constant
+  program-verified, reopening conditions R1–R3 registered (memo §9),
+  an explicit no-evolutionary-execution hold in force until one fires,
+  and this Part V rewritten to point at the computed answer.
+  Housekeeping repair in the same unit: stripped 69 stray literal '+'
+  diff-marker prefixes that an earlier session's malformed append had
+  committed into the session 6–7 entry text of this file (verified
+  byte-exact: no other lines touched).
 
 ## Part V — Next run should pick up
 
-1. **Stage 8 is CLOSED as a registered bounded negative.** The raw and
-   reduced artifacts under `results/stage8-alpha-evolution-paired/`,
-   the freeze manifest, and `docs/stage-8-paired-execution-note.md`
-   are retained-class immutable: never rerun, never edited, no
-   supplementary endpoint added to the closed line.
-2. **The NEXT registration decides the follow-on — nothing else.**
-   ~~Immediate obligation: a Round-4 adversarial debate~~
-   **DISCHARGED (session 7, commit `0b37930`): Round 4 conducted —
-   ADVOCATE SURVIVES; the next registration pursues direction (d)
-   programme close-out.** Delegation tooling unavailable again
-   (disclosed in the log); roles parent-argued against repo facts.
-   Key checks: count-based rule size dispersion-free at exactly
-   190051/2²⁴ ≈ 0.01133 one-sided / 0.02266 two-sided (recomputed);
-   failure mode was sign balance (13/11), not magnitude scarcity;
-   freeze `f1e6880` 14:54:44 UTC precedes launch 14:55:41 UTC;
-   identical cross-arm birth totals (23,933 each) are the shared
-   phenotype-blind demographic skeleton, not contamination. Binding:
-   no further evolutionary execution on any closed line; a future
-   trajectory-style registration must be justified independently of
-   this null.
-3. **(d) close-out — COMPLETE (session 7).** Unit 1: the Stage 7B → 8
-   arc is in `docs/public-technical-essay.md` as the new section
-   "Registered questions, registered answers" (both nulls with bounds,
-   gate-repair lineage, discipline-as-method, explicit scope limits
-   carrying the measured sd(D) ≈ 5.7/255 prior). Unit 2:
-   `docs/final-report.md` written — programme summary Stages 1 → 8,
-   findings synthesis, scope limits, artifact index including the
-   eight-entry failed-designs lineage; supersedes (never edits) the
-   retained `docs/project-report.md`. Documentation-only work needed no
-   execution registration (the common procedural requirements bind
-   implementations and retained runs, none of which occurred). The
-   programme stands closed per the Round-4 verdict; owner redirection
-   supersedes without prejudice.
-4. **Housekeeping:** suite green re-verified this session (423 OK,
-   4 skipped); push after every commit; keep the tree clean; do not
-   touch `failed-designs/`; do not rerun closed lines or touch retained
-   artifacts.
+1. **The programme is CLOSED on computed grounds (session 8).** The
+   Round-4 open question ("the NEXT registration decides the
+   follow-on") was answered by Round 5 of the adversarial debate
+   (`docs/stage-8-debate-log.md`): **CLOSURE SURVIVES**. The full
+   derivation is `docs/stage-8-followon-power-memo.md`: a true shift
+   equal to the whole registered floor yields 3.0% exact power on the
+   frozen concordance rule at the measured sd(D) = 5.7061 lattice
+   units (~50% needs μ ≈ 1.87× floor); rule power *decreases* with k
+   below per-pair p = 0.75, so no replicate count rescues it;
+   realistic-regime window extension is ≈ 26k ticks static-σ and
+   diverges once σ_D ∝ √W cloud drift is priced; the mean-rule
+   alternative reaches only slopes ≥ 4.5× the cross-sectional bound;
+   recruitment endpoints are mechanically null at saturation
+   (phenotype-blind admission identity `23,933 = 23,933`). Stage 8
+   rung 2 therefore closes as a registered bounded negative whose
+   "no established direction" reading is now complemented by a
+   computed demonstration that no affordable instrument of this family
+   could have returned otherwise.
+2. **Reopening conditions R1–R3 are the only lawful doors back**
+   (memo §9; binding on future sessions): **R1** — an independently
+   justified measurement establishing σ_D ≤ 3.0 lattice units at
+   demonstrated coexistence persistence ≥ 40 turnovers (revives the
+   ceiling-regime strengthened probe, review direction (a), at an
+   estimated ≈ 5–6 h wall); **R2** — a genuinely de-saturated ecology
+   that breaks the phenotype-blind admitted-births identity AND a
+   passed 7B1 §6.2 life-cycle promotion demonstration (revives the
+   recruitment-endpoint family, direction (b)); **R3** — owner
+   redirection, which supersedes without prejudice as always.
+3. **Hold:** until one fires, no evolutionary execution is authorised
+   anywhere in this programme; lawful units are verification,
+   documentation, and owner-directed work.
+4. **Retained-class immutability unchanged:** everything under
+   `results/stage7b-signed-bracket/` and
+   `results/stage8-alpha-evolution-paired/`, both freeze manifests,
+   and `docs/stage-8-paired-execution-note.md` are never rerun, never
+   edited, and accept no supplementary endpoints; `failed-designs/`
+   remains untouched append-only history; closed lines stay closed.
+5. **Housekeeping:** suite green re-verified session 8 (**419 passed,
+   4 skipped**, 19 subtests); push after every commit; keep the tree
+   clean.
