@@ -417,15 +417,19 @@ green; push after every commit.
    no further evolutionary execution on any closed line; a future
    trajectory-style registration must be justified independently of
    this null.
-3. **(d) close-out — IN PROGRESS (session 7).** The Stage 7B → 8 arc
-   is now in `docs/public-technical-essay.md` as the new section
+3. **(d) close-out — COMPLETE (session 7).** Unit 1: the Stage 7B → 8
+   arc is in `docs/public-technical-essay.md` as the new section
    "Registered questions, registered answers" (both nulls with bounds,
    gate-repair lineage, discipline-as-method, explicit scope limits
-   carrying the measured sd(D) ≈ 5.7/255 prior). REMAINING: the final
-   report summarising Stages 1 → 8 with the failed-designs lineage
-   cited; suite kept green throughout; documentation-only work needs
-   no execution registration (the common procedural requirements bind
-   implementations and retained runs, none of which occur here).
+   carrying the measured sd(D) ≈ 5.7/255 prior). Unit 2:
+   `docs/final-report.md` written — programme summary Stages 1 → 8,
+   findings synthesis, scope limits, artifact index including the
+   eight-entry failed-designs lineage; supersedes (never edits) the
+   retained `docs/project-report.md`. Documentation-only work needed no
+   execution registration (the common procedural requirements bind
+   implementations and retained runs, none of which occurred). The
+   programme stands closed per the Round-4 verdict; owner redirection
+   supersedes without prejudice.
 4. **Housekeeping:** suite green re-verified this session (423 OK,
    4 skipped); push after every commit; keep the tree clean; do not
    touch `failed-designs/`; do not rerun closed lines or touch retained
