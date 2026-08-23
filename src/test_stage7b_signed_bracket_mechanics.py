@@ -27,6 +27,7 @@ from __future__ import annotations
 
 from decimal import Decimal, getcontext
 from fractions import Fraction
+import copy
 import json
 import os
 import unittest
@@ -35,6 +36,20 @@ from stage7b2_solver import (
     MIN_CONTRAST_DELTA_R,
     MIN_COMPLETE_PAIRS,
     SOLVER_RESOLUTION_RHO,
+)
+from stage7b1_mechanics import REGISTERED_PACKET_RATE
+from stage7b2_measure import cohort_genotypes, extract_vital_records
+from stage7b2_population import Stage7B2Population, run_window
+from stage7b2r_population import (
+    REGISTERED_BUFFER_DEPTH,
+    REGISTERED_CENSUS_CAPACITY,
+    REGISTERED_CORPSE_TTL,
+    REGISTERED_FOUNDER_S,
+    REGISTERED_HAZARD_RATE,
+    REGISTERED_MEMORY_POOL,
+    REGISTERED_PACKET_ENERGY,
+    registered_founder_genomes,
+    shakedown_seed,
 )
 from stage7b2r_population import shakedown_seeds as repair_shakedown_seeds
 from stage7b_signed_bracket_config import (
@@ -49,6 +64,7 @@ from stage7b_signed_bracket_config import (
     endpoint_configuration,
 )
 from stage7b_exposure_config import endpoint_configuration as exposure_configuration
+from stage7b_exposure_measure import exposure_schedule, lotka_coefficients
 from stage7b_signed_bracket_gate import (
     _gate_threshold,
     evaluate_gate,
@@ -62,6 +78,12 @@ from stage7b_signed_bracket_solver import (
     full_line_certified_bracket,
     lotka_interval_signed,
 )
+from reduce_stage7b_signed_bracket import (
+    REDUCER_SOURCES,
+    _jsonable,
+    reduce_artifact,
+)
+from run_stage7b_signed_bracket import FROZEN_SOURCES, _serialise_birth
 from test_stage7b_endpoint_mechanics import fmt, sha256_of
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -151,6 +173,8 @@ class FrozenModuleImmutabilityTests(unittest.TestCase):
         for name in ("stage7b_signed_bracket_solver.py",
                      "stage7b_signed_bracket_config.py",
                      "stage7b_signed_bracket_gate.py",
+                     "run_stage7b_signed_bracket.py",
+                     "reduce_stage7b_signed_bracket.py",
                      "test_stage7b_signed_bracket_mechanics.py"):
             self.assertNotIn(name.replace(".py", ""), PINNED_HASHES)
 
@@ -516,6 +540,148 @@ class FeasibilityGateLogicTests(unittest.TestCase):
         summary = evaluate_gate(records)
         self.assertFalse(summary["G2_no_overflow_no_invalid"]["passes_G2"])
         self.assertFalse(summary["gate_passed"])
+
+
+class RunnerReducerPlumbingTests(unittest.TestCase):
+    """Serialisation rules, source manifests, and the full reducer path.
+
+    Uses a unit-test-scale (W=30) exploratory window on the gate's own
+    shakedown-seed table, exactly per the endpoint-repair precedent:
+    exercises the reducer contract end-to-end without any execution at
+    the registered W=1200 confirmatory ecology (signed-bracket prereg
+    sections 5/6/8 authorise only the fixed-table gate shakedowns before
+    freeze)."""
+
+    def test_frozen_sources_listed_once_each(self):
+        self.assertEqual(len(FROZEN_SOURCES), len(set(FROZEN_SOURCES)))
+        for required in ("stage7b2_measure.py", "stage7b2_population.py",
+                         "stage7b2_solver.py", "stage7b2r_population.py",
+                         "stage7b1_mechanics.py",
+                         "stage7b_endpoint_measure.py",
+                         "stage7b_exposure_measure.py",
+                         "stage7b_exposure_config.py",
+                         "stage7b_signed_bracket_solver.py",
+                         "stage7b_signed_bracket_config.py",
+                         "run_stage7b_signed_bracket.py"):
+            self.assertIn(required, FROZEN_SOURCES)
+        self.assertNotIn("stage7b_signed_bracket_gate.py", FROZEN_SOURCES)
+        self.assertNotIn("reduce_stage7b_signed_bracket.py", FROZEN_SOURCES)
+        self.assertEqual(len(REDUCER_SOURCES), len(set(REDUCER_SOURCES)))
+        self.assertIn("reduce_stage7b_signed_bracket.py", REDUCER_SOURCES)
+
+    def test_jsonable_fraction_mapping(self):
+        payload = {"a": Fraction(3, 4), "b": [Fraction(1, 2), 7],
+                   "c": {"d": Fraction(0)}}
+        self.assertEqual(
+            _jsonable(payload),
+            {"a": "3/4", "b": ["1/2", 7], "c": {"d": "0/1"}})
+
+    @staticmethod
+    def _run_short_shared(seed_index: int = 2):
+        population = Stage7B2Population(
+            founder_genomes=registered_founder_genomes(),
+            capacity=REGISTERED_CENSUS_CAPACITY,
+            founder_s=REGISTERED_FOUNDER_S,
+            memory_pool=REGISTERED_MEMORY_POOL,
+            hazard_seed=shakedown_seed(seed_index),
+            hazard_rate=REGISTERED_HAZARD_RATE,
+            corpse_ttl=REGISTERED_CORPSE_TTL,
+            packet_rate=REGISTERED_PACKET_RATE,
+            buffer_depth=REGISTERED_BUFFER_DEPTH,
+            packet_energy=REGISTERED_PACKET_ENERGY,
+            window_ticks=30,
+        )
+        result = run_window(population)
+        assert result["classification"] == "COMPLETE"
+        vitals = extract_vital_records(population.event_log, 30)
+        return population, vitals
+
+    @classmethod
+    def _runner_format_artifact(cls) -> dict:
+        """Runner-format raw artifact from a 30-tick exploratory window."""
+        population, vitals = cls._run_short_shared()
+        config_echo = endpoint_configuration()
+        config_echo["window_ticks_W"] = 30
+        schedules: dict[str, dict] = {}
+        certificates: dict[str, dict] = {}
+        for genotype_a in cohort_genotypes(vitals):
+            schedule = exposure_schedule(vitals, genotype_a)
+            c_x = lotka_coefficients(schedule)
+            certificate = full_line_certified_bracket(c_x)
+            exported = {
+                "status": certificate["status"],
+                "L0_exact": fmt(certificate["L0_exact"]),
+            }
+            if certificate["status"] in FINITE_ROOT_STATUSES:
+                exported.update({
+                    "r_lo": fmt(certificate["r_lo"]),
+                    "r_hi": fmt(certificate["r_hi"]),
+                })
+            schedules[str(genotype_a)] = {
+                "cohort_size": schedule["cohort_size"],
+                "died": schedule["died"],
+                "censored": schedule["censored"],
+                "exposure_member_ticks": schedule["exposure_member_ticks"],
+                "l_actuarial_x": [fmt(v) for v in schedule["l_actuarial_x"]],
+                "m_exposure_x": [fmt(v) for v in schedule["m_exposure_x"]],
+                "establishment_m_x": [fmt(v) for v
+                                      in schedule["establishment_m_x"]],
+                "births_credited": schedule["births_credited"],
+                "establishments_credited": schedule["establishments_credited"],
+            }
+            certificates[str(genotype_a)] = exported
+        return {
+            "protocol": PROTOCOL,
+            "registered_configuration": config_echo,
+            "replicates": [{
+                "replicate_index": 0,
+                "hazard_seed": shakedown_seed(2),
+                "classification": "COMPLETE",
+                "vital_records": {
+                    "members": copy.deepcopy(vitals["members"]),
+                    "births": [_serialise_birth(birth)
+                               for birth in vitals["births"]],
+                    "establishments":
+                        copy.deepcopy(vitals["establishments"]),
+                    "attempt_counters": dict(vitals["attempt_counters"]),
+                },
+                "cohort_schedules": schedules,
+                "solver_certificates": certificates,
+            }],
+        }
+
+    def test_round_trip_reduces_bit_exact(self):
+        raw = self._runner_format_artifact()
+        reduced = reduce_artifact(raw)
+        self.assertNotIn("reduction", reduced)
+        self.assertTrue(reduced["verification"]["recomputation_bit_exact"])
+        self.assertEqual(reduced["verification"]["mismatch_count"], 0)
+        self.assertEqual(reduced["decision_rule_input"]
+                         ["minimum_contrast_delta_r_min"], "1/100")
+        self.assertIn(reduced["outcome"]["pair_contrast_class"],
+                      ("DEGENERATE_REPLICATION", "ESTABLISHED_CONTRAST",
+                       "NO_ESTABLISHED_CONTRAST"))
+        self.assertIn("mediator", reduced["interpretation_limits"])
+
+    def test_tampered_endpoint_classifies_reduction_mismatch(self):
+        raw = self._runner_format_artifact()
+        raw["replicates"][0]["cohort_schedules"]["102"][
+            "m_exposure_x"][0] = "999/1"
+        reduced = reduce_artifact(raw)
+        self.assertEqual(reduced.get("reduction"), "REDUCTION_MISMATCH")
+        self.assertFalse(reduced["decision_applied"])
+
+    def test_tampered_mediator_also_classifies_mismatch(self):
+        raw = self._runner_format_artifact()
+        raw["replicates"][0]["cohort_schedules"]["102"][
+            "establishment_m_x"][0] = "999/1"
+        reduced = reduce_artifact(raw)
+        self.assertEqual(reduced.get("reduction"), "REDUCTION_MISMATCH")
+
+    def test_protocol_mismatch_refused_by_main_guard(self):
+        raw = self._runner_format_artifact()
+        raw["protocol"] = "some-other-protocol"
+        self.assertNotEqual(raw["protocol"], PROTOCOL)
 
 
 if __name__ == "__main__":

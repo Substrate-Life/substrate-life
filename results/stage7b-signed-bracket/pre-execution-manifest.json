@@ -1,0 +1,87 @@
+{
+  "protocol": "stage-7b-signed-bracket-preregistration",
+  "purpose": "Stage 7B signed-bracket pre-execution freeze (preregistration section 6): full-line solver, configuration label layer, gate tooling, runner, reducer, tests, and output schema frozen together before any retained run, per the df7b1f5/e2f580b/62f2672/27f5700 precedent, and only after the section 5 feasibility gate passed.",
+  "files": {
+    "docs/stage-7b-signed-bracket-preregistration.md": {
+      "bytes": 20064,
+      "sha256": "7528cc21e627ecef898631d18c4e4ade99ad6cea0592f2c02b1497cfd8e019b7"
+    },
+    "docs/stage7b-signed-bracket-output-schema.md": {
+      "bytes": 9842,
+      "sha256": "5b499f037d2a99a498cde150968a28b59b4bd28066874e58f685f7ae8f730287"
+    },
+    "src/stage7b_signed_bracket_solver.py": {
+      "bytes": 11865,
+      "sha256": "a69720bf2ebea17a20eb18c83340b6dffb94ca2cc6efd8717ad7d2cedbc7e99b"
+    },
+    "src/stage7b_signed_bracket_config.py": {
+      "bytes": 5436,
+      "sha256": "abe16af6ae70fe52188beaffa3a1cc405b8581061caa899c4663f1f8ada457a4"
+    },
+    "src/stage7b_signed_bracket_gate.py": {
+      "bytes": 12044,
+      "sha256": "d748fb72107569666578026cd4c63343a446871235ebb044674aac241d37cb3b"
+    },
+    "src/run_stage7b_signed_bracket.py": {
+      "bytes": 13690,
+      "sha256": "8c61eeb5a324774913c00a5fd7526d6d09157d50faca34cbffb8821774c403d3"
+    },
+    "src/reduce_stage7b_signed_bracket.py": {
+      "bytes": 10949,
+      "sha256": "b7b3329e26ceb36d02907670ea303e50c810caf29ed2ff20e5c4be3ebaaee264"
+    },
+    "src/test_stage7b_signed_bracket_mechanics.py": {
+      "bytes": 30710,
+      "sha256": "488b432c083496058d7631b6000820e71bedccc478efb8d5edf20a7a19f031a6"
+    }
+  },
+  "frozen_sources_embed_their_hashes_in_runner_output": true,
+  "reused_frozen_modules_pinned_in_test": [
+    "src/stage7b1_mechanics.py",
+    "src/stage7b2_measure.py",
+    "src/stage7b2_population.py",
+    "src/stage7b2_solver.py",
+    "src/stage7b2r_population.py",
+    "src/stage7b_endpoint_measure.py",
+    "src/stage7b_endpoint_config.py",
+    "src/stage7b_endpoint_gate.py",
+    "src/run_stage7b_endpoint.py",
+    "src/reduce_stage7b_endpoint.py",
+    "src/stage7b_exposure_measure.py",
+    "src/stage7b_exposure_config.py",
+    "src/stage7b_exposure_gate.py"
+  ],
+  "feasibility_gate_summary": {
+    "gate": "stage-7b-signed-bracket-preregistration section 5",
+    "executed": "unretained shakedown, stdout only, no artifact committed (section 5.5)",
+    "shakedown_table": "24 fixed seeds 20270000+j, j in 0..23 (fourth reuse across all Stage 7B gate generations)",
+    "seed_count": 24,
+    "two_thirds_threshold": 16,
+    "complete_replicates": 24,
+    "invalid_replicates": 0,
+    "G1_complete_bracket_pairs": {
+      "pairs": 24,
+      "of": 24,
+      "no_finite_root_replicates": [],
+      "passes_G1": true
+    },
+    "G2_no_overflow_no_invalid": {
+      "zero_buffer_overflow": true,
+      "zero_invalid_implementations": true,
+      "passes_G2": true
+    },
+    "G3_checkpoints_and_regression": {
+      "checkpoint_failures": [],
+      "regression_mismatches": 0,
+      "generation_3_reference": "failed-designs/2026-08-23-stage7b-denominator-feasibility-gate-no-go/gate-summary.json",
+      "passes_G3": true
+    },
+    "status_counts_per_genotype": {
+      "102": {"SUBCRITICAL": 4, "SUPERCRITICAL": 20},
+      "204": {"SUBCRITICAL": 17, "SUPERCRITICAL": 7}
+    },
+    "gate_passed": true,
+    "note": "Every one of the 24 shakedown replicates now yields a COMPLETE certified bracket pair (24/24, versus 3/24 joint-supercritical pairs under the superseded rule) because every measurable arm certifies a finite-root bracket (SUPERCRITICAL or SUBCRITICAL; zero NO_FINITE_ROOT observed) instead of requiring joint supercriticality. The regression identity held bit-exactly against every one of the 48 archived generation-3 L0_exact values (24 seeds x 2 genotypes): population runs are deterministic in the hazard seed and only the solver DOMAIN changed. --workers 6, wall time approximately 40 minutes, exit 0."
+  },
+  "note": "Committed before the first retained run of the registered signed-bracket confirmatory suite. The implementation-window unit tests (test_stage7b_signed_bracket_mechanics.py, 45 tests) exercise the full runner/reducer round trip at unit-test scale (W=30, a gate shakedown seed) without any execution at the registered W=1200 confirmatory ecology, per the endpoint-repair precedent; full discover suite is green (293 tests OK) after this freeze. The first retained raw output under this manifest will be results/stage7b-signed-bracket/stage7b-signed-bracket-result.json, reduced by results/stage7b-signed-bracket/stage7b-signed-bracket-reduced.json. Disclosed implementation decisions frozen here: (i) the r<0 branch reuses the frozen positive-half-line interval-squaring machinery (_interval_pow) via import against a new exp_pos_enclosure (positive-term Taylor lower bound plus geometric-tail upper bound); (ii) NO_FINITE_ROOT is classified but was never observed at this ecology (mechanically impossible while c_0 = 0, per the registered repair table); (iii) retention scope is unchanged from the denominator-repair generation (full-fidelity estimator inputs plus event-stream digests, not verbatim streams)."
+}
