@@ -234,8 +234,16 @@ green; push after every commit.
   green at 293 tests (4 environment skips). Follow-up work this session:
   read-only integrity audit + descriptive dispersion/power scoping of
   the retained signed-bracket artifacts as non-binding design input for
-  whichever direction the owner selects (see
-  `docs/stage-8-signed-bracket-audit.md` if present).
+  whichever direction the owner selects — committed as
+  `docs/stage-8-signed-bracket-audit.md` with tool
+  `src/audit_stage7b_signed_bracket.py` and 10 new tests; audit verdict:
+  all hashes match, reducer re-run byte-identical, all four freeze
+  manifests drift-free, independent recomputation reproduces the
+  registered outcome exactly; key descriptive facts: LOW-arm midpoints
+  pile up at the 1/512 resolution floor in ≥24/32 replicates, paired
+  differences are heavy-tailed (median |Δ| = 25/32 of floor, 7/16 of
+  pairs above floor with mixed signs), consistent with exclusion-
+  variance domination rather than a shifted distribution.
 
 ## Part V — Next run should pick up
 
