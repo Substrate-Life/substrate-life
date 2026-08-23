@@ -364,3 +364,152 @@ If the corrected gate FAILS: no freeze; further superseding
 registration with diagnosis archived under `failed-designs/`; this
 verdict lapses. Frozen quantities remain frozen.
 
+
+---
+
+# Round 4 — post-null direction debate: what does the follow-on registration pursue?
+
+*Date: 2026-08-23 (session 7), conducted after the ONE retained
+execution reduced exactly once to `NO_ESTABLISHED_DIRECTION`
+(commit `9db2f3b`). DISCLOSED: the delegation tool used in Round 1 was
+unavailable again this session (no `delegate_task` in the session
+toolset), so as in Rounds 2–3 the three roles were argued and
+cross-examined by the parent agent against repo facts with exact
+Fraction arithmetic; transcripts therefore live in this file and the
+commit message, not under `cache/delegation/`.*
+
+## The question
+
+Stage 8 rung 2 is closed as a registered bounded negative. The next
+registration alone decides the follow-on. Candidates from the programme
+review: (a) ecology/power reframing of the weak contrast; (b)-family
+recruitment/establishment endpoints (mediator-caveat precondition);
+a frequency-trajectory instrument (unrun by any stage); (d) programme
+close-out (essay extension + final report). Which should the next
+registration pursue?
+
+## Advocate's position (design: proceed to close-out, direction (d))
+
+1. **The review's own condition for (d)'s value has been met.** The
+   review recommended (c) partly because "a well-powered rung-2 result
+   (either sign) plus the existing rung-1 null makes direction (d) —
+   whichever session it happens — a far stronger essay." That result now
+   exists: k = 24 paired replicates at W = 2400, zero extinctions,
+   23,933 kernel events on Arm M, closed by the frozen rule.
+2. **(d)'s stated risk is void.** The only risk recorded against (d)
+   was that it "forecloses (a)–(c); the essay would describe a ladder
+   whose second rung was never attempted." The second rung WAS
+   attempted and closed with a measured bound. Foreclosure now costs
+   the project nothing it has not already banked.
+3. **Marginal values collapsed for the alternatives.** (a) has no
+   effect-size target to power for — the null supplies an upper bound,
+   not a candidate β; powering for arbitrary small effects is
+   unbounded cost for unbounded ambiguity. (b) still carries its
+   permanent-mediator-caveat precondition (architecture §9.4 / 7B1 §6.1
+   demonstration must precede any endpoint promotion). The trajectory
+   instrument would be a fourth new-code surface adopted AFTER two
+   nulls at two endpoint families, with no candidate effect size and
+   the review's own warning that an underpowered frequency null is
+   ambiguous between "no selection" and "selection too weak".
+4. **The answerable questions are answered.** Within the fixed level-2
+   statement space, the ladder reads: channel exists (7B0/7B1 PASS);
+   restricted architecture evolves through it beyond ±4/255 per pair at
+   this ecology — NOT ESTABLISHED (Stage 8). The scope sentence forbids
+   exactly the level-3+ claims (external validation, optimum, ESS) that
+   the trajectory instrument would nominally chase; no registration can
+   license them inside this architecture.
+5. **Close-out transfers knowledge instead of burying it** if — and the
+   advocate accepts this as binding — the essay records the unattempted
+   trajectory instrument as an explicit scope limit TOGETHER WITH the
+   measured dispersion prior sd(D) ≈ 5.71/255 at W = 2400, so any
+   future resumption inherits quantified, desk-computable power
+   arithmetic rather than a bare "we stopped".
+
+## Adversarial reviewer's objections (checked against repo facts)
+
+A1. **"Stopping on a null is results-shopping in reverse."** A
+    discipline that ends when answers disappoint optimises narrative,
+    not knowledge; the motivating question (does extrinsic mortality
+    select allocation speed?) remains unanswered, and the trajectory
+    instrument is qualitatively different evidence (temporal
+    integration over ~10⁴ births vs a terminal endpoint). — CHECKED:
+    partially survives as an obligation, fails as an override. The
+    motivating question lives outside the licensable statement space
+    (scope sentence, verbatim in the execution note §6); Stage 8's
+    design WAS the registered operationalization of rung 2, selected
+    before any confirmatory data existed (f783133/f753894/f1e6880 all
+    precede first retained observation). Switching instruments after
+    seeing the null would need independent justification, and none
+    exists beyond preference for a different answer — precisely the
+    fork the preregistration discipline exists to block. What survives:
+    the essay must state the non-answer plainly, and the closure must
+    be framed as completion of the registered statement space, not
+    termination of the science.
+A2. **"Was the test even powered as planned? Observed sd(D) = 5.71/255
+    exceeds the Round-2 proxy band σ ≈ 1.6–2.0/255 — maybe realised
+    power diverged from the registered power model."** — CHECKED:
+    refuted as a defect, confirmed as a fact already discharged. The
+    §5 rule is count-based: size is dispersion-free at
+    Σ_{k≥18}C(24,k)/2²⁴ = 190051/16777216 ≈ 0.01133 one-sided,
+    0.02266 two-sided (recomputed exactly this session), whatever the
+    spread. Wider dispersion raises per-pair floor-crossing
+    probability (floor fixed at 4/255), so magnitude scarcity was NOT
+    the failure mode — sign balance was (13/11). Power for a true
+    positive effect requires per-pair same-side floor-crossing ≳ 0.75;
+    with no candidate β post-null, "underpowered" is not demonstrable
+    and retuning is forbidden anyway (§10).
+A3. **"The identical birth totals across arms (23,933 = 23,933) look
+    like an implementation bug — are arms actually different?"** —
+    CHECKED: explained by construction, and independently pinned.
+    Hazard is exogenous and phenotype-blind; both arms at a seed share
+    the demographic skeleton, so equal admitted-birth totals at equal
+    seeds are the expected determinism signature, not contamination.
+    Arm difference is pinned elsewhere and audited every run: Arm M
+    carries 23,933 decision records / 35,981 draws / problems = 0;
+    Arm R0 has zero decisions, zero draws, empty chain, telemetry
+    passing (`arm_contrast_is_exactly_the_kernel: true` in the raw
+    integrity block), and terminal distinct-A M 9..17 vs R0 1..2.
+
+## Method auditor's findings
+
+1. **Freeze-before-execution held:** freeze commit `f1e6880` at
+   14:54:44 UTC precedes runner launch at 14:55:41 UTC; manifest pins
+   verified zero-drift twice this session (pre-launch, pre-reduction).
+2. **One-shot reduction held:** raw artifact `decision` field is flipped
+   by the reducer's write path; a second reduction refuses
+   (`PENDING_REDUCTION` check, covered by the reducer test matrix);
+   artifacts committed once at `9db2f3b` and untouched since.
+3. **Suite green:** 423 tests OK (4 skipped) this session, including
+   the fault matrix re-parameterised onto the kernel subclass.
+4. **Round hygiene:** telemetry labels unread by mechanics; exact
+   Fractions throughout ledgers and the D_i table; no fitness,
+   selection, ESS, or external-validation claim appears in the
+   execution note beyond the fixed scope sentence.
+5. **Disclosure completeness:** wall-clock overrun, delegation
+   unavailability, and the proxy-band underestimate are all recorded;
+   nothing was retuned, rerun, or added to the closed line.
+
+## Verdict
+
+**ADVOCATE SURVIVES — the next registration pursues direction (d):
+programme close-out.** Binding obligations carried forward:
+
+1. The essay extension (`docs/public-technical-essay.md`) must present
+   BOTH registered nulls with their bounds (rung-1 cross-sectional
+   bound ≈ 8×10⁻⁵ slope units; rung-2 paired redistribution bound
+   ±4/255 per pair, best side 9/24, median |D| = 4.6/255, sd(D) ≈
+   5.71/255), the three falsified repairs caught by gates plus the G2
+   bookkeeping repair lineage, and the gate→freeze→execute→reduce
+   discipline itself as the demonstrated method.
+2. The essay must state explicitly what was NOT tested — trajectory/
+   frequency instruments, other ecologies, open populations, level-3+
+   claims — as scope limits carrying the measured dispersion prior for
+   any future resumption, not as promises.
+3. A final report summarises the programme arc Stages 1 → 8 with the
+   failed-designs lineage cited, never deleted.
+4. No further evolutionary execution is authorised on any closed line;
+   a future trajectory-style registration, if ever revived, must be a
+   superseding registration justified independently of this null.
+
+If the owner redirects, the standing orders' escalation path applies
+(owner input supersedes; this verdict then lapses without prejudice).
