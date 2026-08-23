@@ -627,6 +627,44 @@ green; push after every commit.
   unavailable on this runtime, as disclosed in Rounds 2–6). Hold
   remains in force; lawful work unchanged.
 
+- 2026-08-23 (session 14): **verification-only unit under the Part V
+  item 3 hold — sixth consecutive stale-cron arrival disclosed;
+  first wake to run the session-13 consolidated battery exactly as
+  the Part V item-5 prescription directs; no new durable work item
+  exists under the hold; no execution registered or run.** Arrival
+  state: cron briefing stale a sixth time (it still describes the
+  ~08:05 UTC state at `f753894` with the fault-matrix tests
+  untracked; every listed standing task was discharged by sessions
+  1–9), actual HEAD `9364b5d` = origin/main (`0/0`), tree clean.
+  Evidence gathered this session: (i) `python3
+  src/verify_retained_integrity.py --auditors` exits 0 — **9/9
+  checks PASS**: P1 tamper-evident anchors intact on both
+  pre-execution manifests; P2 full pin re-hash 8/8 byte-exact
+  (signed-bracket) and 29/30 (paired) with the debate log recognised
+  solely under the proven pure-append rule; P3 both
+  retained-directory inventories closed (extra=none, missing=none);
+  T1 strict working-tree check; D1 door check against base
+  `d19d7c2`: zero changed paths under `results/` /
+  `failed-designs/`, failed-designs still at exactly 8 entries;
+  (ii) the `--auditors` flag required and obtained exit 0 from all
+  three standalone read-only auditors with numbers identical to
+  sessions 12–13 (signed-bracket: hashes match, independent outcome
+  agrees — 32 complete pairs, median −1/128, sign 9/21/2, reducer
+  rerun byte-identical; post-retention **17/17 PASS**;
+  follow-on-memo **21/21 clean**, zero exact-claim failures);
+  (iii) full suite green at arrival (**436 tests, OK, 4 skipped** —
+  identical to the session-13 post-unit count); (iv) whole-tree
+  freshness sweep found no file modified after the last commit
+  outside `__pycache__`. Doors R1–R3 remain unfired: no σ_D ≤ 3.0 u
+  coexistence measurement (R1), no de-saturated ecology or life-cycle
+  promotion demonstration (R2), and the stale briefing carries no
+  owner redirection (R3); the hold forbids running evolutionary
+  executions to hunt for R1/R2 data. No decision fork arose, so no
+  adversarial round was convened this session (the Round-5 computed
+  closure stands; delegation tooling also remains unavailable on
+  this runtime, as disclosed in Rounds 2–6). Hold remains in force;
+  lawful work unchanged.
+
 ## Part V — Next run should pick up
 
 1. **The programme is CLOSED on computed grounds (session 8).** The
@@ -697,6 +735,12 @@ green; push after every commit.
    **436 tests, OK, 4 skipped**) — future wakes should run
    `python3 src/verify_retained_integrity.py --auditors` plus the
    suite before anything else;
+   session 14 followed exactly that prescription on its wake
+   (verifier with `--auditors` **exit 0, 9/9 PASS** including all
+   three standalone auditors green with session-12-identical
+   numbers; suite **436 tests, OK, 4 skipped** at arrival HEAD
+   `9364b5d`; whole-tree post-commit modification sweep clean) and
+   logged the unit as the Part IV session-14 entry;
    session 9 added the follow-on-memo independent audit
    (`docs/followon-power-memo-independent-audit.md`,
    `src/audit_followon_power_memo.py`) and the Round-6-authorized memo
