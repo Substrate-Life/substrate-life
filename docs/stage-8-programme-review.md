@@ -230,8 +230,8 @@ green; push after every commit.
 
 ## Part IV — Session log
 
-- 2026-08-23 (this session): this review written and committed. Suite
-  green at 293 tests (4 environment skips). Follow-up work this session:
+- 2026-08-23 (session 1): this review written and committed. Suite
+  green at 293 tests (4 environment skips). Follow-up work that session:
   read-only integrity audit + descriptive dispersion/power scoping of
   the retained signed-bracket artifacts as non-binding design input for
   whichever direction the owner selects — committed as
@@ -245,10 +245,41 @@ green; push after every commit.
   pairs above floor with mixed signs), consistent with exclusion-
   variance domination rather than a shifted distribution.
 
+- 2026-08-23 (session 2): direction (c) selected under the owner's standing
+  autonomous-advance order (no contradicting owner input is possible in a
+  cron session; Part V clause 2 applied). Superseding preregistration for
+  dedicated-locus α evolution committed as
+  `docs/stage-8-alpha-evolution-preregistration.md`: registered kernel
+  (`p_μ = 1/2`, `δ ∈ {±1,…,±4}` clamped on `{0..255}`, `T=128`/`D=255`
+  frozen), carried ecology and founder pair at `α_ref = 3/5`,
+  `W = 2400` (20 hazard turnovers), fresh confirmatory table
+  `20284617+i` (`k = 24`) and shakedown table `20293311+j` (`k = 12`),
+  primary endpoint = terminal mean `ᾱ_end` vs `α_ref` beyond floor
+  `8/255`, decision rule = one-shot concordance classification
+  (`≥18/24` ⇒ directional; neutral-reference tail ≤ 0.02266 two-sided,
+  conservative by construction), feasibility gate G1–G3, freeze policy.
+  Implementation window opens on that commit; no retained execution
+  before gate + freeze. Suite green at 303 tests at commit time.
+
 ## Part V — Next run should pick up
 
-1. If owner direction exists, execute the chosen option's preregistration
-   workflow (register → gate → freeze → single retained run → classify).
-2. Otherwise: iterate this review with any new facts, and continue
-   non-binding strengthening (audits/tests/docs) without touching
-   retained artifacts or re-running the closed line.
+1. **Stage 8 implementation window** per
+   `docs/stage-8-alpha-evolution-preregistration.md` §7(1): additive
+   modules only — `Stage8` population subclass overriding Stage M via a
+   verbatim-copied `divide_publish` with the registered kernel
+   substituted, configuration layer, gate tooling, runner, reducer,
+   output schema, and tests (including the carried 7B1 fault-injection
+   matrix re-parameterised onto the subclass, plus kernel unit tests:
+   boundary clamps, `T`/`D` immutability, no-mutation identity path,
+   stream determinism/disjointness). Commit early; frozen files are
+   never edited.
+2. Then, in order: §6 feasibility gate on the 12-seed shakedown table →
+   §7 freeze manifest at `results/stage8-alpha-evolution/` → single
+   retained confirmatory suite (`20284617+i`, `i∈0..23`, `W=2400`) →
+   one-shot reduction and classification under the §5 rule.
+3. If the gate fails: superseding preregistration with diagnosis,
+   archived under `failed-designs/`; never tune the registered design
+   against shakedown outcomes.
+4. Keep the suite green; push after every commit; keep the tree clean;
+   do not rerun the closed signed-bracket line or touch retained
+   artifacts.
