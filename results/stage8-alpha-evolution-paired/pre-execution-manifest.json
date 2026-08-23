@@ -1,0 +1,140 @@
+{
+  "authorised_execution_class": "one seeded confirmatory pair suite: k = 24 pairs (48 runs), seeds 20310529 + i with Arm M and Arm R0 at each seed, W = 2400, executed once and reduced exactly once under the section 5 paired rule by the source-frozen reducer (repair preregistration sections 8(4)-8(5)); the retired tables 20284617+i / 20293311+j remain unexecuted and never reused",
+  "execution_disclosure": "The retained suite may be executed with the frozen runner's --workers option: pairs are isolated seeded populations and pool.map preserves registered index order, so output is bit-identical to sequential execution; each arm's event_digest and kernel_draw_chain bind its exact streams.",
+  "feasibility_gate_summary": "Section 7 factual gate summary. Seed list used: [20421301, 20421302, 20421303, 20421304, 20421305, 20421306, 20421307, 20421308, 20421309, 20421310, 20421311, 20421312] (12 shakedown pairs 20421301+j, j=0..11, fixed before any execution at this ecology and disjoint from every retained or retired table). Pairs with both arms COMPLETE: 12/12 (two-thirds threshold 8). G1 (evolution operates, Arm M): passing pairs 12/8 required; genome-freeze violations: 0; passes_G1=True. G2 (implementation integrity): invalid runs 0, buffer overflows 0, checkpoint failures 0; passes_G2=True. G3 (kernel audit, Arm M): kernel audit failures 0; stream replay of seed 20421301 bit-exact=True; passes_G3=True. G4 (reference-arm integrity): failures 0, seed mismatches 0; passes_G4=True. Gate passed: True. Factual shakedown context (threshold-free, non-binding): {\"complete_arms_terminal_live_max\": 48, \"complete_arms_terminal_live_min\": 48, \"extinct_complete_arms\": 0, \"m_terminal_distinct_A_max\": 15, \"m_terminal_distinct_A_min\": 8, \"note\": \"descriptive only; reported without thresholds per section 7; may not resize anything\", \"total_m_kernel_draws\": 18037, \"total_m_mutation_decision_records\": 12023}",
+  "files": {
+    "docs/stage-8-alpha-evolution-preregistration.md": {
+      "bytes": 15917,
+      "sha256": "ba148ae4f5e3cde84529d30b390933753c6028a762f99a7ba6b30451fb3a02b3"
+    },
+    "docs/stage-8-alpha-evolution-repair-preregistration.md": {
+      "bytes": 15029,
+      "sha256": "669124a2a5db46f09c3757f11932f8d280acdda5824f87f7ea1b2340628d47fa"
+    },
+    "docs/stage-8-debate-log.md": {
+      "bytes": 20869,
+      "sha256": "512fd400b25da618486d8c870b005733d0ec9d1095984339a97758a137c0b7e5"
+    },
+    "docs/stage8-alpha-output-schema.md": {
+      "bytes": 8598,
+      "sha256": "d4788c3e26c28e058951c17f9009181980355161309c29b6043db88d61b7ed0c"
+    },
+    "docs/stage8-paired-output-schema-addendum.md": {
+      "bytes": 10257,
+      "sha256": "0c426e561e0b46a694576bbab1280f8f127b027ee057345a683d1c4ff1a08973"
+    },
+    "src/consts.py": {
+      "bytes": 2371,
+      "sha256": "7dda03561176a30ff9e2050e53fe15b8878b8c3f593032f1f276be2867f3066b"
+    },
+    "src/datastream.py": {
+      "bytes": 6517,
+      "sha256": "62719958ac39dd79b5a59bab9534ae3fa7253451e6e12d3457905ced9f0c8148"
+    },
+    "src/reduce_stage8_alpha.py": {
+      "bytes": 13006,
+      "sha256": "6f6e68bd3649242e80b8440ec32273af947db99e4e25f8f884223d321db86033"
+    },
+    "src/reduce_stage8_paired.py": {
+      "bytes": 15548,
+      "sha256": "9062a12b4384adcb6d642f9d8b4c46c324e34c9c46b04431c0673c5941c7dbda"
+    },
+    "src/run_stage8_alpha.py": {
+      "bytes": 16034,
+      "sha256": "70eda4091bf21ab1fd2ec9952e20f562daf1146b8ae19beeede271bb4651300a"
+    },
+    "src/run_stage8_paired.py": {
+      "bytes": 10296,
+      "sha256": "27fa67545f3388488f4b29f6487a3c9a7a31c2e94108ef71799bbf7428d1dd16"
+    },
+    "src/stage7_slice1.py": {
+      "bytes": 22936,
+      "sha256": "c297b3947c16128e67ffdc9c4dc9f050ed8764c628b9d2855265a21d68bde7fd"
+    },
+    "src/stage7_slice2.py": {
+      "bytes": 20390,
+      "sha256": "7d7ca9a82a27e65799951d15c95fd49a5b97276f13db3612b9ecd1068f8576a8"
+    },
+    "src/stage7b1_mechanics.py": {
+      "bytes": 46861,
+      "sha256": "615726900a1d3d3a36af1807ad0dc7c30ce76c09596c1d2f1fab44870d904cde"
+    },
+    "src/stage7b2_measure.py": {
+      "bytes": 12742,
+      "sha256": "5664bcecdd0f87c0f1650a93ad95ef90728daa3b5236e652bf4866a909b054fd"
+    },
+    "src/stage7b2_population.py": {
+      "bytes": 13435,
+      "sha256": "86e1b67031bfa68778f7690f645ec94a9047f6cd2141fb27baa5b4e31f3503cb"
+    },
+    "src/stage7b2r_population.py": {
+      "bytes": 7275,
+      "sha256": "d2bc36af0d2664d23de32d9047da5e5473321b5bd964b84ab0fea72e99a5fcfa"
+    },
+    "src/stage8_alpha_measure.py": {
+      "bytes": 17025,
+      "sha256": "f294277e48e6915fc4515b21c865fa5d10df0e9a095874acc6ff2c85a5c5aa2a"
+    },
+    "src/stage8_gate.py": {
+      "bytes": 10890,
+      "sha256": "784d7faf54f90817d7ff2736b3b99993178140adf5da74631502b3d96000f46c"
+    },
+    "src/stage8_paired.py": {
+      "bytes": 7846,
+      "sha256": "43b7af5e8c40947c567cff79306949369b3a98c113a92f3fc438e6a954b0e3ae"
+    },
+    "src/stage8_paired_gate.py": {
+      "bytes": 12149,
+      "sha256": "f6be070d8b5b6c936d348780a2d1482b4d9c1da476d802d3a557b43872d1fd39"
+    },
+    "src/stage8_population.py": {
+      "bytes": 19621,
+      "sha256": "4cad2e15ed6a6aab512590897db0b849e83f7dac14700b698ee695523f80b2ea"
+    },
+    "src/test_reduce_stage8_alpha.py": {
+      "bytes": 10202,
+      "sha256": "0181bf59755b6065d720342d68561239044a7977f357a5743153a9c142a5d366"
+    },
+    "src/test_reduce_stage8_paired.py": {
+      "bytes": 17244,
+      "sha256": "9e99592fbece172c9f5cc4ce3103367f72c6007a9bcfc1125bb0624e1e0ef6af"
+    },
+    "src/test_stage8_fault_matrix.py": {
+      "bytes": 6506,
+      "sha256": "ffafaa24ef4d5b3688e1fefd3ddf87fcfb7ebc6530852306bf69f102ad910a57"
+    },
+    "src/test_stage8_gate.py": {
+      "bytes": 8329,
+      "sha256": "8ed6134115aae729c96ac04a619f6837684a2dfd5691b771d0f57e3dbce45411"
+    },
+    "src/test_stage8_kernel.py": {
+      "bytes": 15935,
+      "sha256": "37d6ebd9d5d9aeebf18515f96919db1d92fb391d41e9ab363ad3ce15ff2dc4c5"
+    },
+    "src/test_stage8_measure.py": {
+      "bytes": 12519,
+      "sha256": "a39d965056b4166795a14f8a430d354e98b9dd93fcbb48ee7ee100af81701de8"
+    },
+    "src/test_stage8_paired.py": {
+      "bytes": 6092,
+      "sha256": "3c630a33943ca838a116c8ee82f1054dac7ba533af0376d7c2d1291b3f21488a"
+    },
+    "src/transforms.py": {
+      "bytes": 7134,
+      "sha256": "234f72eb42a15f88cb2fe5831a9f9421d3f94448d0dd39fa6ab169687845b7a6"
+    }
+  },
+  "first_retained_outputs": {
+    "raw": "results/stage8-alpha-evolution-paired/confirmatory-paired-20310529.json",
+    "reduced": "results/stage8-alpha-evolution-paired/confirmatory-paired-20310529-reduced.json"
+  },
+  "frozen_sources_embed_their_hashes_in_runner_output": true,
+  "hash_drift_versus_prior_manifests": {},
+  "protocol": "stage-8-alpha-evolution-repair-preregistration",
+  "purpose": "Stage 8 paired-arm pre-execution freeze (repair preregistration section 8): implementation, arm plumbing, runner, tests, output schema addendum, reducers, and gate tooling frozen together before any retained run, after the binding section 7 feasibility gate passed on the fixed 12-pair shakedown table; df7b1f5/e2f580b/7d21153/27f5700 precedent.",
+  "shared_source_byte_identity": {
+    "src/stage7b1_mechanics.py": "byte-identical to the retained Stage 7B1 freeze manifest",
+    "src/stage7b2_measure.py": "byte-identical to the retained Stage 7B2 freeze manifest",
+    "src/stage7b2_population.py": "byte-identical to the retained Stage 7B2 freeze manifest"
+  }
+}
