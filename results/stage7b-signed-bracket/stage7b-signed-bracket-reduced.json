@@ -1,0 +1,545 @@
+{
+  "consumed_raw_artifact": {
+    "bytes": 18828711,
+    "path": "../results/stage7b-signed-bracket/stage7b-signed-bracket-result.json",
+    "sha256": "6268a3dab1db878e72af565863b3d1a11831df02f3b3407693e8586d13273d3d"
+  },
+  "decision_rule_input": {
+    "minimum_complete_pairs": 16,
+    "minimum_contrast_delta_r_min": "1/100",
+    "solver_resolution_rho_r": "1/256"
+  },
+  "evidence_class": "single application of the completed section-3-table decision rule over independently recomputed estimators at the carried ecology under the unchanged two-factor endpoint, certified on the full real line",
+  "interpretation_limits": "Any ESTABLISHED_CONTRAST establishes only an allocation-associated invasion-growth difference at or above the registered floor under the carried registered ecology; it does not establish an optimum, an ESS, a background-invariant causal effect, or the architecture section 9.5 external-validation mechanism. The sign split over complete pairs and any exclusion/priority-effect pattern are descriptive context, never a fitness or selection claim. The establishment/first-reproduction signal is a reported mediator and is never substituted for the endpoint.",
+  "outcome": {
+    "complete_pairs": 32,
+    "delta_min": "1/100",
+    "median_paired_difference": "-1/128",
+    "min_complete_pairs": 16,
+    "pair_contrast_class": "NO_ESTABLISHED_CONTRAST",
+    "per_genotype": {
+      "102": {
+        "critical_replicates": 0,
+        "no_finite_root_replicates": 0,
+        "subcritical_at_this_ecology": false,
+        "subcritical_replicates": 9,
+        "supercritical_replicates": 23
+      },
+      "204": {
+        "critical_replicates": 0,
+        "no_finite_root_replicates": 0,
+        "subcritical_at_this_ecology": true,
+        "subcritical_replicates": 21,
+        "supercritical_replicates": 11
+      }
+    },
+    "rule": "stage-7b-signed-bracket-preregistration section 3",
+    "sign_split": {
+      "negative": 21,
+      "positive": 9,
+      "zero": 2
+    },
+    "subcritical_report": "ONE_ARM_SUBCRITICAL"
+  },
+  "per_replicate": [
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "73025516428094001825810685639844099558983223770106729327/60762302038390006275141824453158191961985429515693000000",
+          "status": "SUPERCRITICAL"
+        },
+        "204": {
+          "L0": "53/56",
+          "status": "SUBCRITICAL"
+        },
+        "replicate_index": 0
+      },
+      "replicate_index": 0
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "50/53",
+          "status": "SUBCRITICAL"
+        },
+        "204": {
+          "L0": "2360360185836350449978710284117147205309659780171/1796671008659107625040269068762383446012810231808",
+          "status": "SUPERCRITICAL"
+        },
+        "replicate_index": 1
+      },
+      "replicate_index": 1
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "21/22",
+          "status": "SUBCRITICAL"
+        },
+        "204": {
+          "L0": "613138728814895994057173173001439973313578461/469769761815473395703474323055895447632300000",
+          "status": "SUPERCRITICAL"
+        },
+        "replicate_index": 2
+      },
+      "replicate_index": 2
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "722564657958482844210969036747577016427636738851595859/582329180479808895852959332577848824200556583053251250",
+          "status": "SUPERCRITICAL"
+        },
+        "204": {
+          "L0": "5/6",
+          "status": "SUBCRITICAL"
+        },
+        "replicate_index": 3
+      },
+      "replicate_index": 3
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "104129975354483092657037593012226324074/82864920109477270410914731623324217053",
+          "status": "SUPERCRITICAL"
+        },
+        "204": {
+          "L0": "90089874512627/77870610404496",
+          "status": "SUPERCRITICAL"
+        },
+        "replicate_index": 4
+      },
+      "replicate_index": 4
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "404061397068923420696415898497357832716581835676751/292056851582223834703595871916672533778857984000000",
+          "status": "SUPERCRITICAL"
+        },
+        "204": {
+          "L0": "10/13",
+          "status": "SUBCRITICAL"
+        },
+        "replicate_index": 5
+      },
+      "replicate_index": 5
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "2045255828158359185798717694998859670490692198953099494969/1609921957181124876127003037686823362149413287247216640000",
+          "status": "SUPERCRITICAL"
+        },
+        "204": {
+          "L0": "26/29",
+          "status": "SUBCRITICAL"
+        },
+        "replicate_index": 6
+      },
+      "replicate_index": 6
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "684369765416527012235734820963706215768627219443386217/526676524748945166351418801894460625042546732459191040",
+          "status": "SUPERCRITICAL"
+        },
+        "204": {
+          "L0": "11/14",
+          "status": "SUBCRITICAL"
+        },
+        "replicate_index": 7
+      },
+      "replicate_index": 7
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "22/23",
+          "status": "SUBCRITICAL"
+        },
+        "204": {
+          "L0": "112393828279438650114071026301188961611747112292575871337/77123898491420425145166453101228656904973960814463839040",
+          "status": "SUPERCRITICAL"
+        },
+        "replicate_index": 8
+      },
+      "replicate_index": 8
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "1111951384311002682585075479433054234261718552361619708484/892003380424316876234948544716325355218580770154986984375",
+          "status": "SUPERCRITICAL"
+        },
+        "204": {
+          "L0": "7/8",
+          "status": "SUBCRITICAL"
+        },
+        "replicate_index": 9
+      },
+      "replicate_index": 9
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "10730754035917989306209784764145757005437505538472053/8750050424764053339022012651701595448183945784459264",
+          "status": "SUPERCRITICAL"
+        },
+        "204": {
+          "L0": "10/11",
+          "status": "SUBCRITICAL"
+        },
+        "replicate_index": 10
+      },
+      "replicate_index": 10
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "14133360779059228835075945867619541715922937763314713564959/11111288907469171327284714824703311104252519862639013203125",
+          "status": "SUPERCRITICAL"
+        },
+        "204": {
+          "L0": "13/16",
+          "status": "SUBCRITICAL"
+        },
+        "replicate_index": 11
+      },
+      "replicate_index": 11
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "1061132761654872304947869665109673903018367610599/760518450814440950795346960466445607956643840000",
+          "status": "SUPERCRITICAL"
+        },
+        "204": {
+          "L0": "62/65",
+          "status": "SUBCRITICAL"
+        },
+        "replicate_index": 12
+      },
+      "replicate_index": 12
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "71/74",
+          "status": "SUBCRITICAL"
+        },
+        "204": {
+          "L0": "143871287439539936448063498458941151790054968824449866231/98882943425105044233188838082070118065601331625634031680",
+          "status": "SUPERCRITICAL"
+        },
+        "replicate_index": 13
+      },
+      "replicate_index": 13
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "79851294226997333083172068753463191412526635690020401253/66986040561937404212052398583635498812214875185137233920",
+          "status": "SUPERCRITICAL"
+        },
+        "204": {
+          "L0": "11/14",
+          "status": "SUBCRITICAL"
+        },
+        "replicate_index": 14
+      },
+      "replicate_index": 14
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "372024459358708151261409954663194841959271007318405543991/304310115015480758761678956635925287348973261446452500000",
+          "status": "SUPERCRITICAL"
+        },
+        "204": {
+          "L0": "11/14",
+          "status": "SUBCRITICAL"
+        },
+        "replicate_index": 15
+      },
+      "replicate_index": 15
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "558204154672781736956980437098632365719616560810828289100469/457538005836497203557619540385725998099105135333085711704000",
+          "status": "SUPERCRITICAL"
+        },
+        "204": {
+          "L0": "16/19",
+          "status": "SUBCRITICAL"
+        },
+        "replicate_index": 16
+      },
+      "replicate_index": 16
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "83/84",
+          "status": "SUBCRITICAL"
+        },
+        "204": {
+          "L0": "39368379620220738769874919112788485696437503/24910426345472081541270388786953577288062500",
+          "status": "SUPERCRITICAL"
+        },
+        "replicate_index": 17
+      },
+      "replicate_index": 17
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "6473667664477254713721019377413630682529664897375118163219/5074659285367946734174771692471457062042716987971338240000",
+          "status": "SUPERCRITICAL"
+        },
+        "204": {
+          "L0": "5/6",
+          "status": "SUBCRITICAL"
+        },
+        "replicate_index": 18
+      },
+      "replicate_index": 18
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "21017037290843691642646568145809413108937652841166706004859/16855700658864922178204543050716022650002315739649136296800",
+          "status": "SUPERCRITICAL"
+        },
+        "204": {
+          "L0": "11/14",
+          "status": "SUBCRITICAL"
+        },
+        "replicate_index": 19
+      },
+      "replicate_index": 19
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "22231896734880628239450773499128482932927693739/16861616073593403464815839547451741936218816000",
+          "status": "SUPERCRITICAL"
+        },
+        "204": {
+          "L0": "4/5",
+          "status": "SUBCRITICAL"
+        },
+        "replicate_index": 20
+      },
+      "replicate_index": 20
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "553137006857064721006899998344418855929681893770045579353/454624143229227315410134925124279742398921305069368565760",
+          "status": "SUPERCRITICAL"
+        },
+        "204": {
+          "L0": "14/17",
+          "status": "SUBCRITICAL"
+        },
+        "replicate_index": 21
+      },
+      "replicate_index": 21
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "131/134",
+          "status": "SUBCRITICAL"
+        },
+        "204": {
+          "L0": "94363396061636205182810294286539935642974944853/52213467730768853746391515717322788393822781440",
+          "status": "SUPERCRITICAL"
+        },
+        "replicate_index": 22
+      },
+      "replicate_index": 22
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "15/16",
+          "status": "SUBCRITICAL"
+        },
+        "204": {
+          "L0": "5095105189091645032457548967393855259978234846036614251/3938392361563599582313902880381817797520997250488281250",
+          "status": "SUPERCRITICAL"
+        },
+        "replicate_index": 23
+      },
+      "replicate_index": 23
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "73/76",
+          "status": "SUBCRITICAL"
+        },
+        "204": {
+          "L0": "94880753247953077983251013156866756184745834481704771816361/75421009332477451514569238930662220371714787938566125000000",
+          "status": "SUPERCRITICAL"
+        },
+        "replicate_index": 24
+      },
+      "replicate_index": 24
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "955564440445034995935084706605744037635626972782398721/766518387058214484534700675594411674339308929499741160",
+          "status": "SUPERCRITICAL"
+        },
+        "204": {
+          "L0": "5/6",
+          "status": "SUBCRITICAL"
+        },
+        "replicate_index": 25
+      },
+      "replicate_index": 25
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "1139004620006967861624188518637646050923580148420494125177576301/852876995649359091892112213001962516834790162239132625806356050",
+          "status": "SUPERCRITICAL"
+        },
+        "204": {
+          "L0": "10/13",
+          "status": "SUBCRITICAL"
+        },
+        "replicate_index": 26
+      },
+      "replicate_index": 26
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "25/26",
+          "status": "SUBCRITICAL"
+        },
+        "204": {
+          "L0": "15063032347637848232602020857840899566279257499571/10672830464916707716340603741237568936584820537975",
+          "status": "SUPERCRITICAL"
+        },
+        "replicate_index": 27
+      },
+      "replicate_index": 27
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "6565457620084062390817803366310002985423254117966279330307687/5358411975920760771727715322156654599563037957562192282875000",
+          "status": "SUPERCRITICAL"
+        },
+        "204": {
+          "L0": "11/14",
+          "status": "SUBCRITICAL"
+        },
+        "replicate_index": 28
+      },
+      "replicate_index": 28
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "124367/122958",
+          "status": "SUPERCRITICAL"
+        },
+        "204": {
+          "L0": "3752647440464008810777515033306624269538695/2524867397374846930279366611930279449314047",
+          "status": "SUPERCRITICAL"
+        },
+        "replicate_index": 29
+      },
+      "replicate_index": 29
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "9934514028590694588206052574193963433560096474101352118396101/8156765286830037894701232998431390544506390663987200000000000",
+          "status": "SUPERCRITICAL"
+        },
+        "204": {
+          "L0": "11/14",
+          "status": "SUBCRITICAL"
+        },
+        "replicate_index": 30
+      },
+      "replicate_index": 30
+    },
+    {
+      "classification": "COMPLETE",
+      "outcome": {
+        "102": {
+          "L0": "12017532610759670413873604873689043780523888760514807238321666686251/9855479594442267799529646700057201391029037153434539511041648230400",
+          "status": "SUPERCRITICAL"
+        },
+        "204": {
+          "L0": "10/13",
+          "status": "SUBCRITICAL"
+        },
+        "replicate_index": 31
+      },
+      "replicate_index": 31
+    }
+  ],
+  "prereg_document": "docs/stage-7b-signed-bracket-preregistration.md",
+  "protocol": "stage-7b-signed-bracket-preregistration",
+  "reducer_source_manifest_sha256": {
+    "reduce_stage7b_signed_bracket.py": "b7b3329e26ceb36d02907670ea303e50c810caf29ed2ff20e5c4be3ebaaee264",
+    "stage7b2_measure.py": "5664bcecdd0f87c0f1650a93ad95ef90728daa3b5236e652bf4866a909b054fd",
+    "stage7b2_solver.py": "43756a830b565add8284ccdc0852141a91c1550b73cc63f7780f64714e28c5e5",
+    "stage7b2r_population.py": "d2bc36af0d2664d23de32d9047da5e5473321b5bd964b84ab0fea72e99a5fcfa",
+    "stage7b_endpoint_measure.py": "19d5380a0dae469443c39487a9e3b2d450de558280493ae285c377a30380256a",
+    "stage7b_exposure_config.py": "6d75f54681c90adbdbefba5a0254a4660969482598fe7753788a2081d5896b11",
+    "stage7b_exposure_measure.py": "87668aac1981811906b9ebd4e78515141178c4e428ee800af3d9ba43ee779f32",
+    "stage7b_signed_bracket_config.py": "abe16af6ae70fe52188beaffa3a1cc405b8581061caa899c4663f1f8ada457a4",
+    "stage7b_signed_bracket_solver.py": "a69720bf2ebea17a20eb18c83340b6dffb94ca2cc6efd8717ad7d2cedbc7e99b"
+  },
+  "verification": {
+    "invalid_implementations": [],
+    "mismatch_count": 0,
+    "raw_source_sha256_note": "hash of the consumed raw artifact is recorded by the caller below",
+    "recomputation_bit_exact": true
+  }
+}
