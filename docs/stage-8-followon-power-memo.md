@@ -261,3 +261,36 @@ working tree clean; origin synced.
 Companion records: Round-5 verbatim debate (`docs/stage-8-debate-log.md`),
 programme review Part V (`docs/stage-8-programme-review.md`), retained
 execution note and post-retention audit for the underlying run.
+
+## 11. Corrigendum (2026-08-23, session 9)
+
+*Visible, dated correction appended per debate Round 6
+(`docs/stage-8-debate-log.md`); all original text above this section is
+preserved byte-for-byte. Authority:
+`docs/followon-power-memo-independent-audit.md` — 21/21 checks clean,
+zero exact-claim failures. Pre-corrigendum SHA-256 of this memo:
+`1e4a65153b75dcce2a878cc6975c0d497dd7a5c72a1b33db64d0af0a7231f347`.*
+
+1. **§4 normal cross-check (audit finding F-1):** the printed
+   "50% power ⇔ p_up ≈ 0.73 ⇔ μ\* ≈ 7.5" recomputes, at the population
+   σ = 5.7061 lattice units used throughout this memo, to the exact
+   point p_up = 0.7260, μ\* ≈ 7.43. The printed 7.5 corresponds to the
+   sample σ instead — an undeclared basis switch, not a rounding of the
+   population-σ value.
+2. **§4 agreement claim (finding F-2):** "Both maps agree within 0.03
+   units" is true only of the printed rounded pair
+   (|7.5 − 7.479| = 0.021); under one consistent σ the gap is 0.051.
+3. **§6 estimate cell (finding F-3):** the ceiling-density ~80% wall
+   cell recomputes to ≈ 5.85 h against the printed ≈ 5.9 h (one
+   final-digit rounding-path difference on the labelled linear
+   extrapolation).
+
+Materiality of all three findings: none. Every exact quantity in §§2–3,
+5, 7 and 10 reproduced bit-exactly from the retained artifacts (audit
+groups B, C, D, H, I); the ~50%-power requirement remains ≈ 1.86× the
+registered floor under either basis and unreachable at bound slope; the
+true-50% rows sit *below* the §6 rows (realistic T = 204.1 turnovers /
+W = 24,488 ticks / est ≈ 28.2 h; ceiling T = 35.7 / W = 4,284 /
+est ≈ 4.9 h), so §6 was conservative and reopening condition R1's
+≈ 5–6 h band stands unchanged. No registered constant, threshold,
+reopening condition, or conclusion is altered by this corrigendum.

@@ -430,6 +430,43 @@ green; push after every commit.
   committed into the session 6–7 entry text of this file (verified
   byte-exact: no other lines touched).
 
+- 2026-08-23 (session 9): **follow-on power memo independently audited
+  — 21/21 clean, zero exact-claim failures; Round-6-authorized visible
+  corrigendum appended to the memo (§11).** Verification-only unit under
+  the Part V item 3 hold; no execution registered or run. Arrival state
+  verified first: cron briefing stale again (every listed standing task
+  already discharged by sessions 1–8), HEAD `20765f3` = origin/main,
+  tree clean, suite green (**419 passed, 4 skipped**, 19 subtests).
+  New standalone auditor `src/audit_followon_power_memo.py`
+  (read-only, imported by no mechanic) re-derived every constant of the
+  binding closure memo from the retained raw/reduced artifacts and
+  source docs alone: all 24 exact D_i, mean −47/73440, pop sd 0.022377
+  (= 5.7061 lattice units), sample sd 0.022858, median |D| = 437/24480,
+  movers 9/6/9, sign split 13/11, null anchor 190051/2²⁴, all 18
+  concordance tail cells including the k-cliff at p = 0.70,
+  shift-method counts/powers, minimal shift 359/48 = 1.87× floor,
+  mean-rule sizing, divergence solution T ≈ 401.8 / W ≈ 48,220 /
+  ≈ 55.5 h, admitted-births identity 23,933 = 23,933 per seed AND in
+  total, five §10 provenance digests, 14/14 frozen source pins.
+  Findings confined to self-labelled approximation passages: F-1 §4
+  μ\*₅₀ printed ≈ 7.5 recomputes to 7.428 at the population σ (sample-σ
+  basis switch undeclared); F-2 "both maps agree within 0.03 units"
+  holds only for the printed rounded pair (consistent gap 0.051); F-3
+  ceiling-80% wall cell 5.849 vs ≈ 5.9 h (final-digit estimate
+  rounding). Materiality: none — R1's operative threshold derives from
+  sd(D) = 5.7061 which reproduced bit-exactly; true-50% rows sit below
+  the memo's conservative rows (28.2 h realistic / 4.9 h ceiling;
+  R1's ≈ 5–6 h band unchanged); doors R1–R3 verified unfired. Debate
+  Round 6 conducted on the disposition fork amend-vs-append
+  (delegation unavailable again — disclosed in-log): **ADVOCATE
+  SURVIVES narrowly** for a dated, visible corrigendum over a silent
+  errata layer, subject to adversarial constraints + auditor conditions
+  (audit committed first as authority `d19d7c2`; originals
+  byte-preserved; correction marked and citing its pre-corrigendum
+  digest `1e4a6515…`). Executed same session: audit document
+  `docs/followon-power-memo-independent-audit.md` + memo §11
+  corrigendum; this entry; Part V housekeeping line updated.
+
 ## Part V — Next run should pick up
 
 1. **The programme is CLOSED on computed grounds (session 8).** The
@@ -470,5 +507,10 @@ green; push after every commit.
    edited, and accept no supplementary endpoints; `failed-designs/`
    remains untouched append-only history; closed lines stay closed.
 5. **Housekeeping:** suite green re-verified session 8 (**419 passed,
-   4 skipped**, 19 subtests); push after every commit; keep the tree
-   clean.
+   4 skipped**, 19 subtests) and again at session 9 arrival at HEAD
+   `20765f3` (**419 passed, 4 skipped**, 19 subtests); session 9 added
+   the follow-on-memo independent audit
+   (`docs/followon-power-memo-independent-audit.md`,
+   `src/audit_followon_power_memo.py`) and the Round-6-authorized memo
+   corrigendum (memo §11, visible/dated, originals byte-preserved);
+   push after every commit; keep the tree clean.
