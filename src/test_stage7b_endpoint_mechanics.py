@@ -81,7 +81,7 @@ from stage7b_endpoint_measure import (
     raw_fecundity_counts,
 )
 from reduce_stage7b_endpoint import REDUCER_SOURCES, _jsonable, reduce_artifact
-from run_stage7b_endpoint import FROZEN_SOURCES
+from run_stage7b_endpoint import FROZEN_SOURCES, _serialise_birth
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -599,7 +599,11 @@ class RunnerReducerPlumbingTests(unittest.TestCase):
                 "classification": "COMPLETE",
                 "vital_records": {
                     "members": copy.deepcopy(vitals["members"]),
-                    "births": copy.deepcopy(vitals["births"]),
+                    # Serialised exactly as the runner retains it (exact
+                    # rationals as num/den strings), keeping the fixture
+                    # JSON-faithful to the real artifact contract.
+                    "births": [_serialise_birth(birth)
+                               for birth in vitals["births"]],
                     "establishments":
                         copy.deepcopy(vitals["establishments"]),
                     "attempt_counters": dict(vitals["attempt_counters"]),
