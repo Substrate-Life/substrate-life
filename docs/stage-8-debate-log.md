@@ -513,3 +513,187 @@ programme close-out.** Binding obligations carried forward:
 
 If the owner redirects, the standing orders' escalation path applies
 (owner input supersedes; this verdict then lapses without prejudice).
+
+---
+
+# Round 5 — 2026-08-23 (session 8): strengthened-contrast follow-on versus programme closure
+
+## Question put to the round
+
+The repair registration (`stage-8-alpha-evolution-repair-preregistration.md`
+§6) left the follow-on decision explicitly to "the next registration",
+reading whatever rung 2 registered: a strengthened-contrast ecology probe
+(the review direction (a) form) versus programme closure (direction (d),
+since discharged as documentation at `cd88d11`/`9059753`). Rung 2
+registered `NO_ESTABLISHED_DIRECTION` **with measured dispersions**:
+mean `D = −47/73440` ᾱ-units, population `sd(D) = 0.022377` ᾱ-units
+(`= 5.71/255` lattice units), movers up/down/non = 9/6/9 against
+concordance threshold 18, sign split 13/11. This round therefore decides,
+on numbers rather than aesthetics, whether **any** further registration
+is defensible, or whether the programme closes *computed*.
+
+*Disclosure (continuity with Rounds 2–4):* subagent delegation tooling is
+unavailable in this session; the three roles below are parent-argued
+against repository facts. All probabilities are exact binomial tails;
+all data quantities are exact Fractions read from the retained reduced
+artifact this session; the single continuous approximation used
+(normal quantile map for design sizing) is labelled as such wherever it
+appears. Inputs re-verified against
+`results/stage8-alpha-evolution-paired/confirmatory-paired-20310529-reduced.json`
+(SHA-256 `bdb14fbedcfbcc4d3b3194edbfad428ac8869f1f8c75d848a6655147dd284dec`)
+and `docs/stage-8-paired-execution-note.md`.
+
+## ADVOCATE — for one more registration: a coexistence-regime paired probe
+
+**A1. The sizing mandate has never once been exercised.** Review Part II
+binds future work to be "sized against these measured dispersions, not
+against hope". Both executed nulls were *expected*-null by construction
+and said so before executing; consequently no instrument with
+non-trivial power for any plausible effect has ever been run. A null
+from a *powered* design is a different epistemic object from a null
+from a deliberately blind one. Closure now would freeze the record with
+the powered experiment still unattempted.
+
+**A2. A session-scale ceiling-regime design exists on paper.** At
+permanent-coexistence phenotypic variance (`∫σ²_A dt ≈ 2601` A-units²
+per turnover, the prereg §6 ceiling density) the displacement needed
+for the concordance rule to reach even coin-flip (≈50%) power under
+the *measured* dispersion is `μ ≈ 7.9` lattice units (R1's own map;
+≈80% needs `μ ≈ 8.7`). At the
+cross-sectional-bound slope `β ≈ 8×10⁻⁵` that integral corresponds to
+`T ≈ 38` turnovers, `W ≈ 4,527` ticks. Scaling the single recorded
+retained wall (≈2 h 46 m for 48 runs at W = 2400, two workers)
+linearly: ≈5.2 h — one overnight-class retained suite converts
+direction (a) from "unattempted" to "answered with power".
+
+**A3. The rule is not frozen across registrations.** §10 freezes
+thresholds *within* a registration; a NEW registration may carry a
+different (pre-declared) statistic. A mean-based paired rule on
+`n = 24` with `σ = 5.71` reaches ≈80% power at `μ ≈ 3.3` lattice units
+by normal approximation — near the floor itself. Re-running the SAME
+ecology under a mean-rule registration is nearly free relative to (A2)
+and directly powered for effects 4–5× the cross-sectional bound.
+
+## ADVERSARIAL REVIEWER — attacking the weakest assumption
+
+*The advocate's load-bearing assumption is dispersion transfer: that
+`σ_D ≈ 5.71`, measured once at W = 2400 under winner-take-most
+exclusion, describes the noise of the alternative regimes the advocate
+wants to buy power in.*
+
+**R1. Assumption-light power computed on the retained sample itself
+kills the same-ecology family outright.** Shift method: add a true
+uniform shift `μ` to each of the 24 exact `D_i` and count floor
+crossings (no distributional assumption beyond shift-invariance):
+
+| true shift μ (lattice units) | movers-up | exact power `P(Bin(24,·)≥18)` |
+|---|---|---|
+| 0 | 9/24 | 0.00021 |
+| 2 | 10/24 | 0.00097 |
+| **4 (= whole floor)** | 13/24 | **0.03041** |
+| 6 | 15/24 | 0.14533 |
+| 8 | 18/24 | 0.60741 |
+| 10 | 20/24 | 0.90883 |
+
+A true displacement equal to the *entire registered floor* yields 3.0%
+power. ≈50% power needs `μ ≈ 7.5`; ≈80% needs `μ ≈ 8.7` (normal-approx
+map agrees: 50% ⇔ `p_up ≈ 0.73`, `μ* ≈ 7.5`; 80% ⇔ `p_up ≈ 0.80`,
+`μ* ≈ 8.7`; `σ = 5.7061`). The
+minimal uniform shift that lets ≥18/24 pairs cross the floor at all is
+`359/48 ≈ 7.48` units — **1.87× the floor**.
+
+**R2. The k-cliff: concordance power is k-*invariant* below per-pair
+p ≈ 0.75.** Exact tails `P(Bin(k,p) ≥ ⌈3k/4⌉)` at `p = 0.70`:
+`0.38859 / 0.27962 / 0.16938` for `k = 24/48/96`. Below `p = 0.75`,
+adding replicates *reduces* power. The rule's entire power lives in
+per-pair signal beyond the floor; no affordable k rescues an instrument
+whose per-pair SNR is below 1 — and R1 shows it is far below.
+
+**R3. Where the advocate's 5-hour estimate actually comes from — and
+why its premise contradicts every recorded ecology.** The ceiling-density
+integral (2601 A-units²·turnover⁻¹) presupposes *permanent coexistence*
+of both lineages for ~38 turnovers. The retained record shows the
+opposite regime: winner-take-most exclusion completes in 2–4 turnovers,
+R0 distinct-A collapses to 1..2, terminal censuses are single-lineage.
+Manufacturing coexistence means inventing frequency-dependent regulation
+mechanics — the largest new code surface since 7B1 — breaking the
+additive-reuse economy and importing unmeasured mediator risk. Under the
+*recorded* realistic-exclusion regime (∫ ≈ 455 per turnover), the
+static-σ requirement is `W ≈ 25,900` ticks (≈30 h wall); pricing in the
+mutation-cloud random walk (`σ_D ∝ √W`: both arms' clouds drift
+independently, so pairing does not cancel cloud drift) makes the
+requirement diverge — solving `0.0364·T = 3.264·√(T/20)` gives
+`T ≈ 402` turnovers, `W ≈ 48,000` ticks, ≈2.3 days wall, to test
+exactly the bound with zero margin and an extrapolated σ.
+
+**R4. A3's cheap mean-rule dies on the same arithmetic.** At the bound
+slope the expected 20-turnover displacement is `μ_bound = 8e-5·9.1e3 ≈
+0.73` lattice units ⇒ noncentrality `0.73/(5.71/√24) ≈ 0.63` ⇒ power
+≈12%: the mean-rule at this ecology is powered only for slopes ≥
+`3.26/9.1e3 ≈ 3.6×10⁻⁴` — **4.5× the cross-sectional bound**. Long-window
+variants hit R3's divergence. So the mean-rule buys either another
+expected-null or a multi-day extrapolation.
+
+**R5. Multiplicity debt without a candidate effect.** A third
+confirmatory-family test of the same substantive question (direction of
+α-redistribution through the channel), undertaken when the post-prior
+odds favour null and *every* candidate effect size sits below what
+session-scale instruments can express above measured noise, purchases
+inferential risk without a mechanism plausibly at detectable magnitude.
+
+## METHOD AUDITOR
+
+**M1.** Neither branch touches a closed line; Round-4 binding item 4 is
+respected by both (the probe would be a fresh registration/table/ecology,
+not a rerun).
+**M2.** Reading dispersion and rule arithmetic off the retained reduced
+artifact is instrumentation output expressly permitted by repair-prereg
+§6 ("reads whatever this one registers"); the proposed closing unit is
+documentation-only and requires no execution registration (Part V item 3
+precedent: the common procedural requirements bind implementations and
+retained runs, neither of which occurs).
+**M3.** Inputs re-verified this session against the reduced artifact:
+exact `D_i` table recomputed; mean `−47/73440` ✓; population sd
+`0.022377` ᾱ (`= 5.7061` lattice units) matching the execution note to
+4 s.f. ✓; median `|D| = 437/24480` ᾱ `= 4.551` lattice (note reports 4.6
+rounded) ✓; movers 9/6/9 ✓; sign split 13/11 ✓. Registered null size
+anchor re-derived exactly: `Σ_{k≥18} C(24,k)/2²⁴ = 190051/16777216 =
+0.01133` one-sided ✓.
+**M4.** Housekeeping: suite green this session (**419 passed, 4
+skipped**, 19 subtests — 423 total as previously counted); tree clean;
+origin synced 0/0 at `8ebe36d`.
+**M5.** Discipline favours registering explicit reopening conditions
+over a third adjacent confirmatory test.
+
+## Verdict
+
+**CLOSURE SURVIVES — the programme closes on computed grounds.** The
+advocate's A2/A3 designs are not wrong in intent but fail on R1–R4:
+their power premises contradict either the measured dispersion (same
+ecology) or every recorded population dynamic (coexistence regimes), and
+no affordable k, rule, or window escapes the cliff while the candidate
+effect scale sits ≈1–2 orders of magnitude below what windows of
+feasible length can express above the measured noise. Binding
+obligations carried forward:
+
+1. **O1:** commit `docs/stage-8-followon-power-memo.md` reproducing every
+   table above with exact arithmetic, provenance digests, and the
+   derivation chain — so that closure rests on computation any reader
+   can re-run, not on fatigue.
+2. **O2:** register the reopening conditions (binding triggers for any
+   future session): **R1** — an independently justified measurement
+   establishing per-pair `σ_D ≤ 3.0` lattice units at demonstrated
+   coexistence persistence ≥ 40 turnovers (which would make a
+   ceiling-regime `W ≈ 4.5k` paired design ≥ 80% powered at bound slope
+   for ≈5 h wall); **R2** — a validated phenotype-informative recruitment
+   endpoint family, which must first break the vacancy-blindness
+   identity (recorded: admitted births identical across arms,
+   `23,933 = 23,933`) via genuine de-saturation AND pass the 7B1 §6.2
+   life-cycle promotion demonstration; **R3** — owner redirection, which
+   supersedes without prejudice as always.
+3. **O3:** until a reopening condition fires, no evolutionary execution
+   is authorised anywhere in this programme; the next session's lawful
+   units are verification, documentation, and owner-directed work.
+4. **O4:** programme review Part V is rewritten to point at this verdict
+   and the memo, replacing the open follow-on question with the closed,
+   computed answer.
