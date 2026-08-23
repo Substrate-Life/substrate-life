@@ -325,18 +325,55 @@ green; push after every commit.
   OK** (4 skipped). Round-3 pre-freeze debate recorded (ADVOCATE
   SURVIVES; new A1 obligation on the freeze note). The single authorised
   corrected-gate rerun is executing as this entry is committed.
++
++- 2026-08-23 (session 6): **corrected gate PASSED — freeze `f1e6880`
++  committed; the ONE retained execution is in flight.** Disclosure
++  first: session 5's in-flight rerun died with that session before its
++  process emitted anything observable (no stdout capture, no file, no
++  transcript); zero observations were consumed or seen, so registration
++  #3 §4's "execute once more" is discharged by exactly ONE observed
++  corrected-gate execution — this session's (~2 h 05 m wall, two
++  workers, stdout-only/unretained, transcript under `/tmp` only).
++  Result: **12/12 pairs both arms COMPLETE** (threshold 8); G1 PASS
++  12/12 with zero genome-freeze violations; G2 PASS zero overflows,
++  zero checkpoint failures under the corrected semantics (`W + 2`,
++  head `['initial','initial','tick_complete:0']`, tail
++  `'tick_complete:2399'`); G3 PASS zero kernel-audit failures plus
++  bit-exact full-replicate re-execution replay of seed 20421301 (1034
++  records, 1574 draws; digest/births/draw-chain identical); G4 PASS
++  zero R0 mutation events or draws, zero seed mismatches. Factual
++  shakedown context (threshold-free): Arm-M mutation decisions 12023,
++  kernel draws 18037, terminal live census 48..48 on all 24 complete
++  arms (zero extinctions), Arm-M distinct-A range 8..15. The
++  pre-execution freeze manifest was built by the registered builder
++  from this gate summary: 30 files pinned SHA-256 + byte size, ZERO
++  hash drift versus every prior retained manifest, full factual gate
++  summary embedded. Single freeze commit `f1e6880` carries the Round-3
++  A1 obligation in its message: decision-path-field validation
++  substrate (corrected G2 labels, G3 bit-exact re-execution, W = 120
++  plumbing coverage, reducer ≥ 15 pre-rule refusals) and the disclosed
++  nonzero residual risk for W-derived counts (read by no mechanic;
++  outside the §5 decision path). Immediately after the push, the ONE
++  authorised retained confirmatory suite was launched
++  (`20310529+i`, k = 24 pairs = 48 runs, W = 2400, two workers) toward
++  `results/stage8-alpha-evolution-paired/confirmatory-paired-20310529.json`
++  — executing as this entry is committed.
 
 ## Part V — Next run should pick up
 
-1. **Corrected §7 gate result** (registration #3 §4 rerun on
-   `20421301+j`, in flight): PASS → build the freeze manifest with
-   `src/build_stage8_paired_freeze_manifest.py` (refuses any freeze
-   unless all four conditions passed) → commit the freeze → ONE
-   retained confirmatory suite (`20310529+i`, both arms, `W=2400`,
-   48 runs) → one-shot reduction under the §5 rule by the source-frozen
-   reducer → execution note + post-retention audit. FAIL → further
-   superseding registration with diagnosis archived under
-   `failed-designs/`.
+1. **Retained confirmatory suite** (launched immediately after freeze
+   `f1e6880`, in flight at ~15:45 UTC): when it completes, reduce
+   EXACTLY ONCE — `python3 src/reduce_stage8_paired.py
+   results/stage8-alpha-evolution-paired/confirmatory-paired-20310529.json
+   --out results/stage8-alpha-evolution-paired/confirmatory-paired-20310529-reduced.json`
+   — then write the execution note (obligations in item 2), iterate
+   this log, commit artifacts + note together, push. If instead the raw
+   artifact is absent AND no runner process survives: the run died with
+   its session before emitting an observation; per the f1e6880
+   disclosure precedent the single retained suite may be re-executed
+   once with that interruption disclosed in the execution note (the
+   artifact binds its own event digests; reduction still happens
+   exactly once). No third start without a superseding registration.
 2. **Obligations travel with the execution note** (debate Rounds 2–3):
    report the empirical null spread of `D_i` descriptively whatever the
    class; read and report the leakage monitor (`leakage_pairs`,
