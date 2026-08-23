@@ -55,6 +55,8 @@ with these paired-layer pins:
 | Arm M kernel blocks | Carried verbatim: one Stage-M record per admitted birth; bit-exact replay substrate. |
 | Arm R0 kernel blocks | `kernel_draw_chain == []`; `mutation_telemetry.decision_records == 0`; `mutation_telemetry.draws_total == 0`; `mutation_telemetry.passes == true`; `admitted_births > 0`. Structural witness: `stage8_paired.assert_kernel_absent` refuses any population carrying `mutation_rng`/`mutation_draws`. |
 | `direction_class` (per arm) | Carried at the single-arm floor `8/255` vs `α_ref = 3/5` **as a descriptive co-report only**; the repair §5 rule reads `alpha_end` exclusively. The reducer still validates recorded classes against endpoint values (no silent drift). |
+| `closure_history_head` | Descriptive only (gate-repair registration §3): first three operation labels of the arm's closure history, i.e. exactly `["initial", "initial", "tick_complete:0"]` for every COMPLETE arm. Read by the corrected G2 check and by no mechanic; ignored by the reducer's decision path. |
+| `closure_history_tail` | Descriptive only (gate-repair registration §3): last operation label, i.e. exactly `tick_complete:<W−1>` = `tick_complete:2399` for every COMPLETE arm at `W = 2400`. Same read-by/no-mechanics status as `closure_history_head`. |
 | Guarded failure record | `{seed_table, replicate_index, hazard_seed, arm, classification: "INVALID_IMPLEMENTATION", reason: "UNEXPECTED_EXCEPTION", detail, traceback}` — per-arm guarding retains the twin's evidence. |
 
 ## 2. Reduced artifact
@@ -112,3 +114,26 @@ freeze manifest:
 `results/stage8-alpha-evolution-paired/pre-execution-manifest.json`;
 execution note: `docs/stage-8-paired-execution-note.md`. Shakedown runs
 produce no files anywhere under `results/` (stdout only).
+
+## 4. Gate-repair amendment (2026-08-23)
+
+Added by the implementation window of
+`docs/stage-8-alpha-evolution-gate-repair-preregistration.md` (superseding
+registration #3), after the first shakedown execution exposed a
+checkpoint-bookkeeping mismatch between the gate tooling's derived
+expectation (`W + 1`) and the byte-frozen stack's deterministic closure
+semantics (`W + 2`; diagnosis archived at
+`failed-designs/stage8-paired-gate-g2-checkpoint-bookkeeping/`):
+
+1. The two descriptive fields `closure_history_head` /
+   `closure_history_tail` are pinned in §1.2 above, exactly as registered
+   by the gate-repair registration §3.
+2. The parenthetical "(closure-history length (`W + 1` including
+   `initial`))" in `docs/stage8-alpha-output-schema.md` §1.1 is
+   **superseded** to read "(`W + 2`: two `initial` entries appended by the
+   two constructor layers, plus one `tick_complete:<t>` entry per completed
+   tick)" — correction by supersession only; the base document itself is
+   not edited.
+3. Nothing else in this addendum changes: arms, kernel, floor 4/255,
+   thresholds 16/18/24, windows, seed tables, file names, and all other
+   field pins stand exactly as committed at 8958763.

@@ -76,13 +76,23 @@ def evaluate_gate(records: list[dict[str, Any]],
     overflow = [r["hazard_seed"] for r in records
                 if r.get("reason") == "BUFFER_OVERFLOW"]
     invalid_seeds = [r["hazard_seed"] for r in invalid]
-    # A COMPLETE replicate must carry exactly one closure-history entry per
-    # tick plus the ``initial`` checkpoint; anything else means a ledger
-    # verification path was skipped.  Non-COMPLETE replicates are already
-    # counted as invalid above.
+    # Gate-repair registration section 3: closure-history semantics pinned
+    # to the byte-frozen stack's deterministic behaviour -- two constructor
+    # layer `initial` entries plus one `tick_complete:<t>` entry per tick,
+    # with registered head/tail pins.  A COMPLETE replicate must carry all
+    # of them; anything else means a ledger verification path was skipped.
+    def _checkpoint_failure(record: dict[str, Any]) -> bool:
+        window = record.get("window_ticks", -2)
+        if record.get("tick_checkpoints") != window + 2:
+            return True
+        if record.get("closure_history_head") != [
+                "initial", "initial", "tick_complete:0"]:
+            return True
+        return record.get("closure_history_tail") != \
+            f"tick_complete:{window - 1}"
+
     checkpoint_failures = [
-        r["hazard_seed"] for r in complete
-        if r.get("tick_checkpoints") != r.get("window_ticks", -2) + 1]
+        r["hazard_seed"] for r in complete if _checkpoint_failure(r)]
     g2_pass = not overflow and not invalid_seeds and not checkpoint_failures
 
     kernel_failures = [

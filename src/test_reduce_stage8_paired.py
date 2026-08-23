@@ -54,7 +54,12 @@ def _arm_record(arm: str, index: int, alpha: Fraction | None,
         "classification": "COMPLETE",
         "ticks_completed": 2400,
         "window_ticks": 2400,
-        "tick_checkpoints": 2401,
+        # Gate-repair registration section 3: byte-frozen stack semantics —
+        # two constructor-layer `initial` entries + one tick_complete per
+        # completed tick, with head/tail pins as registered.
+        "tick_checkpoints": 2402,
+        "closure_history_head": ["initial", "initial", "tick_complete:0"],
+        "closure_history_tail": "tick_complete:2399",
         "trajectory_checkpoints": [
             {"tick": tick, "n_live": census_n} for tick in CHECKPOINT_TICKS],
         "genome_freeze_audit": {"passes": True, "violations": [],
@@ -330,6 +335,50 @@ class PairedGateEvaluationTests(unittest.TestCase):
         summary = evaluate_gate(pairs, self._replay_ok())
         self.assertFalse(summary["G2_implementation_integrity"]["passes_G2"])
         self.assertEqual(len(summary["invalid_runs"]), 1)
+
+    def test_g2_superseded_w_plus_1_count_fails(self):
+        # The archived failure mode of the first shakedown gate
+        # (failed-designs/stage8-paired-gate-g2-checkpoint-bookkeeping/):
+        # a W+1 closure count was the superseded tooling expectation; the
+        # corrected G2 must refuse it, not pass it.
+        pairs = self._pairs()
+        pairs[5]["arms"]["M"]["tick_checkpoints"] = 2401
+        summary = evaluate_gate(pairs, self._replay_ok())
+        self.assertFalse(summary["G2_implementation_integrity"]["passes_G2"])
+        self.assertEqual(
+            summary["G2_implementation_integrity"]["checkpoint_failures"],
+            [(5, "M")])
+
+    def test_g2_closure_head_label_pin_enforced(self):
+        pairs = self._pairs()
+        pairs[7]["arms"]["R0"]["closure_history_head"] = [
+            "initial", "tick_complete:0", "tick_complete:1"]
+        summary = evaluate_gate(pairs, self._replay_ok())
+        self.assertFalse(summary["G2_implementation_integrity"]["passes_G2"])
+        self.assertEqual(
+            summary["G2_implementation_integrity"]["checkpoint_failures"],
+            [(7, "R0")])
+
+    def test_g2_closure_tail_label_pin_enforced(self):
+        pairs = self._pairs()
+        pairs[9]["arms"]["M"]["closure_history_tail"] = "tick_complete:2398"
+        summary = evaluate_gate(pairs, self._replay_ok())
+        self.assertFalse(summary["G2_implementation_integrity"]["passes_G2"])
+        self.assertEqual(
+            summary["G2_implementation_integrity"]["checkpoint_failures"],
+            [(9, "M")])
+
+    def test_factual_context_block_is_threshold_free_and_aggregate(self):
+        summary = evaluate_gate(self._pairs(), self._replay_ok())
+        context = summary["factual_shakedown_context"]
+        self.assertIn("may not resize anything", context["note"])
+        self.assertEqual(context["total_m_mutation_decision_records"], 12)
+        self.assertEqual(context["total_m_kernel_draws"], 24)
+        self.assertEqual(context["complete_arms_terminal_live_min"], 20)
+        self.assertEqual(context["complete_arms_terminal_live_max"], 20)
+        self.assertEqual(context["m_terminal_distinct_A_min"], 3)
+        self.assertEqual(context["m_terminal_distinct_A_max"], 3)
+        self.assertEqual(context["extinct_complete_arms"], 0)
 
     def test_g4_detects_kernel_activity_in_reference(self):
         pairs = self._pairs()

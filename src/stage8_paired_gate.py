@@ -83,11 +83,23 @@ def evaluate_gate(pairs: list[dict[str, Any]],
     overflow = [(p["pair_index"], arm) for p in pairs
                 for arm in ("M", "R0")
                 if p["arms"][arm].get("reason") == "BUFFER_OVERFLOW"]
+    # Gate-repair registration section 3: closure-history semantics pinned
+    # to the byte-frozen stack's deterministic behaviour -- two constructor
+    # layer `initial` entries plus one `tick_complete:<t>` entry per tick.
+    def _checkpoint_failure(record: dict[str, Any]) -> bool:
+        window = record.get("window_ticks", -2)
+        if record.get("tick_checkpoints") != window + 2:
+            return True
+        if record.get("closure_history_head") != [
+                "initial", "initial", "tick_complete:0"]:
+            return True
+        return record.get("closure_history_tail") != \
+            f"tick_complete:{window - 1}"
+
     checkpoint_failures = [
         (p["pair_index"], arm) for p in both_complete
         for arm in ("M", "R0")
-        if p["arms"][arm].get("tick_checkpoints")
-        != p["arms"][arm].get("window_ticks", -2) + 1]
+        if _checkpoint_failure(p["arms"][arm])]
     g2_pass = not invalid and not overflow and not checkpoint_failures
 
     # G3: kernel audit on the M arms + one bit-exact re-execution replay.
@@ -118,6 +130,34 @@ def evaluate_gate(pairs: list[dict[str, Any]],
                      != p["arms"]["R0"]["hazard_seed"]]
     g4_pass = not g4_failures and not seed_mismatch
 
+    # Section 7 factual context (non-binding, threshold-free): aggregate
+    # shakedown magnitudes reported so freeze notes carry the texture of
+    # the exploratory runs without any rescaling freedom.
+    complete_arms = [
+        p["arms"][arm] for p in pairs for arm in ("M", "R0")
+        if p["arms"][arm].get("classification") == "COMPLETE"]
+    m_arms = [p["arms"]["M"] for p in pairs
+              if p["arms"]["M"].get("classification") == "COMPLETE"]
+    live = [a["terminal_census"]["n_live"] for a in complete_arms]
+    distinct_a = [a["terminal_census"]["distinct_A_values"] for a in m_arms]
+    factual_context = {
+        "note": ("descriptive only; reported without thresholds per "
+                 "section 7; may not resize anything"),
+        "total_m_mutation_decision_records":
+            sum(a["mutation_telemetry"]["decision_records"] for a in m_arms),
+        "total_m_kernel_draws":
+            sum(a["mutation_telemetry"]["draws_total"] for a in m_arms),
+        "complete_arms_terminal_live_min":
+            min(live) if live else None,
+        "complete_arms_terminal_live_max":
+            max(live) if live else None,
+        "m_terminal_distinct_A_min": min(distinct_a) if distinct_a else None,
+        "m_terminal_distinct_A_max": max(distinct_a) if distinct_a else None,
+        "extinct_complete_arms":
+            sum(1 for a in complete_arms
+                if a.get("terminal_census", {}).get("n_live") == 0),
+    }
+
     return {
         "gate": ("stage-8-alpha-evolution-repair-preregistration "
                  "section 7"),
@@ -147,6 +187,7 @@ def evaluate_gate(pairs: list[dict[str, Any]],
             "seed_mismatches": seed_mismatch,
             "passes_G4": g4_pass,
         },
+        "factual_shakedown_context": factual_context,
         "gate_passed": g1_pass and g2_pass and g3_pass and g4_pass,
         "registered_configuration_checked": registered_configuration(),
         "claim_scope": (

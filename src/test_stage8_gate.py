@@ -25,7 +25,12 @@ def _complete(seed: int, *, decisions: int = 50, distinct_a: int = 5,
         "classification": "COMPLETE",
         "ticks_completed": 2400,
         "window_ticks": 2400,
-        "tick_checkpoints": checkpoints if checkpoints is not None else 2401,
+        # Gate-repair registration section 3: the byte-frozen stack
+        # appends two `initial` entries (one per constructor layer) plus
+        # one `tick_complete:<t>` entry per completed tick.
+        "tick_checkpoints": checkpoints if checkpoints is not None else 2402,
+        "closure_history_head": ["initial", "initial", "tick_complete:0"],
+        "closure_history_tail": "tick_complete:2399",
         "mutation_telemetry": {
             "decision_records": decisions,
             "draws_total": decisions * 2 - 10,
@@ -123,7 +128,9 @@ class GateEvaluationTests(unittest.TestCase):
         summary = evaluate_gate(records, dict(_REPLAY_OK))
         self.assertFalse(summary["G2_implementation_integrity"]["passes_G2"])
         records = self._records()
-        records[3]["tick_checkpoints"] = 2400  # missing a closure entry
+        # Gate-repair semantics: 2401 checkpoints = missing one closure
+        # entry vs the frozen stack's W+2 deterministic count.
+        records[3]["tick_checkpoints"] = 2401
         summary = evaluate_gate(records, dict(_REPLAY_OK))
         self.assertFalse(summary["G2_implementation_integrity"]["passes_G2"])
         self.assertEqual(
