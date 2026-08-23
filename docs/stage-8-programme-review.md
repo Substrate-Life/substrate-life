@@ -740,6 +740,81 @@ green; push after every commit.
   this runtime, as disclosed in Rounds 2–6). Hold remains in force;
   lawful work unchanged.
 
+- 2026-08-23 (session 17): **documentation unit under the Part V
+  item 3 hold — ninth consecutive stale-cron arrival disclosed;
+  wake battery reproduced at arrival HEAD; ONE durable work item found
+  and discharged (terminal-state reconciliation of the closing
+  documents); no execution registered or run.** Arrival state: cron
+  briefing stale a ninth time (still the ~08:05 UTC `f753894` text
+  with the fault-matrix tests described as untracked; every listed
+  standing task was discharged by sessions 1–9), actual HEAD `945c38b`
+  = origin/main (`0/0`), tree clean. Wake battery at arrival:
+  `python3 src/verify_retained_integrity.py --auditors` exits 0 with
+  **9/9 checks PASS** (P1 both manifest anchors intact; P2 pins 8/8
+  byte-exact signed-bracket + 29/30 paired with the debate log under
+  the proven pure-append rule; P3 both retained inventories closed
+  extra=none missing=none; T1 strict tree; D1 doors vs base
+  `d19d7c2` unfired, failed-designs at exactly 8), all three
+  standalone auditors exit 0 with session-12-identical numbers (32
+  pairs median −1/128 sign 9/21/2 reducer byte-identical;
+  post-retention 17/17; memo 21/21 clean zero exact-claim failures);
+  suite green at arrival (**436 tests, OK, 4 skipped**, identical to
+  sessions 13–16); debate log still exactly 45,421 bytes. Doors R1–R3
+  verified unfired (no σ_D ≤ 3.0 u coexistence measurement, no
+  de-saturation/life-cycle demonstration, stale briefing carries no
+  owner redirection; the hold forbids hunting R1/R2 by execution).
+  **Durable work item:** where sessions 10–16 found none, this wake
+  identified a freshness gap in the programme's own closing documents
+  — `docs/final-report.md` (written under the Round-4 direction-(d)
+  verdict, commit `cd88d11`) and `docs/public-technical-essay.md`
+  (`9059753`) both predate Rounds 5–6, the follow-on power memo, its
+  independent audit, and the corrigendum; neither file is pinned in
+  either freeze manifest (verified directly before editing) and
+  neither is retained-class under Part V item 4, so reconciling them
+  is lawful documentation work. Discharged per the Round-6 corrigendum
+  constraints (visible, dated, originals byte-preserved, never silent
+  substitution): **final-report §8 addendum** — records that closure
+  is now computed not aesthetic (whole-floor true shift ⇒ 0.03041
+  exact power; ≥50% power needs μ = 359/48 ≈ 7.479 lattice units =
+  1.87× the registered floor `Δ_pair_floor = 4/255`; k-cliff
+  0.38859/0.27962/0.16938 at k = 24/48/96 below per-pair p = 0.75;
+  mean-rule powered only for slopes ≥ 3.59×10⁻⁴ ≈ 4.5× the
+  cross-sectional bound, ≈ 0.096 at the bound itself; recruitment
+  family mechanically null via `23,933 = 23,933`), registers reopening
+  doors R1–R3 in summary, and adds §6 read-with pointer corrections
+  (debate log now Rounds 1–6; memo + audit belong beside the table;
+  one-command verifier named); **essay postscript** — one dated
+  public-facing paragraph carrying the same computed closure and the
+  doors. No new decision fork arose (the addenda record already-audited
+  positions adopted in Rounds 5–6; nothing new was decided this
+  session), so no adversarial round was convened; delegation tooling
+  remains unavailable on this runtime, as disclosed in Rounds 2–6.
+  **Completion disclosure (two-wake unit).** The session-17 process
+  died after authoring all three edits and this entry but BEFORE any
+  commit existed — this paragraph originally claimed "suite re-run
+  green post-commit; verifier re-run exit 0 …; pushed", which was not
+  yet true when written. The next wake (session 18) found the tree
+  dirty with exactly these three files and completed the unit:
+  every quoted number re-checked against
+  `docs/stage-8-followon-power-memo.md` (0.03041 whole-floor power;
+  359/48 ≈ 7.479 u = 1.87× floor; k-cliff 0.38859/0.27962/0.16938;
+  mean-rule 0.0958 at the bound, powered only for slopes ≥ 3.59e-4;
+  admitted-births identity 23,933 = 23,933; σ_D = 5.7061 u);
+  wake battery on the dirty tree returned **8/9 PASS** with the sole
+  failure T1 naming precisely these three paths — all retained-class
+  checks clean (anchors intact; pins 8/8 signed-bracket + 29/30
+  paired with the debate log solely under its proven pure-append rule;
+  inventories closed extra=none missing=none; doors unfired vs
+  `d19d7c2`, failed-designs at 8; auditors exit 0 with
+  session-12-identical numbers); suite on the dirty tree 435 OK /
+  4 skipped / 1 failure, the single failure being the session-13
+  live-repo smoke `test_live_repo_has_no_tracked_file_modifications`
+  failing by design on the same three paths — i.e. both independent
+  sentinels flagged nothing except the uncommitted unit itself.
+  Post-commit verification at the unit HEAD: verifier `--auditors`
+  **exit 0, 9/9 PASS**; suite green (**436 tests OK, 4 skipped**);
+  pushed.
+
 ## Part V — Next run should pick up
 
 1. **The programme is CLOSED on computed grounds (session 8).** The
@@ -829,6 +904,17 @@ green; push after every commit.
    whole-tree post-commit modification sweep clean; the debate log
    still exactly 45,421 bytes, zero appended since session 10) and
    logged the unit as the Part IV session-16 entry;
+  session 17 followed the prescription again on its wake (verifier
+  with `--auditors` **exit 0, 9/9 PASS** with session-12-identical
+  auditor numbers; suite **436 tests, OK, 4 skipped** at arrival HEAD
+  `945c38b`; debate log still exactly 45,421 bytes), verified the
+  doors unfired, and — finding one genuine durable gap the prior wakes
+  had missed — discharged it as the session-17 documentation unit
+  (final-report §8 terminal-state addendum + essay postscript, both
+  dated appends, originals byte-preserved, nothing pinned or retained
+  touched; the Part IV entry was authored there but its process died
+  pre-commit — completed, verified, and committed by the session-18
+  wake per that entry's completion disclosure);
    session 9 added the follow-on-memo independent audit
    (`docs/followon-power-memo-independent-audit.md`,
    `src/audit_followon_power_memo.py`) and the Round-6-authorized memo

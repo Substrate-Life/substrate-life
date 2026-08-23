@@ -175,3 +175,73 @@ beyond the recorded bounds at the tested ecologies; the bounds, the
 dispersions, and the method are published and reproducible. The
 programme closes here under direction (d). Any revival is a new
 registration.
+
+---
+
+## 8. Addendum — terminal-state reconciliation (2026-08-23, session 17)
+
+*Visible, dated addendum appended after the fact; every word of the
+title block and §§1–7 above is preserved byte-for-byte. Appended when
+the wake battery surfaced that this report predated the programme's
+last two debate rounds and their product. Nothing here reopens,
+retunes, or reinterprets any retained result.*
+
+**What moved after this report was written** (commits `b4b730a`,
+`20765f3`, `d19d7c2`, `b6deee7`). The repair preregistration's §6 fork
+— strengthened-contrast probe versus programme closure — went to
+adversarial test as Round 5 of `docs/stage-8-debate-log.md` (which now
+contains Rounds 1–6, frozen at 45,421 bytes since Round 6) and
+**closure survived on computed grounds**, then landed as documentation
+in `docs/stage-8-followon-power-memo.md`: every quantity an exact
+Fraction or exact binomial tail regenerated program-side from the
+retained reduced artifact alone; independently audited **21/21 clean
+with zero exact-claim failures**
+(`docs/followon-power-memo-independent-audit.md`); three labelled-
+approximation passages corrected by a visible dated corrigendum (memo
+§11, materiality none).
+
+The computation strengthens §7 rather than softening it. On the
+measured dispersion (population sd(D) = 5.7061 lattice units):
+
+- A true population displacement equal to the *entire* registered pair
+  floor (`Δ_pair_floor = 4/255`) yields **3.0% exact power** (13/24
+  crossings, p = 0.03041) on the frozen concordance rule; even 50%
+  power needs a shift of `359/48 ≈ 7.479` lattice units =
+  **1.87× the floor**.
+- Below per-pair mover probability 0.75 the rule's power *falls* with
+  replicate count (exact tails 0.38859 / 0.27962 / 0.16938 at
+  k = 24/48/96), so no affordable k rescues it.
+- A mean-based alternative rule reaches useful power only for slopes
+  ≥ 3.59×10⁻⁴ ≈ 4.5× the cross-sectional rung-1 bound of §3, and is
+  ≈ 0.096-powered at the bound itself.
+- The recruitment-endpoint family is mechanically null at every
+  recorded ecology: admitted births are identical across arms
+  (`23,933 = 23,933`), phenotype-blind.
+
+So finding 2 of §4 stands twice over: the registered nulls were not
+merely honest, they were forced at any instrument this architecture
+could afford. Stage 8 rung 2 closes as a bounded negative whose
+counterfactual is arithmetic, not aesthetics.
+
+**Reopening doors (binding triggers, memo §9).** Any future work in
+this programme opens ONLY via: **R1** — an independently justified
+measurement establishing σ_D ≤ 3.0 lattice units at demonstrated
+coexistence persistence ≥ 40 turnovers (revives the ceiling-regime
+strengthened probe, review direction (a), est. ≈ 5–6 h wall); **R2** —
+a demonstrated de-saturated ecology breaking the admitted-births
+identity AND a passed 7B1 §6.2 life-cycle promotion demonstration
+(revives the recruitment-endpoint family, review direction (b));
+**R3** — owner redirection, superseding without prejudice. Until one
+fires, no evolutionary execution is authorised anywhere in this
+programme; lawful units are verification, documentation, and
+owner-directed work.
+
+**§6 read-with corrections.** The row "Debate log (Rounds 1–4)" should
+read Rounds 1–6. Two closing instruments postdate that table and belong
+between the execution note and the failed-designs archive:
+`docs/stage-8-followon-power-memo.md` (with corrigendum §11) and its
+independent audit. The full wake battery — both freeze manifests
+pin-re-hashed bit-for-bit across sessions 10–17, retained inventories
+closed, door check against base `d19d7c2`, failed-designs inventory at
+eight entries — is reproducible with one command:
+`python3 src/verify_retained_integrity.py --auditors`.

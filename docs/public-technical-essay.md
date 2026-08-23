@@ -149,3 +149,7 @@ The executable slices caught synthetic transform accounting, stale gestation aft
 That is enough to justify the next step here, not a universal law. Before asking what evolution does, run the smallest ecology that can show whether there is anything for selection to act on.
 
 The implementation, retained evidence, failed designs, and byte-preserved audit transcripts are available in the public [`substrate-life` repository](https://github.com/Substrate-Life/substrate-life).
+
+---
+
+*Postscript (2026-08-23).* After this essay was finished, the project ran its own numbers once more — not a new experiment, just exact arithmetic against the measured noise. It confirmed the ending was not chosen but forced: a true inherited shift equal to the entire registered effect floor would have been detected about 3% of the time by the preregistered rule; detecting it half the time would have needed an inherited shift nearly twice the floor. More replicates make things worse, not better, below the rule's mover threshold; longer windows diverge in cost once the noise's own growth is priced; the alternative endpoint family returns identical bookkeeping under every ecology the project ever characterised. The full derivation, and the exact measured conditions under which a future project could lawfully reopen the question, are in the repository's follow-on power memo and its independent audit. The bounded negative stands, and now it is load-bearing.
