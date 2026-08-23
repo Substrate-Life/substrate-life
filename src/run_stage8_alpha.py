@@ -109,30 +109,28 @@ def _count_events(event_log: list[dict[str, Any]]) -> dict[str, int]:
     return dict(sorted(counts.items()))
 
 
-def execute_replicate(table: str, index: int) -> dict[str, Any]:
-    """One registered replicate: population run plus exact measurement.
+def measure_population(population, *, seed_table: str, replicate_index: int,
+                       hazard_seed: int, arm: str | None = None) \
+        -> dict[str, Any]:
+    """Run one population and assemble its full measurement record.
 
-    ``table`` selects the registered seed table ("confirmatory", k = 24,
-    seeds ``20284617 + i``; or "shakedown", k = 12, seeds ``20293311 + j``).
-    Used identically by this runner and by the section 6 gate tooling, so
-    every G-condition is evaluated on exactly the measurements a retained
-    artifact carries.
+    Shared by every arm of every generation of this stage: the single-arm
+    runner passes the kernel-carrying population (arm ``"M"``), the paired
+    repair runner additionally passes the byte-frozen reference population
+    (arm ``"R0"``, whose kernel blocks come out empty and passing -- which
+    is itself the G4 evidence).  The measurement path is identical; only
+    the constructed population differs.
     """
-    if table == "confirmatory":
-        hazard_seed = confirmatory_seed(index)
-    elif table == "shakedown":
-        hazard_seed = shakedown_seed(index)
-    else:
-        raise ValueError(f"unknown seed table: {table!r}")
-    population = registered_stage8_population(hazard_seed)
     window = run_window_with_checkpoints(population, CHECKPOINT_TICKS)
     record: dict[str, Any] = {
-        "seed_table": table,
-        "replicate_index": index,
+        "seed_table": seed_table,
+        "replicate_index": replicate_index,
         "hazard_seed": hazard_seed,
         "classification": window["classification"],
         "ticks_completed": window["ticks_completed"],
     }
+    if arm is not None:
+        record["arm"] = arm
     if window["classification"] != "COMPLETE":
         # Layer-1 trigger or worse: retain the evidence, stop measuring.
         record.update({
@@ -148,9 +146,40 @@ def execute_replicate(table: str, index: int) -> dict[str, Any]:
     vitals = extract_vital_records(event_log, population.window_ticks)
     admitted = sum(1 for event in event_log
                    if event.get("event") == "birth_admitted")
-    reconciliation = kernel_reconciliation(event_log)
     decisions = [event for event in event_log
                  if event.get("event") == "mutation_decision"]
+    if arm == "R0":
+        # Reference arm: the registered evidence is kernel ABSENCE -- zero
+        # Stage-M decisions, empty draw chain, no kernel machinery on the
+        # object.  Reconciliation does not apply (its supply identity is
+        # meaningful only where a kernel exists).
+        from stage8_paired import assert_kernel_absent
+
+        assert_kernel_absent(population)
+        reconciliation = {
+            "decision_records": len(decisions),
+            "admitted_births": admitted,
+            "memory_unavailable_failures": sum(
+                1 for event in event_log
+                if event.get("event") == "divide_failed"
+                and event.get("reason") == "CHILD_MEMORY_UNAVAILABLE"),
+            "draws_total": 0,
+            "problems": [] if not decisions else [
+                "R0 arm recorded a mutation_decision event"],
+            "passes": not decisions,
+        }
+        draw_chain: list[dict[str, Any]] = []
+    else:
+        reconciliation = kernel_reconciliation(event_log)
+        draw_chain = [
+            {
+                "stream_position": int(event["stream_position"]),
+                "mutated": bool(event["mutated"]),
+                "delta": event["delta"],
+                "draws_consumed": int(event["draws_consumed"]),
+            }
+            for event in decisions
+        ]
     record.update({
         "window_ticks": population.window_ticks,
         "alpha_end": terminal["alpha_mean"],
@@ -170,16 +199,8 @@ def execute_replicate(table: str, index: int) -> dict[str, Any]:
         "mutation_telemetry": reconciliation,
         # Ordered kernel decision chain (one entry per Stage-M decision):
         # the auditable substrate for the section 6 G3 bit-exact stream
-        # replay, carried in every artifact including shakedown summaries.
-        "kernel_draw_chain": [
-            {
-                "stream_position": int(event["stream_position"]),
-                "mutated": bool(event["mutated"]),
-                "delta": event["delta"],
-                "draws_consumed": int(event["draws_consumed"]),
-            }
-            for event in decisions
-        ],
+        # replay; empty by construction on the R0 reference arm.
+        "kernel_draw_chain": draw_chain,
         "genome_freeze_audit": genome_freeze_audit(event_log),
         "mediators": mediator_summary(vitals,
                                       population.shadow_decisions,
@@ -194,7 +215,10 @@ def execute_replicate(table: str, index: int) -> dict[str, Any]:
         "admitted_births_total": population.admitted_births,
         "hazard_removals_total": population.hazard_removals,
         "mutation_stream_seed_derivation":
-            f"random.Random({hazard_seed} * 1000003 + 7)",
+            (f"random.Random({hazard_seed} * 1000003 + 7)"
+             if arm != "R0" else
+             "kernel absent on the R0 reference arm (repair registration "
+             "section 3); no mutation stream exists"),
         "max_buffered": max(
             (snapshot.get("buffered", 0)
              for snapshot in population.closure_history),
@@ -206,6 +230,27 @@ def execute_replicate(table: str, index: int) -> dict[str, Any]:
         "event_counts": _count_events(event_log),
     })
     return record
+
+
+def execute_replicate(table: str, index: int) -> dict[str, Any]:
+    """One registered single-arm replicate: kernel path (arm ``"M"``).
+
+    ``table`` selects the registered seed table ("confirmatory", k = 24,
+    seeds ``20284617 + i``; or "shakedown", k = 12, seeds ``20293311 + j``)
+    of the CANCELLED single-arm registration -- retained only because the
+    section 6 gate tooling of that generation is still importable; the
+    repair registration retires both tables and executes nothing on them.
+    """
+    if table == "confirmatory":
+        hazard_seed = confirmatory_seed(index)
+    elif table == "shakedown":
+        hazard_seed = shakedown_seed(index)
+    else:
+        raise ValueError(f"unknown seed table: {table!r}")
+    population = registered_stage8_population(hazard_seed)
+    return measure_population(
+        population, seed_table=table, replicate_index=index,
+        hazard_seed=hazard_seed, arm="M")
 
 
 def execute_replicate_guarded(args_tuple: tuple[str, int]) -> dict[str, Any]:

@@ -77,6 +77,14 @@ def _birth(child_id: str, a: int = 153) -> dict:
     }
 
 
+def _provision(child_id: str, a: int = 153) -> dict:
+    """Genotype-bearing admission record (the scanned class)."""
+    event = _birth(child_id, a)
+    event["event"] = "provision_committed"
+    event["organism_id"] = "org-0"
+    return event
+
+
 class CensusSnapshotTests(unittest.TestCase):
 
     def test_founder_alpha_is_exactly_three_fifths(self):
@@ -276,21 +284,24 @@ class GenomeFreezeAuditTests(unittest.TestCase):
             {"event": "founder_registered", "tick": 0,
              "organism_id": "org-0", "ancestry_id": "F0",
              "a_over_d": "102/255", "t_over_d": "128/255"},
-            _birth("org-10", 156),
+            # provision_committed is the genotype-bearing admission record;
+            # the paired birth_admitted record on the frozen stack carries
+            # only a telemetry hash and is not scanned.
+            _provision("org-10", 156),
         ]
         report = genome_freeze_audit(ledger)
         self.assertTrue(report["passes"])
         self.assertEqual(report["records_checked"], 2)
 
     def test_non_frozen_t_detected(self):
-        ledger = [_birth("org-10", 153)]
+        ledger = [_provision("org-10", 153)]
         ledger[0]["inherited_t_over_d"] = "127/255"
         report = genome_freeze_audit(ledger)
         self.assertFalse(report["passes"])
         self.assertEqual(len(report["violations"]), 1)
 
     def test_out_of_lattice_a_detected(self):
-        ledger = [_birth("org-10", 256)]
+        ledger = [_provision("org-10", 256)]
         report = genome_freeze_audit(ledger)
         self.assertFalse(report["passes"])
 

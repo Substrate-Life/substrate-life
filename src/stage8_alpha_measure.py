@@ -189,7 +189,11 @@ def genome_freeze_audit(event_log: list[dict[str, Any]]) -> dict[str, Any]:
                 violations.append({"event": kind, "tick": event.get("tick"),
                                    "organism_id": event["organism_id"],
                                    "t_over_d": td, "a": a})
-        elif kind in ("provision_committed", "birth_admitted"):
+        elif kind == "provision_committed":
+            # The ONLY genotype-bearing admission record: carries the exact
+            # inherited (A, T, D) triple.  The paired birth_admitted record
+            # on the frozen 7B1 stack is deliberately telemetry-hash-only
+            # and must not be scanned for these fields.
             a = int(event["inherited_a_over_d"].split("/")[0])
             td = event["inherited_t_over_d"]
             checked += 1
