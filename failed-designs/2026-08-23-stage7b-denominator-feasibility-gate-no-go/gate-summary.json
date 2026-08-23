@@ -1,0 +1,1166 @@
+{
+  "G1_per_genotype": {
+    "102": {
+      "of": 24,
+      "passes_G1": true,
+      "supercritical_replicates": 20
+    },
+    "204": {
+      "of": 24,
+      "passes_G1": false,
+      "supercritical_replicates": 7
+    }
+  },
+  "G2_joint_supercritical": {
+    "of": 24,
+    "passes_G2": false,
+    "replicates": 3
+  },
+  "G3_no_overflow_no_invalid": {
+    "passes_G3": true,
+    "zero_buffer_overflow": true,
+    "zero_invalid_implementations": true
+  },
+  "G4_all_checkpoints_closed": {
+    "checkpoint_failures": [],
+    "passes_G4": true
+  },
+  "claim_scope": "Feasibility facts only. No fitness, selection, contrast, or evolutionary claim is made or retained; the confirmatory seed table remains untouched until the single retained run.",
+  "complete_replicates": 24,
+  "failure_guidance": "Section 5.4: if any condition fails, no freeze may be committed; the correct action is a further superseding preregistration with a diagnosis supported by new evidence.  Shakedown executions produce no retained artifact (section 5.5).",
+  "gate": "stage-7b-denominator-repair-preregistration section 5",
+  "gate_passed": false,
+  "invalid_replicates": [],
+  "prereg_document": "docs/stage-7b-denominator-repair-preregistration.md",
+  "registered_configuration_checked": {
+    "binding_identities": [
+      "sum_x E_x(g) == exposure_member_ticks(g)",
+      "sum_x n_x(g) == |C_g| - F_g",
+      "n_x(g) <= E_x(g) for every x",
+      "sum_x d_x(g) + censored_g == |C_g|",
+      "l^A_0 == 1; l^A non-increasing; 0 <= l^A <= 1"
+    ],
+    "buffer_depth_d": 64,
+    "carried_from": "docs/stage-7b2-repair-preregistration.md section 3 ecology, carried verbatim through the endpoint-repair and denominator-repair preregistrations",
+    "census_capacity_N": 48,
+    "corpse_ttl": 2,
+    "endpoint": "two-factor Euler-Lotka coefficients c_x = l^A_x * m^E_x: risk-set window-actuarial survivorship l^A_{x+1} = l^A_x*(E_x-d_x)/E_x times per-capita person-tick fecundity m^E_x = n_x/E_x",
+    "endpoint_supersedes": "the collapsed coefficient assembly c_x = l_x*m_x = n_x/|C_g| (shared cohort-size denominator set) of docs/stage-7b-endpoint-repair-preregistration.md section 3, per denominator-repair prereg sections 2-3",
+    "founder_R": "0/1",
+    "founder_S": "100/1",
+    "founders_per_genotype": 3,
+    "genotypes_ATD": [
+      [
+        102,
+        128,
+        255
+      ],
+      [
+        204,
+        128,
+        255
+      ]
+    ],
+    "hazard_arms": [
+      "1/120 per live member per tick"
+    ],
+    "mediator_note": "the establishment/first-reproduction quantity is reported as a mediator and is never substituted for the endpoint",
+    "memory_pool_bytes": 65536,
+    "mutation": "disabled; structural zero-draw M stage",
+    "packet_energy": "900/1",
+    "packet_rate_r": 5,
+    "prereg_document": "docs/stage-7b-denominator-repair-preregistration.md",
+    "protocol": "stage-7b-denominator-repair-preregistration",
+    "replicates_k": 32,
+    "seed_derivation": "hazard_seed = 20261822 + i, i in 0..31",
+    "shakedown_table": "24 fixed seeds 20270000 + j, j in 0..23, reused verbatim across all three gate generations (denominator-repair prereg section 5.2)",
+    "supersedes": "m_x normalisation of docs/stage-7b-endpoint-repair-preregistration.md section 3 as inherited from docs/stage-7b1-preregistration.md section 6.1",
+    "window_ticks_W": 1200
+  },
+  "replicate_records": [
+    {
+      "L0_exact": {
+        "102": "15763366049214062199597583216421457650003793421/10832273081240446529616995534310523321529659392",
+        "204": "212/215"
+      },
+      "admitted_births": 525,
+      "births_credited": {
+        "102": 313,
+        "204": 212
+      },
+      "classification": "COMPLETE",
+      "cohort_sizes": {
+        "102": 316,
+        "204": 215
+      },
+      "event_counts": {
+        "birth_admitted": 525,
+        "corpse_expired": 483,
+        "death_disposal": 483,
+        "divide_failed": 5474,
+        "founder_registered": 6,
+        "hazard_death": 483,
+        "packet_capture_failed": 24815,
+        "packet_draw": 5999,
+        "packet_retired": 5455,
+        "provision_committed": 525,
+        "somatic_stall": 233
+      },
+      "ever_alive": 531,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUPERCRITICAL",
+        "204": "SUBCRITICAL"
+      },
+      "hazard_deaths": 483,
+      "hazard_seed": 20270000,
+      "max_buffered": 0,
+      "person_ticks_credited": {
+        "102": 30867,
+        "204": 27102
+      },
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    },
+    {
+      "L0_exact": {
+        "102": "116307624339958875122365995170387399426016179768023716029833/95054971221103015421211195293695078778793609940686551633028",
+        "204": "47/50"
+      },
+      "admitted_births": 520,
+      "births_credited": {
+        "102": 473,
+        "204": 47
+      },
+      "classification": "COMPLETE",
+      "cohort_sizes": {
+        "102": 476,
+        "204": 50
+      },
+      "event_counts": {
+        "birth_admitted": 520,
+        "corpse_expired": 478,
+        "death_disposal": 478,
+        "divide_failed": 5479,
+        "founder_registered": 6,
+        "hazard_death": 478,
+        "packet_capture_failed": 20687,
+        "packet_draw": 5999,
+        "packet_retired": 5662,
+        "provision_committed": 520,
+        "somatic_stall": 257
+      },
+      "ever_alive": 526,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUPERCRITICAL",
+        "204": "SUBCRITICAL"
+      },
+      "hazard_deaths": 478,
+      "hazard_seed": 20270001,
+      "max_buffered": 0,
+      "person_ticks_credited": {
+        "102": 50371,
+        "204": 7587
+      },
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    },
+    {
+      "L0_exact": {
+        "102": "2823328583975531834289570546791233836096695267293709/2193708447895488723003344775833704177907696410820608",
+        "204": "29/32"
+      },
+      "admitted_births": 490,
+      "births_credited": {
+        "102": 461,
+        "204": 29
+      },
+      "classification": "COMPLETE",
+      "cohort_sizes": {
+        "102": 464,
+        "204": 32
+      },
+      "event_counts": {
+        "birth_admitted": 490,
+        "corpse_expired": 448,
+        "death_disposal": 448,
+        "divide_failed": 5508,
+        "founder_registered": 6,
+        "hazard_death": 448,
+        "packet_capture_failed": 21508,
+        "packet_draw": 5998,
+        "packet_retired": 5408,
+        "provision_committed": 490,
+        "somatic_stall": 246
+      },
+      "ever_alive": 496,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUPERCRITICAL",
+        "204": "SUBCRITICAL"
+      },
+      "hazard_deaths": 448,
+      "hazard_seed": 20270002,
+      "max_buffered": 0,
+      "person_ticks_credited": {
+        "102": 54166,
+        "204": 3770
+      },
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    },
+    {
+      "L0_exact": {
+        "102": "273319008648187952150080541490552993103020982090471478907611/226678353084735115034531354741066113640546082535340664422400",
+        "204": "5/6"
+      },
+      "admitted_births": 491,
+      "births_credited": {
+        "102": 476,
+        "204": 15
+      },
+      "classification": "COMPLETE",
+      "cohort_sizes": {
+        "102": 479,
+        "204": 18
+      },
+      "event_counts": {
+        "birth_admitted": 491,
+        "corpse_expired": 449,
+        "death_disposal": 449,
+        "divide_failed": 5509,
+        "founder_registered": 6,
+        "hazard_death": 449,
+        "packet_capture_failed": 19437,
+        "packet_draw": 6000,
+        "packet_retired": 5238,
+        "provision_committed": 491,
+        "somatic_stall": 268
+      },
+      "ever_alive": 497,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUPERCRITICAL",
+        "204": "SUBCRITICAL"
+      },
+      "hazard_deaths": 449,
+      "hazard_seed": 20270003,
+      "max_buffered": 0,
+      "person_ticks_credited": {
+        "102": 55300,
+        "204": 2641
+      },
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    },
+    {
+      "L0_exact": {
+        "102": "26/27",
+        "204": "1784735892492780915576678891531216592667730109097141/1299021902451226922799960650077000624670214677299200"
+      },
+      "admitted_births": 542,
+      "births_credited": {
+        "102": 78,
+        "204": 464
+      },
+      "classification": "COMPLETE",
+      "cohort_sizes": {
+        "102": 81,
+        "204": 467
+      },
+      "event_counts": {
+        "birth_admitted": 542,
+        "corpse_expired": 499,
+        "death_disposal": 500,
+        "divide_failed": 5457,
+        "founder_registered": 6,
+        "hazard_death": 500,
+        "packet_capture_failed": 29214,
+        "packet_draw": 5999,
+        "packet_retired": 5507,
+        "provision_committed": 542,
+        "somatic_stall": 211
+      },
+      "ever_alive": 548,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUBCRITICAL",
+        "204": "SUPERCRITICAL"
+      },
+      "hazard_deaths": 500,
+      "hazard_seed": 20270004,
+      "max_buffered": 0,
+      "person_ticks_credited": {
+        "102": 10348,
+        "204": 47644
+      },
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    },
+    {
+      "L0_exact": {
+        "102": "2035361941185969313944177893661310575835786468803957251/1707183259873576376287219374330073280924269671819855375",
+        "204": "4/5"
+      },
+      "admitted_births": 469,
+      "births_credited": {
+        "102": 457,
+        "204": 12
+      },
+      "classification": "COMPLETE",
+      "cohort_sizes": {
+        "102": 460,
+        "204": 15
+      },
+      "event_counts": {
+        "birth_admitted": 469,
+        "corpse_expired": 426,
+        "death_disposal": 427,
+        "divide_failed": 5529,
+        "founder_registered": 6,
+        "hazard_death": 427,
+        "packet_capture_failed": 20170,
+        "packet_draw": 5998,
+        "packet_retired": 5313,
+        "provision_committed": 469,
+        "somatic_stall": 252
+      },
+      "ever_alive": 475,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUPERCRITICAL",
+        "204": "SUBCRITICAL"
+      },
+      "hazard_deaths": 427,
+      "hazard_seed": 20270005,
+      "max_buffered": 0,
+      "person_ticks_credited": {
+        "102": 56405,
+        "204": 1505
+      },
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    },
+    {
+      "L0_exact": {
+        "102": "841939993011737814907368373701171113407027289119324133111287/581151585912433591577746441564663319824295294745178149542400",
+        "204": "26/29"
+      },
+      "admitted_births": 498,
+      "births_credited": {
+        "102": 472,
+        "204": 26
+      },
+      "classification": "COMPLETE",
+      "cohort_sizes": {
+        "102": 475,
+        "204": 29
+      },
+      "event_counts": {
+        "birth_admitted": 498,
+        "corpse_expired": 455,
+        "death_disposal": 456,
+        "divide_failed": 5502,
+        "founder_registered": 6,
+        "hazard_death": 456,
+        "packet_capture_failed": 21420,
+        "packet_draw": 6000,
+        "packet_retired": 5604,
+        "provision_committed": 498,
+        "somatic_stall": 271
+      },
+      "ever_alive": 504,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUPERCRITICAL",
+        "204": "SUBCRITICAL"
+      },
+      "hazard_deaths": 456,
+      "hazard_seed": 20270006,
+      "max_buffered": 0,
+      "person_ticks_credited": {
+        "102": 54882,
+        "204": 3058
+      },
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    },
+    {
+      "L0_exact": {
+        "102": "45811860127757262787837/43572909698936238600000",
+        "204": "16566539616157036840853446621/10438568911454283779087888658"
+      },
+      "admitted_births": 514,
+      "births_credited": {
+        "102": 298,
+        "204": 216
+      },
+      "classification": "COMPLETE",
+      "cohort_sizes": {
+        "102": 301,
+        "204": 219
+      },
+      "event_counts": {
+        "birth_admitted": 514,
+        "corpse_expired": 471,
+        "death_disposal": 472,
+        "divide_failed": 5486,
+        "founder_registered": 6,
+        "hazard_death": 472,
+        "packet_capture_failed": 24293,
+        "packet_draw": 6000,
+        "packet_retired": 5716,
+        "provision_committed": 514,
+        "somatic_stall": 242
+      },
+      "ever_alive": 520,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUPERCRITICAL",
+        "204": "SUPERCRITICAL"
+      },
+      "hazard_deaths": 472,
+      "hazard_seed": 20270007,
+      "max_buffered": 0,
+      "person_ticks_credited": {
+        "102": 36885,
+        "204": 21076
+      },
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    },
+    {
+      "L0_exact": {
+        "102": "101529/96866",
+        "204": "70267763542365350465887199360921657/34720025723738616734058508328950830"
+      },
+      "admitted_births": 504,
+      "births_credited": {
+        "102": 305,
+        "204": 199
+      },
+      "classification": "COMPLETE",
+      "cohort_sizes": {
+        "102": 308,
+        "204": 202
+      },
+      "event_counts": {
+        "birth_admitted": 504,
+        "corpse_expired": 461,
+        "death_disposal": 462,
+        "divide_failed": 5495,
+        "founder_registered": 6,
+        "hazard_death": 462,
+        "packet_capture_failed": 21944,
+        "packet_draw": 5999,
+        "packet_retired": 5579,
+        "provision_committed": 504,
+        "somatic_stall": 237
+      },
+      "ever_alive": 510,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUPERCRITICAL",
+        "204": "SUPERCRITICAL"
+      },
+      "hazard_deaths": 462,
+      "hazard_seed": 20270008,
+      "max_buffered": 0,
+      "person_ticks_credited": {
+        "102": 39737,
+        "204": 18217
+      },
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    },
+    {
+      "L0_exact": {
+        "102": "376736131132016277554923245149955139409019565378805797964838403669/294239726731544193972353873625554439914455105423207820742601778400",
+        "204": "13/16"
+      },
+      "admitted_births": 512,
+      "births_credited": {
+        "102": 499,
+        "204": 13
+      },
+      "classification": "COMPLETE",
+      "cohort_sizes": {
+        "102": 502,
+        "204": 16
+      },
+      "event_counts": {
+        "birth_admitted": 512,
+        "corpse_expired": 470,
+        "death_disposal": 470,
+        "divide_failed": 5488,
+        "founder_registered": 6,
+        "hazard_death": 470,
+        "packet_capture_failed": 20287,
+        "packet_draw": 6000,
+        "packet_retired": 4889,
+        "provision_committed": 512,
+        "somatic_stall": 287
+      },
+      "ever_alive": 518,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUPERCRITICAL",
+        "204": "SUBCRITICAL"
+      },
+      "hazard_deaths": 470,
+      "hazard_seed": 20270009,
+      "max_buffered": 0,
+      "person_ticks_credited": {
+        "102": 56351,
+        "204": 1600
+      },
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    },
+    {
+      "L0_exact": {
+        "102": "31525964491450546611771325169663971814945237398742447358542681883947/26401740384284211827401843623352259677146032175779630109913728851598",
+        "204": "13/16"
+      },
+      "admitted_births": 496,
+      "births_credited": {
+        "102": 483,
+        "204": 13
+      },
+      "classification": "COMPLETE",
+      "cohort_sizes": {
+        "102": 486,
+        "204": 16
+      },
+      "event_counts": {
+        "birth_admitted": 496,
+        "corpse_expired": 453,
+        "death_disposal": 454,
+        "divide_failed": 5500,
+        "founder_registered": 6,
+        "hazard_death": 454,
+        "packet_capture_failed": 19851,
+        "packet_draw": 5996,
+        "packet_retired": 5502,
+        "provision_committed": 496,
+        "somatic_stall": 258
+      },
+      "ever_alive": 502,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUPERCRITICAL",
+        "204": "SUBCRITICAL"
+      },
+      "hazard_deaths": 454,
+      "hazard_seed": 20270010,
+      "max_buffered": 0,
+      "person_ticks_credited": {
+        "102": 56332,
+        "204": 1608
+      },
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    },
+    {
+      "L0_exact": {
+        "102": "267950701/235815360",
+        "204": "1467015392224878543333597143982407406553/924251779171899652464540071919762750000"
+      },
+      "admitted_births": 488,
+      "births_credited": {
+        "102": 271,
+        "204": 217
+      },
+      "classification": "COMPLETE",
+      "cohort_sizes": {
+        "102": 274,
+        "204": 220
+      },
+      "event_counts": {
+        "birth_admitted": 488,
+        "corpse_expired": 445,
+        "death_disposal": 446,
+        "divide_failed": 5510,
+        "founder_registered": 6,
+        "hazard_death": 446,
+        "packet_capture_failed": 23745,
+        "packet_draw": 5998,
+        "packet_retired": 5742,
+        "provision_committed": 488,
+        "somatic_stall": 230
+      },
+      "ever_alive": 494,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUPERCRITICAL",
+        "204": "SUPERCRITICAL"
+      },
+      "hazard_deaths": 446,
+      "hazard_seed": 20270011,
+      "max_buffered": 0,
+      "person_ticks_credited": {
+        "102": 34634,
+        "204": 23293
+      },
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    },
+    {
+      "L0_exact": {
+        "102": "55/58",
+        "204": "1046545334347463360029818127650710973387144654069289374454072151/795073800093773260654411396131637420462385103658770880000000000"
+      },
+      "admitted_births": 543,
+      "births_credited": {
+        "102": 55,
+        "204": 488
+      },
+      "classification": "COMPLETE",
+      "cohort_sizes": {
+        "102": 58,
+        "204": 491
+      },
+      "event_counts": {
+        "birth_admitted": 543,
+        "corpse_expired": 501,
+        "death_disposal": 501,
+        "divide_failed": 5457,
+        "founder_registered": 6,
+        "hazard_death": 501,
+        "packet_capture_failed": 29132,
+        "packet_draw": 6000,
+        "packet_retired": 5687,
+        "provision_committed": 543,
+        "somatic_stall": 214
+      },
+      "ever_alive": 549,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUBCRITICAL",
+        "204": "SUPERCRITICAL"
+      },
+      "hazard_deaths": 501,
+      "hazard_seed": 20270012,
+      "max_buffered": 0,
+      "person_ticks_credited": {
+        "102": 6931,
+        "204": 51062
+      },
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    },
+    {
+      "L0_exact": {
+        "102": "1857610472185588938481313496379330791465498866246699777/1532385524084763573364279117281744277810925568000000000",
+        "204": "4/5"
+      },
+      "admitted_births": 509,
+      "births_credited": {
+        "102": 497,
+        "204": 12
+      },
+      "classification": "COMPLETE",
+      "cohort_sizes": {
+        "102": 500,
+        "204": 15
+      },
+      "event_counts": {
+        "birth_admitted": 509,
+        "corpse_expired": 466,
+        "death_disposal": 467,
+        "divide_failed": 5490,
+        "founder_registered": 6,
+        "hazard_death": 467,
+        "packet_capture_failed": 20435,
+        "packet_draw": 5999,
+        "packet_retired": 5382,
+        "provision_committed": 509,
+        "somatic_stall": 272
+      },
+      "ever_alive": 515,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUPERCRITICAL",
+        "204": "SUBCRITICAL"
+      },
+      "hazard_deaths": 467,
+      "hazard_seed": 20270013,
+      "max_buffered": 0,
+      "person_ticks_credited": {
+        "102": 56198,
+        "204": 1755
+      },
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    },
+    {
+      "L0_exact": {
+        "102": "97/100",
+        "204": "56435018357988208189408287336853113355057646359131/36720639143610620442419217739160650275538489831076"
+      },
+      "admitted_births": 492,
+      "births_credited": {
+        "102": 97,
+        "204": 395
+      },
+      "classification": "COMPLETE",
+      "cohort_sizes": {
+        "102": 100,
+        "204": 398
+      },
+      "event_counts": {
+        "birth_admitted": 492,
+        "corpse_expired": 450,
+        "death_disposal": 450,
+        "divide_failed": 5507,
+        "founder_registered": 6,
+        "hazard_death": 450,
+        "packet_capture_failed": 29141,
+        "packet_draw": 5999,
+        "packet_retired": 5495,
+        "provision_committed": 492,
+        "somatic_stall": 177
+      },
+      "ever_alive": 498,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUBCRITICAL",
+        "204": "SUPERCRITICAL"
+      },
+      "hazard_deaths": 450,
+      "hazard_seed": 20270014,
+      "max_buffered": 0,
+      "person_ticks_credited": {
+        "102": 12394,
+        "204": 45534
+      },
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    },
+    {
+      "L0_exact": {
+        "102": "331796543892869974604852843260163155940081064685373368783/267521504253965662439965681399423371685662851072000000000",
+        "204": "130/133"
+      },
+      "admitted_births": 512,
+      "births_credited": {
+        "102": 382,
+        "204": 130
+      },
+      "classification": "COMPLETE",
+      "cohort_sizes": {
+        "102": 385,
+        "204": 133
+      },
+      "event_counts": {
+        "birth_admitted": 512,
+        "corpse_expired": 469,
+        "death_disposal": 470,
+        "divide_failed": 5488,
+        "founder_registered": 6,
+        "hazard_death": 470,
+        "packet_capture_failed": 24522,
+        "packet_draw": 6000,
+        "packet_retired": 5487,
+        "provision_committed": 512,
+        "somatic_stall": 245
+      },
+      "ever_alive": 518,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUPERCRITICAL",
+        "204": "SUBCRITICAL"
+      },
+      "hazard_deaths": 470,
+      "hazard_seed": 20270015,
+      "max_buffered": 0,
+      "person_ticks_credited": {
+        "102": 41336,
+        "204": 16626
+      },
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    },
+    {
+      "L0_exact": {
+        "102": "614611839292424923828715574120023490930363367484773669016837/479353206646874516779532762252954224045870066632266047488000",
+        "204": "19/20"
+      },
+      "admitted_births": 527,
+      "births_credited": {
+        "102": 470,
+        "204": 57
+      },
+      "classification": "COMPLETE",
+      "cohort_sizes": {
+        "102": 473,
+        "204": 60
+      },
+      "event_counts": {
+        "birth_admitted": 527,
+        "corpse_expired": 485,
+        "death_disposal": 485,
+        "divide_failed": 5473,
+        "founder_registered": 6,
+        "hazard_death": 485,
+        "packet_capture_failed": 21630,
+        "packet_draw": 6000,
+        "packet_retired": 5492,
+        "provision_committed": 527,
+        "somatic_stall": 271
+      },
+      "ever_alive": 533,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUPERCRITICAL",
+        "204": "SUBCRITICAL"
+      },
+      "hazard_deaths": 485,
+      "hazard_seed": 20270016,
+      "max_buffered": 0,
+      "person_ticks_credited": {
+        "102": 51289,
+        "204": 6673
+      },
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    },
+    {
+      "L0_exact": {
+        "102": "1059950572712794865461909593253939638815136298984262190429501239/851646426451293322468055424740390659553857192807966670922432000",
+        "204": "73/76"
+      },
+      "admitted_births": 530,
+      "births_credited": {
+        "102": 457,
+        "204": 73
+      },
+      "classification": "COMPLETE",
+      "cohort_sizes": {
+        "102": 460,
+        "204": 76
+      },
+      "event_counts": {
+        "birth_admitted": 530,
+        "corpse_expired": 485,
+        "death_disposal": 488,
+        "divide_failed": 5468,
+        "founder_registered": 6,
+        "hazard_death": 488,
+        "packet_capture_failed": 21759,
+        "packet_draw": 5998,
+        "packet_retired": 5844,
+        "provision_committed": 530,
+        "somatic_stall": 270
+      },
+      "ever_alive": 536,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUPERCRITICAL",
+        "204": "SUBCRITICAL"
+      },
+      "hazard_deaths": 488,
+      "hazard_seed": 20270017,
+      "max_buffered": 0,
+      "person_ticks_credited": {
+        "102": 49277,
+        "204": 8696
+      },
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    },
+    {
+      "L0_exact": {
+        "102": "609591756847110824457880483057338151513237079401173552057263/482729145869451699576633714288285992613956820514897920000000",
+        "204": "16/19"
+      },
+      "admitted_births": 535,
+      "births_credited": {
+        "102": 519,
+        "204": 16
+      },
+      "classification": "COMPLETE",
+      "cohort_sizes": {
+        "102": 522,
+        "204": 19
+      },
+      "event_counts": {
+        "birth_admitted": 535,
+        "corpse_expired": 492,
+        "death_disposal": 493,
+        "divide_failed": 5465,
+        "founder_registered": 6,
+        "hazard_death": 493,
+        "packet_capture_failed": 21923,
+        "packet_draw": 6000,
+        "packet_retired": 5551,
+        "provision_committed": 535,
+        "somatic_stall": 282
+      },
+      "ever_alive": 541,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUPERCRITICAL",
+        "204": "SUBCRITICAL"
+      },
+      "hazard_deaths": 493,
+      "hazard_seed": 20270018,
+      "max_buffered": 0,
+      "person_ticks_credited": {
+        "102": 55967,
+        "204": 2018
+      },
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    },
+    {
+      "L0_exact": {
+        "102": "133612317649306392753163450659004998911911714101481957/108637342506205129392465159460715091725105331841382400",
+        "204": "10/13"
+      },
+      "admitted_births": 509,
+      "births_credited": {
+        "102": 499,
+        "204": 10
+      },
+      "classification": "COMPLETE",
+      "cohort_sizes": {
+        "102": 502,
+        "204": 13
+      },
+      "event_counts": {
+        "birth_admitted": 509,
+        "corpse_expired": 467,
+        "death_disposal": 467,
+        "divide_failed": 5490,
+        "founder_registered": 6,
+        "hazard_death": 467,
+        "packet_capture_failed": 20015,
+        "packet_draw": 5999,
+        "packet_retired": 5335,
+        "provision_committed": 509,
+        "somatic_stall": 275
+      },
+      "ever_alive": 515,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUPERCRITICAL",
+        "204": "SUBCRITICAL"
+      },
+      "hazard_deaths": 467,
+      "hazard_seed": 20270019,
+      "max_buffered": 0,
+      "person_ticks_credited": {
+        "102": 56173,
+        "204": 1786
+      },
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    },
+    {
+      "L0_exact": {
+        "102": "41266218840796934393627343136064467597872144938286004373737043/32401788972084854062300651236297921583101293797042837200000000",
+        "204": "5/6"
+      },
+      "admitted_births": 511,
+      "births_credited": {
+        "102": 496,
+        "204": 15
+      },
+      "classification": "COMPLETE",
+      "cohort_sizes": {
+        "102": 499,
+        "204": 18
+      },
+      "event_counts": {
+        "birth_admitted": 511,
+        "corpse_expired": 468,
+        "death_disposal": 469,
+        "divide_failed": 5489,
+        "founder_registered": 6,
+        "hazard_death": 469,
+        "packet_capture_failed": 20073,
+        "packet_draw": 6000,
+        "packet_retired": 5597,
+        "provision_committed": 511,
+        "somatic_stall": 288
+      },
+      "ever_alive": 517,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUPERCRITICAL",
+        "204": "SUBCRITICAL"
+      },
+      "hazard_deaths": 469,
+      "hazard_seed": 20270020,
+      "max_buffered": 0,
+      "person_ticks_credited": {
+        "102": 55363,
+        "204": 2594
+      },
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    },
+    {
+      "L0_exact": {
+        "102": "18036755462657609952908370423679971713391073619473133140493/14838199692178436529484424354481810530235170730113495280000",
+        "204": "5/6"
+      },
+      "admitted_births": 530,
+      "births_credited": {
+        "102": 515,
+        "204": 15
+      },
+      "classification": "COMPLETE",
+      "cohort_sizes": {
+        "102": 518,
+        "204": 18
+      },
+      "event_counts": {
+        "birth_admitted": 530,
+        "corpse_expired": 486,
+        "death_disposal": 488,
+        "divide_failed": 5468,
+        "founder_registered": 6,
+        "hazard_death": 488,
+        "packet_capture_failed": 21210,
+        "packet_draw": 5998,
+        "packet_retired": 5481,
+        "provision_committed": 530,
+        "somatic_stall": 278
+      },
+      "ever_alive": 536,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUPERCRITICAL",
+        "204": "SUBCRITICAL"
+      },
+      "hazard_deaths": 488,
+      "hazard_seed": 20270021,
+      "max_buffered": 0,
+      "person_ticks_credited": {
+        "102": 55201,
+        "204": 2772
+      },
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    },
+    {
+      "L0_exact": {
+        "102": "15646455336894027232342008067217773568870925323614/12476116356820145400102380280255281697343325896875",
+        "204": "10/13"
+      },
+      "admitted_births": 512,
+      "births_credited": {
+        "102": 502,
+        "204": 10
+      },
+      "classification": "COMPLETE",
+      "cohort_sizes": {
+        "102": 505,
+        "204": 13
+      },
+      "event_counts": {
+        "birth_admitted": 512,
+        "corpse_expired": 470,
+        "death_disposal": 470,
+        "divide_failed": 5488,
+        "founder_registered": 6,
+        "hazard_death": 470,
+        "packet_capture_failed": 21205,
+        "packet_draw": 6000,
+        "packet_retired": 5373,
+        "provision_committed": 512,
+        "somatic_stall": 264
+      },
+      "ever_alive": 518,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUPERCRITICAL",
+        "204": "SUBCRITICAL"
+      },
+      "hazard_deaths": 470,
+      "hazard_seed": 20270022,
+      "max_buffered": 0,
+      "person_ticks_credited": {
+        "102": 55963,
+        "204": 1999
+      },
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    },
+    {
+      "L0_exact": {
+        "102": "97/100",
+        "204": "305648655935095287393059787063642485551289457342941153/225839558906183359581044202715730145954232563385344000"
+      },
+      "admitted_births": 536,
+      "births_credited": {
+        "102": 97,
+        "204": 439
+      },
+      "classification": "COMPLETE",
+      "cohort_sizes": {
+        "102": 100,
+        "204": 442
+      },
+      "event_counts": {
+        "birth_admitted": 536,
+        "corpse_expired": 494,
+        "death_disposal": 494,
+        "divide_failed": 5464,
+        "founder_registered": 6,
+        "hazard_death": 494,
+        "packet_capture_failed": 27989,
+        "packet_draw": 6000,
+        "packet_retired": 5375,
+        "provision_committed": 536,
+        "somatic_stall": 205
+      },
+      "ever_alive": 542,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUBCRITICAL",
+        "204": "SUPERCRITICAL"
+      },
+      "hazard_deaths": 494,
+      "hazard_seed": 20270023,
+      "max_buffered": 0,
+      "person_ticks_credited": {
+        "102": 11221,
+        "204": 46758
+      },
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    }
+  ],
+  "seed_count": 24,
+  "seeds_used": [
+    20270000,
+    20270001,
+    20270002,
+    20270003,
+    20270004,
+    20270005,
+    20270006,
+    20270007,
+    20270008,
+    20270009,
+    20270010,
+    20270011,
+    20270012,
+    20270013,
+    20270014,
+    20270015,
+    20270016,
+    20270017,
+    20270018,
+    20270019,
+    20270020,
+    20270021,
+    20270022,
+    20270023
+  ],
+  "two_thirds_threshold": 16
+}
