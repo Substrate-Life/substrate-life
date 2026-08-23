@@ -63,6 +63,14 @@ def _gate_threshold(count: int) -> int:
     return -(-2 * count // 3)
 
 
+def _count_events(event_log: list[dict[str, Any]]) -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for event in event_log:
+        kind = event.get("event", "?")
+        counts[kind] = counts.get(kind, 0) + 1
+    return dict(sorted(counts.items()))
+
+
 def run_shakedown(seed: int) -> dict[str, Any]:
     """One unretained shakedown replicate: population run plus measurement."""
     record: dict[str, Any] = {"hazard_seed": seed}
@@ -95,8 +103,16 @@ def run_shakedown(seed: int) -> dict[str, Any]:
             "tick_checkpoints": len(population.closure_history),
             "admitted_births": admitted,
             "shadow_decisions": population.shadow_decisions,
+            "shadow_would_admit": population.shadow_would_admit,
+            "no_vacancy_attempts": vitals["attempt_counters"][
+                "no_vacancy_attempts"],
+            "establishment_count": len(vitals["establishments"]),
+            "hazard_deaths": sum(
+                1 for event in population.event_log
+                if event.get("event") == "hazard_death"),
             "ever_alive": len(vitals["members"]),
             "final_census": len(population.members),
+            "event_counts": _count_events(population.event_log),
         })
     except Exception as error:  # noqa: BLE001 -- gate evidence, never hidden
         record.update({
@@ -140,6 +156,7 @@ def evaluate_gate(records: list[dict[str, Any]]) -> dict[str, Any]:
         "seed_count": n,
         "two_thirds_threshold": threshold,
         "complete_replicates": len(complete),
+        "replicate_records": sorted(records, key=lambda r: r["hazard_seed"]),
         "invalid_replicates": [
             {"hazard_seed": r["hazard_seed"],
              "classification": r.get("classification"),

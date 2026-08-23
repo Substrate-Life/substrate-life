@@ -1,0 +1,192 @@
+{
+  "purpose": "diagnosis magnitudes for the superseding preregistration; unretained exploratory recovery on a fixed subset of the failed gate's own seed table",
+  "records": [
+    {
+      "L0_exact": {
+        "102": "379/24964",
+        "204": "27/1849"
+      },
+      "admitted_births": 525,
+      "classification": "COMPLETE",
+      "establishment_count": 24,
+      "event_counts": {
+        "birth_admitted": 525,
+        "corpse_expired": 483,
+        "death_disposal": 483,
+        "divide_failed": 5474,
+        "founder_registered": 6,
+        "hazard_death": 483,
+        "packet_capture_failed": 24815,
+        "packet_draw": 5999,
+        "packet_retired": 5455,
+        "provision_committed": 525,
+        "somatic_stall": 233
+      },
+      "ever_alive": 531,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUBCRITICAL",
+        "204": "SUBCRITICAL"
+      },
+      "hazard_deaths": 483,
+      "hazard_seed": 20270000,
+      "max_buffered": 0,
+      "no_vacancy_attempts": 5474,
+      "shadow_decisions": 5999,
+      "shadow_would_admit": 525,
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    },
+    {
+      "L0_exact": {
+        "102": "2739/105800",
+        "204": "8/75"
+      },
+      "admitted_births": 469,
+      "classification": "COMPLETE",
+      "establishment_count": 31,
+      "event_counts": {
+        "birth_admitted": 469,
+        "corpse_expired": 426,
+        "death_disposal": 427,
+        "divide_failed": 5529,
+        "founder_registered": 6,
+        "hazard_death": 427,
+        "packet_capture_failed": 20170,
+        "packet_draw": 5998,
+        "packet_retired": 5313,
+        "provision_committed": 469,
+        "somatic_stall": 252
+      },
+      "ever_alive": 475,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUBCRITICAL",
+        "204": "SUBCRITICAL"
+      },
+      "hazard_deaths": 427,
+      "hazard_seed": 20270005,
+      "max_buffered": 0,
+      "no_vacancy_attempts": 5529,
+      "shadow_decisions": 5998,
+      "shadow_would_admit": 469,
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    },
+    {
+      "L0_exact": {
+        "102": "551/37538",
+        "204": "153/12100"
+      },
+      "admitted_births": 488,
+      "classification": "COMPLETE",
+      "establishment_count": 19,
+      "event_counts": {
+        "birth_admitted": 488,
+        "corpse_expired": 445,
+        "death_disposal": 446,
+        "divide_failed": 5510,
+        "founder_registered": 6,
+        "hazard_death": 446,
+        "packet_capture_failed": 23745,
+        "packet_draw": 5998,
+        "packet_retired": 5742,
+        "provision_committed": 488,
+        "somatic_stall": 230
+      },
+      "ever_alive": 494,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUBCRITICAL",
+        "204": "SUBCRITICAL"
+      },
+      "hazard_deaths": 446,
+      "hazard_seed": 20270011,
+      "max_buffered": 0,
+      "no_vacancy_attempts": 5510,
+      "shadow_decisions": 5998,
+      "shadow_would_admit": 488,
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    },
+    {
+      "L0_exact": {
+        "102": "711/52900",
+        "204": "201/5776"
+      },
+      "admitted_births": 530,
+      "classification": "COMPLETE",
+      "establishment_count": 26,
+      "event_counts": {
+        "birth_admitted": 530,
+        "corpse_expired": 485,
+        "death_disposal": 488,
+        "divide_failed": 5468,
+        "founder_registered": 6,
+        "hazard_death": 488,
+        "packet_capture_failed": 21759,
+        "packet_draw": 5998,
+        "packet_retired": 5844,
+        "provision_committed": 530,
+        "somatic_stall": 270
+      },
+      "ever_alive": 536,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUBCRITICAL",
+        "204": "SUBCRITICAL"
+      },
+      "hazard_deaths": 488,
+      "hazard_seed": 20270017,
+      "max_buffered": 0,
+      "no_vacancy_attempts": 5468,
+      "shadow_decisions": 5998,
+      "shadow_would_admit": 530,
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    },
+    {
+      "L0_exact": {
+        "102": "69/2500",
+        "204": "2399/195364"
+      },
+      "admitted_births": 536,
+      "classification": "COMPLETE",
+      "establishment_count": 26,
+      "event_counts": {
+        "birth_admitted": 536,
+        "corpse_expired": 494,
+        "death_disposal": 494,
+        "divide_failed": 5464,
+        "founder_registered": 6,
+        "hazard_death": 494,
+        "packet_capture_failed": 27989,
+        "packet_draw": 6000,
+        "packet_retired": 5375,
+        "provision_committed": 536,
+        "somatic_stall": 205
+      },
+      "ever_alive": 542,
+      "final_census": 48,
+      "genotype_status": {
+        "102": "SUBCRITICAL",
+        "204": "SUBCRITICAL"
+      },
+      "hazard_deaths": 494,
+      "hazard_seed": 20270023,
+      "max_buffered": 0,
+      "no_vacancy_attempts": 5464,
+      "shadow_decisions": 6000,
+      "shadow_would_admit": 536,
+      "tick_checkpoints": 1202,
+      "ticks_completed": 1200
+    }
+  ],
+  "seeds": [
+    20270000,
+    20270005,
+    20270011,
+    20270017,
+    20270023
+  ]
+}

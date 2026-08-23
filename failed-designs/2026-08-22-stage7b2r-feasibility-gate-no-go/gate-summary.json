@@ -1,0 +1,93 @@
+{
+  "G1_per_genotype": {
+    "102": {
+      "of": 24,
+      "passes_G1": false,
+      "supercritical_replicates": 0
+    },
+    "204": {
+      "of": 24,
+      "passes_G1": false,
+      "supercritical_replicates": 0
+    }
+  },
+  "G2_joint_supercritical": {
+    "of": 24,
+    "passes_G2": false,
+    "replicates": 0
+  },
+  "G3_no_overflow_no_invalid": {
+    "passes_G3": true,
+    "zero_buffer_overflow": true,
+    "zero_invalid_implementations": true
+  },
+  "G4_all_checkpoints_closed": {
+    "checkpoint_failures": [],
+    "passes_G4": true
+  },
+  "claim_scope": "Feasibility facts only. No fitness, selection, contrast, or evolutionary claim is made or retained; the confirmatory seed table remains untouched until the single retained run.",
+  "complete_replicates": 24,
+  "gate": "stage-7b2-repair-preregistration section 6",
+  "gate_passed": false,
+  "invalid_replicates": [],
+  "registered_configuration_checked": {
+    "buffer_depth_d": 64,
+    "census_capacity_N": 48,
+    "corpse_ttl": 2,
+    "founder_R": "0/1",
+    "founder_S": "100/1",
+    "founders_per_genotype": 3,
+    "genotypes_ATD": [
+      [
+        102,
+        128,
+        255
+      ],
+      [
+        204,
+        128,
+        255
+      ]
+    ],
+    "hazard_arms": [
+      "1/120 per live member per tick"
+    ],
+    "memory_pool_bytes": 65536,
+    "mutation": "disabled; structural zero-draw M stage",
+    "packet_energy": "900/1",
+    "packet_rate_r": 5,
+    "protocol": "stage-7b2r-preregistration",
+    "replicates_k": 32,
+    "seed_derivation": "hazard_seed = 20261822 + i, i in 0..31",
+    "supersedes": "ecology parameters of docs/stage-7b2-preregistration.md per docs/stage-7b2-repair-preregistration.md section 3",
+    "window_ticks_W": 1200
+  },
+  "seed_count": 24,
+  "seeds_used": [
+    20270000,
+    20270001,
+    20270002,
+    20270003,
+    20270004,
+    20270005,
+    20270006,
+    20270007,
+    20270008,
+    20270009,
+    20270010,
+    20270011,
+    20270012,
+    20270013,
+    20270014,
+    20270015,
+    20270016,
+    20270017,
+    20270018,
+    20270019,
+    20270020,
+    20270021,
+    20270022,
+    20270023
+  ],
+  "two_thirds_threshold": 16
+}
