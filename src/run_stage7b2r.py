@@ -20,6 +20,7 @@ the source-frozen reducer.
 
 from __future__ import annotations
 
+from concurrent.futures import ProcessPoolExecutor
 from fractions import Fraction
 import argparse
 import hashlib
@@ -163,6 +164,28 @@ def run_replicate(index: int) -> dict[str, Any]:
     return record
 
 
+def run_replicate_guarded(index: int) -> dict[str, Any]:
+    """``run_replicate`` with the registered UNEXPECTED_EXCEPTION classifier.
+
+    An unexpected exception is an implementation bug (7B1 semantics): the
+    replicate is retained as ``INVALID_IMPLEMENTATION`` under the
+    architecture section 9 repair policy instead of losing the whole suite.
+    Used identically by the sequential and parallel execution paths.
+    """
+    try:
+        return run_replicate(index)
+    except Exception as error:  # noqa: BLE001 -- classified, never hidden
+        import traceback
+        return {
+            "replicate_index": index,
+            "hazard_seed": registered_seed(index),
+            "classification": "INVALID_IMPLEMENTATION",
+            "reason": "UNEXPECTED_EXCEPTION",
+            "detail": repr(error),
+            "traceback": traceback.format_exc(),
+        }
+
+
 def _count_events(event_log: list[dict[str, Any]]) -> dict[str, int]:
     counts: dict[str, int] = {}
     for event in event_log:
@@ -205,26 +228,20 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--replicates", type=int,
                         default=REGISTERED_REPLICATES,
                         help="k; only the frozen k = 32 suite may be retained")
+    parser.add_argument("--workers", type=int, default=1,
+                        help="parallel replicate processes; replicates are "
+                             "isolated seeded populations, so results are "
+                             "bit-identical to sequential execution "
+                             "(disclosed in the freeze manifest)")
     args = parser.parse_args(argv)
 
-    replicates: list[dict[str, Any]] = []
-    for index in range(args.replicates):
-        try:
-            replicates.append(run_replicate(index))
-        except Exception as error:  # noqa: BLE001 -- classified, never hidden
-            # An unexpected exception is an implementation bug (7B1
-            # semantics): the replicate is retained as
-            # INVALID_IMPLEMENTATION under the architecture section 9
-            # repair policy instead of losing the whole suite.
-            import traceback
-            replicates.append({
-                "replicate_index": index,
-                "hazard_seed": registered_seed(index),
-                "classification": "INVALID_IMPLEMENTATION",
-                "reason": "UNEXPECTED_EXCEPTION",
-                "detail": repr(error),
-                "traceback": traceback.format_exc(),
-            })
+    indices = list(range(args.replicates))
+    # Both paths use the same guarded replicate function, so classification
+    # semantics are identical; parallelism only reorders wall-clock work,
+    # never results (isolated seeded populations, ordered map).
+    with ProcessPoolExecutor(max_workers=args.workers) as pool:
+        replicates: list[dict[str, Any]] = list(
+            pool.map(run_replicate_guarded, indices))
     complete = sum(1 for r in replicates
                    if r["classification"] == "COMPLETE")
     invalid = len(replicates) - complete
