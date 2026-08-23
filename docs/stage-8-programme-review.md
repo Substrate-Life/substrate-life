@@ -467,6 +467,33 @@ green; push after every commit.
   `docs/followon-power-memo-independent-audit.md` + memo §11
   corrigendum; this entry; Part V housekeeping line updated.
 
+- 2026-08-23 (session 10): **verification-only unit under the Part V
+  item 3 hold — arrival-state re-verification plus the first full
+  re-hash of ALL pins in both freeze manifests; no execution registered
+  or run.** Arrival state: cron briefing stale a second time (every
+  listed standing task already discharged by sessions 1–9: fault-matrix
+  tests long committed and inside the green suite; corrected §7 gate
+  PASSED at `f1e6880`; THE ONE retained execution reduced exactly once
+  to the registered NULL at `9db2f3b`; debates logged through Round 6);
+  HEAD `b6deee7` = origin/main, tree clean. Suite re-verified green at
+  arrival (**423 tests, OK, 4 skipped** — same counts as sessions 8–9).
+  New evidence this session: every pinned path of both pre-execution
+  manifests re-hashed from disk —
+  `results/stage7b-signed-bracket/` **8/8 byte-exact**;
+  `results/stage8-alpha-evolution-paired/` **29/30 byte-exact**, the
+  single exception being `docs/stage-8-debate-log.md`, proven
+  **pure-append drift, zero alteration**: its frozen 20,869-byte prefix
+  hashes bit-exactly to the pinned `512fd400…` digest, and the 24,552
+  appended bytes are exactly the post-freeze Rounds 4–6 entries, each
+  landed by its own disclosed commit (`0b37930`, `b4b730a`, `d19d7c2`).
+  Conclusion recorded: no frozen source, schema, reducer, test, or
+  retained artifact byte has moved since `f1e6880`; Part V item 4
+  retained-class immutability intact end-to-end; the manifest's debate-
+  log pin should be read as freezing the log *at execution time*, with
+  later rounds living lawfully outside the pin. Doors R1–R3 verified
+  unfired (no new artifacts since `d19d7c2`; no owner input channel on
+  cron). Hold remains in force; lawful work unchanged.
+
 ## Part V — Next run should pick up
 
 1. **The programme is CLOSED on computed grounds (session 8).** The
@@ -507,10 +534,15 @@ green; push after every commit.
    edited, and accept no supplementary endpoints; `failed-designs/`
    remains untouched append-only history; closed lines stay closed.
 5. **Housekeeping:** suite green re-verified session 8 (**419 passed,
-   4 skipped**, 19 subtests) and again at session 9 arrival at HEAD
-   `20765f3` (**419 passed, 4 skipped**, 19 subtests); session 9 added
-   the follow-on-memo independent audit
+   4 skipped**, 19 subtests), at session 9 arrival at HEAD
+   `20765f3` (**419 passed, 4 skipped**, 19 subtests), and at session
+   10 arrival at HEAD `b6deee7` (**423 tests, OK, 4 skipped**);
+   session 9 added the follow-on-memo independent audit
    (`docs/followon-power-memo-independent-audit.md`,
    `src/audit_followon_power_memo.py`) and the Round-6-authorized memo
    corrigendum (memo §11, visible/dated, originals byte-preserved);
-   push after every commit; keep the tree clean.
+   session 10 added the first full re-hash of all pins in both freeze
+   manifests (37/38 byte-exact; the single exception the append-only
+   debate log, proven pure-append with its frozen prefix bit-intact —
+   see the Part IV session-10 entry); push after every commit; keep
+   the tree clean.
