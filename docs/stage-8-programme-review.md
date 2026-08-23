@@ -528,6 +528,46 @@ green; push after every commit.
   computed closure remains the binding disposition). Hold remains in
   force; lawful work unchanged.
 
+- 2026-08-23 (session 12): **verification-only unit under the Part V
+  item 3 hold — fourth consecutive stale-cron arrival disclosed;
+  consolidated re-verification (suite + all three standalone auditors +
+  full two-manifest pin re-hash reproduction + whole-tree freshness
+  sweep); no execution registered or run.** Arrival state: cron
+  briefing stale a fourth time (it still describes the ~08:05 UTC
+  state at `f753894` with the fault-matrix tests untracked; every
+  listed standing task was discharged by sessions 1–9), actual HEAD
+  `325b425` = origin/main (`0/0`), tree clean. Evidence gathered this
+  session: (i) full suite green at HEAD (**423 tests, OK, 4 skipped**
+  — third consecutive identical count); (ii) all three standalone
+  read-only auditors exit 0 — signed-bracket auditor (artifact hashes
+  match, independent outcome agrees with the retained record: 32
+  complete pairs, median paired difference −1/128, sign split 9/21/2,
+  reducer rerun byte-identical, all manifest drift checks clean),
+  post-retention auditor **17/17 PASS**, follow-on-memo auditor
+  **21/21 clean** with zero exact-claim failures; (iii) every pin in
+  BOTH pre-execution manifests re-hashed from disk, reproducing
+  sessions 10–11 bit-for-bit: signed-bracket **8/8** byte-exact,
+  paired **29/29** non-debate-log pins byte-exact, plus the debate
+  log whose frozen 20,869-byte prefix again hashes to the pinned
+  `512fd400…` digest with the file standing at exactly 45,421 bytes
+  (= prefix + the 24,552 post-freeze Rounds 4–6 bytes) — **zero
+  debate-log bytes appended since session 10**, pure-append property
+  intact; (iv) a whole-tree freshness sweep found **no file modified
+  after the last commit** outside `__pycache__`, both retained
+  directories still contain exactly their known artifact sets
+  (memo-auditor check I1 re-verified the paired directory's inventory
+  this session), and `failed-designs/` is untouched at its 8 entries.
+  Doors R1–R3 verified unfired: no new artifacts of any kind exist
+  since `d19d7c2`, so no σ_D ≤ 3.0 u / ≥40-turnover-coexistence
+  measurement (R1) nor de-saturated ecology or life-cycle promotion
+  demonstration (R2) has appeared, and the stale briefing carries no
+  owner redirection (R3); the hold forbids running evolutionary
+  executions to hunt for R1/R2 data. No decision fork arose, so no
+  adversarial round was convened this session (the Round-5 computed
+  closure stands; delegation tooling also remains unavailable on this
+  runtime, as disclosed in Rounds 2–6). Hold remains in force; lawful
+  work unchanged.
+
 ## Part V — Next run should pick up
 
 1. **The programme is CLOSED on computed grounds (session 8).** The
@@ -570,8 +610,19 @@ green; push after every commit.
 5. **Housekeeping:** suite green re-verified session 8 (**419 passed,
    4 skipped**, 19 subtests), at session 9 arrival at HEAD
    `20765f3` (**419 passed, 4 skipped**, 19 subtests), at session
-   10 arrival at HEAD `b6deee7` (**423 tests, OK, 4 skipped**), and at
-   session 11 arrival at HEAD `4498e38` (**423 tests, OK, 4 skipped**);
+   10 arrival at HEAD `b6deee7` (**423 tests, OK, 4 skipped**),
+   at session 11 arrival at HEAD `4498e38` (**423 tests, OK, 4
+   skipped**), and at session 12 arrival at HEAD `325b425`
+   (**423 tests, OK, 4 skipped**);
+   session 12 likewise re-ran all three standalone auditors green at
+   one HEAD (signed-bracket exit 0, post-retention 17/17,
+   follow-on-memo 21/21 clean with zero exact-claim failures),
+   reproduced the full two-manifest pin re-hash bit-for-bit
+   (signed-bracket 8/8; paired 29/29 + the debate log's frozen prefix
+   bit-intact at exactly 45,421 bytes — zero bytes appended since
+   session 10), closed both retained-directory inventories, and swept
+   the whole tree for post-commit file modifications (none found
+   outside `__pycache__`);
    session 11 additionally re-ran all three standalone auditors green
    at one HEAD (signed-bracket exit 0, post-retention 17/17,
    follow-on-memo 21/21 clean), reproduced the full two-manifest pin
