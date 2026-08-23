@@ -224,6 +224,12 @@ def measure_population(population, *, seed_table: str, replicate_index: int,
              for snapshot in population.closure_history),
             default=0),
         "tick_checkpoints": len(population.closure_history),
+        "closure_history_head":
+            [entry["operation"]
+             for entry in population.closure_history[:3]],
+        "closure_history_tail":
+            (population.closure_history[-1]["operation"]
+             if population.closure_history else None),
         "event_digest": hashlib.sha256(json.dumps(
             event_log, sort_keys=True, default=str).encode(),
         ).hexdigest(),

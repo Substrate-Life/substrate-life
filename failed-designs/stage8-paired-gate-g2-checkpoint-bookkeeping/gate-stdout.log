@@ -1,0 +1,239 @@
+[gate] 12 shakedown pairs: [20421301, 20421302, 20421303, 20421304, 20421305, 20421306, 20421307, 20421308, 20421309, 20421310, 20421311, 20421312]
+{
+  "G1_evolution_operates": {
+    "genome_freeze_violations": [],
+    "passes_G1": true,
+    "passing_pairs": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "threshold": 8
+  },
+  "G2_implementation_integrity": {
+    "buffer_overflows": [],
+    "checkpoint_failures": [
+      [
+        0,
+        "M"
+      ],
+      [
+        0,
+        "R0"
+      ],
+      [
+        1,
+        "M"
+      ],
+      [
+        1,
+        "R0"
+      ],
+      [
+        2,
+        "M"
+      ],
+      [
+        2,
+        "R0"
+      ],
+      [
+        3,
+        "M"
+      ],
+      [
+        3,
+        "R0"
+      ],
+      [
+        4,
+        "M"
+      ],
+      [
+        4,
+        "R0"
+      ],
+      [
+        5,
+        "M"
+      ],
+      [
+        5,
+        "R0"
+      ],
+      [
+        6,
+        "M"
+      ],
+      [
+        6,
+        "R0"
+      ],
+      [
+        7,
+        "M"
+      ],
+      [
+        7,
+        "R0"
+      ],
+      [
+        8,
+        "M"
+      ],
+      [
+        8,
+        "R0"
+      ],
+      [
+        9,
+        "M"
+      ],
+      [
+        9,
+        "R0"
+      ],
+      [
+        10,
+        "M"
+      ],
+      [
+        10,
+        "R0"
+      ],
+      [
+        11,
+        "M"
+      ],
+      [
+        11,
+        "R0"
+      ]
+    ],
+    "passes_G2": false
+  },
+  "G3_kernel_audit": {
+    "kernel_audit_failures": [],
+    "passes_G3": true,
+    "stream_replay": {
+      "draws_replayed": 1574,
+      "identity_fields_compared": [
+        "event_digest",
+        "admitted_births_total",
+        "draws_total",
+        "kernel_draw_chain"
+      ],
+      "mismatches": [],
+      "passes": true,
+      "records_replayed": 1034,
+      "reexecuted_seed": 20421301,
+      "reexecution_identical": true
+    }
+  },
+  "G4_reference_arm_integrity": {
+    "failures": [],
+    "passes_G4": true,
+    "seed_mismatches": []
+  },
+  "claim_scope": "Feasibility facts only. No direction, selection, or evolutionary claim is made or retained; the confirmatory pair table remains untouched until the single retained run after the section 8 freeze is committed.",
+  "gate": "stage-8-alpha-evolution-repair-preregistration section 7",
+  "gate_passed": false,
+  "invalid_runs": [],
+  "pair_count": 12,
+  "pairs_both_arms_complete": 12,
+  "pairs_used": [
+    20421301,
+    20421302,
+    20421303,
+    20421304,
+    20421305,
+    20421306,
+    20421307,
+    20421308,
+    20421309,
+    20421310,
+    20421311,
+    20421312
+  ],
+  "registered_configuration_checked": {
+    "arms": {
+      "M": "dedicated-locus kernel p_mu=1/2, delta in {\u00b11..\u00b14} clamped, T=128/D=255 frozen",
+      "R0": "byte-frozen Stage7B2Population; kernel absent"
+    },
+    "buffer_depth_d": 64,
+    "census_capacity_N": 48,
+    "confirmatory_seed_derivation": "hazard_seed = 20310529 + i, i in 0..23",
+    "decision_thresholds": {
+      "concordance": 18,
+      "minimum_eligible_k_eff": 16
+    },
+    "direction_floor_paired": "4/255",
+    "expected_lifespans_per_window": 20,
+    "founder_S": "100/1",
+    "founders_per_genotype": 3,
+    "frozen_loci": {
+      "D": 255,
+      "T": 128
+    },
+    "genotypes_ATD": [
+      [
+        102,
+        128,
+        255
+      ],
+      [
+        204,
+        128,
+        255
+      ]
+    ],
+    "hazard_rate_h": "1/120",
+    "packet_energy_E": "900/1",
+    "packet_rate_r": 5,
+    "pairing": "both arms of a pair run the identical hazard_seed; hazard-stream derivation unchanged",
+    "pairs_k": 24,
+    "prereg_document": "docs/stage-8-alpha-evolution-repair-preregistration.md",
+    "protocol": "stage-8-alpha-evolution-repair-preregistration",
+    "retired_tables_never_reused": [
+      {
+        "base": 20260822,
+        "count": 32,
+        "lineage": "stage-7b2"
+      },
+      {
+        "base": 20261822,
+        "count": 32,
+        "lineage": "stage-7b2r"
+      },
+      {
+        "base": 20270000,
+        "count": 24,
+        "lineage": "stage-7b2r-shakedown"
+      },
+      {
+        "base": 20284617,
+        "count": 24,
+        "lineage": "stage-8-cancelled-confirmatory"
+      },
+      {
+        "base": 20293311,
+        "count": 12,
+        "lineage": "stage-8-cancelled-shakedown"
+      }
+    ],
+    "runs_total": 48,
+    "shakedown_seed_derivation": "hazard_seed = 20421301 + j, j in 0..11",
+    "window_ticks_W": 2400
+  },
+  "two_thirds_threshold": 8
+}
+GATE_EXIT=0
