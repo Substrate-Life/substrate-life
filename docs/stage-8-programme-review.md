@@ -403,21 +403,29 @@ green; push after every commit.
    are retained-class immutable: never rerun, never edited, no
    supplementary endpoint added to the closed line.
 2. **The NEXT registration decides the follow-on — nothing else.**
-   Immediate obligation: a Round-4 adversarial debate (standing orders;
-   disclose again if delegation tooling remains unavailable) on the
-   direction choice among: (a) ecology/power reframing, now armed with
-   an exact measured prior — paired dispersion sd(D) ≈ 5.7/255 at
-   W = 2400 makes desk-only power arithmetic possible for any future
-   paired instrument; a (b)-family recruitment endpoint (carrying its
-   mediator-caveat precondition); a frequency-trajectory instrument
-   (unrun by any stage; would require generous up-front powering and
-   honest carriage of BOTH existing nulls — not an addition to Stage 8);
-   or (d) programme close-out. Whichever survives writes a superseding
-   preregistration BEFORE any implementation window opens.
-3. **If (d) wins:** extend `docs/public-technical-essay.md` with the
-   full Stage 7B → 8 arc (three falsified repairs caught by gates; the
-   G2 bookkeeping repair lineage; two registered nulls at two endpoint
-   families) and issue the final report.
+   ~~Immediate obligation: a Round-4 adversarial debate~~
+   **DISCHARGED (session 7, commit `0b37930`): Round 4 conducted —
+   ADVOCATE SURVIVES; the next registration pursues direction (d)
+   programme close-out.** Delegation tooling unavailable again
+   (disclosed in the log); roles parent-argued against repo facts.
+   Key checks: count-based rule size dispersion-free at exactly
+   190051/2²⁴ ≈ 0.01133 one-sided / 0.02266 two-sided (recomputed);
+   failure mode was sign balance (13/11), not magnitude scarcity;
+   freeze `f1e6880` 14:54:44 UTC precedes launch 14:55:41 UTC;
+   identical cross-arm birth totals (23,933 each) are the shared
+   phenotype-blind demographic skeleton, not contamination. Binding:
+   no further evolutionary execution on any closed line; a future
+   trajectory-style registration must be justified independently of
+   this null.
+3. **(d) close-out — IN PROGRESS (session 7).** The Stage 7B → 8 arc
+   is now in `docs/public-technical-essay.md` as the new section
+   "Registered questions, registered answers" (both nulls with bounds,
+   gate-repair lineage, discipline-as-method, explicit scope limits
+   carrying the measured sd(D) ≈ 5.7/255 prior). REMAINING: the final
+   report summarising Stages 1 → 8 with the failed-designs lineage
+   cited; suite kept green throughout; documentation-only work needs
+   no execution registration (the common procedural requirements bind
+   implementations and retained runs, none of which occur here).
 4. **Housekeeping:** suite green re-verified this session (423 OK,
    4 skipped); push after every commit; keep the tree clean; do not
    touch `failed-designs/`; do not rerun closed lines or touch retained
