@@ -358,34 +358,67 @@ green; push after every commit.
 +  (`20310529+i`, k = 24 pairs = 48 runs, W = 2400, two workers) toward
 +  `results/stage8-alpha-evolution-paired/confirmatory-paired-20310529.json`
 +  — executing as this entry is committed.
++
++- 2026-08-23 (session 7): **THE ONE retained confirmatory suite
++  executed and reduced exactly once — registered NULL
++  (`NO_ESTABLISHED_DIRECTION`); Stage 8 rung 2 closes at this ecology.**
++  Execution: launched 14:55:41 UTC immediately after this entry's
++  predecessor was pushed, `--workers 2`, exit 0, wall ≈ 2 h 46 m (the
++  prereg §8 estimate was ≈ 85 min; disclosed as fact — event digests
++  and draw chains bind streams, not clocks). Pre-reduction integrity
++  checked twice: all 30 manifest pins matched the working tree both
++  before launch and before reduction (zero drift), and the raw
++  artifact's embedded `source_manifest_sha256` over its 14 sources
++  matched the freeze manifest exactly. Runner summary: 24/24 pairs both
++  arms COMPLETE, 48/48 runs COMPLETE, `PENDING_REDUCTION`. The
++  source-frozen reducer applied §5 exactly once (pre-rule validation
++  silent pass): k_eff = 24/24 eligible, movers-up **9**, movers-down
++  **6**, non-movers 9 against concordance 18 ⇒ **NO_ESTABLISHED_DIRECTION**;
++  `leakage_pairs = 0`. Obligations from debate Rounds 2–3 discharged in
++  `docs/stage-8-paired-execution-note.md`: empirical null spread of D_i
++  reported descriptively (mean −47/73440 ᾱ-units ≈ −0.16/255 lattice
++  units; population sd ≈ 5.71/255 — ≈ 2.9–3.6× the Round-2
++  composition-noise proxy band; recorded as proxy-underestimation,
++  size unaffected under the frozen count-based rule); ancestry-
++  plurality monitor clean so A3 flip-sign leakage is not indicated
++  (sign split 13 positive / 11 negative); residual W-derived-count risk
++  pointer restated. Factual threshold-free context: Arm M 23,933
++  mutation decisions / 35,981 kernel draws / 0 problems; Arm R0
++  zero-decision, zero-draw, empty chain, telemetry passing on every run;
++  admitted births identical across arms (23,933 each — the shared
++  phenotype-blind demographic skeleton at equal seeds); terminal
++  distinct-A M 9..17 vs R0 1..2; zero extinctions, n_live = 48 on all
++  48 runs. Reading per §5 / former Part V item 3: direction (c) closes
++  AT THIS ECOLOGY with the paired redistribution bound (best side 9/24
++  < 18; median |D| = 4.6/255 at floor scale but signs split), feeding
++  review directions (a)/(d). Nothing added to escape the null. Raw +
++  reduced artifacts, the execution note, and this entry are committed
++  together; retained artifacts immutable henceforth.
 
 ## Part V — Next run should pick up
 
-1. **Retained confirmatory suite** (launched immediately after freeze
-   `f1e6880`, in flight at ~15:45 UTC): when it completes, reduce
-   EXACTLY ONCE — `python3 src/reduce_stage8_paired.py
-   results/stage8-alpha-evolution-paired/confirmatory-paired-20310529.json
-   --out results/stage8-alpha-evolution-paired/confirmatory-paired-20310529-reduced.json`
-   — then write the execution note (obligations in item 2), iterate
-   this log, commit artifacts + note together, push. If instead the raw
-   artifact is absent AND no runner process survives: the run died with
-   its session before emitting an observation; per the f1e6880
-   disclosure precedent the single retained suite may be re-executed
-   once with that interruption disclosed in the execution note (the
-   artifact binds its own event digests; reduction still happens
-   exactly once). No third start without a superseding registration.
-2. **Obligations travel with the execution note** (debate Rounds 2–3):
-   report the empirical null spread of `D_i` descriptively whatever the
-   class; read and report the leakage monitor (`leakage_pairs`,
-   ancestry-plurality); the freeze-commit note states the decision-path-
-   field validation substrate (corrected G2 labels, G3 bit-exact
-   re-execution, W = 120 plumbing coverage, ≥15 pre-rule reducer
-   refusals) and discloses the nonzero residual risk for W-derived
-   counts.
-3. Read the outcome per §5's registered interpretation: null ⇒ direction
-   (c) closes at this ecology with the paired redistribution bound (feed
-   into review directions (a)/(d)); established ⇒ discovery at 20× finer
-   longitudinal resolution. Either way the NEXT registration decides the
-   follow-on; nothing may be added to escape a null.
-4. Keep the suite green; push after every commit; keep the tree clean;
-   do not rerun closed lines or touch retained artifacts.
+1. **Stage 8 is CLOSED as a registered bounded negative.** The raw and
+   reduced artifacts under `results/stage8-alpha-evolution-paired/`,
+   the freeze manifest, and `docs/stage-8-paired-execution-note.md`
+   are retained-class immutable: never rerun, never edited, no
+   supplementary endpoint added to the closed line.
+2. **The NEXT registration decides the follow-on — nothing else.**
+   Immediate obligation: a Round-4 adversarial debate (standing orders;
+   disclose again if delegation tooling remains unavailable) on the
+   direction choice among: (a) ecology/power reframing, now armed with
+   an exact measured prior — paired dispersion sd(D) ≈ 5.7/255 at
+   W = 2400 makes desk-only power arithmetic possible for any future
+   paired instrument; a (b)-family recruitment endpoint (carrying its
+   mediator-caveat precondition); a frequency-trajectory instrument
+   (unrun by any stage; would require generous up-front powering and
+   honest carriage of BOTH existing nulls — not an addition to Stage 8);
+   or (d) programme close-out. Whichever survives writes a superseding
+   preregistration BEFORE any implementation window opens.
+3. **If (d) wins:** extend `docs/public-technical-essay.md` with the
+   full Stage 7B → 8 arc (three falsified repairs caught by gates; the
+   G2 bookkeeping repair lineage; two registered nulls at two endpoint
+   families) and issue the final report.
+4. **Housekeeping:** suite green re-verified this session (423 OK,
+   4 skipped); push after every commit; keep the tree clean; do not
+   touch `failed-designs/`; do not rerun closed lines or touch retained
+   artifacts.
