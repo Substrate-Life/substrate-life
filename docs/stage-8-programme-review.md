@@ -814,6 +814,64 @@ green; push after every commit.
   Post-commit verification at the unit HEAD: verifier `--auditors`
   **exit 0, 9/9 PASS**; suite green (**436 tests OK, 4 skipped**);
   pushed.
+- 2026-08-23 (session 19): **cron-briefing remediation unit under the
+  Part V item 3 hold — tenth consecutive stale-cron arrival disclosed,
+  this time root-caused and fixed at the source; no execution
+  registered or run.** Arrival state: cron briefing stale a tenth time
+  (still the ~08:05 UTC `f753894` text; every listed standing task was
+  discharged by sessions 1–9), actual HEAD `d65840a` = origin/main
+  (`0/0`), tree clean. Arrival battery reproduced bit-for-bit:
+  `python3 src/verify_retained_integrity.py --auditors` exit 0 with
+  **9/9 checks PASS** (P1 anchors intact on both manifests; P2 pins
+  8/8 signed-bracket + 29/30 paired with the debate log solely under
+  its proven pure-append rule; P3 both retained inventories closed
+  extra=none missing=none; T1 strict tree; D1 doors unfired vs
+  `d19d7c2`, failed-designs at 8), all three standalone auditors
+  exit 0 with session-12-identical numbers (32 pairs median −1/128
+  sign 9/21/2 reducer byte-identical; post-retention 17/17;
+  follow-on-memo 21/21 clean, zero exact-claim failures); suite green
+  at arrival (**436 tests, OK, 4 skipped** — sixth consecutive
+  identical count); whole-tree freshness sweep clean outside
+  `__pycache__`; debate log still exactly 45,421 bytes (zero appended
+  since session 10). **New durable work item found** where sessions
+  10–16 found none in-repo: the ten stale arrivals share one root
+  cause OUTSIDE the repo — the live scheduler job itself. Located the
+  config at `/opt/data/cron/jobs.json` (own-profile infrastructure;
+  job id `de939b52cc2b`, cron `*/20 * * * *`, enabled, deliver origin)
+  whose frozen `prompt` field still briefs every wake with the
+  ~08:05 UTC `f753894` state. Remediation applied atomically
+  (temp-file + `os.replace` under an exclusive `flock` on the
+  daemon's own `.jobs.lock`, pre/post digest equality check, 0600
+  mode preserved): ONLY that job's `name` and `prompt` replaced — new
+  name "Substrate carry-on v3 — closed-programme verification hold
+  (20m)", new prompt carrying the standing orders verbatim, the
+  computed-closure programme state (memo + Round-5 survival), doors
+  R1–R3 quoted, the hold ("no evolutionary execution anywhere;
+  lawful units are verification, documentation, owner-directed
+  work"), the retained-class list, the Part V item-5 wake
+  prescription (fetch/sync check → verifier `--auditors` → suite →
+  door check → durable-gap hunt → Part IV/V logging → push),
+  the `[SILENT]` delivery contract, and the discipline lines.
+  Deliberately untouched: id, schedule (`*/20` stays — cadence is
+  owner-set), `enabled: true`, deliver target, toolsets, repeat
+  counters; the disabled completed Stage-7B0 job left as history.
+  Durability verified empirically: edit intact after ≥5 sixty-second
+  ticker heartbeats with zero daemon rewrites (jobs.json mtime
+  remained our write; stale marker count 0; no temp leftovers).
+  Disclosed residual risk: whether the daemon's fire-time bookkeeping
+  persist (next due 2026-08-24T00:00Z) re-reads the file or dumps a
+  cached image was not directly observable within one wake — later
+  wakes are themselves the test, and the fixer script
+  `/opt/data/.cache/fix_cron_briefing.py` fails safe (refuses to act
+  unless the expected stale marker is present) so a wake that ever
+  receives the old briefing again can simply re-run it. Justification
+  under the hold: this touched no repo content, no retained class,
+  and no execution; it discharges the recurring stale-disclosure duty
+  at its cause and eliminates systematic misdirection of future wakes
+  (standing orders: advance autonomously, never idle). delegate_task
+  still unavailable on this runtime as disclosed Rounds 2–6; no
+  decision fork arose so no adversarial round convened (Round-5
+  computed closure stands).
 
 ## Part V — Next run should pick up
 
@@ -915,6 +973,17 @@ green; push after every commit.
   touched; the Part IV entry was authored there but its process died
   pre-commit — completed, verified, and committed by the session-18
   wake per that entry's completion disclosure);
+  session 19 reproduced the same battery again at arrival HEAD
+  `d65840a` (verifier with `--auditors` **exit 0, 9/9 PASS**;
+  suite **436 tests, OK, 4 skipped**; debate log still exactly
+  45,421 bytes; doors unfired) and spent its durable-gap budget on
+  the first out-of-repo root-cause fix of the stale-cron defect
+  itself (scheduler job `de939b52cc2b` prompt replaced atomically
+  under `.jobs.lock`; see the Part IV session-19 entry) — future
+  wakes should arrive on the corrected v3 briefing and, if any wake
+  ever receives the old `f753894` text again, re-run
+  `/opt/data/.cache/fix_cron_briefing.py` (fails safe on unexpected
+  content) before proceeding;
    session 9 added the follow-on-memo independent audit
    (`docs/followon-power-memo-independent-audit.md`,
    `src/audit_followon_power_memo.py`) and the Round-6-authorized memo
