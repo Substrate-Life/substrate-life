@@ -697,3 +697,104 @@ obligations carried forward:
 4. **O4:** programme review Part V is rewritten to point at this verdict
    and the memo, replacing the open follow-on question with the closed,
    computed answer.
+
+# Round 6 — 2026-08-23 (session 9): disposition of the independent-audit findings against the closure memo
+
+*Delegation unavailable this session (same disclosure as Rounds 2–5):
+roles parent-argued against repo facts, every claim checked against
+committed artifacts. Trigger: `src/audit_followon_power_memo.py`
+(21 checks) verified the binding closure memo
+(`docs/stage-8-followon-power-memo.md`) with **zero exact-claim
+failures** — all 24 D_i, mean, both sds, median |D| = 437/24480, movers
+9/6/9, sign 13/11, null anchor 190051/2²⁴, all 18 concordance tail
+cells, shift-method counts/powers, minimal shift 359/48, mean-rule
+sizing, divergence solution T ≈ 401, identity 23,933 = 23,933 (per-seed
+and total), all five §10 provenance digests, 14/14 frozen source pins —
+and returned two FINDINGS inside passages the memo itself labels
+"approximation", plus one estimate-cell rounding note:*
+
+- **F-1 (E1):** §4 prints "50% power ⇔ p_up ≈ 0.73 ⇔ μ\* ≈ 7.5";
+  consistent recomputation at the population σ = 5.7061 used everywhere
+  else in the memo gives p_up = 0.7260, μ\* = 7.428 (7.51 arises only
+  under the sample σ — an undeclared basis switch).
+- **F-2 (E3b):** consequently "Both maps agree within 0.03 units" is
+  true only of the printed rounded pair (|7.5 − 7.4792| = 0.0208); under
+  one consistent σ the gap is 0.051.
+- **F-3 (G1 cell):** §6 ceiling-80% wall recomputes to 5.849 h vs
+  printed ≈ 5.9 h — one final-digit rounding-path difference on a
+  labelled linear extrapolation.
+
+## Question put to the round
+
+Disposition fork: **(A)** amend the committed memo with a visible dated
+corrigendum; or **(B)** leave the memo untouched and let the audit
+document carry the corrections as an append-only errata layer.
+
+## ADVOCATE — for a visible corrigendum
+
+1. The memo is the **binding** closure document: R1–R3 gate every future
+   session. Its "within 0.03 units" sentence is not a soft estimate but
+   an affirmative *verification claim*, and it fails as stated under the
+   memo's own σ convention. A future session quoting it would propagate
+   a false check-result into a reopening decision.
+2. μ\*₅₀ = 7.5 is over-rounded relative to that same convention; the
+   value that produces 7.51 silently switches to the sample σ. An
+   undeclared basis inconsistency inside a document whose entire purpose
+   is "computation any reader can re-run" is exactly what this
+   programme exists to prevent.
+3. Lawfulness: Part V item 4 enumerates retained-class artifacts; the
+   memo is not among them, so editing violates nothing. Precedent for
+   disclosed byte-exact repair of a committed doc: the session-8 '+'
+   marker strip in the programme review.
+
+## ADVERSARIAL REVIEWER — attacking the advocate's weakest assumption
+
+1. The advocate assumes future readers quote the agreement sentence
+   without reading the audit sitting next to it in the same tree. This
+   repo's protocol is append-only disclosure (cf. the duplicate-session
+   record, `2139cdb`: the RECORD was corrected by addition, never by
+   amendment of analysis content).
+2. Amending an analysis doc after its debates closed — even numerically
+   harmlessly — normalizes post-hoc edits of committed analyses. Every
+   exact claim reproduces bit-exactly; the combined record (memo +
+   audit) is already accurate; no decision reachable from the record
+   changes (both map readings put the requirement near 1.86× floor,
+   unreachable; the R1 band is quoted as ~5–6 h either way — true-50%
+   rows recompute to 28.2 h realistic / 4.9 h ceiling).
+3. Digest/narrative churn: the debate log and programme review describe
+   the memo's content; amendment creates divergence among committed
+   narratives unless every cross-reference is re-verified.
+4. If amendment happens anyway, constraints: separate commit after the
+   audit is itself committed; original text preserved verbatim; the
+   correction enters as *marked, dated* corrigendum text citing the
+   audit — visible as an edit, never a silent substitution.
+
+## METHOD AUDITOR
+
+1. Discipline check: docs-only units need no execution registration
+   (Part V item 3 precedent); immutability item 4 does not cover the
+   memo — both branches are lawful, so the round decides on
+   record-integrity risk alone.
+2. Materiality verified independently: R1's operative threshold
+   (σ_D ≤ 3.0) derives from sd(D) = 5.7061 lattice units, which
+   reproduced bit-exactly (B2); **no registered trigger, threshold, or
+   conclusion is touched by any finding.**
+3. Risk asymmetry: branch B leaves one false affirmative verification
+   sentence in a binding document, corrected only by an auxiliary layer;
+   branch A with the adversarial constraints keeps history AND kills
+   propagation risk, using the same disclosure mechanism the programme
+   already applies to protocol deviations. Conditions: (i) audit module
+   + audit document + this round committed BEFORE the corrigendum;
+   (ii) corrigendum appended as new marked text, originals
+   byte-preserved, scope limited to the affected passage; (iii) suite
+   green and push after each commit.
+
+## Verdict
+
+**ADVOCATE SURVIVES narrowly**, adopting all four adversarial
+constraints and all three auditor conditions. Executed sequence this
+session: commit 1 = audit module + independent-audit document + this
+round; commit 2 = dated corrigendum appended to the memo (visible edit,
+originals preserved) + programme review session entry. No registered
+constant, threshold, reopening condition, or conclusion changes; the
+hold (Part V item 3) remains in force.
