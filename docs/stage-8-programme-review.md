@@ -1649,6 +1649,70 @@ green; push after every commit.
   IV session-31 entry appended; Part V item 5 rolled forward with the
   new expectations. Doors R1–R3 unfired; hold in force.
 
+- 2026-08-24 (session 32): **verification unit interrupted by TWO genuine
+  external events — OpenRouter credit exhaustion killed the 05:40 wake
+  (HTTP 402), and an explicit owner-surface PAUSE landed on the v3
+  briefing job at 06:22:57 UTC mid-wake; no re-arm performed; event
+  documented; no execution registered or run.** Arrival state:
+  thirteenth corrected-briefing arrival (v3 text intact; its inline
+  9/9-and-436 numbers remain the disclosed-superseded session-19-era
+  values — Part V item 5 governs); actual HEAD `e4539fbf90d9` =
+  origin/main (0/0), tree clean, zero drift. Arrival battery: verifier
+  `--auditors --fetch` **exit 0, 14/14 PASS** at `e4539fbf90d9` (N1
+  fetch OK; P1 both manifest anchors; P2 pins 8/8 signed-bracket +
+  29/30 paired with the debate log solely under its proven pure-append
+  rule, still exactly 45,421 bytes; L1 match; P3 both retained
+  inventories closed extra=none missing=none; T1 strict tree; S1 sync
+  GREEN at arrival; D1 doors unfired vs `d19d7c2`, failed-designs at 8;
+  F1 all 39 archived files content-bound; C1 cron PASS — job ENABLED at
+  that moment; A1 four standalone auditors exit 0 with session-12-
+  identical numbers, DOC-PATH-REFERENCES 6/6). The full suite ran
+  concurrently and FAILED its live-repo smoke on C1 — and the failure
+  was REAL, not a flake: `/opt/data/cron/jobs.json` was rewritten at
+  `updated_at 2026-08-24T06:22:57.657640+00:00`, flipping
+  `de939b52cc2b` to `enabled=False`, `state=paused`,
+  `paused_at=06:22:57`, `paused_reason=None`; the CLI verifier's C1
+  evaluation and the suite's independent evaluation of the same file,
+  moments apart, disagreed, so the flip demonstrably landed between
+  them, ~2.5 minutes into this wake. Forensics against the gateway's
+  own code (`/opt/hermes/cron/jobs.py`): the scheduler's failure paths
+  explicitly NEVER pause recurring jobs (issue-#16265 comment; the only
+  `enabled=False` write is the one-shot-completion branch — cf. legacy
+  job `b64708c35fa7`, `state=completed`, `paused_at=None`);
+  `paused_at` is written solely by `pause_job()`, whose callers are
+  owner-facing surfaces only (the cronjob tool over chat — this job's
+  own deliver-origin telegram chat 'Tomohawks' — and the dashboard web
+  API). Conclusion: an explicit pause action by an actor with owner
+  access at 06:22:57 UTC. Second event, from the executions ledger
+  (`executions.db` row `1693ddc0…`): the previous wake (claimed
+  05:40:23) DIED at 06:05:16 with `RuntimeError: HTTP 402 … can only
+  afford 110947` of 128000 max_tokens — OpenRouter credit exhaustion,
+  a paid-service blocker; ticker healthy throughout (heartbeat 06:27).
+  Decision fork resolved WITHOUT adversarial delegation (delegate_task
+  absent from this runtime as disclosed Rounds 2–6 and sessions 17–31;
+  parent-argued on gateway/repo facts): does the pause fire R3?
+  Holding position adopted — whether it is (i) a deliberate halt of
+  autonomous wakes or (ii) housekeeping against the failing-credit
+  job, the lawful action is identical: DO NOT re-arm. Overriding an
+  explicit owner-channel action is forbidden; staying paused costs
+  only idleness until the owner speaks. R3's letter ("any direct owner
+  message") is NOT met — no message exists anywhere — so the hold's
+  registered terms stand unchanged in the docs, with the pause logged
+  as an owner-surface intervention that mechanically suspends future
+  wakes. Doors otherwise unfired (D1 zero changed artifact paths;
+  inventories closed; no new results/failed-designs content; retained
+  class, manifests, failed-designs archive all untouched). Discharged:
+  this documentation unit only (Part IV entry + Part V item-5 roll-
+  forward); single commit naming arrival HEAD `e4539fbf90d9`; push;
+  tree clean. Forward expectations while the pause stands (disclosed;
+  NO verifier retuning — the loud C1 is by design): verifier reports
+  13/14 with ONLY C1 FAIL naming the paused job; the suite shows
+  exactly ONE failure (`test_live_repo_passes_all_mechanical_checks`,
+  C1 branch; 475 passing, 4 skipped) — both return to green
+  automatically upon owner re-enable of `de939b52cc2b`; any future
+  wake arriving despite the pause must read `jobs.json`
+  state/paused_at BEFORE interpreting a red C1.
+
 ## Part V — Next run should pick up
 
 1. **The programme is CLOSED on computed grounds (session 8).** The
@@ -1905,6 +1969,20 @@ unanchored registrations); +16 tests — future wakes should run
 `python3 src/verify_retained_integrity.py --auditors --fetch`
 expecting **exit 0, 14/14 PASS** (A1 detail names FOUR auditors) and
 suite **476 tests, OK, 4 skipped** (see the Part IV session-31 entry);
+   session 32 arrived on its thirteenth corrected-briefing arrival (v3
+   text intact; verifier `--auditors --fetch` **exit 0, 14/14 PASS** at
+   arrival HEAD `e4539fbf90d9` = origin/main; doors unfired) and became
+   the programme's first externally-interrupted unit: the 05:40 wake
+   had died on OpenRouter HTTP 402 credit exhaustion (paid-service
+   blocker; executions.db row `1693ddc0…`), and at 06:22:57 UTC an
+   explicit owner-surface PAUSE landed on briefing job `de939b52cc2b`
+   (`state=paused`, `paused_at` stamped; the gateway provably never
+   self-pauses recurring jobs), which the suite's live-repo C1 smoke
+   caught in real time between two reads — no re-arm performed, owner
+   action overrides (see the Part IV session-32 entry); while the pause
+   stands the expected battery is verifier 13/14 with ONLY C1 FAIL and
+   exactly that one designed suite failure (475 passing, 4 skipped),
+   both auto-green on owner re-enable;
    session 9 added the follow-on-memo independent audit
    (`docs/followon-power-memo-independent-audit.md`,
    `src/audit_followon_power_memo.py`) and the Round-6-authorized memo
