@@ -94,3 +94,33 @@ and the largest blob reachable from `origin/main` is
 (~80.5 MB) — warning-class under GitHub's 100 MB hard per-file limit,
 exactly as classified in the table above. The block therefore no longer
 exists; this document's residual role is historical.
+
+### Provenance note on the cited publication guide (2026-08-24)
+
+*Visible dated provenance note under the same reconciliation discipline
+(Round-6 corrigendum constraints); everything above is preserved
+byte-for-byte.*
+
+The document cited above by filename as
+`scientific-repository-publication.md` — and again below it as "the
+publication guide" — **resolves to no file anywhere**: no commit in any
+ref of this repository ever added, modified, or renamed a matching path
+(`git log --all --diff-filter=AMR -- '*scientific-repository-publication*'`
+returns empty), and a filesystem search of the working environment
+(`/opt/data`, depth 4) finds no matching markdown file. It was evidently
+an out-of-repo planning note of 2026-08-22 whose text was never itself
+committed. Its operative content is not lost: every proposition
+attributed to it survives verbatim in the citing documents themselves —
+(i) late LFS migration or history filtering replaces blobs and rewrites
+every descendant commit ID; (ii) audit documents cite current IDs;
+(iii) a filtered snapshot would be a different publication product and
+must not silently replace the original; (iv) historical documents are
+not rewritten as if the new hashes were original, and any migration
+requires a documented mapping note. The same guide is cited once more by
+`docs/history-migration-2026-08-22.md`, which then realized option 2
+above under exactly those constraints: pre-migration safety bundle,
+one-path filter, binding `MANIFEST.json` with embedded `migration_map`,
+that note serving as the resolution record. Readers should treat this
+addendum together with that migration note as the complete surviving
+record of the publication guide's requirements. Verified mechanically at
+this wake's arrival HEAD `3f50cc9b` (2026-08-24).

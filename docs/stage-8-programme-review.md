@@ -1027,6 +1027,64 @@ green; push after every commit.
   the verifier and suite before push (results recorded in the commit
   message).
 
+- 2026-08-24 (session 23): **publication-guide provenance
+  reconciliation under the Part V item 3 hold — fourth
+  corrected-briefing arrival; no execution registered or run.** Arrival
+  state: v3 briefing delivered intact for the fourth consecutive wake.
+  Actual HEAD `3f50cc9b` = origin/main (0 ahead / 0 behind), tree
+  clean. Arrival battery reproduced bit-for-bit:
+  `python3 src/verify_retained_integrity.py --auditors` exit 0 with
+  **9/9 checks PASS** (P1 both manifest anchors; P2 pins 8/8
+  signed-bracket + 29/30 paired with the debate log solely under its
+  proven pure-append rule, file still exactly 45,421 bytes; P3 both
+  retained inventories closed extra=none missing=none; T1 strict tree
+  at arrival; D1 doors unfired vs `d19d7c2`, failed-designs at 8), all
+  three standalone auditors exit 0 with session-12-identical numbers;
+  suite green at arrival (**436 tests, OK, 4 skipped** — tenth
+  consecutive identical count). Doors R1–R3 mechanically unfired (cron
+  `jobs.json` carries the v3 prompt only — v3 count 1, stale `f753894`
+  count 0); no owner redirection present in any channel. delegate_task
+  still absent from this runtime's toolset as disclosed Rounds 2–6 and
+  sessions 17–22; no decision fork arose so no adversarial round
+  convened (the Round-5 computed closure stands). **Durable gap found
+  and discharged:** this wake swept the whole documentation web for
+  unresolved references — every markdown relative link across README +
+  `docs/*.md` resolves (zero broken), and all 117 backticked
+  path-like references classify cleanly (bare module names resolve
+  under `src/`; root-rooted `results/…` paths exist except the migrated
+  blob, which resolves through its recorded `.parts/MANIFEST.json`;
+  gate-failed designs' planned output paths are recorded-absent under
+  `failed-designs/`; transient and out-of-repo cron paths excluded by
+  role) — surfacing exactly ONE genuine dangling authority citation:
+  `docs/push-status.md` cites `scientific-repository-publication.md`
+  twice as its policy authority ("Per …", "per the publication guide")
+  and `docs/history-migration-2026-08-22.md` cites "the publication
+  guide" once, yet no commit in any ref ever added, modified, or
+  renamed a matching path (`git log --all --diff-filter=AMR --
+  '*scientific-repository-publication*'` returns empty) and no
+  filesystem path under `/opt/data` (depth 4) matches — evidently an
+  out-of-repo planning note of 2026-08-22 whose text was never
+  committed. Discharged as dated provenance notes appended to BOTH
+  citing documents, originals byte-preserved (pure appends only: diff
+  stat 41 insertions, 0 deletions): a full note in
+  `docs/push-status.md` recording the mechanical non-existence evidence
+  and the four operative propositions that survive verbatim inside the
+  citing documents themselves, plus a short cross-referencing footnote
+  on `docs/history-migration-2026-08-22.md`. Pre-edit pin checks:
+  neither file appears in either freeze manifest nor the verifier pin
+  set (grep count 0 across all three). The three Stage-8 lineage
+  registration/schema docs were also examined for supersession-marker
+  staleness and found PINNED in the paired freeze manifest —
+  byte-frozen, therefore not lawful edit targets; their supersession
+  record lives lawfully in the non-frozen layers (programme-review
+  Part I, final-report §8, the gate-repair preregistration itself).
+  Mid-unit suite on the dirty tree: 436 ran, exactly one designed
+  failure (`test_live_repo_has_no_tracked_file_modifications`) naming
+  the two edited paths, 4 skipped. Unit closes with post-commit re-run
+  of the verifier and suite before push (results recorded in the commit
+  message). Part IV session-23 entry appended; Part V item 5 rolled
+  forward. Doors R1–R3 unfired; hold in force.
+
 ## Part V — Next run should pick up
 
 1. **The programme is CLOSED on computed grounds (session 8).** The
@@ -1167,6 +1225,18 @@ original in `docs/push-status.md`, whose stale "push blocked" present
 tense is thereby reconciled to the recorded same-day resolution;
 push-status verified unpinned in both freeze manifests and the verifier
 pin set pre-edit; see the Part IV session-22 entry);
+  session 23 followed the prescription again on its fourth
+corrected-briefing arrival (v3 text delivered intact; verifier with
+`--auditors` **exit 0, 9/9 PASS** with session-12-identical auditor
+numbers; suite **436 tests, OK, 4 skipped** at arrival HEAD `3f50cc9b`;
+debate log still exactly 45,421 bytes; doors unfired) and spent its
+durable-gap budget on the publication-guide provenance reconciliation
+(dated provenance notes appended below the byte-preserved originals in
+both `docs/push-status.md` and `docs/history-migration-2026-08-22.md`,
+reconciling their citations of the never-committed
+`scientific-repository-publication.md`; both files verified unpinned in
+both freeze manifests and the verifier pin set pre-edit; see the Part IV
+session-23 entry);
    session 9 added the follow-on-memo independent audit
    (`docs/followon-power-memo-independent-audit.md`,
    `src/audit_followon_power_memo.py`) and the Round-6-authorized memo

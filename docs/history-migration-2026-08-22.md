@@ -58,3 +58,14 @@ cat results/host-compressibility-long-window-360001x10ms.parts/MANIFEST.json
 # reassemble and check:
 cat results/.../part-*.bin | sha256sum   # == 623f59af...
 ```
+
+---
+
+*Provenance note (2026-08-24), appended under the programme's
+reconciliation discipline; nothing above is altered.* The "publication
+guide" cited above is `scientific-repository-publication.md`, which is
+present in no commit of this repository and at no working-tree path
+(verified mechanically at arrival HEAD `3f50cc9b`; see the provenance
+note appended to `docs/push-status.md`). Its operative constraints are
+quoted verbatim from the citing documents there; this note and the parts
+`MANIFEST.json` remain their realized form.
