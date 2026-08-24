@@ -980,6 +980,53 @@ green; push after every commit.
   of the verifier and suite before push (results recorded in the
   commit message).
 
+- 2026-08-24 (session 22): **push-status terminal-state reconciliation
+  under the Part V item 3 hold — third corrected-briefing arrival; no
+  execution registered or run.** Arrival state: v3 briefing delivered
+  intact for the third consecutive wake. Actual HEAD `f6ef4a3c` =
+  origin/main (`0/0`), tree clean. Arrival battery reproduced
+  bit-for-bit: `python3 src/verify_retained_integrity.py --auditors`
+  exit 0 with **9/9 checks PASS** (P1 both manifest anchors; P2 pins
+  8/8 signed-bracket + 29/30 paired with the debate log solely under
+  its proven pure-append rule, file still exactly 45,421 bytes; P3 both
+  retained inventories closed extra=none missing=none; T1 strict tree
+  at arrival; D1 doors unfired vs `d19d7c2`, failed-designs at 8), all
+  three standalone auditors exit 0 with session-12-identical numbers;
+  suite green at arrival (**436 tests, OK, 4 skipped** — ninth
+  consecutive identical count). Doors R1–R3 mechanically unfired; no
+  owner redirection present in any channel. delegate_task still absent
+  from this runtime's toolset as disclosed Rounds 2–6 and sessions
+  17–21; no decision fork arose so no adversarial round convened (the
+  Round-5 computed closure stands). **Durable gap found and
+  discharged:** `docs/push-status.md` (2026-08-22) still asserts in
+  present tense that "`main` is 40 commits ahead of `origin/main`" with
+  the push "**blocked** by GitHub's hard 100 MB per-file limit" —
+  contradicted by the live record: the block was resolved later the same
+  day by the documented history migration
+  (`docs/history-migration-2026-08-22.md`: filter-repo removed exactly
+  the one oversized path, raw bytes preserved and re-added as eight
+  ~40 MB parts with binding MANIFEST), every session since has pushed
+  cleanly, and this wake's fetch is mechanically 0/0. Discharge per the
+  established pattern: a visible dated "Status addendum (2026-08-24)"
+  appended below the original document, which is preserved byte-for-byte
+  in its pre-migration decision-record role (the migration note cites it
+  as such); every figure cross-checked before commit against
+  `docs/history-migration-2026-08-22.md`, the parts `MANIFEST.json`
+  itself (`original_bytes = 312139776`, `original_sha256 = 623f59af…`,
+  8 parts, `migration_map` present), and live git state (pre-migration
+  bundle 34,048,783 B distinguished from the earlier full-history bundle
+  34,046,576 B recorded in the original; largest origin/main-reachable
+  blob `host-encoding-diagnostic-result.json` at 84,415,065 B —
+  warning-class, under the 100 MB hard limit; migrated blob unreachable
+  at HEAD except via its recorded parts). Pre-edit pin checks:
+  `push-status.md` appears in neither freeze manifest nor the verifier
+  pin set (grep count 0 across all three). Mid-unit suite on the dirty
+  tree returned exactly the one designed sentinel failure
+  (`test_live_repo_has_no_tracked_file_modifications`) naming the two
+  edited paths and nothing else; unit closes with post-commit re-run of
+  the verifier and suite before push (results recorded in the commit
+  message).
+
 ## Part V — Next run should pick up
 
 1. **The programme is CLOSED on computed grounds (session 8).** The
@@ -1109,6 +1156,17 @@ green; push after every commit.
   reconciliation (visible dated notice atop `docs/project-report.md`,
   body byte-preserved; new Final-report bullet in README "Read
   first"; see the Part IV session-21 entry);
+  session 22 followed the prescription again on its third
+corrected-briefing arrival (v3 text delivered intact; verifier with
+`--auditors` **exit 0, 9/9 PASS** with session-12-identical auditor
+numbers; suite **436 tests, OK, 4 skipped** at arrival HEAD `f6ef4a3c`;
+debate log still exactly 45,421 bytes; doors unfired) and spent its
+durable-gap budget on the push-status terminal-state reconciliation
+(visible dated Status addendum appended below the byte-preserved
+original in `docs/push-status.md`, whose stale "push blocked" present
+tense is thereby reconciled to the recorded same-day resolution;
+push-status verified unpinned in both freeze manifests and the verifier
+pin set pre-edit; see the Part IV session-22 entry);
    session 9 added the follow-on-memo independent audit
    (`docs/followon-power-memo-independent-audit.md`,
    `src/audit_followon_power_memo.py`) and the Round-6-authorized memo
