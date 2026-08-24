@@ -1224,6 +1224,71 @@ green; push after every commit.
   S1 intentionally outlaws. Part IV session-25 entry appended;
   Part V item 5 rolled forward. Doors R1–R3 unfired; hold in force.
 
+- 2026-08-24 (session 26): **verifier-extension unit under the Part V
+  item 3 hold — seventh corrected-briefing arrival; no execution
+  registered or run.** Arrival state: v3 briefing delivered intact for
+  the seventh consecutive wake. Actual HEAD `c9264e1af97157` =
+  origin/main (`0/0`), tree clean — mechanically the session-25 unit
+  commit itself, zero commits/drift between that entry and this wake;
+  no stale-state discrepancy. Arrival battery reproduced exactly under
+  the session-25 expectation change: `python3
+  src/verify_retained_integrity.py --auditors` exit 0 with **10/10
+  checks PASS** (P1 both manifest anchors; P2 pins 8/8 signed-bracket +
+  29/30 paired with the debate log solely under its proven pure-append
+  rule, file still exactly 45,421 bytes; S1 sync GREEN at arrival —
+  `HEAD c9264e1 == origin/main`, the designed at-arrival state; P3 both
+  retained inventories closed extra=none missing=none; T1 strict tree
+  at arrival; D1 doors unfired vs `d19d7c2`, failed-designs at 8), all
+  three standalone auditors exit 0 with session-12-identical numbers;
+  suite green at arrival (**439 tests, OK, 4 skipped** — thirteenth
+  consecutive green count, first at the raised expectation). Doors
+  R1–R3 mechanically unfired, additionally confirmed by an independent
+  `git diff --name-only d19d7c2..HEAD` over `results/` +
+  `failed-designs/` (empty); cron channel checked directly
+  (`jobs.json`: enabled job = v3 `de939b52cc2b` only, legacy job
+  disabled, zero `f753894` markers); no owner redirection present in
+  any channel. delegate_task still absent from this runtime's toolset
+  as disclosed Rounds 2–6 and sessions 17–25; no decision fork arose so
+  no adversarial round convened (the Round-5 computed closure stands).
+  **Durable gap found and discharged (verification tooling):** the
+  debate log's lawfully-appended region had NO content binding anywhere
+  — the P2 pin proves only the 20,869-byte frozen prefix and accepts
+  any bytes behind it, so a same-length in-place rewrite of an appended
+  Round would have passed every mechanical check in the battery,
+  auditors included. Closed with a monotone **append ledger** sidecar +
+  new **L1** verifier check: `docs/stage-8-debate-log-append-ledger.json`
+  records `{bytes, sha256}` snapshots (seed = session 26 at exactly
+  45,421 B, `2b7929e0…56a5358`); `append_ledger()` requires every
+  recorded snapshot to remain a byte-exact prefix of the current file
+  forever, snapshots strictly increasing in size, and the newest to
+  equal the current file exactly — suffix rewrites (either length),
+  truncation, stale/bogus historical snapshots, malformed/non-monotone/
+  missing ledgers, and lawful appends not registered within the
+  appending unit's own commit all FAIL loudly with guidance. The ledger
+  is a new non-retained, unpinned, version-controlled sidecar (pre-edit
+  grep count 0 across both freeze manifests; debate log touched
+  read-only throughout). Test matrix +6 (`AppendLedgerTests`:
+  multi-snapshot history pass; same-length suffix mutation FAILS — the
+  regression test for the closed hole; unregistered lawful append fails
+  citing the registration duty; truncation below the recorded state
+  fails; stale older snapshot fails even when the newest matches;
+  missing/malformed/non-monotone ledgers fail) and the live smoke
+  extended to assert the L1 line. Pre-edit pin checks: grep count 0
+  across both freeze manifests; none of the three targets in the
+  verifier pin set. Mid-unit suite on the dirty tree: 445 ran, exactly
+  one designed failure
+  (`test_live_repo_has_no_tracked_file_modifications`) naming exactly
+  `src/verify_retained_integrity.py`,
+  `src/test_verify_retained_integrity.py`, and
+  `docs/stage-8-programme-review.md`, 4 skipped. Expectation change
+  disclosed: future wakes should see `--auditors` **exit 0, 11/11
+  PASS** and suite **445 tests, OK, 4 skipped**; S1 expected GREEN at
+  arrivals and RED only inside commit-to-push windows. Per the
+  session-25 workflow correction, closing battery numbers are reported
+  post-push at the pushed HEAD in this wake's delivery. Part IV
+  session-26 entry appended; Part V item 5 rolled forward with the new
+  expectations. Doors R1–R3 unfired; hold in force.
+
 ## Part V — Next run should pick up
 
 1. **The programme is CLOSED on computed grounds (session 8).** The
@@ -1400,6 +1465,18 @@ session 10 had hand-transcribed; +3 tests — future wakes should expect
 `python3 src/verify_retained_integrity.py --auditors` **exit 0, 10/10
 PASS** and suite **439 tests, OK, 4 skipped** (see the Part IV
 session-25 entry);
+  session 26 followed the prescription again on its seventh corrected-
+briefing arrival (v3 text delivered intact; verifier with `--auditors`
+**exit 0, 10/10 PASS** with session-12-identical auditor numbers; suite
+**439 tests, OK, 4 skipped** at arrival HEAD `c9264e1af97157`; doors
+unfired) and spent its durable-gap budget on content-binding the debate
+log's appended region — new **L1 append-ledger** check plus the
+monotone snapshot sidecar `docs/stage-8-debate-log-append-ledger.json`
+(seed: 45,421 B @ `2b7929e0…`), closing the same-length suffix-rewrite
+hole the prefix-only pin could not see; +6 tests — future wakes should
+expect `python3 src/verify_retained_integrity.py --auditors` **exit 0,
+11/11 PASS** and suite **445 tests, OK, 4 skipped** (see the Part IV
+session-26 entry);
    session 9 added the follow-on-memo independent audit
    (`docs/followon-power-memo-independent-audit.md`,
    `src/audit_followon_power_memo.py`) and the Round-6-authorized memo

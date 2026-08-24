@@ -224,6 +224,143 @@ class SyncTests(unittest.TestCase):
             self.assertIn("0/1", detail)
 
 
+class AppendLedgerTests(unittest.TestCase):
+    """L1 append-ledger coverage: the P2 pin proves only the debate log's
+    frozen prefix, so ANY bytes behind it were previously unchecked -- even a
+    same-length rewrite of the appended region passed every check. The ledger
+    binds content: every recorded snapshot must stay a byte-exact prefix,
+    snapshots must grow strictly monotonically, and the newest must equal the
+    current file exactly."""
+
+    @staticmethod
+    def _write(
+        root: pathlib.Path,
+        log: bytes,
+        snaps: list[dict] | None = None,
+        raw_ledger: str | None = None,
+    ) -> None:
+        d = root / "docs"
+        d.mkdir(parents=True, exist_ok=True)
+        (d / "stage-8-debate-log.md").write_bytes(log)
+        lp = root / vri.APPEND_LEDGER_PATH
+        if raw_ledger is not None:
+            lp.write_text(raw_ledger)
+        elif snaps is None:
+            lp.write_text(
+                json.dumps(
+                    {"snapshots": [{"session": 26, "bytes": len(log),
+                                    "sha256": digest(log)}]}
+                )
+            )
+        else:
+            lp.write_text(json.dumps({"snapshots": snaps}))
+
+    def test_multi_snapshot_history_passes(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = pathlib.Path(td)
+            s1 = b"frozen prefix\n"
+            s2 = s1 + b"## Round 9 appendix\n"
+            s3 = s2 + b"## Round 10 appendix\n"
+            self._write(
+                root,
+                s3,
+                snaps=[
+                    {"session": 24, "bytes": len(s1), "sha256": digest(s1)},
+                    {"session": 25, "bytes": len(s2), "sha256": digest(s2)},
+                    {"session": 26, "bytes": len(s3), "sha256": digest(s3)},
+                ],
+            )
+            ok, detail = vri.append_ledger(root)
+            self.assertTrue(ok, detail)
+            self.assertIn("3 snapshots", detail)
+
+    def test_same_length_mutation_of_appended_region_fails(self):
+        """THE hole this check closes: frozen prefix intact, total size
+        unchanged, suffix rewritten in place -- the prefix-only pin cannot
+        see it, L1 must."""
+        with tempfile.TemporaryDirectory() as td:
+            root = pathlib.Path(td)
+            good = b"frozen prefix\n## Round 9: closure survives\n"
+            bad = bytearray(good)
+            bad[-1] = ord("X")
+            self._write(
+                root,
+                bytes(bad),
+                snaps=[{"session": 26, "bytes": len(good),
+                        "sha256": digest(good)}],
+            )
+            ok, detail = vri.append_ledger(root)
+            self.assertFalse(ok)
+            self.assertIn("!=", detail)
+
+    def test_unregistered_lawful_append_fails_with_guidance(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = pathlib.Path(td)
+            base = b"frozen prefix\n"
+            self._write(root, base + b"\n## Round 10 appendix\n",
+                        snaps=[{"session": 26, "bytes": len(base),
+                                "sha256": digest(base)}])
+            ok, detail = vri.append_ledger(root)
+            self.assertFalse(ok)
+            self.assertIn("register", detail)
+
+    def test_truncation_below_recorded_state_fails(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = pathlib.Path(td)
+            big = b"frozen prefix\nlong appended history\n"
+            self._write(root, b"frozen pre",
+                        snaps=[{"session": 26, "bytes": len(big),
+                                "sha256": digest(big)}])
+            ok, detail = vri.append_ledger(root)
+            self.assertFalse(ok)
+            self.assertIn("truncated", detail.lower())
+
+    def test_stale_older_snapshot_fails_even_if_newest_matches(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = pathlib.Path(td)
+            cur = b"frozen prefix\nwhole appended region\n"
+            self._write(
+                root,
+                cur,
+                snaps=[
+                    {"session": 25, "bytes": 10,
+                     "sha256": digest(b"wrongwrong!")},
+                    {"session": 26, "bytes": len(cur), "sha256": digest(cur)},
+                ],
+            )
+            ok, detail = vri.append_ledger(root)
+            self.assertFalse(ok)
+            self.assertIn("alteration", detail)
+
+    def test_missing_malformed_and_non_monotone_ledgers_fail(self):
+        with tempfile.TemporaryDirectory() as td:
+            ok, detail = vri.append_ledger(pathlib.Path(td))
+            self.assertFalse(ok)
+            self.assertIn("missing", detail.lower())
+        with tempfile.TemporaryDirectory() as td:
+            root = pathlib.Path(td)
+            self._write(root, b"log bytes\n", raw_ledger="{not json")
+            ok, detail = vri.append_ledger(root)
+            self.assertFalse(ok)
+            self.assertIn("unreadable", detail.lower())
+        with tempfile.TemporaryDirectory() as td:
+            root = pathlib.Path(td)
+            cur = b"0123456789" * 2
+            self._write(
+                root,
+                cur,
+                snaps=[
+                    {"session": 27, "bytes": 30,
+                     "sha256": digest(b"x" * 30)},
+                    {"session": 26, "bytes": len(cur),
+                     "sha256": digest(cur)},
+                ],
+            )
+            ok, detail = vri.append_ledger(root)
+            self.assertFalse(ok)
+            self.assertIn("strictly increasing", detail)
+
+
 class RealRepoSmoke(unittest.TestCase):
     def test_live_repo_passes_all_mechanical_checks(self):
         # T1 excluded: this suite may run before the verifier's own commit,
@@ -249,6 +386,8 @@ class RealRepoSmoke(unittest.TestCase):
         self.assertIn("S1 sync", joined)
         # The pure-append info line must carry the debate log's current size.
         self.assertRegex(joined, r"info: docs/stage-8-debate-log\.md: current size \d+ B")
+        # L1 content-binds the appended region via the ledger sidecar.
+        self.assertIn("L1 append-ledger", joined)
 
     def test_live_repo_has_no_tracked_file_modifications(self):
         ok, detail = vri.tree_clean(vri.REPO_ROOT, strict=False)

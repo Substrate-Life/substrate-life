@@ -1,0 +1,16 @@
+{
+  "path": "docs/stage-8-debate-log.md",
+  "purpose": "Content-bind the sole pure-append path beyond its frozen prefix. The P2 pin in src/verify_retained_integrity.py proves only the frozen prefix byte-exact and accepts any bytes behind it, so before this ledger a same-length in-place rewrite of the lawfully-appended region would have passed every mechanical check. This sidecar records a monotone snapshot history that closes that hole.",
+  "enforcement": "verifier check L1 (append_ledger() in src/verify_retained_integrity.py)",
+  "rule": "Every recorded snapshot must remain a byte-exact prefix of the current file forever; snapshots must grow strictly monotonically in bytes; the newest snapshot must equal the current file exactly. Any alteration (same-length or not), truncation, stale/bogus historical snapshot, malformed or non-monotone ledger, or lawful append not registered here within the appending unit's own commit FAILS loudly. Lawful appends add exactly one snapshot in the appending unit's commit.",
+  "status": "non-retained, unpinned, version-controlled documentation-sidecar; never a substitute for the immutable freeze manifests",
+  "created_by": "cron-session 26 (2026-08-24), verification-tooling unit under the Part V item-3 hold",
+  "snapshots": [
+    {
+      "session": 26,
+      "date": "2026-08-24",
+      "bytes": 45421,
+      "sha256": "2b7929e0e9dd3dfe24609da2dfe97870df417451686b31504a291b13b56a5358"
+    }
+  ]
+}

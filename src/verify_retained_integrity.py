@@ -19,6 +19,14 @@ What it checks (all mechanical, all read-only):
   P3  Inventory close: each retained directory contains exactly the manifest plus
       the pins/first-retained-outputs the manifest declares -- nothing added,
       nothing missing.
+  L1  Append ledger: docs/stage-8-debate-log-append-ledger.json content-binds
+      the lawfully-appended suffix of the sole pure-append path (the P2 pin
+      proves only its frozen prefix). Every recorded {bytes, sha256} snapshot
+      must remain a byte-exact prefix of the current file forever, snapshots
+      must grow strictly monotonically, and the newest snapshot must equal
+      the current file exactly -- so same-length rewrites of the appended
+      region, truncations, malformed/non-monotone ledgers, and lawful appends
+      not registered within the appending unit's own commit all FAIL loudly.
   T1  Working tree clean (git status --porcelain empty).
   S1  Sync: local HEAD equals origin/main by local rev-parse comparison
       (no network; compares the last-fetched remote ref). The wake
@@ -89,6 +97,12 @@ LAST_ARTIFACT_COMMIT = "d19d7c2"
 # Append-only archive directory must hold exactly this many entries.
 FAILED_DESIGNS_COUNT = 8
 
+# Content-binding ledger for the sole pure-append path (check L1): a monotone
+# snapshot history proving the appended suffix byte-exact against every
+# recorded state. Non-retained, unpinned, version-controlled; each lawful
+# append registers a new snapshot in the appending unit's own commit.
+APPEND_LEDGER_PATH = "docs/stage-8-debate-log-append-ledger.json"
+
 AUDITORS: tuple[str, ...] = (
     "src/audit_stage7b_signed_bracket.py",
     "src/audit_stage8_post_retention.py",
@@ -143,6 +157,72 @@ def _rel_to_root(p: pathlib.Path, root: pathlib.Path) -> str | None:
         return str(p.resolve().relative_to(root.resolve()))
     except ValueError:
         return None
+
+
+def append_ledger(
+    root: pathlib.Path,
+    rel: str = "docs/stage-8-debate-log.md",
+) -> tuple[bool, str]:
+    """L1: content-bind the pure-append path beyond its frozen prefix.
+
+    The P2 pin proves only the frozen prefix and accepts ANY bytes behind
+    it, so a same-length in-place rewrite of the appended region would
+    otherwise pass every mechanical check. The ledger at APPEND_LEDGER_PATH
+    holds a monotone snapshot history: every recorded {bytes, sha256} must
+    still be a byte-exact prefix of the current file, snapshots must grow
+    strictly monotonically, and the newest must equal the current file
+    exactly. Any alteration (same-size or not), truncation, stale historical
+    snapshot, or lawful append not registered in the appending unit's own
+    commit fails loudly.
+    """
+    lp = root / APPEND_LEDGER_PATH
+    if not lp.is_file():
+        return False, f"{APPEND_LEDGER_PATH}: missing (cannot content-bind {rel})"
+    try:
+        ledger = json.loads(lp.read_text())
+        raw_snaps = ledger["snapshots"]
+        if not isinstance(raw_snaps, list) or not raw_snaps:
+            raise ValueError("snapshots must be a non-empty list")
+        snaps = [(int(s["bytes"]), str(s["sha256"])) for s in raw_snaps]
+    except (ValueError, KeyError, TypeError, OSError) as exc:
+        return False, f"{APPEND_LEDGER_PATH}: unreadable/malformed ({exc})"
+    sizes = [b for b, _ in snaps]
+    if any(next_b <= b for b, next_b in zip(sizes, sizes[1:])):
+        return False, (
+            f"{APPEND_LEDGER_PATH}: snapshots not strictly increasing in "
+            f"bytes {sizes}"
+        )
+    target = root / rel
+    if not target.is_file():
+        return False, f"{rel}: absent from working tree"
+    data = target.read_bytes()
+    stale = [
+        f"{b}B/{h[:12]}"
+        for b, h in snaps[:-1]
+        if not (len(data) >= b and sha256_hex(data[:b]) == h)
+    ]
+    if stale:
+        return False, (
+            f"{rel}: recorded history no longer a byte-exact prefix "
+            f"(alteration, not append): {', '.join(stale)}"
+        )
+    lb, lh = snaps[-1]
+    if len(data) < lb:
+        return False, (
+            f"{rel}: truncated below last recorded state ({len(data)} < {lb} B)"
+        )
+    cur = (len(data), sha256_hex(data))
+    if cur != (lb, lh):
+        return False, (
+            f"{rel}: current state {cur[0]}B/{cur[1][:12]} != last recorded "
+            f"{lb}B/{lh[:12]} -- register lawful appends in "
+            f"{APPEND_LEDGER_PATH} within the appending unit's own commit"
+        )
+    return True, (
+        f"{rel}: {len(data)} B matches ledger history ({len(snaps)} "
+        f"snapshot{'s' if len(snaps) != 1 else ''}; frozen prefix + "
+        f"appended suffix content-bound)"
+    )
 
 
 def inventory_close(
@@ -337,6 +417,11 @@ def verify(
             f"P3 inventory [{rel.rsplit('/', 2)[-2]}]",
             f"extra={extra or 'none'} missing={missing or 'none'}",
         )
+
+    # L1 append ledger: content-binds the pure-append suffix (the P2 pin
+    # proves only the frozen prefix; see module docstring).
+    ok, detail = append_ledger(root)
+    record(ok, "L1 append-ledger", detail)
 
     # T1 tree clean (strict: includes untracked). Skippable for in-suite
     # smoke runs where the verifier's own new files are legitimately
