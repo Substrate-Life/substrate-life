@@ -1708,7 +1708,8 @@ green; push after every commit.
   NO verifier retuning — the loud C1 is by design): verifier reports
   13/14 with ONLY C1 FAIL naming the paused job; the suite shows
   exactly ONE failure (`test_live_repo_passes_all_mechanical_checks`,
-  C1 branch; 475 passing, 4 skipped) — both return to green
+  C1 branch; 471 passing + this 1 designed failure = 472 ran, 4
+  skipped) — both return to green
   automatically upon owner re-enable of `de939b52cc2b`; any future
   wake arriving despite the pause must read `jobs.json`
   state/paused_at BEFORE interpreting a red C1.
@@ -1981,8 +1982,8 @@ suite **476 tests, OK, 4 skipped** (see the Part IV session-31 entry);
    caught in real time between two reads — no re-arm performed, owner
    action overrides (see the Part IV session-32 entry); while the pause
    stands the expected battery is verifier 13/14 with ONLY C1 FAIL and
-   exactly that one designed suite failure (475 passing, 4 skipped),
-   both auto-green on owner re-enable;
+   exactly that one designed suite failure (471 passing + 1 = 472 ran,
+   4 skipped), both auto-green on owner re-enable;
    session 9 added the follow-on-memo independent audit
    (`docs/followon-power-memo-independent-audit.md`,
    `src/audit_followon_power_memo.py`) and the Round-6-authorized memo
