@@ -927,6 +927,59 @@ green; push after every commit.
   set. Unit closes with post-commit re-run of the verifier and suite
   before push (results recorded in the commit message).
 
+- 2026-08-24 (session 21): **project-report supersession
+  reconciliation under the Part V item 3 hold — second corrected-
+  briefing arrival; no execution registered or run.** Arrival state:
+  v3 briefing delivered intact for the second consecutive wake.
+  Actual HEAD `75af015` = origin/main (`0/0`), tree clean. Arrival
+  battery reproduced bit-for-bit: `python3
+  src/verify_retained_integrity.py --auditors` exit 0 with **9/9
+  checks PASS** (P1 both manifest anchors; P2 pins 8/8
+  signed-bracket + 29/30 paired with the debate log solely under its
+  proven pure-append rule; P3 both retained inventories closed
+  extra=none missing=none; T1 strict tree at arrival; D1 doors
+  unfired vs `d19d7c2`, failed-designs at 8), all three standalone
+  auditors exit 0 with session-12-identical numbers; suite green at
+  arrival (**436 tests, OK, 4 skipped** — eighth consecutive
+  identical count); debate log still exactly 45,421 bytes (zero
+  appended since session 10); whole-tree post-commit freshness sweep
+  clean. Doors R1–R3 mechanically unfired; no owner redirection
+  present in any channel. delegate_task still absent from this
+  runtime's toolset as disclosed Rounds 2–6 and sessions 17–20; no
+  decision fork arose so no adversarial round convened (Round-5
+  computed closure stands). **Durable gap found and discharged:** the
+  last unreconciled front-door document — `docs/project-report.md`
+  (2026-07-30, Stages 1–6) is linked from the README "Read first"
+  list yet ends its artifact inventory at the *unexecuted* 7B2
+  registration, carrying no visible record that the entire subsequent
+  arc happened (7B2 `DEGENERATE_REPLICATION`; three pre-freeze gate
+  no-gos archived under `failed-designs/`; signed-bracket gate 24/24,
+  freeze `7d21153`, single retained execution → registered null
+  −1/128 vs floor 1/100, `NO_ESTABLISHED_CONTRAST`; Stage 8 paired
+  execution retained with 17/17 post-retention audit; computed
+  closure, memo independently audited 21/21). Although
+  `docs/final-report.md` declares the supersession internally, the
+  superseded document itself bore no marker, so a direct reader
+  routed there would land on a stale terminal state. Discharge:
+  (i) a visible dated supersession notice inserted at the top of
+  `docs/project-report.md`, original body preserved byte-for-byte
+  below it, every quoted figure cross-checked against
+  `docs/stage-8-programme-review.md` Parts I/V,
+  `docs/stage-8-followon-power-memo.md`, and the README status
+  addendum before commit (sd(D) = 5.7061; 13/24 crossings = 3.0%
+  exact power; ≥50% needs 1.87× floor; per-pair mover probability
+  0.75; admitted-births identity 23,933 = 23,933); (ii) a new "Final
+  report" bullet added to the README "Read first" list routing
+  readers to the closure report ahead of the snapshot, existing
+  bullets untouched. Pre-edit pin checks: neither file appears in
+  either freeze manifest nor the verifier pin set (grep count 0
+  across all three). Mid-unit suite run on the dirty tree returned
+  exactly the one designed sentinel failure
+  (`test_live_repo_has_no_tracked_file_modifications`) naming the
+  edited paths and nothing else; unit closes with post-commit re-run
+  of the verifier and suite before push (results recorded in the
+  commit message).
+
 ## Part V — Next run should pick up
 
 1. **The programme is CLOSED on computed grounds (session 8).** The
@@ -1047,6 +1100,15 @@ green; push after every commit.
   reconciliation (dated addendum beneath the original paragraph,
   which is byte-preserved; README verified unpinned in both freeze
   manifests pre-edit; see the Part IV session-20 entry);
+  session 21 followed the prescription again on its second
+  corrected-briefing arrival (v3 text delivered intact; verifier with
+  `--auditors` **exit 0, 9/9 PASS** with session-12-identical auditor
+  numbers; suite **436 tests, OK, 4 skipped** at arrival HEAD
+  `75af015`; debate log still exactly 45,421 bytes; doors unfired)
+  and spent its durable-gap budget on the project-report supersession
+  reconciliation (visible dated notice atop `docs/project-report.md`,
+  body byte-preserved; new Final-report bullet in README "Read
+  first"; see the Part IV session-21 entry);
    session 9 added the follow-on-memo independent audit
    (`docs/followon-power-memo-independent-audit.md`,
    `src/audit_followon_power_memo.py`) and the Round-6-authorized memo

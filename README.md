@@ -73,6 +73,7 @@ over the retained class:
 - [Archival Markdown copy](docs/public-technical-essay.md) — repository-preserved copy of the published argument.
 - [Host-coupling essay](docs/the-host-varied-metabolism-couldnt-eat-it.md) — why measurable host variation remained outside the repetition metabolism's nutritional currency.
 - [Audited findings synthesis](docs/stages1-6-findings-synthesis.md) — the evidentiary source, with measured/inferred boundaries and superseded claims.
+- [Final report](docs/final-report.md) — closure report for Stages 1 → 8 (2026-08-23); supersedes the project report bullet below, which remains the 2026-07-30 Stages 1–6 snapshot with a dated supersession notice at its top.
 - [Project report](docs/project-report.md) — current model, retained results, failed assays, and open questions.
 - [`failed-designs/`](failed-designs/) — byte-preserved dead ends, audit transcripts, and the reasoning for abandonment.
 

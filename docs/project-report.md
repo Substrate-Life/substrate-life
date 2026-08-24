@@ -3,6 +3,38 @@
 *Current model, empirical findings, superseded claims, and open questions.*
 *Date: 2026-07-30*
 
+> **Supersession notice (2026-08-24, visible/dated).** This document is
+> the Stages 1–6 snapshot as of 2026-07-30 and is preserved unchanged
+> below; [`docs/final-report.md`](final-report.md) (2026-08-23)
+> supersedes it for every later event. In brief, the Stage 7B
+> confirmatory line subsequently ran its full registered arc: 7B2
+> executed 32/32 and returned `DEGENERATE_REPLICATION`
+> (`results/stage7b2/`); three successor designs were caught by their
+> own pre-freeze feasibility gates and archived under
+> [`failed-designs/`](../failed-designs/); the signed-bracket design
+> passed its gate 24/24, was frozen (`7d21153`), and executed exactly
+> once to a registered null (median paired difference −1/128 against
+> floor Δr_min = 1/100, class `NO_ESTABLISHED_CONTRAST`;
+> `results/stage7b-signed-bracket/`); Stage 8 then ran the single
+> paired alpha-evolution execution retained at
+> `results/stage8-alpha-evolution-paired/` (17/17 post-retention
+> audit). The programme is CLOSED on computed grounds
+> ([`docs/stage-8-followon-power-memo.md`](stage-8-followon-power-memo.md),
+> independently audited 21/21 with zero exact-claim failures): at the
+> measured dispersion sd(D) = 5.7061 lattice units, a true shift equal
+> to the whole registered pair floor yields 3.0% exact power (13/24
+> crossings) on the frozen concordance rule; ≥50% power needs 1.87×
+> the floor; rule power falls with replicate count below per-pair
+> mover probability 0.75; and recruitment endpoints are mechanically
+> null at saturation (admitted-births identity 23,933 = 23,933,
+> phenotype-blind). Closure survived adversarial debate, Rounds 1–6
+> ([`docs/stage-8-debate-log.md`](stage-8-debate-log.md)). Reopening
+> doors R1–R3 (memo §9) are the only lawful paths back into
+> evolutionary work; until one fires, no evolutionary execution is
+> authorised anywhere in this programme. One-command integrity check
+> over the retained class:
+> `python3 src/verify_retained_integrity.py --auditors`.
+
 ---
 
 ## 1. Current Model
