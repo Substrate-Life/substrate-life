@@ -10,6 +10,7 @@ from __future__ import annotations
 import hashlib
 import json
 import pathlib
+import subprocess
 import tempfile
 import unittest
 
@@ -174,6 +175,55 @@ class GitDoorTests(unittest.TestCase):
             self.assertIn("not found", detail)
 
 
+class SyncTests(unittest.TestCase):
+    """S1 sync-check coverage: fail-loud on unknown refs, pass only on
+    genuine equality, report behind/ahead counts on mismatch."""
+
+    @staticmethod
+    def _init_repo(root: pathlib.Path):
+        def g(*args: str) -> subprocess.CompletedProcess:
+            return subprocess.run(
+                ["git", "-C", str(root), *args], capture_output=True, text=True
+            )
+
+        r = g("init", "-q")
+        assert r.returncode == 0, r.stderr
+        g("config", "user.email", "t@example.invalid")
+        g("config", "user.name", "t")
+        r = g("commit", "--allow-empty", "-m", "c0")
+        assert r.returncode == 0, r.stderr
+        return g
+
+    def test_unknown_refs_fail_loudly(self):
+        """Git-free tmp dir: sync must FAIL, never silently pass."""
+        with tempfile.TemporaryDirectory() as td:
+            ok, detail = vri.sync(pathlib.Path(td))
+            self.assertFalse(ok)
+            self.assertIn("unknown", detail)
+
+    def test_equal_refs_pass(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = pathlib.Path(td)
+            g = self._init_repo(root)
+            r = g("update-ref", "refs/remotes/origin/main", "HEAD")
+            self.assertEqual(r.returncode, 0, r.stderr)
+            ok, detail = vri.sync(root)
+            self.assertTrue(ok, detail)
+            self.assertIn("==", detail)
+
+    def test_mismatch_fails_with_behind_ahead_counts(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = pathlib.Path(td)
+            g = self._init_repo(root)
+            g("update-ref", "refs/remotes/origin/main", "HEAD")
+            r = g("commit", "--allow-empty", "-m", "c1-unpushed")
+            self.assertEqual(r.returncode, 0, r.stderr)
+            ok, detail = vri.sync(root)
+            self.assertFalse(ok)
+            self.assertIn("!=", detail)
+            self.assertIn("0/1", detail)
+
+
 class RealRepoSmoke(unittest.TestCase):
     def test_live_repo_passes_all_mechanical_checks(self):
         # T1 excluded: this suite may run before the verifier's own commit,
@@ -184,9 +234,21 @@ class RealRepoSmoke(unittest.TestCase):
         self.assertTrue(
             lines[-1].startswith("VERIFY_RETAINED_INTEGRITY: ALL CHECKS PASS")
         )
+        # The summary fraction must count only PASS/FAIL check lines --
+        # never detail/info emissions interleaved in the output.
+        n_flagged = sum(
+            1
+            for ln in lines
+            if ln.startswith("[PASS]") or ln.startswith("[FAIL]")
+        )
+        self.assertIn(f"({n_flagged}/{n_flagged})", lines[-1])
         joined = "\n".join(lines)
         self.assertIn("P2 pins [stage7b-signed-bracket]", joined)
         self.assertIn("P2 pins [stage8-alpha-evolution-paired]", joined)
+        # S1 runs outside the T1 guard so this smoke covers it.
+        self.assertIn("S1 sync", joined)
+        # The pure-append info line must carry the debate log's current size.
+        self.assertRegex(joined, r"info: docs/stage-8-debate-log\.md: current size \d+ B")
 
     def test_live_repo_has_no_tracked_file_modifications(self):
         ok, detail = vri.tree_clean(vri.REPO_ROOT, strict=False)

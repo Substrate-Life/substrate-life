@@ -1148,6 +1148,82 @@ green; push after every commit.
   entry appended; Part V item 5 rolled forward. Doors R1–R3 unfired;
   hold in force.
 
+- 2026-08-24 (session 25): **verifier-extension unit under the Part V
+  item 3 hold — sixth corrected-briefing arrival; no execution
+  registered or run.** Arrival state: v3 briefing delivered intact for
+  the sixth consecutive wake. Actual HEAD `30d282f95225` =
+  origin/main (`0/0`), tree clean — mechanically the session-24 unit
+  commit itself, zero commits/drift between that entry and this wake;
+  no stale-state discrepancy beyond the v3 text's known immaterial
+  dating of the delegate_task absence (disclosed at session 20).
+  Arrival battery reproduced bit-for-bit:
+  `python3 src/verify_retained_integrity.py --auditors` exit 0 with
+  **9/9 checks PASS** (P1 both manifest anchors; P2 pins 8/8
+  signed-bracket + 29/30 paired with the debate log solely under its
+  proven pure-append rule, file still exactly 45,421 bytes; P3 both
+  retained inventories closed extra=none missing=none; T1 strict tree
+  at arrival; D1 doors unfired vs `d19d7c2`, failed-designs at 8), all
+  three standalone auditors exit 0 with session-12-identical numbers;
+  suite green at arrival (**436 tests, OK, 4 skipped** — twelfth
+  consecutive identical count). Doors R1–R3 mechanically unfired; cron
+  channel checked directly (`jobs.json`: enabled job = v3
+  `de939b52cc2b` only, legacy job disabled, zero `f753894` markers);
+  no owner redirection present in any channel. delegate_task still
+  absent from this runtime's toolset as disclosed Rounds 2–6 and
+  sessions 17–24; no decision fork arose so no adversarial round
+  convened (the Round-5 computed closure stands). The documentation
+  vein was examined first and found exhausted: the Stage 1–6 model
+  documents (`metabolism-model`, `boundary-model`,
+  `energy-model-v3`, `genome-viability`, `static-paper-model`,
+  `r-max-analysis`, `verification-report-v2`) are internally dated,
+  self-labelling historical records under the README archive policy,
+  several carrying their own supersession banners; every remaining
+  "remain untested" phrasing across `docs/` sits either inside a
+  byte-preserved original beneath a dated addendum (README §Status,
+  findings synthesis) or is an accurate forward-looking scope
+  statement (final-report §5). **Durable gap found and discharged
+  (verification tooling):** two per-wake steps had remained manual
+  since the session-13 consolidation — (i) briefing step 1's second
+  half, confirming HEAD == origin/main after fetch, and (ii) the
+  debate-log size disclosure hand-transcribed into every entry and
+  commit message since session 10 ("still exactly 45,421 bytes").
+  Both mechanised inside `src/verify_retained_integrity.py`: new
+  **S1 sync** check (local rev-parse comparison of HEAD against
+  origin/main, no network; unknown refs FAIL loudly, never silently;
+  mismatch reports behind/ahead counts via rev-list left-right, so a
+  failed or forgotten push now stops the NEXT wake at the verifier
+  instead of being discovered mid-entry) and a **non-failing P2 info
+  line** for each pure-append path emitting current size (= frozen
+  prefix + lawfully appended), verified live as `current size 45421 B
+  (= 20869 B frozen prefix + 24552 B lawfully appended)` —
+  bit-consistent with every prior manual disclosure. Test matrix
+  +3 (`SyncTests`: git-free fail-loud negative control; synthetic
+  equal-refs pass via update-ref; unpushed-commit mismatch asserting
+  the `0/1` behind/ahead counts) and the live smoke extended to
+  assert the S1 line and the info-line regex. Pre-edit pin checks:
+  grep count 0 across both freeze manifests; neither target in the
+  verifier pin set; both last touched by `9364b5d`. Mid-unit suite on
+  the dirty tree: 439 ran, exactly one designed failure
+  (`test_live_repo_has_no_tracked_file_modifications`) naming exactly
+  `src/verify_retained_integrity.py`,
+  `src/test_verify_retained_integrity.py`, and
+  `docs/stage-8-programme-review.md`, 4 skipped. Expectation change
+  disclosed: future wakes should see `--auditors` **exit 0, 10/10
+  PASS** and suite **439 tests, OK, 4 skipped**. The unit's first
+  post-commit verifier run then caught two things live: (1) the new
+  summary fraction printed `(10/11)` because the summary had used
+  `len(lines)`, which now also counts the info emission — fixed by
+  counting only `record()` checks (`n_checks`), with a live-smoke
+  guard asserting the fraction equals the number of bracketed check
+  lines; (2) S1 itself FAILED in the commit-to-push window
+  (`behind/ahead 0/1`) — its designed behavior, exercised on its own
+  unit. The wake-closing workflow is thereby corrected: battery re-runs
+  happen AFTER push at the pushed HEAD (numbers reported in this
+  wake's delivery and mechanically re-established at the next
+  arrival), replacing the former commit→re-run→amend→push pattern that
+  S1 intentionally outlaws. Part IV session-25 entry appended;
+  Part V item 5 rolled forward. Doors R1–R3 unfired; hold in force.
+
 ## Part V — Next run should pick up
 
 1. **The programme is CLOSED on computed grounds (session 8).** The
@@ -1311,6 +1387,19 @@ addendum beneath the byte-preserved 2026-08-01 title block of
 present-tense terminal state to the retained record; file verified
 unpinned in both freeze manifests and the verifier pin set pre-edit;
 README read-with clause added; see the Part IV session-24 entry);
+  session 25 followed the prescription again on its sixth corrected-
+briefing arrival (v3 text delivered intact; arrival battery reproduced
+bit-for-bit at HEAD `30d282f95225` = origin/main; doors unfired) and
+spent its durable-gap budget on extending the one-command verifier
+itself: new **S1 sync** check (HEAD == origin/main by local rev-parse,
+mechanising briefing step 1's comparison half, unknown refs failing
+loudly, behind/ahead counts on mismatch) plus a non-failing P2 info
+line emitting the debate log's current byte size (= frozen prefix +
+appended), retiring the manual stat disclosure every wake since
+session 10 had hand-transcribed; +3 tests — future wakes should expect
+`python3 src/verify_retained_integrity.py --auditors` **exit 0, 10/10
+PASS** and suite **439 tests, OK, 4 skipped** (see the Part IV
+session-25 entry);
    session 9 added the follow-on-memo independent audit
    (`docs/followon-power-memo-independent-audit.md`,
    `src/audit_followon_power_memo.py`) and the Round-6-authorized memo

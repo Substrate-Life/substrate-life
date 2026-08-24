@@ -20,9 +20,19 @@ What it checks (all mechanical, all read-only):
       the pins/first-retained-outputs the manifest declares -- nothing added,
       nothing missing.
   T1  Working tree clean (git status --porcelain empty).
+  S1  Sync: local HEAD equals origin/main by local rev-parse comparison
+      (no network; compares the last-fetched remote ref). The wake
+      procedure fetches first, so this mechanises briefing step 1's
+      comparison half and turns any unpushed-commit or failed-push
+      state into a loud stop condition instead of a manual discovery.
   D1  Doors: zero changed paths under results/ or failed-designs/ since the last
       artifact-producing commit d19d7c2 (the R1-R3 door check used by sessions
       10-12), and failed-designs/ still holds exactly its 8 archived entries.
+
+P2 additionally emits a non-failing info line for each pure-append path
+reporting the file's current byte size (= frozen prefix + lawfully
+appended), replacing the per-session manual stat disclosure of the
+debate log's size that every wake since session 10 has hand-transcribed.
 
 With --auditors it additionally spawns the three standalone read-only auditors
 (signed-bracket, post-retention, follow-on-memo) and requires exit 0 from each;
@@ -215,6 +225,33 @@ def doors(
     )
 
 
+def sync(root: pathlib.Path) -> tuple[bool, str]:
+    """S1: local HEAD must equal origin/main.
+
+    Purely local (compares the last-fetched remote ref, no network); the
+    wake procedure fetches first. Unknown refs fail loudly -- a verifier
+    that cannot establish the sync state must never silently pass.
+    """
+    rh = git(root, "rev-parse", "--verify", "HEAD")
+    rm = git(root, "rev-parse", "--verify", "origin/main")
+    if rh.returncode != 0 or rm.returncode != 0:
+        return False, (
+            f"refs unknown: HEAD rc={rh.returncode}, "
+            f"origin/main rc={rm.returncode} (not a git repo / fetch first?)"
+        )
+    head, main = rh.stdout.strip(), rm.stdout.strip()
+    if head != main:
+        rc = git(root, "rev-list", "--left-right", "--count", f"{main}...{head}")
+        counts = (
+            rc.stdout.strip().replace("\t", "/") if rc.returncode == 0 else "?/?"
+        )
+        return False, (
+            f"HEAD {head[:12]} != origin/main {main[:12]} "
+            f"(behind/ahead {counts}; resolve fetch/push before proceeding)"
+        )
+    return True, f"HEAD {head[:12]} == origin/main"
+
+
 def run_auditors(root: pathlib.Path) -> tuple[bool, str]:
     outs = []
     ok = True
@@ -240,11 +277,13 @@ def verify(
 ) -> tuple[bool, list[str]]:
     lines: list[str] = []
     failures = 0
+    n_checks = 0
 
     def record(ok: bool, label: str, detail: str) -> None:
-        nonlocal failures
+        nonlocal failures, n_checks
         if not ok:
             failures += 1
+        n_checks += 1
         lines.append(f"[{'PASS' if ok else 'FAIL'}] {label}: {detail}")
 
     # P1 manifest self-integrity
@@ -260,9 +299,8 @@ def verify(
             record(False, "P2 pins", f"{rel}: unreadable")
             continue
         manifest = load_manifest(mp)
-        verdicts = [
-            classify_pin(root, r, m) for r, m in sorted(manifest["files"].items())
-        ]
+        pin_items = sorted(manifest["files"].items())
+        verdicts = [classify_pin(root, r, m) for r, m in pin_items]
         exact = sum(1 for v, _ in verdicts if v == "EXACT")
         append = sum(1 for v, _ in verdicts if v == "PURE_APPEND")
         bad = [(v, d) for v, d in verdicts if v in ("MISSING", "DRIFT")]
@@ -275,6 +313,17 @@ def verify(
         )
         for _v, d in bad:
             lines.append(f"       detail: {d}")
+        # Non-failing size disclosure for pure-append paths (see module
+        # docstring): makes the recurring manual debate-log byte report
+        # mechanical.
+        for (rel_i, meta_i), (v_i, _d_i) in zip(pin_items, verdicts):
+            if v_i == "PURE_APPEND":
+                total_b = (root / rel_i).stat().st_size
+                lines.append(
+                    f"       info: {rel_i}: current size {total_b} B "
+                    f"(= {meta_i['bytes']} B frozen prefix + "
+                    f"{total_b - meta_i['bytes']} B lawfully appended)"
+                )
         extra, missing = inventory_close(
             root,
             rel,
@@ -296,6 +345,12 @@ def verify(
         ok, detail = tree_clean(root, strict=True)
         record(ok, "T1 tree", detail)
 
+    # S1 sync: runs regardless of include_tree_check so the live-repo
+    # smoke covers it too. At suite time HEAD is the arrival HEAD (the
+    # unit's own commit does not exist yet), which equals origin/main.
+    ok, detail = sync(root)
+    record(ok, "S1 sync", detail)
+
     # D1 doors
     ok, detail = doors(root, LAST_ARTIFACT_COMMIT, FAILED_DESIGNS_COUNT)
     record(ok, "D1 doors", detail)
@@ -305,7 +360,7 @@ def verify(
         ok, detail = run_auditors(root)
         record(ok, "A1 auditors", detail)
 
-    total = len(lines)
+    total = n_checks
     lines.append(
         f"VERIFY_RETAINED_INTEGRITY: {'ALL CHECKS PASS' if failures == 0 else 'FAILURES PRESENT'} "
         f"({total - failures}/{total})"
