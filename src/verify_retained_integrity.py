@@ -75,10 +75,10 @@ reporting the file's current byte size (= frozen prefix + lawfully
 appended), replacing the per-session manual stat disclosure of the
 debate log's size that every wake since session 10 has hand-transcribed.
 
-With --auditors it additionally spawns the three standalone read-only auditors
-(signed-bracket, post-retention, follow-on-memo) and requires exit 0 from each;
-it never runs the test suite and never executes anything evolutionary (Part V
-item-3 hold respected by construction).
+With --auditors it additionally spawns the four standalone read-only auditors
+(signed-bracket, post-retention, follow-on-memo, doc-path-reference) and
+requires exit 0 from each; it never runs the test suite and never executes
+anything evolutionary (Part V item-3 hold respected by construction).
 
 Exit code 0 iff every check passes. Any FAIL line means: stop, do not treat the
 wake as verified, diagnose before anything else.
@@ -160,6 +160,7 @@ AUDITORS: tuple[str, ...] = (
     "src/audit_stage7b_signed_bracket.py",
     "src/audit_stage8_post_retention.py",
     "src/audit_followon_power_memo.py",
+    "src/audit_doc_path_references.py",
 )
 
 

@@ -1561,6 +1561,94 @@ green; push after every commit.
   in this wake's delivery. Part IV session-30 entry appended; Part V
   item 5 rolled forward. Doors R1–R3 unfired; hold in force.
 
+- 2026-08-24 (session 31): **verification-only unit under the Part V
+  item 3 hold — twelfth corrected-briefing arrival;
+  documentation→repository path-reference integrity tooling (fourth
+  standalone auditor plus a lawful-absence registry); no execution
+  registered or run.** Arrival state: v3 briefing delivered intact for
+  the twelfth consecutive wake; actual HEAD `bd49b217bc5a` =
+  origin/main (`0/0`), tree clean — mechanically the session-30 unit
+  commit itself, zero commits/drift between that entry and this wake;
+  no stale-state discrepancy. Arrival battery reproduced exactly under
+  the session-29 expectation change:
+  `python3 src/verify_retained_integrity.py --auditors --fetch` exit 0
+  with **14/14 checks PASS** at `bd49b217bc5a` (N1 fetch OK, freshly
+  fetched tip == HEAD; P1 both manifest anchors; P2 pins 8/8
+  signed-bracket + 29/30 paired with the debate log solely under its
+  proven pure-append rule, still exactly 45,421 bytes; L1
+  append-ledger match; P3 both retained inventories closed extra=none
+  missing=none; T1 strict tree at arrival; S1 sync GREEN at arrival;
+  D1 doors unfired vs `d19d7c2`, failed-designs at 8; F1 all 39
+  archived files across 8 entries content-bound; C1 cron = v3
+  hold-briefing job `de939b52cc2b` enabled project job only, zero
+  `f753894` markers), all three standalone auditors exit 0 with
+  session-12-identical numbers; suite green at arrival (**460 tests,
+  OK, 4 skipped** — eighteenth consecutive green count); no owner
+  redirection present in any channel. delegate_task still absent from
+  this runtime's toolset as disclosed Rounds 2–6 and sessions 17–30;
+  no decision fork arose so no adversarial round convened (the Round-5
+  computed closure stands). **Durable gap found and discharged
+  (verification tooling):** nothing anywhere mechanised the integrity
+  of paths that the current-facing documentation cites inside the
+  repository — a systematic backtick-path sweep over README.md +
+  `docs/*.md` measured 300 unique document/citation pairs with **20
+  absent pairs over 13 distinct absent citation strings**, and every
+  prior wake would have classified them entirely by hand: five are
+  citations of `results/host-compressibility-long-window-360001x10ms.json`
+  (lawfully split into `.parts/` under a binding manifest by the
+  documented 2026-08-22 history migration), nine cite output paths of
+  three generations whose pre-freeze feasibility gates FAILED
+  (`stage7b-exposure-endpoint`, `stage7b-endpoint-repair`,
+  `stage7b2-repair` — directories never created, archived no-gos are
+  the binding evidence; the signed-bracket prereg records the first
+  verbatim as "never used — its retained run was not authorised"), two
+  cite `results/stage8-alpha-evolution/` (superseded by the repair
+  preregistration's `-paired` path before any retained run), and ONE
+  is genuinely dead: `docs/efficiency-assay-preregistration.md` cites
+  source `src/trace_offspring_first_extraction_threshold.py`, a path
+  that has NEVER existed in any commit (git log --all empty) while its
+  companion artifact
+  `results/offspring-first-extraction-threshold-summary.json` IS
+  retained. Discharged with `docs/doc-path-reference-registry.json`
+  (schema 1: all six absence classes registered with reason class,
+  citing documents, and machine-checked evidence files) +
+  `src/audit_doc_path_references.py`, wired as the FOURTH standalone
+  auditor in the verifier's `AUDITORS` tuple (check count unchanged at
+  14; A1's detail line now names four scripts): R1 strict registry
+  parse; R2 citation-coverage floor (280 against 305 measured — the
+  auditor additionally recognises prefix markdown links beyond the
+  registration sweep's backticks-only 300); R3 every absent citation
+  must resolve on disk OR to a registration, else loud failure naming
+  path and citing document; R4 tripwire asserting registered
+  permanently-unused paths STAY absent (an execution writing into a
+  superseded path can never pass quietly); R5 evidence binding
+  including non-empty-directory checks on the archived no-gos; R6
+  every registration anchored by ≥1 live citation from its cited_by
+  documents so registry rot fails in the same wake as the citing-text
+  change. Scope decision disclosed: `superseded/` and documents inside
+  `results/`/`failed-designs/` are archival surfaces, neither scanned
+  nor required to resolve. Pre-edit pin checks grep count 0 across
+  both freeze manifests × touchpoints; none of the touched files in
+  the verifier pin set; outside `failed-designs/`; debate log
+  untouched. Test matrix +16 (synthetic-tree coverage of every check
+  incl. directory-prefix semantics, the materialisation tripwire, lost/
+  empty evidence, stale unanchored entries, malformed registries, the
+  coverage floor, markdown-link recognition with parent-relative links
+  excluded by construction, plus a live subprocess smoke).
+  Mid-unit suite on the dirty tree: 476 ran, exactly one designed
+  failure (`test_live_repo_has_no_tracked_file_modifications`) naming
+  exactly `src/verify_retained_integrity.py` (the three new files
+  untracked/invisible to the non-strict check), 4 skipped; review-doc
+  diff purely additive. EXPECTATION CHANGE DISCLOSED: future wakes run
+  `python3 src/verify_retained_integrity.py --auditors --fetch`
+  expecting **exit 0, 14/14 PASS** (count unchanged; A1 detail names
+  four auditors) and suite **476 tests, OK, 4 skipped**; S1 expected
+  GREEN at arrivals and RED only inside commit-to-push windows. Per
+  the session-25 workflow correction, closing battery numbers are
+  reported post-push at the pushed HEAD in this wake's delivery. Part
+  IV session-31 entry appended; Part V item 5 rolled forward with the
+  new expectations. Doors R1–R3 unfired; hold in force.
+
 ## Part V — Next run should pick up
 
 1. **The programme is CLOSED on computed grounds (session 8).** The
@@ -1800,6 +1888,23 @@ NO-GO claims contradicted both the document's own §13 update and the
 retained record through closure; file verified unpinned in both freeze
 manifests and the verifier pin set pre-edit; see the Part IV
 session-30 entry);
+   session 31 followed the prescription again on its twelfth
+corrected-briefing arrival (v3 text delivered intact; verifier with
+`--auditors --fetch` **exit 0, 14/14 PASS** with session-12-identical
+auditor numbers; suite **460 tests, OK, 4 skipped** at arrival HEAD
+`bd49b217bc5a` = origin/main; doors unfired) and spent its durable-gap
+budget on mechanising documentation→repository reference integrity —
+the new FOURTH standalone auditor `src/audit_doc_path_references.py`
+plus the lawful-absence registry `docs/doc-path-reference-registry.json`
+(all 13 distinct absent citation strings across README.md + docs/*.md
+registered under 6 evidence-backed classes: three failed-gate design
+families, the large-file history migration, the superseded-by-repair
+Stage 8 path, and one genuinely dead source citation never present in
+any commit; R4 asserts registered paths STAY absent; R6 fails on
+unanchored registrations); +16 tests — future wakes should run
+`python3 src/verify_retained_integrity.py --auditors --fetch`
+expecting **exit 0, 14/14 PASS** (A1 detail names FOUR auditors) and
+suite **476 tests, OK, 4 skipped** (see the Part IV session-31 entry);
    session 9 added the follow-on-memo independent audit
    (`docs/followon-power-memo-independent-audit.md`,
    `src/audit_followon_power_memo.py`) and the Round-6-authorized memo

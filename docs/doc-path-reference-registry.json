@@ -1,0 +1,92 @@
+{
+  "schema": 1,
+  "description": "Registry of lawful absences among repository paths cited by README.md and docs/*.md. Companion to src/audit_doc_path_references.py (fourth standalone auditor spawned by verify_retained_integrity.py --auditors). Every repository-rooted path cited in backticks or relative markdown links across the current-facing documentation surfaces must exist on disk OR be registered here with a reason class and machine-checked evidence. Registered paths are asserted to remain ABSENT (tripwire: a permanently-unused registered path coming into existence stops the wake). Scope decision: superseded/ and results/, failed-designs/ internal documents are archival surfaces and are neither scanned nor required to resolve.",
+  "first_registered": "2026-08-24",
+  "registered_by": "cron-session 31",
+  "counts_at_registration": {
+    "backticked_pairs_swept": 300,
+    "note": "The registration sweep recognised backtick code spans only (300 unique document/citation pairs, 20 absent pairs over 13 distinct absent citation strings). The auditor additionally recognises relative markdown links on the scanned prefixes; its first live audit at the registering commit measured 305 unique pairs.",
+    "absent_pairs": 20,
+    "distinct_absent_citation_strings": 13
+  },
+  "min_citation_floor": 280,
+  "registered_absences": [
+    {
+      "path": "results/host-compressibility-long-window-360001x10ms.json",
+      "reason_class": "large-file-history-migration",
+      "reason": "The 312,139,776-byte raw compressibility artifact exceeds the hosting platform's hard per-file limit and was migrated same-day into results/host-compressibility-long-window-360001x10ms.parts/ under a binding MANIFEST.json (per-part offsets and SHA-256 digests, reassembly rule, original SHA-256 authoritative), round-trip verified byte-exact before commit per docs/history-migration-2026-08-22.md. The five citing documents predate the migration and their citations are preserved exactly as written.",
+      "evidence_files": [
+        "results/host-compressibility-long-window-360001x10ms.parts/MANIFEST.json",
+        "docs/history-migration-2026-08-22.md"
+      ],
+      "cited_by": [
+        "docs/history-migration-2026-08-22.md",
+        "docs/host-encoding-diagnostic-registration.md",
+        "docs/project-report.md",
+        "docs/push-status.md",
+        "docs/scheduler-latency-sensitivity-registration.md"
+      ]
+    },
+    {
+      "path": "results/stage7b-exposure-endpoint/",
+      "reason_class": "failed-feasibility-gate",
+      "reason": "Registered confirmatory output path of the denominator-repair generation (five binding identities on the two-factor estimator). Its shakedown feasibility gate FAILED (A=102 supercritical 20/24, A=204 7/24, joint complete pairs 3/24), so no retained run was ever authorised into this path; the signed-bracket preregistration records it verbatim as 'never used - its retained run was not authorised'. The archived gate no-go is the binding evidence; the directory was never created.",
+      "evidence_files": [
+        "failed-designs/2026-08-23-stage7b-denominator-feasibility-gate-no-go"
+      ],
+      "cited_by": [
+        "docs/stage-7b-denominator-repair-preregistration.md",
+        "docs/stage-7b-signed-bracket-preregistration.md",
+        "docs/stage7b-denominator-implementation-window-note.md"
+      ]
+    },
+    {
+      "path": "results/stage7b-endpoint-repair/",
+      "reason_class": "failed-feasibility-gate",
+      "reason": "Registered output path of the endpoint-repair generation (two-factor coefficients c_x = l^A_x * m^E_x). Its pre-freeze feasibility gate FAILED 0/24 in both arms with the ceiling confirmed, was archived with evidence, and the directory was never created. The output-schema document describes the planned format for the run that never happened and is retained as written.",
+      "evidence_files": [
+        "failed-designs/2026-08-23-stage7b-endpoint-feasibility-gate-no-go"
+      ],
+      "cited_by": [
+        "docs/stage-7b-endpoint-repair-preregistration.md",
+        "docs/stage7b-endpoint-output-schema.md"
+      ]
+    },
+    {
+      "path": "results/stage7b2-repair/",
+      "reason_class": "failed-feasibility-gate",
+      "reason": "Registered output path of the 7B2-R repair generation (raw-fecundity numerator n_x at repaired ecology N=48, E=900, W=1200). Its pre-freeze feasibility gate FAILED (0/24 G1, G2), was archived with evidence, and the directory was never created. Both citing schema documents describe the planned output format for the run that never happened and are retained as written.",
+      "evidence_files": [
+        "failed-designs/2026-08-22-stage7b2r-feasibility-gate-no-go"
+      ],
+      "cited_by": [
+        "docs/stage-7b2-repair-preregistration.md",
+        "docs/stage7b-endpoint-output-schema.md",
+        "docs/stage7b2r-output-schema.md"
+      ]
+    },
+    {
+      "path": "results/stage8-alpha-evolution/",
+      "reason_class": "superseded-by-repair-registration",
+      "reason": "Output path registered by the original Stage 8 alpha-evolution preregistration. The design was repaired before any retained run and the executed, retained, post-audited outputs live at results/stage8-alpha-evolution-paired/ under the repair preregistration's fresh path; the original unpaired path was never created. The original preregistration's citations are preserved exactly as written.",
+      "evidence_files": [
+        "docs/stage-8-alpha-evolution-repair-preregistration.md",
+        "results/stage8-alpha-evolution-paired/pre-execution-manifest.json"
+      ],
+      "cited_by": [
+        "docs/stage-8-alpha-evolution-preregistration.md"
+      ]
+    },
+    {
+      "path": "src/trace_offspring_first_extraction_threshold.py",
+      "reason_class": "uncommitted-source-citation",
+      "reason": "Cited as the source of the post-hoc offspring-trough threshold audit alongside its retained summary artifact. No commit in the entire repository history has ever contained a file at this path (git log --all verified empty at registration), while the companion output results/offspring-first-extraction-threshold-summary.json is retained on disk. The citation is historical provenance prose inside a preserved assay document and is reconciled by this registration rather than by editing the archived text.",
+      "evidence_files": [
+        "results/offspring-first-extraction-threshold-summary.json"
+      ],
+      "cited_by": [
+        "docs/efficiency-assay-preregistration.md"
+      ]
+    }
+  ]
+}
