@@ -1289,6 +1289,71 @@ green; push after every commit.
   session-26 entry appended; Part V item 5 rolled forward with the new
   expectations. Doors R1–R3 unfired; hold in force.
 
+- 2026-08-24 (session 27): **verification-only unit under the Part V
+  item 3 hold — eighth corrected-briefing arrival; the last hand-run
+  step of the wake battery mechanised into the verifier; no execution
+  registered or run.** Arrival state: v3 briefing delivered intact for
+  the eighth consecutive wake; actual HEAD `574d389ce8e6` =
+  origin/main (`0/0`), tree clean — mechanically the session-26 unit
+  commit itself, zero commits/drift between that entry and this wake;
+  no stale-state discrepancy. Arrival battery reproduced exactly under
+  the session-26 expectation change: `python3
+  src/verify_retained_integrity.py --auditors` exit 0 with **11/11
+  checks PASS** (P1 both manifest anchors; P2 pins 8/8 signed-bracket +
+  29/30 paired with the debate log solely under its proven pure-append
+  rule, still exactly 45,421 bytes; L1 append-ledger match on the sole
+  pure-append path; P3 both retained inventories closed extra=none
+  missing=none; T1 strict tree at arrival; S1 sync GREEN at arrival,
+  the designed at-arrival state; D1 doors unfired vs `d19d7c2`,
+  failed-designs at 8), all three standalone auditors exit 0 with
+  session-12-identical numbers; suite green at arrival (**445 tests,
+  OK, 4 skipped** — fourteenth consecutive green count, second at the
+  raised expectation); cron channel checked directly by hand one last
+  time (`jobs.json`: enabled job = v3 `de939b52cc2b` only, legacy job
+  disabled/completed, zero `f753894` markers); no owner redirection
+  present in any channel. delegate_task still absent from this
+  runtime's toolset as disclosed Rounds 2–6 and sessions 17–26; no
+  decision fork arose so no adversarial round convened (the Round-5
+  computed closure stands). **Durable gap found and discharged
+  (verification tooling):** every mechanical wake step had been
+  consolidated into the verifier EXCEPT the cron-briefing integrity
+  disclosure that every wake since session 19 has performed manually
+  ("cron jobs.json checked directly"). Closed with new **C1 cron**
+  check in `src/verify_retained_integrity.py` validating the
+  out-of-repo scheduler config `/opt/data/cron/jobs.json`: a PRESENT
+  file must parse with a `jobs` list, carry ZERO stale `f753894`
+  markers anywhere, have exactly the v3 hold-briefing job
+  (`de939b52cc2b`) enabled, and NO other enabled project-targeting job
+  (a resurrected legacy briefing would contradict the hold at every
+  wake) — failures cite the session-19 failsafe fixer; an ABSENT file
+  is a labelled non-failing SKIP so the verifier stays portable beyond
+  this machine, and unrelated non-project jobs are deliberately ignored
+  so lawful owner scheduling action is never flagged as tampering.
+  Read-only over the scheduler file; no new sidecar; pre-edit pin
+  checks grep count 0 across both freeze manifests; none of the three
+  targets in the verifier pin set. Test matrix +7 (`CronBriefingTests`:
+  v3-only-enabled passes; absent-config SKIP asserted `None`; stale
+  marker inside a well-formed prompt fails citing the fixer; v3
+  disabled AND v3 missing both fail; resurrected legacy job alongside
+  v3 fails naming it; unrelated enabled job ignored; malformed config
+  fails loudly) and the live smoke extended to assert the C1 line. ONE
+  test bug caught by the suite itself before commit (the first
+  stale-marker fixture placed the marker after valid JSON, hitting the
+  malformed branch instead of the marker branch; fixture moved inside a
+  job prompt — verifier logic needed no change). Mid-unit suite on the
+  dirty tree: 452 ran, exactly one designed failure
+  (`test_live_repo_has_no_tracked_file_modifications`) naming exactly
+  `src/verify_retained_integrity.py`, `src/test_verify_retained_integrity.py`,
+  and `docs/stage-8-programme-review.md`, 4 skipped; review-doc diff
+  purely additive. Expectation change disclosed: future wakes should
+  see `--auditors` **exit 0, 12/12 PASS** and suite **452 tests, OK,
+  4 skipped**; S1 expected GREEN at arrivals and RED only inside
+  commit-to-push windows. Per the session-25 workflow correction,
+  closing battery numbers are reported post-push at the pushed HEAD in
+  this wake's delivery. Part IV session-27 entry appended; Part V item
+  5 rolled forward with the new expectations. Doors R1–R3 unfired;
+  hold in force.
+
 ## Part V — Next run should pick up
 
 1. **The programme is CLOSED on computed grounds (session 8).** The
@@ -1477,6 +1542,18 @@ hole the prefix-only pin could not see; +6 tests — future wakes should
 expect `python3 src/verify_retained_integrity.py --auditors` **exit 0,
 11/11 PASS** and suite **445 tests, OK, 4 skipped** (see the Part IV
 session-26 entry);
+  session 27 followed the prescription again on its eighth corrected-
+briefing arrival (v3 text delivered intact; verifier with `--auditors`
+**exit 0, 11/11 PASS** with session-12-identical auditor numbers; suite
+**445 tests, OK, 4 skipped** at arrival HEAD `574d389ce8e6`; doors
+unfired) and spent its durable-gap budget on mechanising the last
+hand-run wake step — new **C1 cron** check validating the out-of-repo
+scheduler config strictly whenever present (zero stale `f753894`
+markers anywhere; v3 hold briefing `de939b52cc2b` enabled; no
+resurrected legacy project briefing) with a labelled non-failing SKIP
+when absent; +7 tests — future wakes should expect `python3
+src/verify_retained_integrity.py --auditors` **exit 0, 12/12 PASS** and
+suite **452 tests, OK, 4 skipped** (see the Part IV session-27 entry);
    session 9 added the follow-on-memo independent audit
    (`docs/followon-power-memo-independent-audit.md`,
    `src/audit_followon_power_memo.py`) and the Round-6-authorized memo

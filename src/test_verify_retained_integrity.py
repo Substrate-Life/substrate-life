@@ -361,6 +361,144 @@ class AppendLedgerTests(unittest.TestCase):
             self.assertIn("strictly increasing", detail)
 
 
+class CronBriefingTests(unittest.TestCase):
+    """C1 cron-check coverage: SKIP (ok is None) on an absent config so the
+    verifier stays portable, but strict validation whenever present -- stale
+    briefing markers anywhere in the file, a disabled or missing v3 hold
+    briefing, a resurrected legacy project briefing, and malformed configs
+    all fail loudly; unrelated non-project jobs are ignored."""
+
+    V3_PROMPT = (
+        "continuing the Substrate digital-evolution project at ~/avida-life "
+        "... closed-programme verification hold ..."
+    )
+    LEGACY_PROMPT = (
+        "continuing the Substrate digital-evolution project at ~/avida-life "
+        "... Stage 7B0 autonomous carry-on ..."
+    )
+
+    @staticmethod
+    def _write(root: pathlib.Path, payload) -> pathlib.Path:
+        p = root / "jobs.json"
+        if isinstance(payload, str):
+            p.write_text(payload)
+        else:
+            p.write_text(json.dumps({"jobs": payload}))
+        return p
+
+    def test_v3_only_enabled_passes(self):
+        with tempfile.TemporaryDirectory() as td:
+            p = self._write(
+                pathlib.Path(td),
+                [
+                    {
+                        "id": "b64708c35fa7",
+                        "prompt": self.LEGACY_PROMPT,
+                        "enabled": False,
+                    },
+                    {
+                        "id": vri.CRON_V3_JOB_ID,
+                        "prompt": self.V3_PROMPT,
+                        "enabled": True,
+                    },
+                ],
+            )
+            ok, detail = vri.cron_jobs_ok(p)
+            self.assertTrue(ok, detail)
+            self.assertIn("v3 hold briefing", detail)
+
+    def test_absent_config_skips_non_failing(self):
+        with tempfile.TemporaryDirectory() as td:
+            ok, detail = vri.cron_jobs_ok(pathlib.Path(td) / "jobs.json")
+            self.assertIsNone(ok)
+            self.assertIn("skipped", detail)
+
+    def test_stale_marker_fails_anywhere_in_config(self):
+        """Marker must be caught wherever it sits -- here inside an otherwise
+        well-formed job prompt, i.e. past the parse stage."""
+        with tempfile.TemporaryDirectory() as td:
+            p = self._write(
+                pathlib.Path(td),
+                [
+                    {
+                        "id": "legacy-still-there",
+                        "prompt": self.LEGACY_PROMPT
+                        + " table f753894+i retired",
+                        "enabled": False,
+                    },
+                ],
+            )
+            ok, detail = vri.cron_jobs_ok(p)
+            self.assertFalse(ok)
+            self.assertIn("1 stale 'f753894'", detail)
+            self.assertIn("failsafe fixer", detail)
+
+    def test_disabled_or_missing_v3_fails(self):
+        disabled = [
+            {"id": vri.CRON_V3_JOB_ID, "prompt": self.V3_PROMPT,
+             "enabled": False},
+        ]
+        missing = [
+            {"id": "b64708c35fa7", "prompt": self.LEGACY_PROMPT,
+             "enabled": False},
+        ]
+        for payload in (disabled, missing):
+            with tempfile.TemporaryDirectory() as td:
+                p = self._write(pathlib.Path(td), payload)
+                ok, detail = vri.cron_jobs_ok(p)
+                self.assertFalse(ok)
+                self.assertIn("disabled or missing", detail)
+
+    def test_resurrected_legacy_job_alongside_v3_fails(self):
+        with tempfile.TemporaryDirectory() as td:
+            p = self._write(
+                pathlib.Path(td),
+                [
+                    {
+                        "id": "b64708c35fa7",
+                        "prompt": self.LEGACY_PROMPT,
+                        "enabled": True,
+                    },
+                    {
+                        "id": vri.CRON_V3_JOB_ID,
+                        "prompt": self.V3_PROMPT,
+                        "enabled": True,
+                    },
+                ],
+            )
+            ok, detail = vri.cron_jobs_ok(p)
+            self.assertFalse(ok)
+            self.assertIn("unexpected additional enabled project job(s)",
+                          detail)
+            self.assertIn("b64708c35fa7", detail)
+
+    def test_unrelated_enabled_job_is_ignored(self):
+        """A non-project job must never be flagged: lawful owner scheduling
+        action outside this programme is not tampering."""
+        with tempfile.TemporaryDirectory() as td:
+            p = self._write(
+                pathlib.Path(td),
+                [
+                    {"id": "other-job", "prompt": "water the plants",
+                     "enabled": True},
+                    {
+                        "id": vri.CRON_V3_JOB_ID,
+                        "prompt": self.V3_PROMPT,
+                        "enabled": True,
+                    },
+                ],
+            )
+            ok, detail = vri.cron_jobs_ok(p)
+            self.assertTrue(ok, detail)
+
+    def test_malformed_config_fails_loudly(self):
+        with tempfile.TemporaryDirectory() as td:
+            p = self._write(pathlib.Path(td), "{not json at all")
+            ok, detail = vri.cron_jobs_ok(p)
+            self.assertFalse(ok)
+            self.assertIn("unreadable/malformed", detail)
+
+
 class RealRepoSmoke(unittest.TestCase):
     def test_live_repo_passes_all_mechanical_checks(self):
         # T1 excluded: this suite may run before the verifier's own commit,
@@ -388,6 +526,9 @@ class RealRepoSmoke(unittest.TestCase):
         self.assertRegex(joined, r"info: docs/stage-8-debate-log\.md: current size \d+ B")
         # L1 content-binds the appended region via the ledger sidecar.
         self.assertIn("L1 append-ledger", joined)
+        # C1 validates the out-of-repo scheduler config (or labels its
+        # absence as a SKIP) without ever failing silently.
+        self.assertIn("C1 cron", joined)
 
     def test_live_repo_has_no_tracked_file_modifications(self):
         ok, detail = vri.tree_clean(vri.REPO_ROOT, strict=False)

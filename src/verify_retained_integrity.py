@@ -36,6 +36,16 @@ What it checks (all mechanical, all read-only):
   D1  Doors: zero changed paths under results/ or failed-designs/ since the last
       artifact-producing commit d19d7c2 (the R1-R3 door check used by sessions
       10-12), and failed-designs/ still holds exactly its 8 archived entries.
+  C1  Cron-briefing integrity: the out-of-repo scheduler config is validated
+      strictly whenever present -- it must parse, carry ZERO stale f753894
+      briefing markers, have exactly the v3 hold-briefing job enabled for
+      this project, and NO other enabled project-targeting job (a resurrected
+      legacy briefing would contradict the hold at every wake). An ABSENT
+      config is a labelled non-failing SKIP so the verifier stays portable to
+      environments without this scheduler. Unrelated non-project jobs are
+      deliberately ignored: lawful owner scheduling action must never be
+      flagged as tampering. This mechanises the manual disclosure every wake
+      since session 19 has hand-run ("cron jobs.json checked directly").
 
 P2 additionally emits a non-failing info line for each pure-append path
 reporting the file's current byte size (= frozen prefix + lawfully
@@ -102,6 +112,16 @@ FAILED_DESIGNS_COUNT = 8
 # recorded state. Non-retained, unpinned, version-controlled; each lawful
 # append registers a new snapshot in the appending unit's own commit.
 APPEND_LEDGER_PATH = "docs/stage-8-debate-log-append-ledger.json"
+
+# Scheduler state (check C1). Out-of-repo and environment-specific: the
+# session-19 root-cause fix replaced the stale legacy briefing job with the
+# v3 closed-programme hold briefing; every wake since has re-established by
+# hand that the fix survived. Absent file => labelled SKIP (portability);
+# present file => strict validation.
+CRON_JOBS_PATH = pathlib.Path("/opt/data/cron/jobs.json")
+CRON_V3_JOB_ID = "de939b52cc2b"
+STALE_BRIEFING_MARKER = "f753894"
+PROJECT_MARKERS = ("avida-life", "substrate-life")
 
 AUDITORS: tuple[str, ...] = (
     "src/audit_stage7b_signed_bracket.py",
@@ -332,6 +352,74 @@ def sync(root: pathlib.Path) -> tuple[bool, str]:
     return True, f"HEAD {head[:12]} == origin/main"
 
 
+def cron_jobs_ok(
+    path: pathlib.Path | None = None,
+) -> tuple[bool | None, str]:
+    """C1: the scheduler must run exactly the v3 hold briefing for this repo.
+
+    Mechanises the per-wake manual disclosure performed since session 19
+    ("enabled job = v3 only, zero f753894 markers"). Returns (ok, detail)
+    where ok is None iff the check is skipped because the scheduler config
+    does not exist in this environment (non-failing; recorded as a labelled
+    PASS so portability never masks state). A PRESENT file must validate
+    strictly:
+
+      - parses as JSON with a list under "jobs";
+      - zero occurrences of the stale-briefing marker f753894 anywhere;
+      - the v3 hold-briefing job (CRON_V3_JOB_ID) exists and is enabled;
+      - no OTHER enabled job targets this project (a resurrected legacy
+        briefing would contradict the hold at every wake).
+
+    Unrelated enabled jobs are ignored: they are outside this programme,
+    and lawful owner scheduling action must never be flagged as tampering.
+    """
+    p = CRON_JOBS_PATH if path is None else pathlib.Path(path)
+    if not p.is_file():
+        return None, (
+            f"{p}: scheduler config absent from this environment; "
+            "skipped (non-failing)"
+        )
+    try:
+        raw = p.read_text()
+        cfg = json.loads(raw)
+        jobs = cfg["jobs"]
+        if not isinstance(jobs, list):
+            raise ValueError('"jobs" must be a list')
+    except (ValueError, KeyError, TypeError, OSError) as exc:
+        return False, f"{p}: unreadable/malformed ({exc})"
+    markers = raw.count(STALE_BRIEFING_MARKER)
+    if markers:
+        return False, (
+            f"{p}: {markers} stale '{STALE_BRIEFING_MARKER}' briefing "
+            "marker(s) present -- re-run the session-19 failsafe fixer "
+            "(fails safe on unexpected content) before proceeding"
+        )
+    project_jobs = [
+        j
+        for j in jobs
+        if any(m in str(j.get("prompt", "")) for m in PROJECT_MARKERS)
+    ]
+    enabled_project = {
+        str(j.get("id")): j for j in project_jobs if j.get("enabled")
+    }
+    if CRON_V3_JOB_ID not in enabled_project:
+        return False, (
+            f"{p}: v3 hold-briefing job {CRON_V3_JOB_ID} disabled or "
+            "missing -- wakes would stop or arrive on a stale briefing"
+        )
+    others = sorted(k for k in enabled_project if k != CRON_V3_JOB_ID)
+    if others:
+        return False, (
+            f"{p}: unexpected additional enabled project job(s) {others} "
+            f"besides {CRON_V3_JOB_ID} -- a resurrected legacy briefing "
+            "would contradict the hold"
+        )
+    return True, (
+        f"{p}: enabled project job = {CRON_V3_JOB_ID} (v3 hold briefing) "
+        f"only; {markers} '{STALE_BRIEFING_MARKER}' markers"
+    )
+
+
 def run_auditors(root: pathlib.Path) -> tuple[bool, str]:
     outs = []
     ok = True
@@ -439,6 +527,13 @@ def verify(
     # D1 doors
     ok, detail = doors(root, LAST_ARTIFACT_COMMIT, FAILED_DESIGNS_COUNT)
     record(ok, "D1 doors", detail)
+
+    # C1 cron-briefing integrity: out-of-repo scheduler state. An absent
+    # config is a labelled non-failing SKIP; a present one must validate
+    # strictly. Runs regardless of include_tree_check so the live-repo
+    # smoke covers it too.
+    c1_ok, c1_detail = cron_jobs_ok()
+    record(c1_ok is not False, "C1 cron", c1_detail)
 
     # Optional auditors
     if with_auditors:
