@@ -8,6 +8,48 @@ The project belongs to the research tradition established by Tierra and Avida, b
 
 Stages 1–6 produced five scientific findings. Stage 7 implementation and deterministic verification then produced four methodological results. Stage 7 mutation, stochastic allocation assays, evolutionary runs, and fitness inference remain untested; verified mechanics are not an evolutionary result.
 
+### Status addendum (2026-08-24)
+
+*Visible, dated addendum. The Status paragraph above is preserved
+byte-for-byte and superseded only where the retained record below
+contradicts it. Nothing here reopens, retunes, or reinterprets any
+retained result.*
+
+The untested tiers that paragraph names have since been tested,
+executed, and audited. The Stage 7B split-reserve channels ran under
+pre-registered feasibility gates: the 7B0 deterministic channel was
+executed and independently audited; the host-coupling probes
+(compressibility long window, scheduler-latency morphology, host
+encoding diagnostic) were registered, run, and audited; the 7B2
+feasibility gates returned registered no-gos, archived with evidence
+under [`failed-designs/`](failed-designs/); the signed-bracket design
+was frozen, registered, executed once, and audit-reproduced
+(`results/stage7b-signed-bracket/`); and Stage 8 ran a single paired
+confirmatory alpha-evolution execution whose reduced artifact is
+retained and post-audited (`results/stage8-alpha-evolution-paired/`,
+17/17 post-retention checks).
+
+The programme is now CLOSED on computed grounds: the registered nulls
+were forced at any instrument this architecture could afford. On the
+measured dispersion (population sd(D) = 5.7061 lattice units), a true
+shift equal to the entire registered pair floor yields 3.0% exact
+power (13/24 crossings) on the frozen concordance rule; ≥50% power
+needs 1.87× the floor; rule power falls with replicate count below
+per-pair mover probability 0.75; and recruitment endpoints are
+mechanically null at saturation (admitted births identical across
+arms, phenotype-blind: 23,933 = 23,933). Full derivation:
+[`docs/stage-8-followon-power-memo.md`](docs/stage-8-followon-power-memo.md)
+(independently audited 21/21, zero exact-claim failures); narrative
+closure: [`docs/final-report.md`](docs/final-report.md) §8 addendum.
+Closure survived adversarial debate, Rounds 1–6
+([`docs/stage-8-debate-log.md`](docs/stage-8-debate-log.md)).
+
+Reopening doors R1–R3 (memo §9) are the only lawful paths back into
+evolutionary work; until one fires, no evolutionary execution is
+authorised anywhere in this programme. One-command integrity check
+over the retained class:
+`python3 src/verify_retained_integrity.py --auditors`.
+
 ## Findings
 
 ### Scientific findings

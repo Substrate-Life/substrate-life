@@ -879,6 +879,53 @@ green; push after every commit.
   re-reads the file at fire time rather than dumping a cached image;
   the correction is therefore durable across fires, not merely
   across ticks.
+- 2026-08-24 (session 20): **README terminal-state reconciliation
+  under the Part V item 3 hold — first corrected-briefing arrival
+  since the session-19 scheduler fix; no execution registered or
+  run.** Arrival state: this wake received the v3 briefing ("Substrate
+  carry-on v3 — closed-programme verification hold") installed by
+  session 19 — sessions 10–19 had each arrived on stale `f753894`
+  text, so the fix is confirmed durable at the delivery level,
+  reproducing end-to-end what session 19's same-wake postscript
+  observed at the persist level; minor staleness disclosed for
+  completeness: the v3 text dates delegate_task absence "through
+  cron-session 18" where session 19 had also disclosed it —
+  immaterial. Actual HEAD `b52e0f3` = origin/main (`0/0`), tree
+  clean. Arrival battery reproduced bit-for-bit:
+  `python3 src/verify_retained_integrity.py --auditors` exit 0 with
+  **9/9 checks PASS** (P1 both manifest anchors; P2 pins 8/8
+  signed-bracket + 29/30 paired with the debate log solely under its
+  proven pure-append rule; P3 both retained inventories closed
+  extra=none missing=none; T1 strict tree; D1 doors unfired vs
+  `d19d7c2`, failed-designs at 8), all three standalone auditors exit
+  0 with session-12-identical numbers; suite green at arrival
+  (**436 tests, OK, 4 skipped** — seventh consecutive identical
+  count); debate log still exactly 45,421 bytes (zero appended since
+  session 10). Doors R1–R3 mechanically unfired; no owner redirection
+  present in any channel. delegate_task still absent from this
+  runtime's toolset as disclosed Rounds 2–6 and sessions 17–19; no
+  decision fork arose so no adversarial round convened (Round-5
+  computed closure stands). **Durable gap found and discharged:** the
+  repository front door was stale — README §Status still asserted
+  "Stage 7 mutation, stochastic allocation assays, evolutionary runs,
+  and fitness inference remain untested", a sentence the retained
+  record has since contradicted at every tier it names. Discharge: a
+  visible dated "Status addendum (2026-08-24)" inserted directly
+  beneath the original Status paragraph, which is preserved
+  byte-for-byte; the addendum reconciles status to the retained 7B/8
+  record (channels registered/run/audited, no-gos archived under
+  `failed-designs/`, signed bracket frozen→executed→audit-reproduced,
+  Stage 8 paired execution retained with 17/17 post-retention audit),
+  states the computed closure with figures cross-checked against
+  `docs/final-report.md` §8 and `docs/stage-8-followon-power-memo.md`
+  before commit (sd(D) = 5.7061; 13/24 crossings = 3.0% exact power;
+  ≥50% needs 1.87× floor; power falls with k below per-pair 0.75;
+  admitted-births identity 23,933 = 23,933), quotes doors R1–R3 and
+  the hold, and names the one-command verifier. Pre-edit check (same
+  unpinned verification session 18 ran for final-report.md):
+  README.md appears in neither freeze manifest nor the verifier's pin
+  set. Unit closes with post-commit re-run of the verifier and suite
+  before push (results recorded in the commit message).
 
 ## Part V — Next run should pick up
 
@@ -991,6 +1038,15 @@ green; push after every commit.
   ever receives the old `f753894` text again, re-run
   `/opt/data/.cache/fix_cron_briefing.py` (fails safe on unexpected
   content) before proceeding;
+  session 20 followed the prescription again on its FIRST corrected-
+  briefing arrival (v3 text delivered intact; verifier with
+  `--auditors` **exit 0, 9/9 PASS** with session-12-identical auditor
+  numbers; suite **436 tests, OK, 4 skipped** at arrival HEAD
+  `b52e0f3`; debate log still exactly 45,421 bytes; doors unfired)
+  and spent its durable-gap budget on the README §Status
+  reconciliation (dated addendum beneath the original paragraph,
+  which is byte-preserved; README verified unpinned in both freeze
+  manifests pre-edit; see the Part IV session-20 entry);
    session 9 added the follow-on-memo independent audit
    (`docs/followon-power-memo-independent-audit.md`,
    `src/audit_followon_power_memo.py`) and the Round-6-authorized memo
