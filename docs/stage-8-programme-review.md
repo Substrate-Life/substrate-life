@@ -871,7 +871,14 @@ green; push after every commit.
   (standing orders: advance autonomously, never idle). delegate_task
   still unavailable on this runtime as disclosed Rounds 2–6; no
   decision fork arose so no adversarial round convened (Round-5
-  computed closure stands).
+  computed closure stands). *Same-wake postscript (00:01:55 UTC,
+  pre-push observation):* the disclosed residual risk was then
+  closed empirically — the 00:00:17 UTC fire-time persist rewrote
+  `jobs.json` (mtime advanced) and BOTH markers survived intact
+  (stale-marker count 0; new-briefing count 1), i.e. the daemon
+  re-reads the file at fire time rather than dumping a cached image;
+  the correction is therefore durable across fires, not merely
+  across ticks.
 
 ## Part V — Next run should pick up
 
