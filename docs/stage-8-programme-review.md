@@ -1497,6 +1497,70 @@ green; push after every commit.
   appended; Part V item 5 rolled forward with the new expectations.
   Doors R1–R3 unfired; hold in force.
 
+- 2026-08-24 (session 30): **verification-only unit under the Part V
+  item 3 hold — eleventh corrected-briefing arrival;
+  stale-terminal-state reconciliation of the Stage 7 architecture
+  document; no execution registered or run.** Arrival state: v3
+  briefing delivered intact for the eleventh consecutive wake; actual
+  HEAD `4a67bc755428` = origin/main (`0/0`), tree clean — mechanically
+  the session-29 unit commit itself, zero commits/drift between that
+  entry and this wake; no stale-state discrepancy. Arrival battery
+  reproduced exactly under the session-29 expectation change:
+  `python3 src/verify_retained_integrity.py --auditors --fetch`
+  exit 0 with **14/14 checks PASS** at `4a67bc755428` (N1 fetch OK,
+  freshly fetched tip == HEAD; P1 both manifest anchors; P2 pins 8/8
+  signed-bracket + 29/30 paired with the debate log solely under its
+  proven pure-append rule, still exactly 45,421 bytes; L1
+  append-ledger match on the sole pure-append path; P3 both retained
+  inventories closed extra=none missing=none; T1 strict tree at
+  arrival; S1 sync GREEN at arrival, the designed at-arrival state;
+  D1 doors unfired vs `d19d7c2`, failed-designs at 8; F1 all 39
+  archived files across 8 entries content-bound; C1 cron = v3
+  hold-briefing job `de939b52cc2b` enabled project job only, zero
+  `f753894` markers), all three standalone auditors exit 0 with
+  session-12-identical numbers; suite green at arrival (**460 tests,
+  OK, 4 skipped** — seventeenth consecutive green count, first at the
+  raised expectation); no owner redirection present in any channel.
+  delegate_task still absent from this runtime's toolset as disclosed
+  Rounds 2–6 and sessions 17–29; no decision fork arose so no
+  adversarial round convened (the Round-5 computed closure stands).
+  **Durable gap found and discharged (documentation
+  reconciliation):** a systematic stale-present-tense sweep over
+  `docs/` surfaced `docs/stage-7-split-reserve-architecture.md` —
+  actively referenced by `project-report.md`,
+  `stage-7b1-preregistration.md`, and
+  `offspring-trough-removal-preregistration.md`, yet untouched since
+  2026-08-22 and missed by the session 17/20–24 reconciliation
+  campaign — whose line-3 Status block still asserted, in the present
+  tense, that Stage 7B0 "implementation and execution remain **NO-GO**"
+  and that "every Stage 7 population-fitness or evolutionary assay
+  remain **NO-GO** pending §13", contradicting both the document's own
+  §13 tail (updated 2026-08-22, recording two PASS executions of the
+  7B0 blocks under independently frozen implementations) and the
+  retained record (7B2 registered no-gos archived under
+  `failed-designs/`; signed bracket frozen/executed/audit-reproduced;
+  Stage 8 single paired confirmatory alpha-evolution execution
+  retained and post-audited 17/17; programme CLOSED on computed
+  grounds; hold R1–R3 in force). Discharged with a visible dated
+  addendum beneath the byte-preserved Status paragraph, reconciling
+  it to the retained record through closure and the hold; the rest of
+  the document, including its already-updated §13, untouched.
+  Pre-edit pin checks: grep count 0 across both freeze manifests
+  ×3 touchpoints; not in the verifier pin set; outside
+  `failed-designs/`; debate log untouched. Mid-unit suite on the
+  dirty tree: 460 ran, exactly one designed failure
+  (`test_live_repo_has_no_tracked_file_modifications`) naming exactly
+  `docs/stage-7-split-reserve-architecture.md` and
+  `docs/stage-8-programme-review.md`, 4 skipped; review-doc diff
+  purely additive. No expectation change: future wakes continue with
+  `python3 src/verify_retained_integrity.py --auditors --fetch`
+  expecting **exit 0, 14/14 PASS** and suite **460 tests, OK, 4
+  skipped**; S1 expected GREEN at arrivals and RED only inside
+  commit-to-push windows. Per the session-25 workflow correction,
+  closing battery numbers are reported post-push at the pushed HEAD
+  in this wake's delivery. Part IV session-30 entry appended; Part V
+  item 5 rolled forward. Doors R1–R3 unfired; hold in force.
+
 ## Part V — Next run should pick up
 
 1. **The programme is CLOSED on computed grounds (session 8).** The
@@ -1724,6 +1788,18 @@ default invocation stays fully offline; +3 tests — future wakes should
 run `python3 src/verify_retained_integrity.py --auditors --fetch`
 expecting **exit 0, 14/14 PASS** and suite **460 tests, OK, 4 skipped**
 (see the Part IV session-29 entry);
+   session 30 followed the prescription again on its eleventh
+corrected-briefing arrival (v3 text delivered intact; verifier with
+`--auditors --fetch` **exit 0, 14/14 PASS** with session-12-identical
+auditor numbers; suite **460 tests, OK, 4 skipped** at arrival HEAD
+`4a67bc755428` = origin/main; doors unfired) and spent its durable-gap
+budget on documentation reconciliation (visible dated Status addendum
+appended below the byte-preserved original Status block in
+`docs/stage-7-split-reserve-architecture.md`, whose present-tense
+NO-GO claims contradicted both the document's own §13 update and the
+retained record through closure; file verified unpinned in both freeze
+manifests and the verifier pin set pre-edit; see the Part IV
+session-30 entry);
    session 9 added the follow-on-memo independent audit
    (`docs/followon-power-memo-independent-audit.md`,
    `src/audit_followon_power_memo.py`) and the Round-6-authorized memo

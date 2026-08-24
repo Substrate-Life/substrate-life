@@ -2,6 +2,33 @@
 
 **Status:** isolated Slice 1 and mechanics-only population Slice 2A are implemented under explicit provisional defaults. The scripted fixed-state Stage 7B0 mechanism protocol is registered separately, but its implementation and execution remain **NO-GO**. Mutation and every Stage 7 population-fitness or evolutionary assay remain **NO-GO** pending §13.
 
+### Status addendum (2026-08-24)
+
+*Visible, dated addendum. The Status paragraph above is preserved
+byte-for-byte and superseded only where the retained record below
+contradicts it. Nothing here reopens, retunes, or reinterprets any
+retained result.*
+
+That paragraph's NO-GO states have since been fully resolved by the
+retained record — and had already fallen behind this document's own
+§13 update of 2026-08-22. Stage 7B0 was implemented and its scripted
+mechanism blocks executed to PASS twice under independently frozen
+implementations (`docs/stage-7b0-deterministic-execution-note.md`;
+see §13 below); the host-coupling probes were registered, run, and
+audited; the 7B2 feasibility gates returned their registered no-gos,
+archived with evidence under `failed-designs/`; the signed-bracket
+design was frozen, registered, executed once, and audit-reproduced
+(`results/stage7b-signed-bracket/`); and Stage 8 ran a single
+pre-registered paired confirmatory alpha-evolution execution whose
+reduced artifact is retained and post-audited
+(`results/stage8-alpha-evolution-paired/`, 17/17 post-retention
+checks). The programme is therefore CLOSED on computed grounds
+(`docs/stage-8-followon-power-memo.md`, independently audited;
+closure survived adversarial debate, Rounds 1–6,
+`docs/stage-8-debate-log.md`). Reopening doors R1–R3 (memo §9) are
+the only lawful paths back into evolutionary work; until one fires,
+no evolutionary execution is authorised anywhere in this programme.
+
 **Decision point:** evaluate before any further work on the hazard-only vacancy ecology.
 
 **Boundary:** this document defines candidate semantics and falsification gates; it is not an implementation specification.
