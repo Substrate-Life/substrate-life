@@ -1,0 +1,164 @@
+{
+  "version": 1,
+  "seeded": "2026-08-24",
+  "seed_basis": "working tree of failed-designs/ at session-28 wake arrival HEAD bf8d1b106e4e41618595d204689cd3a171cd3d77 (= origin/main, tree clean); registered by the appending unit itself",
+  "description": "Content-binding ledger for the append-only failed-designs archive (verifier check F1). Every archived file is bound by {bytes, sha256}: in-place edits and deletions fail loudly forever, and lawful future no-go archives must register their files here within the appending unit own commit.",
+  "files": {
+    "failed-designs/2026-07-28-conditional-population-calibration-no-go/README.md": {
+      "bytes": 4146,
+      "sha256": "d53af731f52cd15c6a4c0df2c8ddfc22fc2e3287039ca0cef68f87a9630af8fa"
+    },
+    "failed-designs/2026-07-28-conditional-population-calibration-no-go/independent-review-live-transcript.log": {
+      "bytes": 12322,
+      "sha256": "a4e84c8c0756bd5107572553a144c96b8c74884cf24fb5b8efdae5fa4a4f23ae"
+    },
+    "failed-designs/2026-07-28-conditional-population-calibration-no-go/independent-review.txt": {
+      "bytes": 7315,
+      "sha256": "f0dc869e9e3a9a022c8b6116a62147e9ab83eea12b5f4db9807ffc01451ec30a"
+    },
+    "failed-designs/2026-07-28-conditional-population-calibration-no-go/preregistration-before-no-go.md": {
+      "bytes": 46080,
+      "sha256": "78177a3c9ff85565b74836360800f57ec49a4a9a457d7d4b1d2499ec2128a79d"
+    },
+    "failed-designs/2026-07-28-conditional-population-calibration-no-go/run_conditional_population_calibration.py": {
+      "bytes": 17241,
+      "sha256": "33855186b610732d6a9a5f9f82d65da62533f69ca6e58f2e73c844ed3327c04e"
+    },
+    "failed-designs/2026-07-28-conditional-population-calibration-no-go/test_population_calibration_runner.py": {
+      "bytes": 2148,
+      "sha256": "153814a92918319f2891ced185d3538c0922c31a73b2b6419a2f026b57ad625e"
+    },
+    "failed-designs/2026-07-28-conditional-threshold18-reclassified/README.md": {
+      "bytes": 1224,
+      "sha256": "c7a8ff1af2e090a546851e9ff9ca14f8bcc982dd2381e485839f5426a23cfabe"
+    },
+    "failed-designs/2026-07-28-conditional-threshold18-reclassified/efficiency-conditional-third-bout-p1-divide-events.jsonl": {
+      "bytes": 380252,
+      "sha256": "afcf3a9fa9bca26f38dc01f6d858265a4a980f278c800ace644884c269ebb6c7"
+    },
+    "failed-designs/2026-07-28-conditional-threshold18-reclassified/efficiency-conditional-third-bout-p1-summary.json": {
+      "bytes": 6775,
+      "sha256": "81ebd03877b099cf83857580bd2203bf00aa697292a20463deb0ea54a8146656"
+    },
+    "failed-designs/2026-07-28-conditional-threshold18-reclassified/efficiency-conditional-third-bout-p1.txt": {
+      "bytes": 6775,
+      "sha256": "81ebd03877b099cf83857580bd2203bf00aa697292a20463deb0ea54a8146656"
+    },
+    "failed-designs/2026-07-28-conditional-threshold18-reclassified/independent-audit-live-transcript.log": {
+      "bytes": 17324,
+      "sha256": "64378c04b24f9095f81417d76401202fb239165e3c6762194e933ed02707c6f4"
+    },
+    "failed-designs/2026-07-28-conditional-threshold18-reclassified/independent-audit.txt": {
+      "bytes": 5350,
+      "sha256": "46df9f11d437b0978e42465ebc5dc530d745f08549838520c142ec7665dd6d1f"
+    },
+    "failed-designs/2026-07-28-equality-branch/efficiency-conditional-third-bout-p1-divide-events.jsonl": {
+      "bytes": 238383,
+      "sha256": "e7cc1f3def63effac37a37f28df79ef9dc9cdc8b137750e655efbd8c7f0aed5e"
+    },
+    "failed-designs/2026-07-28-equality-branch/efficiency-conditional-third-bout-p1-summary.json": {
+      "bytes": 4838,
+      "sha256": "7ea2de5946ff2ea97448f463f988f4495bd61c664b5109237438e7e0b3f51f98"
+    },
+    "failed-designs/2026-07-28-equality-branch/efficiency-conditional-third-bout-p1.txt": {
+      "bytes": 4838,
+      "sha256": "7ea2de5946ff2ea97448f463f988f4495bd61c664b5109237438e7e0b3f51f98"
+    },
+    "failed-designs/2026-07-28-equality-branch/engine.py": {
+      "bytes": 29199,
+      "sha256": "52ef7774f2a91e914bd614d74af03f4afa8ead823ceb536a1a39b3fabe333a8a"
+    },
+    "failed-designs/2026-07-28-equality-branch/trace_efficiency_conditional_third_bout_p1.py": {
+      "bytes": 2560,
+      "sha256": "96e09efd3d8385f4751a7e73c6c105d485050eedea3c854b81dd9941ac47c0d8"
+    },
+    "failed-designs/2026-07-28-offspring-trough-removed/README.md": {
+      "bytes": 1323,
+      "sha256": "979daee8abb41f42dcc9e72dd211d16951afde6ae7807777310fe3d4043faca1"
+    },
+    "failed-designs/2026-07-28-offspring-trough-removed/historical-threshold18/efficiency-capture-response-p1-posthoc-raw.jsonl": {
+      "bytes": 3377780,
+      "sha256": "597ee4ad2078a688ed0c13ac2c18ebdbeac46304ba2c72e76e7ee2035478a82c"
+    },
+    "failed-designs/2026-07-28-offspring-trough-removed/historical-threshold18/efficiency-capture-response-p1-posthoc-summary.json": {
+      "bytes": 1701,
+      "sha256": "736b3037810a1d97f03c0db2ac969a694e9c7f77d655630a4aa3b96f7b10e6c6"
+    },
+    "failed-designs/2026-07-28-offspring-trough-removed/historical-threshold18/efficiency-capture-response-p1-posthoc.txt": {
+      "bytes": 1701,
+      "sha256": "736b3037810a1d97f03c0db2ac969a694e9c7f77d655630a4aa3b96f7b10e6c6"
+    },
+    "failed-designs/2026-07-28-offspring-trough-removed/historical-threshold18/efficiency-capture-response-raw.jsonl": {
+      "bytes": 26236896,
+      "sha256": "4df99b69fa3b396b32b2d996e8097d9d6c872bbdd5aacb7a00be509442b4c573"
+    },
+    "failed-designs/2026-07-28-offspring-trough-removed/historical-threshold18/efficiency-capture-response-summary.json": {
+      "bytes": 13474,
+      "sha256": "9cee9497e4a1d2087466e8c9e5863e8d407d58d70079e074fdd1c0230e5e8a34"
+    },
+    "failed-designs/2026-07-28-offspring-trough-removed/historical-threshold18/efficiency-capture-response.txt": {
+      "bytes": 13474,
+      "sha256": "9cee9497e4a1d2087466e8c9e5863e8d407d58d70079e074fdd1c0230e5e8a34"
+    },
+    "failed-designs/2026-07-28-offspring-trough-removed/historical-threshold18/efficiency-three-bout-p1-capacity-divide-events.jsonl": {
+      "bytes": 456522,
+      "sha256": "308d48fcddb17ae1eced4d0b1ab276de6ab51addeab1f51bad8546f50d5ccd8d"
+    },
+    "failed-designs/2026-07-28-offspring-trough-removed/historical-threshold18/efficiency-three-bout-p1-capacity-summary.json": {
+      "bytes": 5898,
+      "sha256": "b3968b7b6ca8c9e3ade79fbb126b9af17da755554cfa7f21655c3130f98b10a0"
+    },
+    "failed-designs/2026-07-28-offspring-trough-removed/historical-threshold18/efficiency-three-bout-p1-capacity.txt": {
+      "bytes": 5898,
+      "sha256": "b3968b7b6ca8c9e3ade79fbb126b9af17da755554cfa7f21655c3130f98b10a0"
+    },
+    "failed-designs/2026-07-28-offspring-trough-removed/historical-threshold18/tau_noclamp2.txt": {
+      "bytes": 891,
+      "sha256": "0ac5639cc02547db83c005098bb713bf0786c3fd057b0283a86044e56ee026a6"
+    },
+    "failed-designs/2026-08-22-stage7b2r-feasibility-gate-no-go/README.md": {
+      "bytes": 4653,
+      "sha256": "61f2c57cfbf63571639780e64542b8731ded6741d0f4f868dc7092f6087aee90"
+    },
+    "failed-designs/2026-08-22-stage7b2r-feasibility-gate-no-go/diagnostic-magnitudes.json": {
+      "bytes": 5128,
+      "sha256": "55983723160c7a027d79a509caf0c5b1f679e2910f4335ff1883826f1a668b70"
+    },
+    "failed-designs/2026-08-22-stage7b2r-feasibility-gate-no-go/gate-summary.json": {
+      "bytes": 2135,
+      "sha256": "5f2b4b24817a67c3dc0b786bc9162cd747d56c6b204cd0b88e7273a57247d533"
+    },
+    "failed-designs/2026-08-23-stage7b-denominator-feasibility-gate-no-go/README.md": {
+      "bytes": 7975,
+      "sha256": "e6b00cb4fefa05cf16f3e6c23dc2318e6ab9f850561d604b5b295f13c0fb312d"
+    },
+    "failed-designs/2026-08-23-stage7b-denominator-feasibility-gate-no-go/gate-stderr.log": {
+      "bytes": 268,
+      "sha256": "2c955fd85f983309dd1c54c22a5ca1b27c2a35bc08ee05f04ed49e6a5f9c8150"
+    },
+    "failed-designs/2026-08-23-stage7b-denominator-feasibility-gate-no-go/gate-summary.json": {
+      "bytes": 31919,
+      "sha256": "295f5c168fab48ae5c6c614edddc7b7347058b868a715b7a6325b684ff407e3d"
+    },
+    "failed-designs/2026-08-23-stage7b-endpoint-feasibility-gate-no-go/README.md": {
+      "bytes": 5292,
+      "sha256": "cf778ffc19eacf513dd2613a47c69d27af1af5402b0da922267eb83cb8e01a9c"
+    },
+    "failed-designs/2026-08-23-stage7b-endpoint-feasibility-gate-no-go/gate-summary.json": {
+      "bytes": 28986,
+      "sha256": "b748da3b0ffb3fa3f4abac0ee3cc9a0aa5f805e6ccd141a70115f4e4f3d0e83c"
+    },
+    "failed-designs/stage8-paired-gate-g2-checkpoint-bookkeeping/diagnosis.md": {
+      "bytes": 5446,
+      "sha256": "88da6581afd5aba35f4113ffc3b3ad8d4f338fffa6c5e677ba34594a87cbc38b"
+    },
+    "failed-designs/stage8-paired-gate-g2-checkpoint-bookkeeping/gate-stdout.log": {
+      "bytes": 4530,
+      "sha256": "65b84adba5d7eb5987d78a7680f8628c993c59351cd8055f1236881ff798ced6"
+    },
+    "failed-designs/stage8-paired-gate-g2-checkpoint-bookkeeping/gate-summary.json": {
+      "bytes": 4370,
+      "sha256": "11c2a4eb583597240e15a0d25bab89505e27fa8985b502c72b866204cf5fb1d3"
+    }
+  }
+}

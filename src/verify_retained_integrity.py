@@ -36,6 +36,15 @@ What it checks (all mechanical, all read-only):
   D1  Doors: zero changed paths under results/ or failed-designs/ since the last
       artifact-producing commit d19d7c2 (the R1-R3 door check used by sessions
       10-12), and failed-designs/ still holds exactly its 8 archived entries.
+  F1  Failed-designs content binding: docs/failed-designs-append-ledger.json
+      binds every file of the append-only failed-designs/ archive by
+      {bytes, sha256}. Any in-place edit (same-length or not), any deletion,
+      a malformed ledger, or a lawful no-go append not registered in the
+      appending unit's own commit FAILS loudly. D1 binds this archive only
+      by diff against one fixed base commit plus an entry count -- neither
+      proves a byte of content, and both would expire the moment a lawful
+      door fired and the door baseline rolled forward; F1 binds content
+      forever, independent of any base commit.
   C1  Cron-briefing integrity: the out-of-repo scheduler config is validated
       strictly whenever present -- it must parse, carry ZERO stale f753894
       briefing markers, have exactly the v3 hold-briefing job enabled for
@@ -112,6 +121,16 @@ FAILED_DESIGNS_COUNT = 8
 # recorded state. Non-retained, unpinned, version-controlled; each lawful
 # append registers a new snapshot in the appending unit's own commit.
 APPEND_LEDGER_PATH = "docs/stage-8-debate-log-append-ledger.json"
+
+# Content-binding ledger for the append-only failed-designs archive (check
+# F1): every archived file is bound by {bytes, sha256}, making in-place
+# edits and deletions tamper-evident forever and requiring lawful no-go
+# appends to register their files in the appending unit's own commit.
+# Non-retained, unpinned, version-controlled documentation infrastructure
+# (same class as the L1 sidecar). Complements D1, which binds only a diff
+# against one fixed base commit plus the entry count -- neither proves
+# content.
+FAILED_DESIGNS_LEDGER_PATH = "docs/failed-designs-append-ledger.json"
 
 # Scheduler state (check C1). Out-of-repo and environment-specific: the
 # session-19 root-cause fix replaced the stale legacy briefing job with the
@@ -325,6 +344,91 @@ def doors(
     )
 
 
+def failed_designs_ledger(root: pathlib.Path) -> tuple[bool, str]:
+    """F1: content-bind the append-only failed-designs archive.
+
+    D1 constrains this archive only by git diff against one fixed base
+    commit plus the number of entry directories -- neither property proves
+    a single byte of content, and both stop constraining anything the
+    moment a lawful door fires and the base/count are consciously rolled
+    forward. The ledger sidecar binds every archived file by
+    {bytes, sha256}: every recorded path must exist on disk byte-exactly,
+    every on-disk file must be recorded, and the ledger itself must parse
+    strictly (non-empty "files" object, integer non-negative bytes,
+    64-hex digests). In-place edits (same-length included), deletions,
+    malformed ledgers, and lawful appends not registered within the
+    appending unit's own commit fail loudly.
+    """
+    lp = root / FAILED_DESIGNS_LEDGER_PATH
+    if not lp.is_file():
+        return False, (
+            f"{FAILED_DESIGNS_LEDGER_PATH}: missing (cannot content-bind "
+            "failed-designs/)"
+        )
+    try:
+        ledger = json.loads(lp.read_text())
+        raw_files = ledger["files"]
+        if not isinstance(raw_files, dict) or not raw_files:
+            raise ValueError('"files" must be a non-empty object')
+        recorded: dict[str, tuple[int, str]] = {}
+        for rel, meta in raw_files.items():
+            b = meta["bytes"]
+            h = str(meta["sha256"]).lower()
+            if not isinstance(b, int) or isinstance(b, bool) or b < 0:
+                raise ValueError(f"{rel}: bad bytes {b!r}")
+            if len(h) != 64 or set(h) - set("0123456789abcdef"):
+                raise ValueError(f"{rel}: bad sha256 {h[:16]!r}")
+            recorded[str(rel)] = (b, h)
+    except (ValueError, KeyError, TypeError, OSError) as exc:
+        return False, (
+            f"{FAILED_DESIGNS_LEDGER_PATH}: unreadable/malformed ({exc})"
+        )
+    fd = root / "failed-designs"
+    if not fd.is_dir():
+        return False, "failed-designs/: directory absent from working tree"
+    actual: dict[str, bytes] = {}
+    for q in sorted(fd.rglob("*")):
+        if q.is_file():
+            r = _rel_to_root(q, root)
+            if r is None:
+                return False, f"failed-designs/: unresolvable path {q}"
+            actual[r] = q.read_bytes()
+    gone = sorted(set(recorded) - set(actual))
+    if gone:
+        return False, (
+            f"failed-designs/: {len(gone)} registered file(s) deleted or "
+            f"absent, e.g. {gone[0]} -- archived designs are never deleted"
+        )
+    changed = []
+    for rel in sorted(recorded):
+        lb, lh = recorded[rel]
+        data = actual[rel]
+        dh = sha256_hex(data)
+        if len(data) != lb or dh != lh:
+            changed.append(
+                f"{rel} (ledger {lb} B/{lh[:12]}, "
+                f"disk {len(data)} B/{dh[:12]})"
+            )
+    if changed:
+        return False, (
+            f"failed-designs/: {len(changed)} registered file(s) altered "
+            f"in place (append-only archive): {changed[0]}"
+        )
+    extra = sorted(set(actual) - set(recorded))
+    if extra:
+        return False, (
+            f"failed-designs/: {len(extra)} unregistered file(s) present, "
+            f"e.g. {extra[0]} -- register lawful no-go appends in "
+            f"{FAILED_DESIGNS_LEDGER_PATH} within the appending unit's own "
+            "commit"
+        )
+    n_entries = len({p.split("/")[1] for p in recorded if p.count("/") >= 2})
+    return True, (
+        f"{len(recorded)} files across {n_entries} entries content-bound "
+        "by ledger"
+    )
+
+
 def sync(root: pathlib.Path) -> tuple[bool, str]:
     """S1: local HEAD must equal origin/main.
 
@@ -527,6 +631,13 @@ def verify(
     # D1 doors
     ok, detail = doors(root, LAST_ARTIFACT_COMMIT, FAILED_DESIGNS_COUNT)
     record(ok, "D1 doors", detail)
+
+    # F1 failed-designs content binding: D1's diff-vs-base plus the entry
+    # count prove no byte of content; the ledger sidecar does (see module
+    # docstring). Runs regardless of include_tree_check so the live-repo
+    # smoke covers it too.
+    ok, detail = failed_designs_ledger(root)
+    record(ok, "F1 failed-designs", detail)
 
     # C1 cron-briefing integrity: out-of-repo scheduler state. An absent
     # config is a labelled non-failing SKIP; a present one must validate

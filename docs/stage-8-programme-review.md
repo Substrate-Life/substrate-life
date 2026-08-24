@@ -1354,6 +1354,79 @@ green; push after every commit.
   5 rolled forward with the new expectations. Doors R1–R3 unfired;
   hold in force.
 
+- 2026-08-24 (session 28): **verification-only unit under the Part V
+  item 3 hold — ninth corrected-briefing arrival; the append-only
+  failed-designs archive content-bound (the last immutable class with no
+  content binding); no execution registered or run.** Arrival state: v3
+  briefing delivered intact for the ninth consecutive wake; actual HEAD
+  `bf8d1b106e4e` = origin/main (`0/0`), tree clean — mechanically the
+  session-27 unit commit itself, zero commits/drift between that entry
+  and this wake; no stale-state discrepancy. Arrival battery reproduced
+  exactly under the session-27 expectation change: `python3
+  src/verify_retained_integrity.py --auditors` exit 0 with **12/12
+  checks PASS** (P1 both manifest anchors; P2 pins 8/8 signed-bracket +
+  29/30 paired with the debate log solely under its proven pure-append
+  rule, still exactly 45,421 bytes; L1 append-ledger match on the sole
+  pure-append path; P3 both retained inventories closed extra=none
+  missing=none; T1 strict tree at arrival; S1 sync GREEN at arrival, the
+  designed at-arrival state; D1 doors unfired vs `d19d7c2`,
+  failed-designs at 8; C1 cron = v3 hold-briefing job `de939b52cc2b`
+  enabled project job only, zero `f753894` markers), all three
+  standalone auditors exit 0 with session-12-identical numbers; suite
+  green at arrival (**452 tests, OK, 4 skipped** — fifteenth consecutive
+  green count, third at the raised expectation); no owner redirection
+  present in any channel. delegate_task still absent from this runtime's
+  toolset as disclosed Rounds 2–6 and sessions 17–27; no decision fork
+  arose so no adversarial round convened (the Round-5 computed closure
+  stands). **Durable gap found and discharged (verification tooling):**
+  the append-only `failed-designs/` archive (39 files across 8 entries)
+  had NO content binding anywhere — D1 constrains it only by git diff
+  against the one fixed base commit `d19d7c2` plus the entry-directory
+  count, neither of which proves a single byte of content, and both
+  constraints expire the moment a lawful R1/R2 door fires and the door
+  baseline is consciously rolled forward (a same-length in-place rewrite
+  landed any time before such a roll-forward would thereafter be
+  invisible to every mechanical check forever). Closed with new **F1
+  failed-designs** check plus the seed sidecar
+  `docs/failed-designs-append-ledger.json` (version 1, seeded at this
+  wake's arrival tree: all 39 archived files bound by `{bytes, sha256}`,
+  31,003,030 bytes total): every recorded path must exist on disk
+  byte-exactly forever, every on-disk file under `failed-designs/` must
+  be recorded, and the ledger itself must parse strictly (non-empty
+  `files` object, integer non-negative bytes, 64-hex digests) — in-place
+  edits (same-length included), deletions, malformed ledgers, and lawful
+  no-go appends not registered in the appending unit's own commit all
+  FAIL loudly. Same infrastructure class as the L1 sidecar:
+  non-retained, unpinned, version-controlled documentation
+  infrastructure; pre-edit pin checks grep count 0 across both freeze
+  manifests for all four touchpoints (both src files, review doc, new
+  sidecar); none of the four in the verifier pin set; archived contents
+  touched read-only throughout; debate log untouched. Test matrix +5
+  (`FailedDesignsLedgerTests`: multi-entry pass naming file and entry
+  counts; same-length in-place edit fails naming the file — regression
+  test for the closed hole; deletion of a registered file fails;
+  unregistered lawful append fails citing registration duty;
+  missing/malformed/wrong-type/bad-digest ledgers fail loudly) and the
+  live smoke extended to assert the F1 line. ONE fixture bug caught by
+  the tests themselves before any suite run (synthetic trees never
+  created the `docs/` parent of the ledger path; helper mkdirs it —
+  verifier logic needed no change). Mid-unit suite on the dirty tree:
+  457 ran, exactly one designed failure
+  (`test_live_repo_has_no_tracked_file_modifications`) naming exactly
+  `docs/stage-8-programme-review.md`,
+  `src/test_verify_retained_integrity.py`, and
+  `src/verify_retained_integrity.py` (the new sidecar is untracked at
+  this point and invisible to the non-strict tracked-file check),
+  4 skipped; review-doc diff purely
+  additive. Expectation change disclosed: future wakes should see
+  `--auditors` **exit 0, 13/13 PASS** and suite **457 tests, OK,
+  4 skipped**; S1 expected GREEN at arrivals and RED only inside
+  commit-to-push windows. Per the session-25 workflow correction,
+  closing battery numbers are reported post-push at the pushed HEAD in
+  this wake's delivery. Part IV session-28 entry appended; Part V item
+  5 rolled forward with the new expectations. Doors R1–R3 unfired;
+  hold in force.
+
 ## Part V — Next run should pick up
 
 1. **The programme is CLOSED on computed grounds (session 8).** The
@@ -1554,6 +1627,19 @@ resurrected legacy project briefing) with a labelled non-failing SKIP
 when absent; +7 tests — future wakes should expect `python3
 src/verify_retained_integrity.py --auditors` **exit 0, 12/12 PASS** and
 suite **452 tests, OK, 4 skipped** (see the Part IV session-27 entry);
+  session 28 followed the prescription again on its ninth corrected-
+briefing arrival (v3 text delivered intact; verifier with `--auditors`
+**exit 0, 12/12 PASS** with session-12-identical auditor numbers; suite
+**452 tests, OK, 4 skipped** at arrival HEAD `bf8d1b106e4e`; doors
+unfired) and spent its durable-gap budget on content-binding the last
+immutable class that lacked it — new **F1 failed-designs** check plus
+the seed sidecar `docs/failed-designs-append-ledger.json` (all 39
+archived files across 8 entries bound by {bytes, sha256}), closing the
+hole that D1's diff-vs-one-fixed-base + entry count proved no byte of
+content and would expire at the first lawful door-baseline roll-forward;
++5 tests — future wakes should expect `python3
+src/verify_retained_integrity.py --auditors` **exit 0, 13/13 PASS** and
+suite **457 tests, OK, 4 skipped** (see the Part IV session-28 entry);
    session 9 added the follow-on-memo independent audit
    (`docs/followon-power-memo-independent-audit.md`,
    `src/audit_followon_power_memo.py`) and the Round-6-authorized memo

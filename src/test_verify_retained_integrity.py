@@ -499,6 +499,130 @@ class CronBriefingTests(unittest.TestCase):
             self.assertIn("unreadable/malformed", detail)
 
 
+class FailedDesignsLedgerTests(unittest.TestCase):
+    """F1 coverage: the append-only failed-designs archive was previously
+    bound only by D1 -- a git diff against one fixed base commit plus an
+    entry-directory count. Neither property proves a single byte of
+    content, and both expire the moment a lawful door fires and the
+    baseline rolls forward. The ledger binds every archived file by
+    {bytes, sha256}: same-length rewrites, deletions, malformed ledgers,
+    and unregistered lawful appends must all fail loudly."""
+
+    ARCHIVE = {
+        "failed-designs/e1/README.md": b"no-go rationale\n",
+        "failed-designs/e1/gate-summary.json": b'{"verdict": "NO_GO"}\n',
+        "failed-designs/e2/nested/diagnosis.md": b"why it failed\n",
+    }
+
+    @staticmethod
+    def _ledger(files: dict[str, bytes]) -> str:
+        return json.dumps(
+            {
+                "version": 1,
+                "files": {
+                    rel: {"bytes": len(d), "sha256": digest(d)}
+                    for rel, d in sorted(files.items())
+                },
+            }
+        )
+
+    @classmethod
+    def _write(
+        cls,
+        root: pathlib.Path,
+        files: dict[str, bytes],
+        raw_ledger: str | None = None,
+    ) -> None:
+        for rel, data in files.items():
+            p = root / rel
+            p.parent.mkdir(parents=True, exist_ok=True)
+            p.write_bytes(data)
+        lp = root / vri.FAILED_DESIGNS_LEDGER_PATH
+        lp.parent.mkdir(parents=True, exist_ok=True)
+        lp.write_text(
+            raw_ledger if raw_ledger is not None else cls._ledger(files)
+        )
+
+    def test_multi_entry_archive_passes(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = pathlib.Path(td)
+            self._write(root, dict(self.ARCHIVE))
+            ok, detail = vri.failed_designs_ledger(root)
+            self.assertTrue(ok, detail)
+            self.assertIn("3 files", detail)
+            self.assertIn("2 entries", detail)
+
+    def test_same_length_in_place_edit_fails(self):
+        """THE hole this check closes: a same-length rewrite of an archived
+        file changes no count and -- once history moves past D1's fixed
+        base commit -- no diff either; only content binding sees it."""
+        with tempfile.TemporaryDirectory() as td:
+            root = pathlib.Path(td)
+            good = dict(self.ARCHIVE)
+            bad = bytearray(good["failed-designs/e1/README.md"])
+            bad[-2] = ord("X")
+            edited = dict(good)
+            edited["failed-designs/e1/README.md"] = bytes(bad)
+            self._write(root, edited, raw_ledger=self._ledger(good))
+            ok, detail = vri.failed_designs_ledger(root)
+            self.assertFalse(ok)
+            self.assertIn("altered", detail)
+            self.assertIn("failed-designs/e1/README.md", detail)
+
+    def test_deleted_registered_file_fails(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = pathlib.Path(td)
+            self._write(root, dict(self.ARCHIVE))
+            (root / "failed-designs/e1/gate-summary.json").unlink()
+            ok, detail = vri.failed_designs_ledger(root)
+            self.assertFalse(ok)
+            self.assertIn("deleted", detail)
+            self.assertIn("gate-summary.json", detail)
+
+    def test_unregistered_append_fails_with_registration_guidance(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = pathlib.Path(td)
+            self._write(root, dict(self.ARCHIVE))
+            newdir = root / "failed-designs/e3"
+            newdir.mkdir()
+            (newdir / "gate-summary.json").write_bytes(b'{"ok": false}\n')
+            ok, detail = vri.failed_designs_ledger(root)
+            self.assertFalse(ok)
+            self.assertIn("unregistered", detail)
+            self.assertIn("register", detail.lower())
+
+    def test_missing_malformed_wrongtype_and_bad_digest_fail_loudly(self):
+        with tempfile.TemporaryDirectory() as td:
+            ok, detail = vri.failed_designs_ledger(pathlib.Path(td))
+            self.assertFalse(ok)
+            self.assertIn("missing", detail.lower())
+        with tempfile.TemporaryDirectory() as td:
+            root = pathlib.Path(td)
+            self._write(root, dict(self.ARCHIVE), raw_ledger="{not json")
+            ok, detail = vri.failed_designs_ledger(root)
+            self.assertFalse(ok)
+            self.assertIn("unreadable", detail.lower())
+        with tempfile.TemporaryDirectory() as td:
+            root = pathlib.Path(td)
+            self._write(root, dict(self.ARCHIVE),
+                        raw_ledger='{"version": 1, "files": []}')
+            ok, detail = vri.failed_designs_ledger(root)
+            self.assertFalse(ok)
+            self.assertIn("malformed", detail.lower())
+        with tempfile.TemporaryDirectory() as td:
+            root = pathlib.Path(td)
+            self._write(root, dict(self.ARCHIVE))
+            lp = root / vri.FAILED_DESIGNS_LEDGER_PATH
+            led = json.loads(lp.read_text())
+            first = next(iter(led["files"]))
+            led["files"][first]["sha256"] = "not-a-digest"
+            lp.write_text(json.dumps(led))
+            ok, detail = vri.failed_designs_ledger(root)
+            self.assertFalse(ok)
+            self.assertIn("malformed", detail.lower())
+            self.assertIn(first, detail)
+
+
 class RealRepoSmoke(unittest.TestCase):
     def test_live_repo_passes_all_mechanical_checks(self):
         # T1 excluded: this suite may run before the verifier's own commit,
@@ -529,6 +653,9 @@ class RealRepoSmoke(unittest.TestCase):
         # C1 validates the out-of-repo scheduler config (or labels its
         # absence as a SKIP) without ever failing silently.
         self.assertIn("C1 cron", joined)
+        # F1 content-binds the append-only failed-designs archive via the
+        # ledger sidecar (D1's diff-vs-base + count prove no content).
+        self.assertIn("F1 failed-designs", joined)
 
     def test_live_repo_has_no_tracked_file_modifications(self):
         ok, detail = vri.tree_clean(vri.REPO_ROOT, strict=False)
