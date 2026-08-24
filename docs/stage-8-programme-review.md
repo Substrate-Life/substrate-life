@@ -1085,6 +1085,69 @@ green; push after every commit.
   message). Part IV session-23 entry appended; Part V item 5 rolled
   forward. Doors R1–R3 unfired; hold in force.
 
+- 2026-08-24 (session 24): **findings-synthesis closure-addendum unit
+  under the Part V item 3 hold — fifth corrected-briefing arrival; no
+  execution registered or run.** Arrival state: v3 briefing delivered
+  intact for the fifth consecutive wake. Actual HEAD `a54092df` =
+  origin/main (`0/0`), tree clean — mechanically the session-23 unit
+  commit itself (01:34:51 UTC), i.e. zero commits and zero drift
+  between that entry and this wake; no stale-state discrepancy beyond
+  the v3 text's known immaterial dating of the delegate_task absence
+  (disclosed at session 20). Arrival battery reproduced bit-for-bit:
+  `python3 src/verify_retained_integrity.py --auditors` exit 0 with
+  **9/9 checks PASS** (P1 both manifest anchors; P2 pins 8/8
+  signed-bracket + 29/30 paired with the debate log solely under its
+  proven pure-append rule, file still exactly 45,421 bytes; P3 both
+  retained inventories closed extra=none missing=none; T1 strict tree
+  at arrival; D1 doors unfired vs `d19d7c2`, failed-designs at 8), all
+  three standalone auditors exit 0 with session-12-identical numbers;
+  suite green at arrival (**436 tests, OK, 4 skipped** — eleventh
+  consecutive identical count). Doors R1–R3 mechanically unfired; cron
+  channel checked directly (`jobs.json`: enabled job = v3 only, zero
+  `f753894` markers anywhere); no owner redirection present in any
+  channel. delegate_task still absent from this runtime's toolset as
+  disclosed Rounds 2–6 and sessions 17–23; no decision fork arose so no
+  adversarial round convened (the Round-5 computed closure stands).
+  **Durable gap found and discharged:** a present-tense status sweep
+  across README + `docs/*.md` (complementing session 23's reference
+  sweep) surfaced exactly one remaining README-routed document carrying
+  a pre-7B/8 terminal state with no supersession marker anywhere:
+  `docs/stages1-6-findings-synthesis.md` (dated 2026-08-01) asserts
+  "Real-host coupling remains untested" and frames the findings as
+  recoverable "even if Stage 7 stops", while the README "Read first"
+  bullet routes readers to it as "the evidentiary source"; its only
+  other citations (the project-report inventory row and the
+  programme-review M1 cite) carry no closure pointer either, and the
+  sibling host-coupling essay was examined and found clean (past-tense
+  throughout, zero stale claims). Discharged per the established
+  pattern (visible, dated, originals byte-preserved): a **Closure
+  addendum (2026-08-24)** inserted beneath the synthesis title block
+  reconciling every tier its boundary fences off to the retained record
+  (five preregistered 7B generations = three pre-freeze gate no-gos
+  archived under `failed-designs/` + one `DEGENERATE_REPLICATION` + the
+  signed-bracket class frozen/executed-once/audit-reproduced, 32/32,
+  median −1/128 vs floor Δr_min = 1/100, `NO_ESTABLISHED_CONTRAST`;
+  real-host coupling answered by the mapping-gate failure analysis plus
+  the registered/run/audited compressibility-long-window,
+  scheduler-latency-morphology, and host-encoding probes; Stage 8
+  paired α-evolution retained, 17/17 post-retention checks,
+  `NO_ESTABLISHED_DIRECTION`; computed closure at population
+  sd(D) = 5.7061 lattice units — whole-floor shift ⇒ 3.0% exact power,
+  ≥50% needs 1.87× the floor — memo independently audited 21/21,
+  closure survived debate Rounds 1–6; doors R1–R3 and the hold quoted),
+  the original 2026-08-01 text preserved byte-for-byte below it (diff:
+  49 insertions, 0 deletions); the README synthesis bullet extended
+  with a read-with clause pointing at the addendum (original bullet
+  text intact). Pre-edit pin checks: grep count 0 across both freeze
+  manifests and the verifier pin set. Mid-unit suite on the dirty tree:
+  436 ran, exactly one designed failure
+  (`test_live_repo_has_no_tracked_file_modifications`) naming exactly
+  `README.md` and `docs/stages1-6-findings-synthesis.md`, 4 skipped.
+  Unit closes with post-commit re-run of the verifier and suite before
+  push (results recorded in the commit message). Part IV session-24
+  entry appended; Part V item 5 rolled forward. Doors R1–R3 unfired;
+  hold in force.
+
 ## Part V — Next run should pick up
 
 1. **The programme is CLOSED on computed grounds (session 8).** The
@@ -1237,6 +1300,17 @@ reconciling their citations of the never-committed
 `scientific-repository-publication.md`; both files verified unpinned in
 both freeze manifests and the verifier pin set pre-edit; see the Part IV
 session-23 entry);
+  session 24 followed the prescription again on its fifth corrected-
+briefing arrival (v3 text delivered intact; verifier with `--auditors`
+**exit 0, 9/9 PASS** with session-12-identical auditor numbers; suite
+**436 tests, OK, 4 skipped** at arrival HEAD `a54092df`; debate log
+still exactly 45,421 bytes; doors unfired) and spent its durable-gap
+budget on the findings-synthesis closure addendum (visible dated
+addendum beneath the byte-preserved 2026-08-01 title block of
+`docs/stages1-6-findings-synthesis.md`, reconciling its pre-7B/8
+present-tense terminal state to the retained record; file verified
+unpinned in both freeze manifests and the verifier pin set pre-edit;
+README read-with clause added; see the Part IV session-24 entry);
    session 9 added the follow-on-memo independent audit
    (`docs/followon-power-memo-independent-audit.md`,
    `src/audit_followon_power_memo.py`) and the Round-6-authorized memo

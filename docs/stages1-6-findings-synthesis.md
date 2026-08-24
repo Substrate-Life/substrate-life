@@ -3,6 +3,55 @@
 *Consolidated result ledger for Stages 1–6 and four methodological findings*
 *Date: 2026-08-01*
 
+## Closure addendum (2026-08-24)
+
+*Visible, dated addendum inserted beneath the original title block. The
+2026-08-01 document below is preserved byte-for-byte and remains
+evidence only for the source semantics of its own date. Nothing here
+reopens, retunes, or reinterprets any retained result.*
+
+This ledger is a Stages 1–6 / deterministic-7B0 snapshot; the
+present-tense sentences below were written when every tier they fence
+off had never been run. The retained record has since discharged that
+boundary, and it supersedes the framing, not the nine findings:
+
+- The stochastic allocation-versus-hazard question was carried through
+  five preregistered generations — three designs stopped by their own
+  pre-freeze feasibility gates (archived under
+  [`failed-designs/`](../failed-designs/)), one executed to a registered
+  `DEGENERATE_REPLICATION`, and the signed-bracket class frozen,
+  executed once, and audit-reproduced
+  ([`results/stage7b-signed-bracket/`](../results/stage7b-signed-bracket/):
+  32/32 replicates complete, median paired difference −1/128 against
+  floor Δr_min = 1/100 → registered null `NO_ESTABLISHED_CONTRAST`).
+- Real-host coupling moved from "untested" to answered: the founding
+  coupling attempt ended at its pre-assay mapping gate — no organism
+  ever received a host-derived packet (mechanism analysis:
+  [`the-host-varied-metabolism-couldnt-eat-it.md`](the-host-varied-metabolism-couldnt-eat-it.md)),
+  and the host-coupling probes (compressibility long window,
+  scheduler-latency morphology, host encoding diagnostic) were
+  registered, run, and audited.
+- Dedicated-locus α evolution ran as the programme's one paired
+  confirmatory execution
+  ([`results/stage8-alpha-evolution-paired/`](../results/stage8-alpha-evolution-paired/):
+  registered null `NO_ESTABLISHED_DIRECTION`; 17/17 post-retention
+  audit checks).
+- The programme then CLOSED on computed grounds: the measured
+  dispersions (population sd(D) = 5.7061 lattice units) show a
+  whole-floor true shift carries 3.0% exact power on the frozen rule
+  and ≥50% power needs 1.87× the floor, so no affordable instrument of
+  these families could have returned otherwise
+  ([`stage-8-followon-power-memo.md`](stage-8-followon-power-memo.md),
+  independently audited 21/21; closure survived adversarial debate,
+  Rounds 1–6,
+  [`stage-8-debate-log.md`](stage-8-debate-log.md)).
+
+The nine findings below stand exactly as stated. Reopening runs only
+through doors R1–R3 (memo §9); until one fires, no evolutionary
+execution is authorised anywhere in this programme. Current entry
+points: [`final-report.md`](final-report.md) and
+[`stage-8-programme-review.md`](stage-8-programme-review.md).
+
 ## Status and dependency boundary
 
 The nine findings below are complete at the level stated here. The five substrate and life-history findings derive from Stages 1–6. The four methodological findings derive from the project's design and verification history through deterministic Stage 7B0. None requires a stochastic Stage 7 allocation assay, an evolved allocation response, or a completed real-host coupling experiment.
