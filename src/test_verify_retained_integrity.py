@@ -13,6 +13,7 @@ import pathlib
 import subprocess
 import tempfile
 import unittest
+from unittest import mock
 
 import verify_retained_integrity as vri
 
@@ -222,6 +223,88 @@ class SyncTests(unittest.TestCase):
             self.assertFalse(ok)
             self.assertIn("!=", detail)
             self.assertIn("0/1", detail)
+
+
+class FetchTests(unittest.TestCase):
+    """N1 fetch coverage: S1 is intentionally offline -- it compares HEAD
+    against the LOCALLY RECORDED origin/main ref, so a wake that skips the
+    manual `git fetch origin` while a concurrent session advances the real
+    origin leaves S1 passing against a stale ref indefinitely. The opt-in
+    fetch mechanises briefing step 1's fetch half: success reports the
+    freshly fetched tip, failure fails loudly, and the stale-ref regression
+    below proves S1 stops passing once the truth arrives. Fixtures use
+    local bare remotes only -- the test suite never touches the network."""
+
+    @staticmethod
+    def _g(root, *args):
+        return subprocess.run(
+            ["git", "-C", str(root), *args], capture_output=True, text=True
+        )
+
+    @classmethod
+    def _stale_clone_fixture(cls, td: pathlib.Path) -> pathlib.Path:
+        """bare origin @ c0 -> clone (fresh tracking refs) -> concurrent
+        push of c1 leaves the clone stale but self-consistent (its own
+        recorded origin/main still equals its HEAD)."""
+        origin = td / "origin.git"
+        seed = td / "seed"
+        clone = td / "clone"
+        r = cls._g(td, "init", "-q", "--bare", str(origin))
+        assert r.returncode == 0, r.stderr
+        r = cls._g(td, "init", "-q", str(seed))
+        assert r.returncode == 0, r.stderr
+        r = cls._g(seed, "config", "user.email", "t@example.invalid")
+        assert r.returncode == 0, r.stderr
+        r = cls._g(seed, "config", "user.name", "t")
+        assert r.returncode == 0, r.stderr
+        r = cls._g(seed, "commit", "--allow-empty", "-m", "c0")
+        assert r.returncode == 0, r.stderr
+        r = cls._g(seed, "push", "-q", str(origin), "HEAD:refs/heads/main")
+        assert r.returncode == 0, r.stderr
+        # A bare repo's HEAD stays on its default unborn branch after the
+        # first push from elsewhere; point it at main so clones work.
+        r = cls._g(origin, "symbolic-ref", "HEAD", "refs/heads/main")
+        assert r.returncode == 0, r.stderr
+        r = cls._g(td, "clone", "-q", str(origin), str(clone))
+        assert r.returncode == 0, r.stderr
+        # THE CONCURRENT SESSION ADVANCES ORIGIN.
+        r = cls._g(seed, "commit", "--allow-empty", "-m", "c1-concurrent")
+        assert r.returncode == 0, r.stderr
+        r = cls._g(seed, "push", "-q", str(origin), "HEAD:refs/heads/main")
+        assert r.returncode == 0, r.stderr
+        return clone
+
+    def test_stale_ref_passes_sync_until_fetch_reveals_advance(self):
+        """THE hole this check closes: without the fetch, sync passes against
+        the stale remote-tracking ref; after it, S1 fails loudly with the
+        true behind count instead of silently blessing an out-of-date wake."""
+        with tempfile.TemporaryDirectory() as td:
+            clone = self._stale_clone_fixture(pathlib.Path(td))
+            ok, detail = vri.sync(clone)
+            self.assertTrue(ok, detail)  # the false pass N1 exists to kill
+            ok, detail = vri.fetch_origin(clone)
+            self.assertTrue(ok, detail)
+            self.assertIn("origin/main now", detail)
+            ok, detail = vri.sync(clone)
+            self.assertFalse(ok)
+            self.assertIn("1/0", detail)
+
+    def test_fetch_failure_fails_loudly(self):
+        with tempfile.TemporaryDirectory() as td:
+            ok, detail = vri.fetch_origin(pathlib.Path(td))
+            self.assertFalse(ok)
+            self.assertIn("failed", detail)
+            self.assertIn("before trusting S1", detail)
+
+    def test_cli_wires_fetch_flag(self):
+        """--fetch must reach verify() as do_fetch=True; default stays off so
+        a bare `--auditors` run remains fully offline."""
+        with mock.patch.object(vri, "verify", return_value=(True, ["x"])) as mv:
+            self.assertEqual(vri.main([]), 0)
+            self.assertFalse(mv.call_args.kwargs["do_fetch"])
+            self.assertFalse(mv.call_args.kwargs["with_auditors"])
+            self.assertEqual(vri.main(["--fetch"]), 0)
+            self.assertTrue(mv.call_args.kwargs["do_fetch"])
 
 
 class AppendLedgerTests(unittest.TestCase):
@@ -656,6 +739,9 @@ class RealRepoSmoke(unittest.TestCase):
         # F1 content-binds the append-only failed-designs archive via the
         # ledger sidecar (D1's diff-vs-base + count prove no content).
         self.assertIn("F1 failed-designs", joined)
+        # Default invocation must stay fully offline: N1 fetch is opt-in
+        # via --fetch and must never appear without it.
+        self.assertNotIn("N1 fetch", joined)
 
     def test_live_repo_has_no_tracked_file_modifications(self):
         ok, detail = vri.tree_clean(vri.REPO_ROOT, strict=False)

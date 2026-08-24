@@ -1427,6 +1427,76 @@ green; push after every commit.
   5 rolled forward with the new expectations. Doors R1–R3 unfired;
   hold in force.
 
+- 2026-08-24 (session 29): **verification-only unit under the Part V
+  item 3 hold — tenth corrected-briefing arrival; briefing step 1's
+  fetch half mechanised (the last unmechanised mechanical wake step);
+  no execution registered or run.** Arrival state: v3 briefing
+  delivered intact for the tenth consecutive wake; actual HEAD
+  `5de83ac68a3f` = origin/main (`0/0`), tree clean — mechanically the
+  session-28 unit commit itself, zero commits/drift between that entry
+  and this wake; no stale-state discrepancy. Arrival battery reproduced
+  exactly under the session-28 expectation change: `python3
+  src/verify_retained_integrity.py --auditors` exit 0 with **13/13
+  checks PASS** at `5de83ac` (P1 both manifest anchors; P2 pins 8/8
+  signed-bracket + 29/30 paired with the debate log solely under its
+  proven pure-append rule, still exactly 45,421 bytes; L1 append-ledger
+  match on the sole pure-append path; P3 both retained inventories
+  closed extra=none missing=none; T1 strict tree at arrival; S1 sync
+  GREEN at arrival, the designed at-arrival state; D1 doors unfired vs
+  `d19d7c2`, failed-designs at 8; F1 all 39 archived files across 8
+  entries content-bound; C1 cron = v3 hold-briefing job
+  `de939b52cc2b` enabled project job only, zero `f753894` markers),
+  all three standalone auditors exit 0 with session-12-identical
+  numbers; suite green at arrival (**457 tests, OK, 4 skipped** —
+  sixteenth consecutive green count, fourth at the raised expectation);
+  no owner redirection present in any channel. delegate_task still
+  absent from this runtime's toolset as disclosed Rounds 2–6 and
+  sessions 17–28; no decision fork arose so no adversarial round
+  convened (the Round-5 computed closure stands). **Durable gap found
+  and discharged (verification tooling):** the manual `git fetch
+  origin` of briefing step 1 was the one remaining unmechanised
+  mechanical wake step after sessions 25–28 consolidated everything
+  else — S1 deliberately compares HEAD against the LOCALLY RECORDED
+  `refs/remotes/origin/main` (offline portability), so a wake that ever
+  skipped the hand-run fetch while a concurrent session advanced
+  origin/main would let S1 pass against a stale ref indefinitely
+  (duplicate concurrent sessions are documented fact in this
+  programme's history). Closed with a new opt-in **N1 fetch** check
+  (`--fetch`): runs exactly the standard `git fetch origin` BEFORE S1
+  so the sync comparison is provably post-fetch, FAILS loudly on any
+  fetch error or missing remote main ("resolve network/remote before
+  trusting S1"), and reports the freshly fetched tip on success;
+  default invocation stays fully offline (the live smoke now asserts
+  the N1 line is absent without the flag), and the fetch touches
+  remote-tracking refs only — never any working-tree, retained, or
+  pinned file — so the battery remains read-only over all programme
+  content while performing precisely what every wake already ran by
+  hand. Test matrix +3 (`FetchTests`: the stale-ref regression — a
+  clone whose recorded origin/main equals its HEAD passes S1 until the
+  fetch reveals the concurrent advance, after which S1 fails loudly
+  with behind/ahead 1/0; fetch failure fails loudly; CLI wiring via
+  `unittest.mock` asserting `--fetch → do_fetch=True` and the default
+  off — first mock use in this suite, disclosed) with fixtures on
+  local bare remotes only — the suite itself never touches the
+  network; live smoke extended with the default-offline invariant.
+  Pre-edit pin checks grep count 0 across both freeze manifests for
+  all three touchpoints; none of the three in the verifier pin set;
+  debate log untouched. Mid-unit suite on the dirty tree: 460 ran,
+  exactly one designed failure
+  (`test_live_repo_has_no_tracked_file_modifications`) naming exactly
+  `src/test_verify_retained_integrity.py` and
+  `src/verify_retained_integrity.py` (review doc not yet edited),
+  4 skipped. Expectation change disclosed: future wakes should run
+  `python3 src/verify_retained_integrity.py --auditors --fetch`
+  expecting **exit 0, 14/14 PASS** (N1 RED on genuine network/remote
+  failure by design — a stop condition, not a defect) and suite **460
+  tests, OK, 4 skipped**; S1 expected GREEN at arrivals and RED only
+  inside commit-to-push windows. Per the session-25 workflow
+  correction, closing battery numbers are reported post-push at the
+  pushed HEAD in this wake's delivery. Part IV session-29 entry
+  appended; Part V item 5 rolled forward with the new expectations.
+  Doors R1–R3 unfired; hold in force.
+
 ## Part V — Next run should pick up
 
 1. **The programme is CLOSED on computed grounds (session 8).** The
@@ -1640,6 +1710,20 @@ content and would expire at the first lawful door-baseline roll-forward;
 +5 tests — future wakes should expect `python3
 src/verify_retained_integrity.py --auditors` **exit 0, 13/13 PASS** and
 suite **457 tests, OK, 4 skipped** (see the Part IV session-28 entry);
+   session 29 followed the prescription again on its tenth corrected-
+briefing arrival (v3 text delivered intact; verifier with `--auditors`
+**exit 0, 13/13 PASS** with session-12-identical auditor numbers; suite
+**457 tests, OK, 4 skipped** at arrival HEAD `5de83ac68a3f`; doors
+unfired) and spent its durable-gap budget on mechanising briefing
+step 1's fetch half — new opt-in **N1 fetch** check (`--fetch`): runs
+`git fetch origin` before S1 so the sync comparison is provably
+post-fetch (S1 alone inherits the staleness of the local remote-
+tracking ref; a skipped manual fetch plus a concurrent advance would
+have passed indefinitely), failing loudly on any fetch error while the
+default invocation stays fully offline; +3 tests — future wakes should
+run `python3 src/verify_retained_integrity.py --auditors --fetch`
+expecting **exit 0, 14/14 PASS** and suite **460 tests, OK, 4 skipped**
+(see the Part IV session-29 entry);
    session 9 added the follow-on-memo independent audit
    (`docs/followon-power-memo-independent-audit.md`,
    `src/audit_followon_power_memo.py`) and the Round-6-authorized memo

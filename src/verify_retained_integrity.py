@@ -28,11 +28,25 @@ What it checks (all mechanical, all read-only):
       region, truncations, malformed/non-monotone ledgers, and lawful appends
       not registered within the appending unit's own commit all FAIL loudly.
   T1  Working tree clean (git status --porcelain empty).
+  N1  Fetch (opt-in --fetch): runs `git fetch origin` BEFORE S1 so the
+      sync comparison is provably post-fetch. S1 is deliberately local-
+      only for portability -- it compares HEAD against whatever
+      remote-tracking ref the LAST fetch left behind -- so a wake that
+      skipped the manual fetch while a concurrent session advanced
+      origin/main would let S1 pass against a stale ref indefinitely.
+      This mechanises the fetch half of briefing step 1 (previously the
+      one remaining unmechanised mechanical wake step); it performs
+      exactly the standard `git fetch origin` every wake already ran by
+      hand, updating remote-tracking refs only -- never any working-
+      tree, retained, or pinned file -- keeping the battery read-only
+      over all programme content. Default invocation stays fully
+      offline; a failed fetch FAILS loudly, because an unverifiable
+      sync state must stop the wake, not pass it.
   S1  Sync: local HEAD equals origin/main by local rev-parse comparison
-      (no network; compares the last-fetched remote ref). The wake
-      procedure fetches first, so this mechanises briefing step 1's
-      comparison half and turns any unpushed-commit or failed-push
-      state into a loud stop condition instead of a manual discovery.
+      (compares the last-fetched remote ref; pair with --fetch so the
+      comparison is provably post-fetch). Turns any unpushed-commit,
+      failed-push, or fetched-too-late concurrent advance into a loud
+      stop condition instead of a silent pass or manual discovery.
   D1  Doors: zero changed paths under results/ or failed-designs/ since the last
       artifact-producing commit d19d7c2 (the R1-R3 door check used by sessions
       10-12), and failed-designs/ still holds exactly its 8 archived entries.
@@ -429,6 +443,36 @@ def failed_designs_ledger(root: pathlib.Path) -> tuple[bool, str]:
     )
 
 
+def fetch_origin(root: pathlib.Path) -> tuple[bool, str]:
+    """N1 (opt-in --fetch): refresh the remote-tracking ref S1 compares.
+
+    S1 is deliberately local-only for portability, so it inherits the
+    staleness of refs/remotes/origin/main: a skipped manual fetch combined
+    with a concurrent session's push would leave S1 passing indefinitely
+    against a ref that no longer is origin/main. This performs exactly
+    the wake procedure's step-1 `git fetch origin` -- remote-tracking
+    refs only; no working-tree, retained, or pinned file is touched --
+    and fails loudly on any fetch error or missing remote branch.
+    """
+    rf = git(root, "fetch", "origin")
+    if rf.returncode != 0:
+        tail = [
+            ln for ln in (rf.stderr or rf.stdout or "").splitlines() if ln.strip()
+        ]
+        return False, (
+            f"git fetch origin failed rc={rf.returncode}"
+            + (f"; e.g. {tail[-1][:110]}" if tail else "")
+            + " -- resolve network/remote before trusting S1"
+        )
+    rm = git(root, "rev-parse", "--verify", "origin/main")
+    if rm.returncode != 0:
+        return False, (
+            f"fetch rc=0 but origin/main unknown (rc={rm.returncode}) "
+            "-- remote carries no main branch?"
+        )
+    return True, f"git fetch origin OK; origin/main now {rm.stdout.strip()[:12]}"
+
+
 def sync(root: pathlib.Path) -> tuple[bool, str]:
     """S1: local HEAD must equal origin/main.
 
@@ -546,6 +590,7 @@ def verify(
     root: pathlib.Path = REPO_ROOT,
     with_auditors: bool = False,
     include_tree_check: bool = True,
+    do_fetch: bool = False,
 ) -> tuple[bool, list[str]]:
     lines: list[str] = []
     failures = 0
@@ -557,6 +602,12 @@ def verify(
             failures += 1
         n_checks += 1
         lines.append(f"[{'PASS' if ok else 'FAIL'}] {label}: {detail}")
+
+    # N1 fetch (opt-in): refresh the remote-tracking ref BEFORE S1 runs so
+    # the sync comparison is provably post-fetch (see module docstring).
+    if do_fetch:
+        ok, detail = fetch_origin(root)
+        record(ok, "N1 fetch", detail)
 
     # P1 manifest self-integrity
     for rel, digest in RETAINED_MANIFESTS:
@@ -666,8 +717,16 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="also run the three standalone read-only auditors (requires exit 0)",
     )
+    ap.add_argument(
+        "--fetch",
+        action="store_true",
+        help=(
+            "run `git fetch origin` first so S1 compares the true remote "
+            "tip (network; default off keeps the battery fully offline)"
+        ),
+    )
     args = ap.parse_args(argv)
-    ok, lines = verify(with_auditors=args.auditors)
+    ok, lines = verify(with_auditors=args.auditors, do_fetch=args.fetch)
     print("\n".join(lines))
     return 0 if ok else 1
 
